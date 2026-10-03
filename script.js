@@ -91,6 +91,11 @@ const applyCategoryFilter = (category) => {
     const cardCategories = (card.getAttribute('data-category') || '').toLowerCase();
     card.style.display = (category === 'all' || cardCategories.includes(category)) ? '' : 'none';
   });
+  const grid = document.querySelector('.products-main .product-grid') || document.querySelector('.product-grid');
+  if (grid) {
+    const topo = grid.getBoundingClientRect().top + window.pageYOffset - 110;
+    if (window.pageYOffset > topo) window.scrollTo({ top: Math.max(topo, 0), behavior: 'smooth' });
+  }
 };
 
 if (filterButtons.length && allProductCards.length) {

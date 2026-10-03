@@ -458,6 +458,16 @@ h1, h2, h3, h4, h5, h6 {
     transition: 0.3s;
 }
 
+.category-chip i {
+    font-size: 1.4rem;
+    color: var(--primary-blue);
+    margin-bottom: 6px;
+}
+
+.category-chip:hover i {
+    color: var(--primary-blue-dark);
+}
+
 .category-chip:hover {
     border-color: var(--primary-blue);
     background: #ffe0e0;
@@ -1133,6 +1143,11 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 260px;
         margin: 15px auto 0;
     }
+    .hero-produtos {
+        width: 100%;
+        max-width: 260px;
+        margin: 15px auto 0;
+    }
     .hero-text h1 {
         font-size: 2rem;
     }
@@ -1373,6 +1388,12 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 15px;
 }
 
+.avaliacao-estrelas i {
+    color: #F59E0B;
+    font-size: 1.05rem;
+    margin-right: 4px;
+}
+
 .avaliacao-texto {
     font-size: 0.95rem;
     color: var(--text-secondary);
@@ -1394,4 +1415,65 @@ h1, h2, h3, h4, h5, h6 {
 
 .products-sidebar-box {
     display: none;
+}
+
+/* --- HERO COM FOTOS REAIS --- */
+.hero-produtos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 260px;
+}
+
+.hero-produtos img {
+    width: 100%;
+    height: 124px;
+    object-fit: contain;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.14);
+    transition: transform 0.3s ease;
+}
+
+.hero-produtos img:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+/* --- PAGINA DE FOTOS (banco de imagens) --- */
+.fotos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 10px 0 45px;
+}
+
+.fotos-item {
+    background: #ffffff;
+    border: 1px solid var(--neutral-medium);
+    border-radius: 14px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0;
+}
+
+.fotos-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.fotos-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+}
+
+.fotos-item figcaption {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.35;
+    word-break: break-word;
 }
