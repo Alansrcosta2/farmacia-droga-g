@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="description" content="Entre em contato com a Farmácia Droga G: central de atendimento, formulário de contato, telefones e WhatsApp.">
+    <title>Contato - Farmácia Droga G</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=1">
+    <style>
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid var(--neutral-medium);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-info-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-info-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div>
+                        <i class="fas fa-phone"></i> Central de Atendimento: (31) 3476-2473
+                    </div>
+                    <div class="top-bar-links">
+                        <a href="lojas.html"><i class="fas fa-map-marker-alt"></i> Nossas Lojas</a>
+                        <a href="#"><i class="fas fa-truck"></i> Rastrear Pedido</a>
+                        <a href="contato.html"><i class="fas fa-headset"></i> Atendimento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+
+                    <button class="mobile-menu-btn" aria-label="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <a href="index.html" class="logo">DROGA <span>G</span></a>
+
+                    <div class="header-search">
+                        <div class="search-wrapper">
+                            <input type="text" class="search-input" placeholder="O que você está procurando?" aria-label="Buscar produtos">
+                            <button class="search-btn" aria-label="Buscar">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="header-icons">
+                        <a href="#" class="header-icon" aria-label="Área do cliente" data-account-button>
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <a href="#" class="header-icon" aria-label="Lista de favoritos" data-favorites-button>
+                            <i class="fas fa-heart"></i>
+                            <span class="icon-badge" data-favorites-count>0</span>
+                        </a>
+                        <a href="carrinho.html" class="header-icon" aria-label="Carrinho de compras">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="icon-badge" data-cart-count>0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="farmacia-popular.html">Farmácia Popular</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Entre em <span>Contato</span></h2>
+                    <p class="section-subtitle">Estamos prontos para atender você</p>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+                        <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Telefone</h3>
+
+                        <p><strong>Jardim Alvorada:</strong><br>(31) 98378-5075</p>
+                        <p><strong>São Geraldo:</strong><br>(31) 3487-1209</p>
+                        <p><strong>Santa Terezinha:</strong><br>(31) 3476-2473</p>
+                    </div>
+                        <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>E-mail</h3>
+                        <p>contato@drogag.com.br</p>
+                        <p>atendimento@drogag.com.br</p>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+
+                        <h3>WhatsApp</h3>
+                        <p><strong>Jardim Alvorada:</strong> (31) 98378-5075</p>
+                        <p><strong>Santa Terezinha:</strong> (31) 9 7171-6274</p>
+                        <p>Atendimento de segunda a sábado</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div class="contact-form">
+                        <h2 style="margin-bottom: 30px;">Envie sua Mensagem</h2>
+                        <form aria-label="Formulário de contato">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo *</label>
+                                <input type="text" id="nome" name="nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone *</label>
+                                <input type="tel" id="telefone" name="telefone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="assunto">Assunto *</label>
+                                <select id="assunto" name="assunto" required>
+                                    <option value="">Selecione um assunto</option>
+                                    <option value="duvida">Dúvida sobre Produtos</option>
+                                    <option value="farmacia-popular">Farmácia Popular</option>
+                                    <option value="servicos">Serviços Farmacêuticos</option>
+                                    <option value="reclamacao">Reclamação</option>
+                                    <option value="sugestao">Sugestão</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem *</label>
+                                <textarea id="mensagem" name="mensagem" required></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="width: 100%;">Enviar Mensagem</button>
+                        </form>
+                    </div>
+
+                    <div>
+                        <div class="content-card">
+                            <h2>Horário de Atendimento</h2>
+                            <p style="margin-top: 20px;">
+                                <strong>Segunda a Sexta:</strong><br>
+                                8h às 20h
+                            </p>
+                            <p style="margin-top: 15px;">
+                                <strong>Sábado:</strong><br>
+                                8h às 18h
+                            </p>
+                            <p style="margin-top: 15px;">
+                                <strong>Domingo e Feriados:</strong><br>
+                                9h às 13h
+                            </p>
+                        </div>
+
+                        <div class="content-card" style="margin-top: 25px;">
+                            <h2>Perguntas Frequentes</h2>
+                            <p style="margin-top: 20px;">
+                                <strong>Como funciona a entrega?</strong><br>
+                                Realizamos entregas em até 30 minutos dentro da nossa área de cobertura, com frete grátis em Santa Terezinha para compras a partir de R$ 10,00 e em bairros vizinhos para compras a partir de R$ 15,00. Consulte disponibilidade e valores pelo telefone ou WhatsApp antes de solicitar a entrega.
+                            </p>
+                            <p style="margin-top: 15px;">
+                                <strong>Aceitam receita digital?</strong><br>
+                                Sim, aceitamos receitas digitais válidas emitidas por médicos credenciados.
+                            </p>
+                            <p style="margin-top: 15px;">
+                                <strong>Posso parcelar minhas compras?</strong><br>
+                                Sim, aceitamos parcelamento em até 3x sem juros no cartão de crédito.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">DROGA <span>G</span></div>
+                    <p>Saúde, Economia e Confiança desde 2009.</p>
+                    <p>Cuidando de você e da sua família com dedicação e profissionalismo.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" aria-label="Facebook da Farmácia Droga G"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/drogag_santaterezinha" target="_blank" class="social-icon" aria-label="Instagram da Farmácia Droga G - Santa Terezinha"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/5531971716274" target="_blank" class="social-icon" aria-label="WhatsApp da Farmácia Droga G - Santa Terezinha"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-icon" aria-label="YouTube da Farmácia Droga G"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Nossas Lojas</h3>
+
+                    <p><strong>Jardim Alvorada</strong></p>
+                    <p><i class="fas fa-phone"></i> (31) 98378-5075</p>
+                    <p><i class="fas fa-map-marker-alt"></i> R. Flor D'Água, 608</p>
+                    <br>
+
+
+                    <p><strong>São Geraldo</strong></p>
+                    <p><i class="fas fa-phone"></i> (31) 3487-1209</p>
+                    <p><i class="fas fa-map-marker-alt"></i> R. Silva Alvarenga, 607</p>
+                    <br>
+                    <p><strong>Santa Terezinha</strong></p>
+                    <p><i class="fas fa-phone"></i> (31) 3476-2473</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Julita Nogueira Soares, 610</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <a href="sobre.html">Sobre Nós</a>
+                    <a href="#">Trabalhe Conosco</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                    <a href="farmacia-popular.html">Farmácia Popular</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Atendimento</h3>
+                    <a href="contato.html">Central de Ajuda</a>
+                    <a href="contato.html">Fale Conosco</a>
+                    <a href="#">Tele Entrega</a>
+                    <a href="#">Rastrear Pedido</a>
+                    <a href="#">Trocas e Devoluções</a>
+                    <a href="#">Perguntas Frequentes</a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="copyright">
+                &copy; 2026 Farmácia Droga G - Todos os direitos reservados. | CNPJ: 10.352.394/0001-09
+            </div>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top" id="scrollToTop" role="button" aria-label="Voltar para o topo da página">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+
+    <div class="menu-overlay"></div>
+
+    <script src="script.js?v=1"></script>
+
+<a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</body>
+
+</html>

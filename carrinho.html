@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho - Farmácia Droga G</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <span><i class="fas fa-phone-alt"></i> Central de Atendimento: (31) 3476-2473</span>
+                <div class="top-bar-links">
+                    <a href="lojas.html"><i class="fas fa-store"></i> Nossas Lojas</a>
+                    <a href="#"><i class="fas fa-truck"></i> Rastrear Pedido</a>
+                    <a href="contato.html"><i class="fas fa-headset"></i> Atendimento</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container header-content">
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                <a href="index.html" class="logo">DROGA <span>G</span></a>
+                <div class="header-search">
+                    <div class="search-wrapper">
+                        <input type="text" class="search-input" placeholder="Buscar medicamentos, vitaminas...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <a href="#" class="header-icon" data-favorites-button><i class="far fa-heart"></i><span class="icon-badge" data-favorites-count>0</span></a>
+                    <a href="carrinho.html" class="header-icon"><i class="fas fa-shopping-cart"></i><span class="icon-badge" data-cart-count>0</span></a>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="farmacia-popular.html">Farmácia Popular</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="menu-overlay"></div>
+    </header>
+
+    <main class="page-content cart-page">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Meu Carrinho</h1>
+                <p class="section-subtitle">Revise seus produtos e envie seu pedido pelo WhatsApp</p>
+            </div>
+
+            <div class="products-layout">
+                <section class="products-main">
+                    <div class="content-card">
+                        <h2>Produtos selecionados</h2>
+                        <div id="cartItemsContainer"></div>
+                        <div id="cartEmptyMessage" style="display:none; text-align:center; padding:40px 0; color:var(--text-secondary);">
+                            <i class="fas fa-shopping-basket" style="font-size:3rem; margin-bottom:15px; opacity:0.3;"></i>
+                            <p>Seu carrinho está vazio. Volte à página de produtos para adicionar itens.</p>
+                            <a href="produtos.html" class="btn" style="margin-top:20px;">Ver Produtos</a>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="products-sidebar">
+                    <div id="cartSummary" style="display:none;">
+                        <h3>Resumo do Pedido</h3>
+                        <div style="display:flex; justify-content:space-between; margin:15px 0; font-size:1.2rem; font-weight:700;">
+                            <span>Total estimado:</span>
+                            <span id="cartTotalValue" style="color:var(--primary-blue);">R$ 0,00</span>
+                        </div>
+                        <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:15px;">Os valores podem sofrer ajustes na conferência da loja, especialmente em medicamentos sujeitos a variação de preço.</p>
+                        <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:20px;">Frete grátis para compras a partir de R$ 10,00 em Santa Terezinha e R$ 15,00 em bairros vizinhos.</p>
+                        <button id="clearCartButton" class="btn btn-outline" style="width:100%; margin-bottom:10px;">Limpar carrinho</button>
+                        <a href="produtos.html" class="btn btn-outline" style="width:100%; text-align:center;">Continuar comprando</a>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="content-card" style="margin-top:30px;">
+                <h2>Dados para entrega</h2>
+                <form id="cartCheckoutForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="checkoutNome">Nome completo *</label>
+                        <input type="text" id="checkoutNome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkoutTelefone">Telefone / WhatsApp *</label>
+                        <input type="tel" id="checkoutTelefone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkoutEndereco">Endereço completo *</label>
+                        <input type="text" id="checkoutEndereco" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkoutBairro">Bairro *</label>
+                        <input type="text" id="checkoutBairro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkoutPagamento">Forma de pagamento *</label>
+                        <select id="checkoutPagamento" required>
+                            <option value="">Selecione</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                            <option value="Pix">Pix</option>
+                            <option value="Cartão de Crédito">Cartão de Crédito</option>
+                            <option value="Cartão de Débito">Cartão de Débito</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkoutReferencia">Ponto de referência (opcional)</label>
+                        <input type="text" id="checkoutReferencia">
+                    </div>
+                    <div class="form-group">
+                        <label for="checkoutObservacoes">Observações (opcional)</label>
+                        <textarea id="checkoutObservacoes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width:100%; font-size:1.1rem; padding:16px;">
+                        <i class="fab fa-whatsapp"></i> Enviar pedido pelo WhatsApp
+                    </button>
+                    <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:15px; text-align:center;">
+                        Seu pedido será enviado para a Drogaria Droga G - Santa Terezinha via WhatsApp. A equipe irá confirmar os valores, disponibilidade e prazo de entrega de acordo com seu endereço. O pagamento é combinado diretamente com a farmácia (Pix, dinheiro ou cartão na entrega).
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">DROGA <span>G</span></div>
+                    <p>Saúde, Economia e Confiança desde 2009.</p>
+                    <p>Cuidando de você e da sua família com dedicação e profissionalismo.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Nossas Lojas</h3>
+                    <p><strong>Jardim Alvorada</strong><br><i class="fas fa-phone"></i> (31) 98378-5075<br><i class="fas fa-map-marker-alt"></i> R. Flor D'Água, 608</p>
+                    <p><strong>São Geraldo</strong><br><i class="fas fa-phone"></i> (31) 3487-1209<br><i class="fas fa-map-marker-alt"></i> R. Silva Alvarenga, 607</p>
+                    <p><strong>Santa Terezinha</strong><br><i class="fas fa-phone"></i> (31) 3476-2473<br><i class="fas fa-map-marker-alt"></i> Rua Julita Nogueira Soares, 610</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <a href="sobre.html">Sobre Nós</a>
+                    <a href="#">Trabalhe Conosco</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                    <a href="farmacia-popular.html">Farmácia Popular</a>
+                    <a href="#">Blog</a>
+                    <a href="https://instagram.com/drogag_santaterezinha" target="_blank"><i class="fab fa-instagram"></i> @drogag_santaterezinha</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Atendimento</h3>
+                    <a href="contato.html">Central de Ajuda</a>
+                    <a href="contato.html">Fale Conosco</a>
+                    <a href="#">Tele Entrega</a>
+                    <a href="#">Rastrear Pedido</a>
+                    <a href="#">Trocas e Devoluções</a>
+                    <a href="#">Perguntas Frequentes</a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="copyright">© 2026 Farmácia Droga G - Todos os direitos reservados. | CNPJ: 10.352.394/0001-09</p>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
+    <script src="produtos-data.js"></script>
+    <script src="script.js"></script>
+<a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</body>
+</html>
