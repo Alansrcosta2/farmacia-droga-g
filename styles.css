@@ -1477,3 +1477,442 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.35;
     word-break: break-word;
 }
+
+/* ============ HOME ESTILO PROFISSIONAL ============ */
+
+/* --- ENVIO / CEP NO TOPO --- */
+.header-cep {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 10px;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+.header-cep:hover {
+    background: #eef6ff;
+}
+.header-cep i {
+    color: var(--primary-blue);
+    font-size: 1.15rem;
+}
+.header-cep small {
+    display: block;
+    font-size: 0.66rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.header-cep strong {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- BARRA DE BENEFICIOS --- */
+.beneficios-bar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--neutral-medium);
+}
+.beneficios-lista {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 0;
+}
+.beneficio-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+.beneficio-item > i {
+    font-size: 1.35rem;
+    color: var(--primary-blue);
+    width: 34px;
+    text-align: center;
+    flex-shrink: 0;
+}
+.beneficio-item strong {
+    display: block;
+    font-size: 0.86rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.beneficio-item span {
+    font-size: 0.73rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- CATEGORIAS REDONDAS --- */
+.section-categorias-round {
+    padding-top: 38px;
+    padding-bottom: 38px;
+}
+.categoria-round-row {
+    display: flex;
+    gap: 26px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.categoria-round {
+    width: 112px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+.categoria-round-img {
+    display: block;
+    width: 112px;
+    height: 112px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
+    padding: 12px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.categoria-round-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.categoria-round:hover .categoria-round-img {
+    transform: translateY(-5px);
+    border-color: var(--primary-blue);
+}
+.categoria-round-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+/* --- CARROSSEL DE BANNERS --- */
+.banner-carrossel {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--neutral-medium);
+}
+.banner-trilho {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.banner-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 42px;
+}
+.banner-slide > .container {
+    width: 100%;
+}
+.banner-slide.hero-banner {
+    padding: 28px 0 42px;
+}
+.banner-seta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: #333;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+}
+.banner-seta:hover {
+    background: #ffffff;
+}
+.banner-seta-esq {
+    left: 14px;
+}
+.banner-seta-dir {
+    right: 14px;
+}
+.banner-bolinhas {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 7px;
+    z-index: 6;
+    background: rgba(15, 23, 42, 0.28);
+    padding: 6px 11px;
+    border-radius: 999px;
+    backdrop-filter: blur(3px);
+}
+.banner-bolinha {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.banner-bolinha.ativo {
+    width: 24px;
+    background: #ffffff;
+}
+.banner-slide--cor {
+    color: #ffffff;
+    padding: 56px 0 46px;
+}
+.banner-slide--popular {
+    background: linear-gradient(135deg, #0b7a3b, #17b058);
+}
+.banner-slide--entrega {
+    background: linear-gradient(135deg, #c2410c, #f97316);
+}
+.banner-generico {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.banner-generico h2 {
+    font-size: 2.1rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+.banner-generico p {
+    font-size: 1.02rem;
+    opacity: 0.95;
+    margin-bottom: 20px;
+    max-width: 520px;
+}
+.banner-generico .hero-pill {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+}
+.banner-generico .hero-pill strong {
+    color: #ffffff;
+}
+.banner-generico .btn {
+    background: #ffffff;
+    color: var(--text-primary);
+}
+.banner-generico .btn:hover {
+    background: #eef2f7;
+}
+.banner-generico-visual i {
+    font-size: 7rem;
+    opacity: 0.4;
+}
+
+/* --- PRATELEIRAS (ROLAGEM HORIZONTAL) --- */
+.prateleira-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+.prateleira-titulo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.55rem;
+    margin: 0;
+    color: var(--text-primary);
+}
+.prateleira-titulo i {
+    color: var(--accent-yellow, #F59E0B);
+}
+.prateleira-setas {
+    display: flex;
+    gap: 8px;
+}
+.prateleira-seta {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--neutral-medium);
+    background: #ffffff;
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.prateleira-seta:hover {
+    background: var(--primary-blue);
+    color: #ffffff;
+    border-color: var(--primary-blue);
+}
+.prateleira-trilho {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 4px 14px;
+    scrollbar-width: none;
+}
+.prateleira-trilho::-webkit-scrollbar {
+    display: none;
+}
+.prateleira-trilho .product-card {
+    flex: 0 0 218px;
+    scroll-snap-align: start;
+    padding: 18px;
+}
+
+/* --- FAIXA BANNER PROMOCIONAL --- */
+.faixa-banner {
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-dark));
+    color: #ffffff;
+    border-radius: 18px;
+    padding: 28px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 10px 0 46px;
+    flex-wrap: wrap;
+}
+.faixa-banner-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.faixa-banner-info > i {
+    font-size: 2.4rem;
+}
+.faixa-banner h3 {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+}
+.faixa-banner p {
+    font-size: 0.92rem;
+    opacity: 0.92;
+}
+.faixa-banner .btn {
+    background: #ffffff;
+    color: var(--primary-blue-dark);
+}
+.faixa-banner .btn:hover {
+    background: #eef6ff;
+}
+
+/* --- AJUSTES MOBILE (celular) --- */
+@media (max-width: 768px) {
+    .header-cep {
+        display: none;
+    }
+    .beneficios-lista {
+        overflow-x: auto;
+        scrollbar-width: none;
+        justify-content: flex-start;
+        gap: 18px;
+    }
+    .beneficios-lista::-webkit-scrollbar {
+        display: none;
+    }
+    .beneficio-item {
+        flex: 0 0 auto;
+        min-width: 185px;
+    }
+    .categoria-round-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        scrollbar-width: none;
+        padding-bottom: 6px;
+        gap: 16px;
+    }
+    .categoria-round-row::-webkit-scrollbar {
+        display: none;
+    }
+    .categoria-round {
+        flex: 0 0 auto;
+        width: 96px;
+    }
+    .categoria-round-img {
+        width: 96px;
+        height: 96px;
+        padding: 10px;
+    }
+    .banner-seta {
+        width: 34px;
+        height: 34px;
+        font-size: 0.8rem;
+    }
+    .banner-seta-esq {
+        left: 6px;
+    }
+    .banner-seta-dir {
+        right: 6px;
+    }
+    .banner-generico {
+        flex-direction: column;
+        text-align: center;
+    }
+    .banner-generico h2 {
+        font-size: 1.55rem;
+    }
+    .banner-generico p {
+        font-size: 0.95rem;
+    }
+    .banner-generico-visual {
+        display: none;
+    }
+    .banner-generico .hero-buttons {
+        justify-content: center;
+    }
+    .prateleira-setas {
+        display: none;
+    }
+    .prateleira-titulo {
+        font-size: 1.25rem;
+    }
+    .prateleira-trilho .product-card {
+        flex: 0 0 60vw;
+        max-width: 240px;
+    }
+    .faixa-banner {
+        padding: 22px;
+        text-align: center;
+        flex-direction: column;
+    }
+    .faixa-banner-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .faixa-banner .btn {
+        width: 100%;
+    }
+    .section {
+        padding: 38px 0;
+    }
+    .section-categorias-round {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .product-card {
+        padding: 18px;
+    }
+}

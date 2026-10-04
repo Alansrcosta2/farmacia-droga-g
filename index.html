@@ -29,7 +29,16 @@
                         <button class="search-btn"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
+                <button type="button" class="header-cep" data-cep>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>
+                        <small>Enviar para</small>
+                        <strong data-cep-text>Informe seu CEP</strong>
+                    </span>
+                </button>
                 <div class="header-icons">
+                    <a href="#" class="header-icon" data-conta title="Minha conta"><i class="far fa-user"></i></a>
+                    <a href="contato.html" class="header-icon" title="Ajuda"><i class="fas fa-headset"></i></a>
                     <a href="#" class="header-icon" data-favorites-button><i class="far fa-heart"></i><span class="icon-badge" data-favorites-count>0</span></a>
                     <a href="carrinho.html" class="header-icon"><i class="fas fa-shopping-cart"></i><span class="icon-badge" data-cart-count>0</span></a>
                 </div>
@@ -52,81 +61,122 @@
     </header>
 
     <main>
-        <section class="hero-banner">
-            <div class="container hero-content">
-                <div class="hero-text">
-                    <div class="hero-pill"><strong>OFERTA</strong> Ofertas do dia com até 60% OFF</div>
-                    <h1>Ofertas imperdíveis para o seu dia</h1>
-                    <p>Até 60% OFF em medicamentos, vitaminas e beleza com entrega rápida em Santa Terezinha e região.</p>
-                    <div class="hero-buttons">
-                        <a href="produtos.html" class="btn">Ver ofertas</a>
-                        <a href="farmacia-popular.html" class="btn btn-outline">Farmácia Popular</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="hero-produtos">
-                        <img src="img/DIPIRONA_500MG_EMS_20.webp" alt="Dipirona 500mg">
-                        <img src="img/CREME_DENTAL_SENSODYNE_100G.webp" alt="Creme dental Sensodyne">
-                        <img src="img/PROTETOR_SOLAR_FPS50_LRP_50ML.webp" alt="Protetor solar FPS 50">
-                        <img src="img/VITAMINA_C_1000MG_10.webp" alt="Vitamina C 1000mg">
-                    </div>
-                </div>
+    <main>
+        <!-- Benefícios -->
+        <section class="beneficios-bar">
+            <div class="container beneficios-lista">
+                <div class="beneficio-item"><i class="fas fa-truck-fast"></i><div><strong>Frete Grátis</strong><span>Acima de R$ 10</span></div></div>
+                <div class="beneficio-item"><i class="fas fa-bolt"></i><div><strong>Entrega Rápida</strong><span>Em até 30 minutos</span></div></div>
+                <div class="beneficio-item"><i class="fas fa-store"></i><div><strong>Retire na Loja</strong><span>Lojas mais perto de você</span></div></div>
+                <div class="beneficio-item"><i class="fas fa-hand-holding-heart"></i><div><strong>Farmácia Popular</strong><span>Descontos do governo</span></div></div>
+                <div class="beneficio-item"><i class="fas fa-headset"></i><div><strong>Atendimento</strong><span>(31) 3476-2473</span></div></div>
             </div>
         </section>
 
-        <section class="section section-categories">
+        <!-- Categorias redondas -->
+        <section class="section section-categorias-round">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Categorias</h2>
                     <p class="section-subtitle">Encontre rápido o que você precisa</p>
                 </div>
-                <div class="category-row">
-                    <div class="category-chip" data-target-category="medicamentos"><i class="fas fa-tablets"></i> Medicamentos</div>
-                    <div class="category-chip" data-target-category="medicamentos"><i class="fas fa-flask"></i> Genéricos</div>
-                    <div class="category-chip" data-target-category="dermocosmeticos"><i class="fas fa-spa"></i> Beleza</div>
-                    <div class="category-chip" data-target-category="higiene"><i class="fas fa-soap"></i> Higiene</div>
-                    <div class="category-chip" data-target-category="vitaminas"><i class="fas fa-heart-pulse"></i> Vitaminas</div>
+                <div class="categoria-round-row">
+                    <a class="categoria-round" href="produtos.html?categoria=medicamentos">
+                        <span class="categoria-round-img"><img src="img/DIPIRONA_500MG_EMS_20.webp" alt="Medicamentos" loading="lazy"></span>
+                        <span class="categoria-round-label">Medicamentos</span>
+                    </a>
+                    <a class="categoria-round" href="produtos.html?categoria=medicamentos">
+                        <span class="categoria-round-img"><img src="img/LOSARTANA_50MG_EMS_30.webp" alt="Genéricos" loading="lazy"></span>
+                        <span class="categoria-round-label">Genéricos</span>
+                    </a>
+                    <a class="categoria-round" href="produtos.html?categoria=vitaminas">
+                        <span class="categoria-round-img"><img src="img/VITAMINA_C_1000MG_10.webp" alt="Vitaminas" loading="lazy"></span>
+                        <span class="categoria-round-label">Vitaminas</span>
+                    </a>
+                    <a class="categoria-round" href="produtos.html?categoria=higiene">
+                        <span class="categoria-round-img"><img src="img/CREME_DENTAL_SENSODYNE_100G.webp" alt="Higiene" loading="lazy"></span>
+                        <span class="categoria-round-label">Higiene</span>
+                    </a>
+                    <a class="categoria-round" href="produtos.html?categoria=dermocosmeticos">
+                        <span class="categoria-round-img"><img src="img/PROTETOR_SOLAR_FPS50_LRP_50ML.webp" alt="Beleza" loading="lazy"></span>
+                        <span class="categoria-round-label">Beleza</span>
+                    </a>
+                    <a class="categoria-round" href="produtos.html?categoria=higiene">
+                        <span class="categoria-round-img"><img src="img/CURATIVO_BANDAID_40.webp" alt="Primeiros Socorros" loading="lazy"></span>
+                        <span class="categoria-round-label">Primeiros Socorros</span>
+                    </a>
                 </div>
+            </div>
+        </section>
+
+        <!-- Carrossel de banners -->
+        <section class="banner-carrossel" data-carrossel>
+            <div class="banner-trilho">
+                <div class="banner-slide hero-banner">
+                    <div class="container hero-content">
+                        <div class="hero-text">
+                            <div class="hero-pill"><strong>OFERTA</strong> Ofertas do dia com até 60% OFF</div>
+                            <h1>Ofertas imperdíveis para o seu dia</h1>
+                            <p>Até 60% OFF em medicamentos, vitaminas e beleza com entrega rápida em Santa Terezinha e região.</p>
+                            <div class="hero-buttons">
+                                <a href="produtos.html" class="btn">Ver ofertas</a>
+                                <a href="farmacia-popular.html" class="btn btn-outline">Farmácia Popular</a>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <div class="hero-produtos">
+                                <img src="img/DIPIRONA_500MG_EMS_20.webp" alt="Dipirona 500mg">
+                                <img src="img/CREME_DENTAL_SENSODYNE_100G.webp" alt="Creme dental Sensodyne">
+                                <img src="img/PROTETOR_SOLAR_FPS50_LRP_50ML.webp" alt="Protetor solar FPS 50">
+                                <img src="img/VITAMINA_C_1000MG_10.webp" alt="Vitamina C 1000mg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-slide banner-slide--cor banner-slide--popular">
+                    <div class="container banner-generico">
+                        <div class="banner-generico-texto">
+                            <div class="hero-pill"><strong>FARMÁCIA POPULAR</strong> Medicamentos com desconto do governo</div>
+                            <h2>Leve a receita e cadastre-se na Droga G</h2>
+                            <p>Medicamentos gratuitos ou com até 90% de desconto para quem tem direito.</p>
+                            <div class="hero-buttons"><a href="farmacia-popular.html" class="btn">Como funciona</a></div>
+                        </div>
+                        <div class="banner-generico-visual"><i class="fas fa-hand-holding-medical"></i></div>
+                    </div>
+                </div>
+                <div class="banner-slide banner-slide--cor banner-slide--entrega">
+                    <div class="container banner-generico">
+                        <div class="banner-generico-texto">
+                            <div class="hero-pill"><strong>ENTREGA</strong> Santa Terezinha e região</div>
+                            <h2>Receba em até 30 minutos</h2>
+                            <p>Frete grátis em pedidos acima de R$ 10. Peça pelo WhatsApp e receba hoje mesmo.</p>
+                            <div class="hero-buttons"><a href="produtos.html" class="btn">Ver produtos</a></div>
+                        </div>
+                        <div class="banner-generico-visual"><i class="fas fa-motorcycle"></i></div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="banner-seta banner-seta-esq" data-banner-dir="-1" aria-label="Banner anterior"><i class="fas fa-chevron-left"></i></button>
+            <button type="button" class="banner-seta banner-seta-dir" data-banner-dir="1" aria-label="Próximo banner"><i class="fas fa-chevron-right"></i></button>
+            <div class="banner-bolinhas">
+                <button type="button" class="banner-bolinha ativo" data-slide-ir="0" aria-label="Banner 1"></button>
+                <button type="button" class="banner-bolinha" data-slide-ir="1" aria-label="Banner 2"></button>
+                <button type="button" class="banner-bolinha" data-slide-ir="2" aria-label="Banner 3"></button>
             </div>
         </section>
 
         <section class="section">
             <div class="container">
-                <div class="feature-cards">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-truck-fast"></i></div>
-                        <h3>Entrega Rápida e Grátis</h3>
-                        <p>Receba seus medicamentos em até 30 minutos com frete grátis a partir de R$ 10 em Santa Terezinha e R$ 15 em bairros vizinhos.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-tags"></i></div>
-                        <h3>Melhores Preços</h3>
-                        <p>Descontos especiais e promoções exclusivas todos os dias.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-user-nurse"></i></div>
-                        <h3>Atendimento Especializado</h3>
-                        <p>Farmacêuticos qualificados para orientar você.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
-                        <h3>Compra Segura</h3>
-                        <p>Ambiente 100% seguro e protegido para suas compras.</p>
+                <div class="prateleira-header">
+                    <h2 class="prateleira-titulo"><i class="fas fa-bolt"></i> Oferta do Dia</h2>
+                    <div class="prateleira-setas">
+                        <button type="button" class="prateleira-seta" data-prateleira="oferta" data-dir="-1" aria-label="Produtos anteriores"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="prateleira-seta" data-prateleira="oferta" data-dir="1" aria-label="Próximos produtos"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Ofertas em Destaque</h2>
-                    <p class="section-subtitle">Confira alguns dos nossos produtos com os melhores preços</p>
-                </div>
-                <div class="product-grid">
+                <div class="prateleira-trilho" data-trilho="oferta">
                     <div class="product-card" data-sku="DIPIRONA_500MG_EMS_20" data-category="medicamentos">
                         <button class="favorite-btn"><i class="far fa-heart"></i></button>
-                        <span class="product-badge">-30%</span>
                         <div class="product-image-placeholder"><img src="img/DIPIRONA_500MG_EMS_20.webp" alt="DIPIRONA 500MG EMS 20" loading="lazy" onerror="this.replaceWith(document.createTextNode('💊'))"></div>
                         <h3 class="product-name">Carregando...</h3>
                         <div class="product-price-wrapper">
@@ -134,23 +184,104 @@
                             <div class="product-price"></div>
                             <div class="product-installment"></div>
                         </div>
-                        <a href="#" class="btn">Adicionar ao Carrinho</a>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
                     </div>
-                    <div class="product-card" data-sku="PROTETOR_SOLAR_FPS50_LRP_50ML" data-category="dermocosmeticos">
+                    <div class="product-card" data-sku="LOSARTANA_50MG_EMS_30" data-category="medicamentos">
                         <button class="favorite-btn"><i class="far fa-heart"></i></button>
-                        <span class="product-badge">-22%</span>
-                        <div class="product-image-placeholder"><img src="img/PROTETOR_SOLAR_FPS50_LRP_50ML.webp" alt="PROTETOR SOLAR FPS50 LRP 50ML" loading="lazy" onerror="this.replaceWith(document.createTextNode('🧴'))"></div>
+                        <div class="product-image-placeholder"><img src="img/LOSARTANA_50MG_EMS_30.webp" alt="LOSARTANA 50MG EMS 30" loading="lazy" onerror="this.replaceWith(document.createTextNode('🩺'))"></div>
                         <h3 class="product-name">Carregando...</h3>
                         <div class="product-price-wrapper">
                             <div class="product-price-old"></div>
                             <div class="product-price"></div>
                             <div class="product-installment"></div>
                         </div>
-                        <a href="#" class="btn">Adicionar ao Carrinho</a>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
+                    </div>
+                    <div class="product-card" data-sku="OMEPRAZOL_20MG_EMS_14" data-category="medicamentos">
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        <div class="product-image-placeholder"><img src="img/OMEPRAZOL_20MG_EMS_14.webp" alt="OMEPRAZOL 20MG EMS 14" loading="lazy" onerror="this.replaceWith(document.createTextNode('🧪'))"></div>
+                        <h3 class="product-name">Carregando...</h3>
+                        <div class="product-price-wrapper">
+                            <div class="product-price-old"></div>
+                            <div class="product-price"></div>
+                            <div class="product-installment"></div>
+                        </div>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
+                    </div>
+                    <div class="product-card" data-sku="PARACETAMOL_750MG_MEDLEY_20" data-category="medicamentos">
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        <div class="product-image-placeholder"><img src="img/PARACETAMOL_750MG_MEDLEY_20.webp" alt="PARACETAMOL 750MG MEDLEY 20" loading="lazy" onerror="this.replaceWith(document.createTextNode('💉'))"></div>
+                        <h3 class="product-name">Carregando...</h3>
+                        <div class="product-price-wrapper">
+                            <div class="product-price-old"></div>
+                            <div class="product-price"></div>
+                            <div class="product-installment"></div>
+                        </div>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
+                    </div>
+                    <div class="product-card" data-sku="IBUPROFENO_600MG_EMS_30" data-category="medicamentos">
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        <div class="product-image-placeholder"><img src="img/IBUPROFENO_600MG_EMS_30.webp" alt="IBUPROFENO 600MG EMS 30" loading="lazy" onerror="this.replaceWith(document.createTextNode('🌡️'))"></div>
+                        <h3 class="product-name">Carregando...</h3>
+                        <div class="product-price-wrapper">
+                            <div class="product-price-old"></div>
+                            <div class="product-price"></div>
+                            <div class="product-installment"></div>
+                        </div>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
+                    </div>
+                    <div class="product-card" data-sku="ATENSINA_0150MG_30" data-category="medicamentos">
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        <div class="product-image-placeholder"><img src="img/ATENSINA_0150MG_30.webp" alt="ATENSINA 0150MG 30" loading="lazy" onerror="this.replaceWith(document.createTextNode('❤️'))"></div>
+                        <h3 class="product-name">Carregando...</h3>
+                        <div class="product-price-wrapper">
+                            <div class="product-price-old"></div>
+                            <div class="product-price"></div>
+                            <div class="product-installment"></div>
+                        </div>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Faixa promocional -->
+        <section class="container">
+            <div class="faixa-banner">
+                <div class="faixa-banner-info">
+                    <i class="fas fa-truck-fast"></i>
+                    <div>
+                        <h3>Frete Grátis acima de R$ 10</h3>
+                        <p>Em Santa Terezinha e região — entrega em até 30 minutos</p>
+                    </div>
+                </div>
+                <a href="produtos.html" class="btn">Ver ofertas</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="prateleira-header">
+                    <h2 class="prateleira-titulo"><i class="fas fa-star"></i> Mais Procurados</h2>
+                    <div class="prateleira-setas">
+                        <button type="button" class="prateleira-seta" data-prateleira="procurados" data-dir="-1" aria-label="Produtos anteriores"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="prateleira-seta" data-prateleira="procurados" data-dir="1" aria-label="Próximos produtos"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="prateleira-trilho" data-trilho="procurados">
+                    <div class="product-card" data-sku="VITAMINA_C_1000MG_10" data-category="vitaminas">
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        <div class="product-image-placeholder"><img src="img/VITAMINA_C_1000MG_10.webp" alt="VITAMINA C 1000MG 10" loading="lazy" onerror="this.replaceWith(document.createTextNode('💪'))"></div>
+                        <h3 class="product-name">Carregando...</h3>
+                        <div class="product-price-wrapper">
+                            <div class="product-price-old"></div>
+                            <div class="product-price"></div>
+                            <div class="product-installment"></div>
+                        </div>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
                     </div>
                     <div class="product-card" data-sku="OMEGA3_1000MG_60" data-category="vitaminas">
                         <button class="favorite-btn"><i class="far fa-heart"></i></button>
-                        <span class="product-badge">-26%</span>
                         <div class="product-image-placeholder"><img src="img/OMEGA3_1000MG_60.webp" alt="OMEGA3 1000MG 60" loading="lazy" onerror="this.replaceWith(document.createTextNode('🧬'))"></div>
                         <h3 class="product-name">Carregando...</h3>
                         <div class="product-price-wrapper">
@@ -158,11 +289,10 @@
                             <div class="product-price"></div>
                             <div class="product-installment"></div>
                         </div>
-                        <a href="#" class="btn">Adicionar ao Carrinho</a>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
                     </div>
                     <div class="product-card" data-sku="CREME_DENTAL_SENSODYNE_100G" data-category="higiene">
                         <button class="favorite-btn"><i class="far fa-heart"></i></button>
-                        <span class="product-badge">-18%</span>
                         <div class="product-image-placeholder"><img src="img/CREME_DENTAL_SENSODYNE_100G.webp" alt="CREME DENTAL SENSODYNE 100G" loading="lazy" onerror="this.replaceWith(document.createTextNode('🦷'))"></div>
                         <h3 class="product-name">Carregando...</h3>
                         <div class="product-price-wrapper">
@@ -170,16 +300,46 @@
                             <div class="product-price"></div>
                             <div class="product-installment"></div>
                         </div>
-                        <a href="#" class="btn">Adicionar ao Carrinho</a>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
                     </div>
-                </div>
-                <div style="text-align:center; margin-top:40px;">
-                    <a href="produtos.html" class="btn btn-outline">Ver Todos os Produtos</a>
+                    <div class="product-card" data-sku="PROTETOR_SOLAR_FPS50_LRP_50ML" data-category="dermocosmeticos">
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        <div class="product-image-placeholder"><img src="img/PROTETOR_SOLAR_FPS50_LRP_50ML.webp" alt="PROTETOR SOLAR FPS50 LRP 50ML" loading="lazy" onerror="this.replaceWith(document.createTextNode('🧴'))"></div>
+                        <h3 class="product-name">Carregando...</h3>
+                        <div class="product-price-wrapper">
+                            <div class="product-price-old"></div>
+                            <div class="product-price"></div>
+                            <div class="product-installment"></div>
+                        </div>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
+                    </div>
+                    <div class="product-card" data-sku="SORO_FISIOLOGICO_500ML" data-category="higiene">
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        <div class="product-image-placeholder"><img src="img/SORO_FISIOLOGICO_500ML.webp" alt="SORO FISIOLOGICO 500ML" loading="lazy" onerror="this.replaceWith(document.createTextNode('💧'))"></div>
+                        <h3 class="product-name">Carregando...</h3>
+                        <div class="product-price-wrapper">
+                            <div class="product-price-old"></div>
+                            <div class="product-price"></div>
+                            <div class="product-installment"></div>
+                        </div>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
+                    </div>
+                    <div class="product-card" data-sku="CURATIVO_BANDAID_40" data-category="higiene">
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        <div class="product-image-placeholder"><img src="img/CURATIVO_BANDAID_40.webp" alt="CURATIVO BANDAID 40" loading="lazy" onerror="this.replaceWith(document.createTextNode('🩹'))"></div>
+                        <h3 class="product-name">Carregando...</h3>
+                        <div class="product-price-wrapper">
+                            <div class="product-price-old"></div>
+                            <div class="product-price"></div>
+                            <div class="product-installment"></div>
+                        </div>
+                        <a href="#" class="btn">Consulte pelo WhatsApp</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Avaliações Google -->
+                <!-- Avaliações Google -->
 <section class="section">
     <div class="container">
         <div class="avaliacoes-google">

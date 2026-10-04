@@ -393,6 +393,7 @@ document.querySelectorAll('.product-card, .feature-card, .content-card, .categor
 document.querySelectorAll('a[href="#"]').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
+    if (link.hasAttribute('data-conta')) { showToast('Área do cliente em breve.', 'info'); return; }
     const t = link.textContent.trim();
     if (t.includes('Rastrear')) showToast('Rastreamento em breve.', 'info');
     else if (t.includes('Tele Entrega')) showToast('Frete grátis a partir de R$10 em Santa Terezinha.', 'info');
@@ -401,3 +402,53 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
     else showToast('Conteúdo em atualização.', 'info');
   });
 });
+
+/* --- ENVIO / CEP NO TOPO --- */
+const cepBtn = document.querySelector('[data-cep]');
+if (cepBtn) {
+  const cepTexto = cepBtn.querySelector('[data-cep-text]');
+  const formatar = (v) => v.slice(0, 5) + '-' + v.slice(5);
+  const mostrar = (v) => { cepTexto.textContent = 'Entregando em ' + v; };
+  const salvo = localStorage.getItem('droga_g_cep');
+  if (salvo) mostrar(salvo);
+  cepBtn.addEventListener('click', () => {
+    const entrada = prompt('Informe seu CEP (8 números):', (salvo || '').replace('-', ''));
+    if (entrada === null) return;
+    const nums = entrada.replace(/\D/g, '');
+    if (nums.length !== 8) { showToast('CEP inválido — digite 8 números.', 'info'); return; }
+    localStorage.setItem('droga_g_cep', formatar(nums));
+    mostrar(formatar(nums));
+    showToast('Pronto! Entregamos nesse CEP.', 'success');
+  });
+}
+
+/* --- SETAS DAS PRATELEIRAS --- */
+document.querySelectorAll('.prateleira-seta').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const trilho = document.querySelector('.prateleira-trilho[data-trilho="' + btn.dataset.prateleira + '"]');
+    if (trilho) trilho.scrollBy({ left: Number(btn.dataset.dir) * (trilho.clientWidth * 0.8), behavior: 'smooth' });
+  });
+});
+
+/* --- CARROSSEL DE BANNERS --- */
+const carrossel = document.querySelector('[data-carrossel]');
+if (carrossel) {
+  const trilho = carrossel.querySelector('.banner-trilho');
+  const slides = carrossel.querySelectorAll('.banner-slide');
+  const bolinhas = carrossel.querySelectorAll('.banner-bolinha');
+  let atual = 0;
+  let timer;
+  const ir = (i) => {
+    atual = (i + slides.length) % slides.length;
+    trilho.style.transform = 'translateX(-' + atual * 100 + '%)';
+    bolinhas.forEach((b, k) => b.classList.toggle('ativo', k === atual));
+  };
+  const reiniciar = () => { clearInterval(timer); timer = setInterval(() => ir(atual + 1), 6000); };
+  carrossel.querySelectorAll('[data-banner-dir]').forEach((b) => {
+    b.addEventListener('click', () => { ir(atual + Number(b.dataset.bannerDir)); reiniciar(); });
+  });
+  bolinhas.forEach((b, k) => {
+    b.addEventListener('click', () => { ir(k); reiniciar(); });
+  });
+  reiniciar();
+}
