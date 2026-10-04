@@ -52,19 +52,16 @@ if (mobileMenuBtn && navBar && menuOverlay) {
 const searchInput = document.querySelector('.search-input');
 const searchBtn = document.querySelector('.search-btn');
 
-const performSearch = () => {
-  if (!searchInput) return;
-  const searchTerm = searchInput.value.toLowerCase().trim();
-  const productCards = document.querySelectorAll('.product-card');
+let buscaInicial = '';
+
+const filtrarCardsPorBusca = (termo) => {
   let foundCount = 0;
-  if (!searchTerm) {
-    productCards.forEach(card => card.style.display = '');
-    return;
-  }
-  productCards.forEach(card => {
+  document.querySelectorAll('.product-card').forEach(card => {
     const nameEl = card.querySelector('.product-name');
     const productName = nameEl ? nameEl.textContent.toLowerCase() : '';
-    if (productName.includes(searchTerm)) {
+    const nomeSku = (card.getAttribute('data-sku') || '').toLowerCase().replaceAll('_', ' ');
+    const corresponde = productName.includes(termo) || nomeSku.includes(termo);
+    if (corresponde) {
       card.style.display = '';
       card.classList.add('animate-on-scroll');
       foundCount++;
@@ -72,8 +69,29 @@ const performSearch = () => {
       card.style.display = 'none';
     }
   });
+  return foundCount;
+};
+
+const performSearch = () => {
+  if (!searchInput) return;
+  const searchTerm = searchInput.value.toLowerCase().trim();
+  if (!searchTerm) {
+    document.querySelectorAll('.product-card').forEach(card => card.style.display = '');
+    if (/produtos\.html$/.test(location.pathname)) history.replaceState({}, '', 'produtos.html');
+    return;
+  }
+  const naPaginaProdutos = /produtos\.html$/.test(location.pathname);
+  const temGrid = document.querySelector('.product-grid');
+  if (!naPaginaProdutos || !temGrid) {
+    window.location.href = 'produtos.html?busca=' + encodeURIComponent(searchInput.value.trim());
+    return;
+  }
+  document.querySelectorAll('.products-filter-btn').forEach(b => b.classList.remove('active'));
+  const btnTodos = document.querySelector('.products-filter-btn[data-filter-category="all"]');
+  if (btnTodos) btnTodos.classList.add('active');
+  const foundCount = filtrarCardsPorBusca(searchTerm);
   if (foundCount > 0) showToast(`${foundCount} produto(s) encontrado(s)!`, 'success');
-  else showToast('Nenhum produto encontrado.', 'info');
+  else showToast('Nenhum produto encontrado. Fale no WhatsApp que buscamos pra você!', 'info');
 };
 
 if (searchBtn && searchInput) {
@@ -109,6 +127,7 @@ if (filterButtons.length && allProductCards.length) {
     });
   });
   const params = new URLSearchParams(window.location.search);
+  buscaInicial = (params.get('busca') || '').trim();
   const initialCategory = params.get('categoria');
   if (initialCategory) {
     const targetBtn = Array.from(filterButtons).find(b => b.getAttribute('data-filter-category') === initialCategory);
@@ -191,15 +210,16 @@ const toggleFavoriteForProduct = (product) => {
 document.querySelectorAll('.product-card').forEach(card => {
   const favoriteBtn = card.querySelector('.favorite-btn');
   if (!favoriteBtn) return;
+  const skuCard = (card.getAttribute('data-sku') || '').trim();
+  const nomeSalvo = () => {
+    const nameEl = card.querySelector('.product-name');
+    return nameEl ? nameEl.textContent.trim() : 'Produto';
+  };
+  if (skuCard && loadFavorites().some(f => f.sku === skuCard)) favoriteBtn.classList.add('favorited');
   favoriteBtn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const nameEl = card.querySelector('.product-name');
-    const priceEl = card.querySelector('.product-price');
-    toggleFavoriteForProduct({
-      name: nameEl ? nameEl.textContent.trim() : 'Produto',
-      price: priceEl ? priceEl.textContent.trim() : ''
-    });
+    toggleFavoriteForProduct({ sku: skuCard, name: nomeSalvo() });
     favoriteBtn.classList.toggle('favorited');
   });
 });
@@ -207,8 +227,7 @@ document.querySelectorAll('.product-card').forEach(card => {
 document.querySelectorAll('[data-favorites-button]').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
-    const favs = loadFavorites();
-    showToast(favs.length ? `Você tem ${favs.length} favorito(s).` : 'Nenhum favorito ainda.', 'info');
+    window.location.href = 'favoritos.html';
   });
 });
 
@@ -266,17 +285,26 @@ const applyProductDataToCards = () => {
       const nameEl = card.querySelector('.product-name');
       const nome = nameEl ? nameEl.textContent.trim() : 'produto';
       btn.textContent = 'Consulte pelo WhatsApp';
-      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(`Olá! Gostaria de saber o preço de: ${nome}`);
+      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, sku, 1));
       btn.target = '_blank';
       btn.rel = 'noopener';
     }
   });
 };
 
+const iniciarBuscaInicial = () => {
+  if (!buscaInicial) return;
+  if (searchInput) searchInput.value = buscaInicial;
+  const achados = filtrarCardsPorBusca(buscaInicial.toLowerCase());
+  if (achados > 0) showToast(`${achados} resultado(s) para "${buscaInicial}".`, 'success');
+  else showToast('Nenhum produto encontrado. Fale no WhatsApp que buscamos pra você!', 'info');
+};
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', applyProductDataToCards);
+  document.addEventListener('DOMContentLoaded', () => { applyProductDataToCards(); iniciarBuscaInicial(); });
 } else {
   applyProductDataToCards();
+  iniciarBuscaInicial();
 }
 
 const cartPageContainer = document.querySelector('.cart-page');
@@ -344,10 +372,14 @@ if (cartPageContainer) {
       let total = 0;
       const linhas = Object.values(grouped).map(item => {
         total += parsePriceToNumber(item.price) * item.quantity;
-        return `- ${item.name} | Qtd: ${item.quantity} | Unit: ${item.price}`;
+        return `${item.name} | Qtd: ${item.quantity} | Unit: ${item.price}`;
       });
-      const msg = ['Olá, gostaria de fazer um pedido pelo site da Droga G:', '', 'Produtos:', ...linhas, '', `Total estimado: ${formatNumberToPrice(total)}`, '', 'Dados para entrega:', `Nome: ${nome}`, `Telefone: ${telefone}`, `Endereço: ${endereco}`, `Bairro: ${bairro}`, referencia ? `Referência: ${referencia}` : '', '', `Pagamento: ${pagamento}`, observacoes ? `Obs: ${observacoes}` : ''].filter(Boolean).join('\n');
-      window.open(`https://wa.me/5531971716274?text=${encodeURIComponent(msg)}`, '_blank');
+      const msg = msgPedido({
+        itens: linhas.map((l, k) => `${k + 1}. ${l}`).join('\n'),
+        total: formatNumberToPrice(total),
+        nome, telefone, endereco, bairro, referencia, pagamento, observacoes
+      });
+      enviarWhatsApp(msg);
       showToast('Pedido aberto no WhatsApp!', 'success');
       saveCart([]); updateCartBadge(); renderCart(); checkoutForm.reset();
     });
@@ -360,14 +392,23 @@ if (newsletterForm) {
     e.preventDefault();
     const email = newsletterForm.querySelector('.newsletter-input').value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('E-mail inválido.', 'info'); return; }
-    showToast('Cadastro realizado!', 'success');
+    enviarWhatsApp(msgOferta(email));
+    showToast('Confirme o cadastro no WhatsApp que abriu!', 'success');
     newsletterForm.reset();
   });
 }
 
 const contactForm = document.querySelector('.contact-form form');
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => { e.preventDefault(); showToast('Mensagem enviada!', 'success'); contactForm.reset(); });
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+    const nome = val('nome'), email = val('email'), telefone = val('telefone'), assunto = val('assunto'), mensagem = val('mensagem');
+    if (!nome || !email || !telefone || !assunto || !mensagem) { showToast('Preencha todos os campos.', 'info'); return; }
+    enviarWhatsApp(msgContato({ assunto, nome, email, telefone, mensagem }));
+    showToast('Abrindo o WhatsApp com sua mensagem...', 'success');
+    contactForm.reset();
+  });
 }
 
 const scrollToTopBtn = document.getElementById('scrollToTop');
@@ -408,17 +449,23 @@ const cepBtn = document.querySelector('[data-cep]');
 if (cepBtn) {
   const cepTexto = cepBtn.querySelector('[data-cep-text]');
   const formatar = (v) => v.slice(0, 5) + '-' + v.slice(5);
-  const mostrar = (v) => { cepTexto.textContent = 'Entregando em ' + v; };
+  const ehDaRegiao = (nums) => nums.startsWith('30') || nums.startsWith('31');
+  const mostrar = (v, ok) => { cepTexto.textContent = ok ? 'Entregando em ' + v : 'CEP ' + v + ' (consulte)'; };
   const salvo = localStorage.getItem('droga_g_cep');
-  if (salvo) mostrar(salvo);
+  if (salvo) mostrar(salvo, ehDaRegiao(salvo.replace('-', '')));
   cepBtn.addEventListener('click', () => {
     const entrada = prompt('Informe seu CEP (8 números):', (salvo || '').replace('-', ''));
     if (entrada === null) return;
     const nums = entrada.replace(/\D/g, '');
     if (nums.length !== 8) { showToast('CEP inválido — digite 8 números.', 'info'); return; }
     localStorage.setItem('droga_g_cep', formatar(nums));
-    mostrar(formatar(nums));
-    showToast('Pronto! Entregamos nesse CEP.', 'success');
+    if (ehDaRegiao(nums)) {
+      mostrar(formatar(nums), true);
+      showToast('Entrega disponível no seu CEP!', 'success');
+    } else {
+      mostrar(formatar(nums), false);
+      showToast('Fora da região padrão — chame no WhatsApp para confirmar a entrega.', 'info');
+    }
   });
 }
 
@@ -451,4 +498,196 @@ if (carrossel) {
     b.addEventListener('click', () => { ir(k); reiniciar(); });
   });
   reiniciar();
+}
+
+/* --- MENSAGENS DE WHATSAPP ORGANIZADAS PARA O BALCÃO (Dmaster) --- */
+function montarProtocolo() {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, '0');
+  return 'DG-' + p(d.getDate()) + p(d.getMonth() + 1) + '-' + p(d.getHours()) + p(d.getMinutes()) + p(d.getSeconds());
+}
+function enviarWhatsApp(texto) {
+  window.open('https://wa.me/5531971716274?text=' + encodeURIComponent(texto), '_blank');
+}
+function cepSalvo() { return localStorage.getItem('droga_g_cep') || 'não informado'; }
+function msgConsultaProduto(nome, sku, qtd) {
+  return [
+    'CONSULTA DE PRODUTO - Site Droga G',
+    'Protocolo: ' + montarProtocolo(),
+    '',
+    'Produto: ' + nome,
+    'Código interno: ' + (sku || 'sem código'),
+    'Quantidade: ' + (qtd || 1),
+    'CEP do cliente: ' + cepSalvo(),
+    '',
+    'Ação balcão: conferir preço e estoque no Dmaster e responder ao cliente.'
+  ].join('\n');
+}
+function msgPedido(d) {
+  const linhas = [
+    'PEDIDO PELO SITE - Droga G',
+    'Protocolo: ' + montarProtocolo(),
+    'Data: ' + new Date().toLocaleString('pt-BR'),
+    '',
+    'ITENS (lançar no Dmaster)',
+    d.itens,
+    '',
+    'TOTAL ESTIMADO: ' + d.total + ' (valores finais no Dmaster)',
+    '',
+    'CLIENTE',
+    'Nome: ' + d.nome,
+    'Telefone: ' + d.telefone,
+    'CEP: ' + cepSalvo(),
+    'Endereço: ' + d.endereco,
+    'Bairro: ' + d.bairro
+  ];
+  if (d.referencia) linhas.push('Referência: ' + d.referencia);
+  linhas.push('Pagamento: ' + d.pagamento);
+  if (d.observacoes) linhas.push('Obs: ' + d.observacoes);
+  return linhas.join('\n');
+}
+function msgContato(d) {
+  return [
+    'MENSAGEM PELO SITE - Droga G',
+    'Protocolo: ' + montarProtocolo(),
+    '',
+    'Assunto: ' + d.assunto,
+    'Nome: ' + d.nome,
+    'E-mail: ' + d.email,
+    'Telefone: ' + d.telefone,
+    '',
+    'Mensagem:',
+    d.mensagem
+  ].join('\n');
+}
+function msgOferta(email) {
+  return [
+    'CADASTRO NA LISTA DE OFERTAS - Site Droga G',
+    'Protocolo: ' + montarProtocolo(),
+    'E-mail: ' + email
+  ].join('\n');
+}
+
+/* --- CARD CLICAVEL -> PRODUTO --- */
+document.querySelectorAll('.product-card[data-sku]').forEach((card) => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.favorite-btn') || e.target.closest('.btn')) return;
+    window.location.href = 'produto.html?sku=' + encodeURIComponent(card.getAttribute('data-sku'));
+  });
+});
+
+/* --- PAGINA DO PRODUTO --- */
+const produtoDetalhe = document.querySelector('[data-produto-detalhe]');
+if (produtoDetalhe) {
+  const params = new URLSearchParams(window.location.search);
+  const sku = (params.get('sku') || '').trim();
+  const data = produtosPorSku[sku];
+  const breadcrumb = document.querySelector('[data-produto-breadcrumb]');
+  if (!data) {
+    produtoDetalhe.innerHTML = '<div class="produto-vazio"><i class="fas fa-exclamation-circle"></i><p>Produto não encontrado.</p><a href="produtos.html" class="btn">Ver todos os produtos</a></div>';
+    if (breadcrumb) breadcrumb.innerHTML = '<a href="index.html">Início</a> / <a href="produtos.html">Produtos</a> / Produto';
+    document.title = 'Produto não encontrado - Farmácia Droga G';
+  } else {
+    const catLabels = { medicamentos: 'Medicamentos', dermocosmeticos: 'Dermocosméticos', vitaminas: 'Vitaminas e Suplementos', higiene: 'Higiene e Cuidados', infantil: 'Infantil' };
+    const cat = catLabels[data.categoria] || 'Produtos';
+    const zaps = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(data.nome, data.sku, 1));
+    document.title = data.nome + ' - Farmácia Droga G';
+    if (breadcrumb) breadcrumb.innerHTML = '<a href="index.html">Início</a> / <a href="produtos.html">Produtos</a> / <a href="produtos.html?categoria=' + data.categoria + '">' + cat + '</a> / ' + data.nome;
+    produtoDetalhe.innerHTML = [
+      '<div class="produto-foto">',
+      '  <img src="' + data.imagem + '" alt="' + data.nome + '" onerror="this.style.display=\'none\'">',
+      '</div>',
+      '<div class="produto-info">',
+      '  <span class="produto-categoria">' + cat + '</span>',
+      '  <h1>' + data.nome + '</h1>',
+      '  <ul class="produto-beneficios">',
+      '    <li><i class="fas fa-truck-fast"></i> Entrega em até 30 minutos</li>',
+      '    <li><i class="fas fa-shield-alt"></i> Produto original, com nota fiscal</li>',
+      '    <li><i class="fas fa-store"></i> Retire em qualquer uma das nossas lojas</li>',
+      '  </ul>',
+      '  <p class="produto-nota">Consulte disponibilidade e condição especial pelo WhatsApp.</p>',
+      '  <div class="produto-acoes">',
+      '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Consulte pelo WhatsApp</a>',
+      '    <button class="btn btn-outline" data-fav-produto="' + data.sku + '"><i class="far fa-heart"></i> Favoritar</button>',
+      '  </div>',
+      '  <div class="produto-lojas"><strong>Central de atendimento:</strong> (31) 3476-2473 &nbsp;|&nbsp; WhatsApp: (31) 97171-6274</div>',
+      '</div>'
+    ].join('\n');
+    const favBtn = produtoDetalhe.querySelector('[data-fav-produto]');
+    if (favBtn) {
+      const jaFav = loadFavorites().some(f => f.sku === data.sku);
+      if (jaFav) favBtn.innerHTML = '<i class="fas fa-heart"></i> Nos favoritos';
+      favBtn.addEventListener('click', () => {
+        toggleFavoriteForProduct({ sku: data.sku, name: data.nome });
+        const agora = loadFavorites().some(f => f.sku === data.sku);
+        favBtn.innerHTML = agora ? '<i class="fas fa-heart"></i> Nos favoritos' : '<i class="far fa-heart"></i> Favoritar';
+      });
+    }
+    const relacionados = produtosData.filter(p => p.categoria === data.categoria && p.sku !== data.sku).slice(0, 4);
+    if (relacionados.length) {
+      const grid = document.createElement('div');
+      grid.className = 'relacionados';
+      grid.innerHTML = '<h2 class="section-title">Você também pode gostar</h2><div class="product-grid">' +
+        relacionados.map(p => [
+          '<div class="product-card" data-sku="' + p.sku + '">',
+          '  <div class="product-image-placeholder"><img src="' + p.imagem + '" alt="' + p.nome + '" loading="lazy"></div>',
+          '  <h3 class="product-name">' + p.nome + '</h3>',
+          '  <a href="https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(p.nome, p.sku, 1)) + '" target="_blank" rel="noopener" class="btn">Consulte pelo WhatsApp</a>',
+          '</div>'
+        ].join('\n')).join('') + '</div>';
+      produtoDetalhe.parentNode.appendChild(grid);
+      grid.querySelectorAll('.product-card').forEach(c => {
+        c.style.cursor = 'pointer';
+        c.addEventListener('click', (e) => {
+          if (e.target.closest('.btn')) return;
+          window.location.href = 'produto.html?sku=' + encodeURIComponent(c.getAttribute('data-sku'));
+        });
+      });
+    }
+  }
+}
+
+/* --- PAGINA DE FAVORITOS --- */
+const favoritosGrid = document.querySelector('[data-favoritos-grid]');
+if (favoritosGrid) {
+  const vazio = document.querySelector('[data-favoritos-vazio]');
+  const renderFavoritos = () => {
+    const favs = loadFavorites();
+    favoritosGrid.innerHTML = '';
+    if (!favs.length) {
+      favoritosGrid.style.display = 'none';
+      if (vazio) vazio.hidden = false;
+      return;
+    }
+    favoritosGrid.style.display = '';
+    if (vazio) vazio.hidden = true;
+    favs.forEach((f) => {
+      const prod = f.sku ? produtosPorSku[f.sku] : null;
+      const nome = prod ? prod.nome : (f.name || 'Produto');
+      const imagem = prod ? prod.imagem : '';
+      const zaps = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, f.sku || '', 1));
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      if (f.sku) card.setAttribute('data-sku', f.sku);
+      card.innerHTML = [
+        '<button class="favorite-btn favorited" title="Remover dos favoritos"><i class="fas fa-heart"></i></button>',
+        '<div class="product-image-placeholder">' + (imagem ? '<img src="' + imagem + '" alt="' + nome + '" loading="lazy">' : '') + '</div>',
+        '<h3 class="product-name">' + nome + '</h3>',
+        '<a href="' + zaps + '" target="_blank" rel="noopener" class="btn">Consulte pelo WhatsApp</a>'
+      ].join('');
+      card.querySelector('.favorite-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleFavoriteForProduct({ sku: f.sku || '', name: f.name || '' });
+        renderFavoritos();
+      });
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.favorite-btn') || e.target.closest('.btn')) return;
+        if (f.sku) window.location.href = 'produto.html?sku=' + encodeURIComponent(f.sku);
+      });
+      favoritosGrid.appendChild(card);
+    });
+  };
+  renderFavoritos();
 }

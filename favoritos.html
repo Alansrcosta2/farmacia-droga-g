@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Favoritos - Farmácia Droga G</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <span><i class="fas fa-map-marker-alt"></i> Entregamos em Santa Terezinha e bairros próximos.</span>
+                <div class="top-bar-links">
+                    <a href="lojas.html"><i class="fas fa-store"></i> Nossas Lojas</a>
+                    <a href="#"><i class="fas fa-truck"></i> Rastrear Pedido</a>
+                    <a href="contato.html"><i class="fas fa-headset"></i> Atendimento</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container header-content">
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                <a href="index.html" class="logo">DROGA <span>G</span></a>
+                <div class="header-search">
+                    <div class="search-wrapper">
+                        <input type="text" class="search-input" placeholder="Buscar medicamentos, vitaminas...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <button type="button" class="header-cep" data-cep>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>
+                        <small>Enviar para</small>
+                        <strong data-cep-text>Informe seu CEP</strong>
+                    </span>
+                </button>
+                <div class="header-icons">
+                    <a href="#" class="header-icon" data-conta title="Minha conta"><i class="far fa-user"></i></a>
+                    <a href="contato.html" class="header-icon" title="Ajuda"><i class="fas fa-headset"></i></a>
+                    <a href="favoritos.html" class="header-icon" title="Favoritos"><i class="far fa-heart"></i><span class="icon-badge" data-favorites-count>0</span></a>
+                    <a href="carrinho.html" class="header-icon"><i class="fas fa-shopping-cart"></i><span class="icon-badge" data-cart-count>0</span></a>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="fotos.html">Fotos</a></li>
+                    <li><a href="farmacia-popular.html">Farmácia Popular</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="menu-overlay"></div>
+    </header>
+
+    <main class="page-content">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Meus Favoritos</h1>
+                <p class="section-subtitle">Produtos que você salvou para comprar</p>
+            </div>
+            <div class="product-grid" data-favoritos-grid></div>
+            <div class="favoritos-vazio" data-favoritos-vazio hidden>
+                <i class="far fa-heart"></i>
+                <p>Você ainda não tem favoritos.</p>
+                <a href="produtos.html" class="btn">Ver produtos</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">DROGA <span>G</span></div>
+                    <p>Saúde, Economia e Confiança desde 2009.</p>
+                    <p>Cuidando de você e da sua família com dedicação e profissionalismo.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Nossas Lojas</h3>
+                    <p><strong>Jardim Alvorada</strong><br><i class="fas fa-phone"></i> (31) 98378-5075<br><i class="fas fa-map-marker-alt"></i> R. Flor D'Água, 608</p>
+                    <p><strong>São Geraldo</strong><br><i class="fas fa-phone"></i> (31) 3487-1209<br><i class="fas fa-map-marker-alt"></i> R. Silva Alvarenga, 607</p>
+                    <p><strong>Santa Terezinha</strong><br><i class="fas fa-phone"></i> (31) 3476-2473<br><i class="fas fa-map-marker-alt"></i> Rua Julita Nogueira Soares, 610</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <a href="sobre.html">Sobre Nós</a>
+                    <a href="#">Trabalhe Conosco</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                    <a href="farmacia-popular.html">Farmácia Popular</a>
+                    <a href="#">Blog</a>
+                    <a href="https://instagram.com/drogag_santaterezinha" target="_blank"><i class="fab fa-instagram"></i> @drogag_santaterezinha</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Atendimento</h3>
+                    <a href="contato.html">Central de Ajuda</a>
+                    <a href="contato.html">Fale Conosco</a>
+                    <a href="#">Tele Entrega</a>
+                    <a href="#">Rastrear Pedido</a>
+                    <a href="#">Trocas e Devoluções</a>
+                    <a href="#">Perguntas Frequentes</a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="copyright">© 2026 Farmácia Droga G - Todos os direitos reservados. | CNPJ: 10.352.394/0001-09</p>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
+    <script src="produtos-data.js"></script>
+    <script src="script.js"></script>
+    <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</body>
+</html>
