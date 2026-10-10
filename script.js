@@ -273,23 +273,52 @@ const applyProductDataToCards = () => {
     if (data.categoria && !card.getAttribute('data-category')) {
       card.setAttribute('data-category', data.categoria);
     }
+    // badge de tarja
+    if (data.tarja === 'tarja_vermelha_c1') {
+      const badge = card.querySelector('.product-badge');
+      if (badge) { badge.textContent = 'CONTROLADO'; badge.style.display = 'inline-flex'; badge.style.background = '#dc2626'; }
+    } else if (data.tarja === 'tarja_vermelha') {
+      const badge = card.querySelector('.product-badge');
+      if (badge) { badge.textContent = 'COM RECEITA'; badge.style.display = 'inline-flex'; badge.style.background = '#ea580c'; }
+    }
   });
 
   document.querySelectorAll('.product-card').forEach((card) => {
     const priceWrap = card.querySelector('.product-price-wrapper');
     if (priceWrap) priceWrap.style.display = 'none';
-    const badge = card.querySelector('.product-badge');
-    if (badge) badge.style.display = 'none';
     const btn = card.querySelector('.btn');
     if (btn) {
       const nameEl = card.querySelector('.product-name');
       const nome = nameEl ? nameEl.textContent.trim() : 'produto';
       btn.textContent = 'Consulte pelo WhatsApp';
-      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, sku, 1));
+      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, card.getAttribute('data-sku') || '', 1));
       btn.target = '_blank';
       btn.rel = 'noopener';
     }
   });
+};
+
+/* --- GERA CARDS DINAMICOS DO ESTOQUE --- */
+const renderCatalogoDinamico = () => {
+  const grid = document.querySelector('[data-catalogo-grid]');
+  if (!grid || !produtosData.length) return;
+  grid.innerHTML = produtosData.map((p) => {
+    const badgeHtml = p.tarja === 'tarja_vermelha_c1'
+      ? '<span class="product-badge" style="display:inline-flex;background:#dc2626;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">CONTROLADO</span>'
+      : p.tarja === 'tarja_vermelha'
+      ? '<span class="product-badge" style="display:inline-flex;background:#ea580c;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">COM RECEITA</span>'
+      : '';
+    return [
+      '<div class="product-card" data-sku="' + p.sku + '" data-category="' + (p.categoria || '') + '">',
+      '  <div class="product-image-placeholder"><img src="' + p.imagem + '" alt="' + p.nome + '" loading="lazy"></div>',
+      '  ' + badgeHtml,
+      '  <h3 class="product-name">' + p.nome + '</h3>',
+      '  <div class="product-price-wrapper" style="display:none"><span class="product-price">' + formatNumberToPrice(p.preco) + '</span></div>',
+      '  <span class="product-price" style="font-size:1.1rem;font-weight:700;color:#0066CC">' + formatNumberToPrice(p.preco) + '</span>',
+      '  <a href="https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(p.nome, p.sku, 1)) + '" target="_blank" rel="noopener" class="btn">Consulte pelo WhatsApp</a>',
+      '</div>'
+    ].join('\n');
+  }).join('');
 };
 
 const iniciarBuscaInicial = () => {
@@ -301,8 +330,9 @@ const iniciarBuscaInicial = () => {
 };
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => { applyProductDataToCards(); iniciarBuscaInicial(); });
+  document.addEventListener('DOMContentLoaded', () => { renderCatalogoDinamico(); applyProductDataToCards(); iniciarBuscaInicial(); });
 } else {
+  renderCatalogoDinamico();
   applyProductDataToCards();
   iniciarBuscaInicial();
 }
@@ -596,11 +626,18 @@ if (produtoDetalhe) {
     if (breadcrumb) breadcrumb.innerHTML = '<a href="index.html">Início</a> / <a href="produtos.html">Produtos</a> / Produto';
     document.title = 'Produto não encontrado - Farmácia Droga G';
   } else {
-    const catLabels = { medicamentos: 'Medicamentos', dermocosmeticos: 'Dermocosméticos', vitaminas: 'Vitaminas e Suplementos', higiene: 'Higiene e Cuidados', infantil: 'Infantil' };
+    const catLabels = { medicamentos: 'Medicamentos', dermocosmeticos: 'Dermocosméticos', vitaminas: 'Vitaminas e Suplementos', higiene: 'Higiene e Cuidados', infantil: 'Infantil', controlados: 'Controlados' };
     const cat = catLabels[data.categoria] || 'Produtos';
     const zaps = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(data.nome, data.sku, 1));
     document.title = data.nome + ' - Farmácia Droga G';
     if (breadcrumb) breadcrumb.innerHTML = '<a href="index.html">Início</a> / <a href="produtos.html">Produtos</a> / <a href="produtos.html?categoria=' + data.categoria + '">' + cat + '</a> / ' + data.nome;
+    // aviso de tarja
+    let tarjaAviso = '';
+    if (data.tarja === 'tarja_vermelha_c1') {
+      tarjaAviso = '<div class="produto-nota" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;"><i class="fas fa-prescription"></i> <strong>CONTROLADO (C1)</strong> — Venda sob prescrição médica. Retire na loja apresentando a receita (2ª via retida).</div>';
+    } else if (data.tarja === 'tarja_vermelha') {
+      tarjaAviso = '<div class="produto-nota" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;"><i class="fas fa-prescription"></i> Venda sob prescrição médica — retire na loja com receita.</div>';
+    }
     produtoDetalhe.innerHTML = [
       '<div class="produto-foto">',
       '  <img src="' + data.imagem + '" alt="' + data.nome + '" onerror="this.style.display=\'none\'">',
@@ -612,15 +649,17 @@ if (produtoDetalhe) {
         '<div class="produto-preco-bloco">' +
         '  <span class="produto-preco">' + formatNumberToPrice(data.preco) + '</span>' +
         (typeof data.precoAntigo === 'number' ? '  <span class="produto-preco-antigo">' + formatNumberToPrice(data.precoAntigo) + '</span>' : '') +
-        '</div>' +
-        (data.parcelasQuantidade && data.parcelasValor ? '<div class="produto-parcela">ou ' + data.parcelasQuantidade + 'x de ' + formatNumberToPrice(data.parcelasValor) + ' sem juros</div>' : '')
+        '</div>'
       ) : ''),
+      (typeof data.estoque === 'number' && data.estoque > 0
+        ? '<div style="font-size:0.85rem;color:#16a34a;margin-bottom:14px;"><i class="fas fa-check-circle"></i> ' + data.estoque + ' unidade(s) em estoque</div>'
+        : ''),
       '  <ul class="produto-beneficios">',
       '    <li><i class="fas fa-truck-fast"></i> Entrega em até 30 minutos</li>',
       '    <li><i class="fas fa-shield-alt"></i> Produto original, com nota fiscal</li>',
       '    <li><i class="fas fa-store"></i> Retire em qualquer uma das nossas lojas</li>',
       '  </ul>',
-      '  <div class="produto-nota"><i class="fas fa-circle-info"></i> Consulte disponibilidade e condição especial pelo WhatsApp.</div>',
+      (tarjaAviso || '  <div class="produto-nota"><i class="fas fa-circle-info"></i> Consulte disponibilidade e condição especial pelo WhatsApp.</div>'),
       '  <div class="produto-acoes">',
       '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Consulte pelo WhatsApp</a>',
       '    <button class="btn btn-outline" data-fav-produto="' + data.sku + '"><i class="far fa-heart"></i> Favoritar</button>',

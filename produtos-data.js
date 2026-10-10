@@ -1,122 +1,225 @@
 window.DROGAG_PRODUTOS = [
+  // === MEDICAMENTOS ===
   {
-    sku: "DIPIRONA_500MG_EMS_20",
-    nome: "DIPIRONA SÓDICA 500MG GENÉRICO EMS C/20",
-    preco: 4.99,
-    precoAntigo: 7.13,
-    parcelasQuantidade: 2,
-    parcelasValor: 2.5,
+    sku: "PARACETAMOL_500MG_20",
+    nome: "PARACETAMOL 500MG 20 COMP",
+    preco: 4.47,
     categoria: "medicamentos",
-    imagem: "img/DIPIRONA_500MG_EMS_20.webp"
+    tarja: "tarja_vermelha",
+    imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-paracetamol-750mg-gen-rico-prati-do.webp"
   },
   {
-    sku: "LOSARTANA_50MG_EMS_30",
-    nome: "LOSARTANA POTÁSSICA 50MG GENÉRICO EMS C/30",
-    preco: 11.9,
-    precoAntigo: 15.87,
-    parcelasQuantidade: 3,
-    parcelasValor: 3.97,
+    sku: "PARACETAMOL_750MG_20",
+    nome: "PARACETAMOL 750MG 20 COMP REV",
+    preco: 2.29,
     categoria: "medicamentos",
-    imagem: "img/LOSARTANA_50MG_EMS_30.webp"
+    tarja: "tarja_vermelha",
+    imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-paracetamol-750mg-gen-rico-prati-do.webp"
   },
   {
-    sku: "OMEPRAZOL_20MG_EMS_14",
-    nome: "OMEPRAZOL 20MG CÁPSULAS GENÉRICO EMS C/14",
-    preco: 6.9,
-    precoAntigo: 10.62,
-    parcelasQuantidade: 2,
-    parcelasValor: 3.45,
+    sku: "AAS_100MG_30",
+    nome: "AAS 100MG CX 30 COMP",
+    preco: 21.72,
     categoria: "medicamentos",
-    imagem: "img/OMEPRAZOL_20MG_EMS_14.webp"
+    tarja: "tarja_vermelha",
+    imagem: "img/caixa-drogag.webp"
   },
   {
-    sku: "ATENSINA_0150MG_30",
-    nome: "ATENSINA 0,150MG CLORIDRATO DE PROPRANOLOL C/30",
-    preco: 9.5,
-    precoAntigo: 11.88,
-    parcelasQuantidade: 2,
-    parcelasValor: 4.75,
+    sku: "AAS_PROTECT_100MG_30",
+    nome: "AAS PROTECT 100MG C 30 COMP",
+    preco: 17.94,
     categoria: "medicamentos",
-    imagem: "img/ATENSINA_0150MG_30.webp"
+    tarja: "tarja_vermelha",
+    imagem: "img/caixa-drogag.webp"
   },
   {
-    sku: "PARACETAMOL_750MG_MEDLEY_20",
-    nome: "PARACETAMOL 750MG GENÉRICO MEDLEY C/20",
-    preco: 5.99,
-    precoAntigo: 9.99,
-    parcelasQuantidade: 2,
-    parcelasValor: 3,
+    sku: "ABC_SPRAY_30ML",
+    nome: "ABC 10MG/ML SOL SPRAY FR 30ML",
+    preco: 19.38,
     categoria: "medicamentos",
-    imagem: "img/PARACETAMOL_750MG_MEDLEY_20.webp"
+    tarja: "tarja_vermelha",
+    imagem: "img/caixa-drogag.webp"
+  },
+
+  // === CONTROLADOS (tarja vermelha — pode listar, aviso de receita) ===
+  {
+    sku: "AZITROMICINA_500MG_5",
+    nome: "AZITROMICINA 500MG 5 COMP",
+    preco: 6.08,
+    categoria: "controlados",
+    tarja: "tarja_vermelha",
+    imagem: "img/banco/genericos/zirk-azitromicina-500mg-5-comprimidos.webp"
   },
   {
-    sku: "IBUPROFENO_600MG_EMS_30",
-    nome: "IBUPROFENO 600MG GENÉRICO EMS C/30",
-    preco: 14.99,
-    precoAntigo: 17.65,
-    parcelasQuantidade: 3,
-    parcelasValor: 5,
-    categoria: "medicamentos",
-    imagem: "img/IBUPROFENO_600MG_EMS_30.webp"
+    sku: "DOXICICLINA_100MG",
+    nome: "CLORIDRATO DE DOXICICLINA 100MG COM REV",
+    preco: 9.98,
+    categoria: "controlados",
+    tarja: "tarja_vermelha",
+    imagem: "img/caixa-drogag.webp"
   },
   {
-    sku: "SORO_FISIOLOGICO_500ML",
-    nome: "SORO FISIOLÓGICO 0,9% 500ML",
-    preco: 7.99,
-    precoAntigo: 11.1,
-    parcelasQuantidade: 2,
-    parcelasValor: 4,
+    sku: "ABLOK_25MG_30",
+    nome: "ABLOK 25MG 30CPR",
+    preco: 2.88,
+    categoria: "controlados",
+    tarja: "tarja_vermelha",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "SULF_TRIM_SUSP_100ML",
+    nome: "SULF+TRIM 200/40MG SUSP TEUTO",
+    preco: 5.14,
+    categoria: "controlados",
+    tarja: "tarja_vermelha",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "SULFAMETOXAZOL_TRIMETOPRIMA",
+    nome: "SULFAMETOXAZOL+TRIMETOPRIMA 40+8MG/ML C/100ML",
+    preco: 5.31,
+    categoria: "controlados",
+    tarja: "tarja_vermelha",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "TRAZODONA_100MG_30",
+    nome: "TRAZODONA 100MG 30 COMP",
+    preco: 14.85,
+    categoria: "controlados",
+    tarja: "tarja_vermelha_c1",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "FLUOXETINA_20MG_GERMED_30",
+    nome: "FLUOXETINA 20MG 30 CPS",
+    preco: 5.78,
+    categoria: "controlados",
+    tarja: "tarja_vermelha_c1",
+    imagem: "img/banco/genericos/fluoxetina-20mg-gen-rico-germed-30-comprimidos-revestidos.webp"
+  },
+  {
+    sku: "FLUOXETINA_20MG_LEGRAND",
+    nome: "FLUOXETINA 20MG CPR",
+    preco: 4.96,
+    categoria: "controlados",
+    tarja: "tarja_vermelha_c1",
+    imagem: "img/banco/genericos/fluxene-cloridrato-de-fluoxetina-20mg-28-c-psulas.webp"
+  },
+
+  // === HIGIENE / ABSORVENTES ===
+  {
+    sku: "ABS_ANTIBAC_INTIMUS",
+    nome: "ABS ANTIBAC ULTRA FINO C/AB INT",
+    preco: 17.83,
     categoria: "higiene",
-    imagem: "img/SORO_FISIOLOGICO_500ML.webp"
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
   },
   {
-    sku: "PROTETOR_SOLAR_FPS50_LRP_50ML",
-    nome: "PROTETOR SOLAR FPS 50 LA ROCHE POSAY 50ML",
-    preco: 69.9,
-    precoAntigo: 89.9,
-    parcelasQuantidade: 5,
-    parcelasValor: 13.98,
+    sku: "ABS_DRY_GERIAT",
+    nome: "ABS DRY GERIAT 20-UN",
+    preco: 14.73,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_FLEEN_3UN",
+    nome: "ABS FLEEN 03UN SUAVE ABAS",
+    preco: 2.27,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTERNO_OB_MED_8UN",
+    nome: "ABS INTERNO OB PROCOMFORT MED 8UN",
+    preco: 10.24,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTIMUS_14UN",
+    nome: "ABS INTIMUS 14UN SUAVE COM ABAS",
+    preco: 9.80,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTIMUS_INTERNO_MEDIO_8UN",
+    nome: "ABS INTIMUS INTERNO MEDIO 8UN",
+    preco: 9.03,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTIMUS_INTERNO_MINI_8UN",
+    nome: "ABS INTIMUS INTERNO MINI 8UN",
+    preco: 9.18,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTIMUS_INTERNO_SUPER_8UN",
+    nome: "ABS INTIMUS INTERNO SUPER 8UN",
+    preco: 9.18,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTIMUS_NOT_16UN",
+    nome: "ABS INTIMUS NOT 16UN SUAVE COM ABAS",
+    preco: 14.09,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTIMUS_NOTURNO_SUAVE",
+    nome: "ABS INTIMUS NOTURNO SUAVE",
+    preco: 7.97,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTIMUS_NOTURNO_CAB",
+    nome: "ABS INTIMUS NOTURNO SUAVE C/AB",
+    preco: 22.33,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "ABS_INTIMUS_TP_SUAVE_8UN",
+    nome: "ABS INTIMUS T.P SUAVE C/ABAS 8UN",
+    preco: 4.28,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+  {
+    sku: "A_SAUDE_MULHER_SUSP_150ML",
+    nome: "A SAUDE DA MULHER SUSP 150ML",
+    preco: 15.00,
+    categoria: "higiene",
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
+  },
+
+  // === DERMOCOSMÉTICOS ===
+  {
+    sku: "COLOR_MAXTON_050G",
+    nome: "COLOR MAXTON CR 050G",
+    preco: 10.96,
     categoria: "dermocosmeticos",
-    imagem: "img/PROTETOR_SOLAR_FPS50_LRP_50ML.webp"
-  },
-  {
-    sku: "CREME_DENTAL_SENSODYNE_100G",
-    nome: "CREME DENTAL SENSODYNE REPAIR 100G",
-    preco: 17.99,
-    precoAntigo: 21.99,
-    parcelasQuantidade: 3,
-    parcelasValor: 6,
-    categoria: "higiene",
-    imagem: "img/CREME_DENTAL_SENSODYNE_100G.webp"
-  },
-  {
-    sku: "VITAMINA_C_1000MG_10",
-    nome: "VITAMINA C 1000MG EFERVESCENTE C/10",
-    preco: 9.99,
-    precoAntigo: 14.99,
-    parcelasQuantidade: 2,
-    parcelasValor: 5,
-    categoria: "vitaminas",
-    imagem: "img/VITAMINA_C_1000MG_10.webp"
-  },
-  {
-    sku: "OMEGA3_1000MG_60",
-    nome: "ÔMEGA 3 1000MG VITAFOR C/60 CÁPSULAS",
-    preco: 39.9,
-    precoAntigo: 53.99,
-    parcelasQuantidade: 4,
-    parcelasValor: 9.98,
-    categoria: "vitaminas",
-    imagem: "img/OMEGA3_1000MG_60.webp"
-  },
-  {
-    sku: "CURATIVO_BANDAID_40",
-    nome: "CURATIVO BAND-AID JOHNSON C/40 UNIDADES",
-    preco: 9.99,
-    precoAntigo: 11.36,
-    parcelasQuantidade: 2,
-    parcelasValor: 5,
-    categoria: "higiene",
-    imagem: "img/CURATIVO_BANDAID_40.webp"
+    tarja: "tarja_livre",
+    imagem: "img/caixa-drogag.webp"
   }
 ];
