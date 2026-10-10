@@ -276,41 +276,22 @@ const applyProductDataToCards = () => {
     // badge de tarja
     if (data.tarja === 'tarja_vermelha_c1') {
       const badge = card.querySelector('.product-badge');
-      if (badge) { badge.textContent = 'CONTROLADO'; badge.style.display = 'inline-flex'; badge.style.background = '#dc2626'; }
+      if (badge) { badge.textContent = 'CONTROLADO'; badge.style.display = 'inline-flex'; badge.style.background = '#0066CC'; }
     } else if (data.tarja === 'tarja_vermelha') {
       const badge = card.querySelector('.product-badge');
-      if (badge) { badge.textContent = 'COM RECEITA'; badge.style.display = 'inline-flex'; badge.style.background = '#ea580c'; }
+      if (badge) { badge.textContent = 'COM RECEITA'; badge.style.display = 'inline-flex'; badge.style.background = '#FFD700'; badge.style.color = '#1a1a1a'; }
     }
   });
 
   document.querySelectorAll('.product-card').forEach((card) => {
-    const sku = (card.getAttribute('data-sku') || '').trim();
-    const data = produtosPorSku[sku];
     const priceWrap = card.querySelector('.product-price-wrapper');
+    if (priceWrap) priceWrap.style.display = 'none';
     const btn = card.querySelector('.btn');
-    const nameEl = card.querySelector('.product-name');
-    const nome = nameEl ? nameEl.textContent.trim() : 'produto';
-
-    if (data && typeof data.preco === 'number') {
-      // Tem preço real: mostra preço, botão "Adicionar" ou WhatsApp com preço
-      if (priceWrap) priceWrap.style.display = '';
-      if (btn) {
-        btn.textContent = 'Consulte pelo WhatsApp';
-        btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, sku, 1));
-        btn.style.background = '#25D366';
-        btn.style.color = '#fff';
-      }
-    } else {
-      // Sem preço: esconde preço, mostra "Consulte pelo WhatsApp"
-      if (priceWrap) priceWrap.style.display = 'none';
-      if (btn) {
-        btn.textContent = 'Consulte pelo WhatsApp';
-        btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, sku, 1));
-        btn.style.background = '#25D366';
-        btn.style.color = '#fff';
-      }
-    }
     if (btn) {
+      const nameEl = card.querySelector('.product-name');
+      const nome = nameEl ? nameEl.textContent.trim() : 'produto';
+      btn.textContent = 'Consulte pelo WhatsApp';
+      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, card.getAttribute('data-sku') || '', 1));
       btn.target = '_blank';
       btn.rel = 'noopener';
     }
@@ -323,9 +304,9 @@ const renderCatalogoDinamico = () => {
   if (!grid || !produtosData.length) return;
   grid.innerHTML = produtosData.map((p) => {
     const badgeHtml = p.tarja === 'tarja_vermelha_c1'
-      ? '<span class="product-badge" style="display:inline-flex;background:#dc2626;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">CONTROLADO</span>'
+      ? '<span class="product-badge" style="display:inline-flex;background:#0066CC;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">CONTROLADO</span>'
       : p.tarja === 'tarja_vermelha'
-      ? '<span class="product-badge" style="display:inline-flex;background:#ea580c;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">COM RECEITA</span>'
+      ? '<span class="product-badge" style="display:inline-flex;background:#FFD700;color:#1a1a1a;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">COM RECEITA</span>'
       : '';
     return [
       '<div class="product-card" data-sku="' + p.sku + '" data-category="' + (p.categoria || '') + '">',
@@ -653,7 +634,7 @@ if (produtoDetalhe) {
     // aviso de tarja
     let tarjaAviso = '';
     if (data.tarja === 'tarja_vermelha_c1') {
-      tarjaAviso = '<div class="produto-nota" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;"><i class="fas fa-prescription"></i> <strong>CONTROLADO (C1)</strong> — Venda sob prescrição médica. Retire na loja apresentando a receita (2ª via retida).</div>';
+      tarjaAviso = '<div class="produto-nota" style="background:#e6f0ff;border-color:#99bbff;color:#004080;"><i class="fas fa-prescription"></i> <strong>CONTROLADO (C1)</strong> — Venda sob prescrição médica. Retire na loja apresentando a receita (2ª via retida).</div>';
     } else if (data.tarja === 'tarja_vermelha') {
       tarjaAviso = '<div class="produto-nota" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;"><i class="fas fa-prescription"></i> Venda sob prescrição médica — retire na loja com receita.</div>';
     }
