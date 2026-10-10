@@ -3,7 +3,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "PARACETAMOL_500MG_20",
     nome: "PARACETAMOL 500MG 20 COMP",
-    preco: 8.9,
+    preco: 5.5,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-paracetamol-750mg-gen-rico-prati-do.webp"
@@ -11,7 +11,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "PARACETAMOL_750MG_20",
     nome: "PARACETAMOL 750MG 20 COMP REV",
-    preco: 5.5,
+    preco: 3.5,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-paracetamol-750mg-gen-rico-prati-do.webp"
@@ -19,7 +19,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "AAS_100MG_30",
     nome: "AAS 100MG CX 30 COMP",
-    preco: 38.9,
+    preco: 24.5,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -27,7 +27,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "AAS_PROTECT_100MG_30",
     nome: "AAS PROTECT 100MG C 30 COMP",
-    preco: 32.9,
+    preco: 20.5,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -35,7 +35,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABC_SPRAY_30ML",
     nome: "ABC 10MG/ML SOL SPRAY FR 30ML",
-    preco: 34.9,
+    preco: 21.9,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -45,7 +45,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "AZITROMICINA_500MG_5",
     nome: "AZITROMICINA 500MG 5 COMP",
-    preco: 14.9,
+    preco: 7.5,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -53,7 +53,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "DOXICICLINA_100MG",
     nome: "CLORIDRATO DE DOXICICLINA 100MG COM REV",
-    preco: 22.9,
+    preco: 11.5,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -61,7 +61,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABLOK_25MG_30",
     nome: "ABLOK 25MG 30CPR",
-    preco: 7.9,
+    preco: 3.9,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -69,7 +69,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "SULF_TRIM_SUSP_100ML",
     nome: "SULF+TRIM 200/40MG SUSP TEUTO",
-    preco: 11.9,
+    preco: 6.5,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -77,7 +77,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "SULFAMETOXAZOL_TRIMETOPRIMA",
     nome: "SULFAMETOXAZOL+TRIMETOPRIMA 40+8MG/ML C/100ML",
-    preco: 12.5,
+    preco: 6.5,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -85,7 +85,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "TRAZODONA_100MG_30",
     nome: "TRAZODONA 100MG 30 COMP",
-    preco: 26.9,
+    preco: 16.9,
     categoria: "controlados",
     tarja: "tarja_vermelha_c1",
     imagem: "img/caixa-drogag.webp"
@@ -93,7 +93,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "FLUOXETINA_20MG_GERMED_30",
     nome: "FLUOXETINA 20MG 30 CPS",
-    preco: 12.9,
+    preco: 6.9,
     categoria: "controlados",
     tarja: "tarja_vermelha_c1",
     imagem: "img/caixa-drogag.webp"
@@ -101,7 +101,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "FLUOXETINA_20MG_LEGRAND",
     nome: "FLUOXETINA 20MG CPR",
-    preco: 11.5,
+    preco: 5.9,
     categoria: "controlados",
     tarja: "tarja_vermelha_c1",
     imagem: "img/caixa-drogag.webp"
@@ -111,7 +111,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_ANTIBAC_INTIMUS",
     nome: "ABS ANTIBAC ULTRA FINO C/AB INT",
-    preco: 29.9,
+    preco: 20.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -119,7 +119,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_DRY_GERIAT",
     nome: "ABS DRY GERIAT 20-UN",
-    preco: 24.9,
+    preco: 16.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -127,7 +127,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_FLEEN_3UN",
     nome: "ABS FLEEN 03UN SUAVE ABAS",
-    preco: 5.5,
+    preco: 2.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -135,7 +135,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTERNO_OB_MED_8UN",
     nome: "ABS INTERNO OB PROCOMFORT MED 8UN",
-    preco: 17.9,
+    preco: 11.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -143,7 +143,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_14UN",
     nome: "ABS INTIMUS 14UN SUAVE COM ABAS",
-    preco: 16.9,
+    preco: 11.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -151,7 +151,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_INTERNO_MEDIO_8UN",
     nome: "ABS INTIMUS INTERNO MEDIO 8UN",
-    preco: 15.9,
+    preco: 10.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -159,7 +159,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_INTERNO_MINI_8UN",
     nome: "ABS INTIMUS INTERNO MINI 8UN",
-    preco: 15.9,
+    preco: 10.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -167,7 +167,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_INTERNO_SUPER_8UN",
     nome: "ABS INTIMUS INTERNO SUPER 8UN",
-    preco: 15.9,
+    preco: 10.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -175,7 +175,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_NOT_16UN",
     nome: "ABS INTIMUS NOT 16UN SUAVE COM ABAS",
-    preco: 23.9,
+    preco: 16.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -183,7 +183,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_NOTURNO_SUAVE",
     nome: "ABS INTIMUS NOTURNO SUAVE",
-    preco: 13.9,
+    preco: 9.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -191,7 +191,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_NOTURNO_CAB",
     nome: "ABS INTIMUS NOTURNO SUAVE C/AB",
-    preco: 36.9,
+    preco: 25.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -199,7 +199,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_TP_SUAVE_8UN",
     nome: "ABS INTIMUS T.P SUAVE C/ABAS 8UN",
-    preco: 8.9,
+    preco: 5.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -207,7 +207,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "A_SAUDE_MULHER_SUSP_150ML",
     nome: "A SAUDE DA MULHER SUSP 150ML",
-    preco: 26.9,
+    preco: 16.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -217,7 +217,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "COLOR_MAXTON_050G",
     nome: "COLOR MAXTON CR 050G",
-    preco: 19.9,
+    preco: 12.9,
     categoria: "dermocosmeticos",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"

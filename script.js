@@ -284,14 +284,33 @@ const applyProductDataToCards = () => {
   });
 
   document.querySelectorAll('.product-card').forEach((card) => {
+    const sku = (card.getAttribute('data-sku') || '').trim();
+    const data = produtosPorSku[sku];
     const priceWrap = card.querySelector('.product-price-wrapper');
-    if (priceWrap) priceWrap.style.display = 'none';
     const btn = card.querySelector('.btn');
+    const nameEl = card.querySelector('.product-name');
+    const nome = nameEl ? nameEl.textContent.trim() : 'produto';
+
+    if (data && typeof data.preco === 'number') {
+      // Tem preço real: mostra preço, botão "Adicionar" ou WhatsApp com preço
+      if (priceWrap) priceWrap.style.display = '';
+      if (btn) {
+        btn.textContent = 'Consulte pelo WhatsApp';
+        btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, sku, 1));
+        btn.style.background = '#25D366';
+        btn.style.color = '#fff';
+      }
+    } else {
+      // Sem preço: esconde preço, mostra "Consulte pelo WhatsApp"
+      if (priceWrap) priceWrap.style.display = 'none';
+      if (btn) {
+        btn.textContent = 'Consulte pelo WhatsApp';
+        btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, sku, 1));
+        btn.style.background = '#25D366';
+        btn.style.color = '#fff';
+      }
+    }
     if (btn) {
-      const nameEl = card.querySelector('.product-name');
-      const nome = nameEl ? nameEl.textContent.trim() : 'produto';
-      btn.textContent = 'Consulte pelo WhatsApp';
-      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, card.getAttribute('data-sku') || '', 1));
       btn.target = '_blank';
       btn.rel = 'noopener';
     }
