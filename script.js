@@ -769,14 +769,12 @@ if (favoritosGrid) {
   renderFavoritos();
 }
 
-/* --- BENEFÍCIOS: DESTAQUE PROGRESSIVO --- */
-(function initBeneficiosHighlight() {
-  const items = document.querySelectorAll('.beneficios-viewport .beneficio-item');
-  if (!items.length) return;
-  let atual = 0;
-  setInterval(() => {
-    items[atual].classList.remove('ativo');
-    atual = (atual + 1) % items.length;
-    items[atual].classList.add('ativo');
-  }, 2500);
+/* --- BENEFÍCIOS: CARROSSEL CONTÍNUO --- */
+(function initBeneficiosCarousel() {
+  const tracks = document.getElementById('beneficiosTracks');
+  if (!tracks) return;
+  const items = Array.from(tracks.children);
+  items.forEach(item => {
+    tracks.appendChild(item.cloneNode(true));
+  });
 })();
