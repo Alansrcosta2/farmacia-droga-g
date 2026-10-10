@@ -1521,19 +1521,31 @@ h1, h2, h3, h4, h5, h6 {
 .beneficios-bar {
     background: #ffffff;
     border-bottom: 1px solid var(--neutral-medium);
+    overflow: hidden;
 }
-.beneficios-lista {
-    display: flex;
-    justify-content: space-between;
-    gap: 14px;
+.beneficios-viewport {
+    overflow: hidden;
     padding: 14px 0;
+}
+.beneficios-tracks {
+    display: flex;
+    gap: 32px;
+    width: max-content;
+    animation: beneficiosScroll 25s linear infinite;
+}
+.beneficios-tracks:hover,
+.beneficios-tracks:focus-within {
+    animation-play-state: paused;
+}
+@keyframes beneficiosScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 .beneficio-item {
     display: flex;
     align-items: center;
     gap: 10px;
-    flex: 1;
-    min-width: 0;
+    flex: 0 0 auto;
 }
 .beneficio-item > i {
     font-size: 1.35rem;
