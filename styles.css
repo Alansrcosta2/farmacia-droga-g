@@ -1269,10 +1269,33 @@ h1, h2, h3, h4, h5, h6 {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        padding-top: 80px;
+        padding-top: 0;
     }
     .nav-bar.active {
         left: 0;
+    }
+    .nav-bar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 30px;
+        background: linear-gradient(135deg, #00A651, #0066CC);
+        margin-bottom: 10px;
+    }
+    .nav-bar-header .logo {
+        font-size: 1.3rem;
+        color: #fff;
+    }
+    .nav-bar-header .logo span {
+        color: #FFD700;
+    }
+    .nav-bar-close {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px 10px;
     }
     .nav-menu {
         flex-direction: column;
@@ -1284,17 +1307,44 @@ h1, h2, h3, h4, h5, h6 {
         text-align: left;
     }
     .nav-menu li a {
-        display: block;
-        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 30px;
         border-bottom: 1px solid var(--neutral-medium);
         font-size: 1.1rem;
         color: var(--text-primary);
+        text-decoration: none;
+    }
+    .nav-menu li a i {
+        color: var(--primary-blue);
+        width: 20px;
+        text-align: center;
     }
     .nav-menu li a:hover,
     .nav-menu li a.active {
         background: var(--neutral-light);
-        padding-left: 40px;
-        border-bottom-color: var(--neutral-medium);
+        border-left: 4px solid var(--primary-green);
+        padding-left: 26px;
+    }
+    .nav-menu-icons {
+        display: flex;
+        gap: 20px;
+        padding: 20px 30px;
+        border-top: 2px solid var(--neutral-medium);
+        margin-top: auto;
+    }
+    .nav-menu-icons a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+    .nav-menu-icons a i {
+        color: var(--primary-blue);
+        font-size: 1.2rem;
     }
     .menu-overlay {
         position: fixed;

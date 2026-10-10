@@ -23,6 +23,7 @@ const showToast = (message, type = 'success') => {
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navBar = document.querySelector('.nav-bar');
 const menuOverlay = document.querySelector('.menu-overlay');
+const navBarClose = document.querySelector('.nav-bar-close');
 const body = document.body;
 
 if (mobileMenuBtn && navBar && menuOverlay) {
@@ -42,6 +43,7 @@ if (mobileMenuBtn && navBar && menuOverlay) {
   };
   mobileMenuBtn.addEventListener('click', toggleMenu);
   menuOverlay.addEventListener('click', toggleMenu);
+  if (navBarClose) navBarClose.addEventListener('click', toggleMenu);
   navBar.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       if (navBar.classList.contains('active')) toggleMenu();
@@ -179,11 +181,8 @@ document.querySelectorAll('.product-card .btn').forEach(btn => {
     if (btn.textContent.includes('Adicionar')) {
       e.preventDefault();
       const card = btn.closest('.product-card');
-      const nameEl = card.querySelector('.product-name');
-      const priceEl = card.querySelector('.product-price');
       const productName = nameEl ? nameEl.textContent.trim() : 'Produto';
-      const productPrice = priceEl ? priceEl.textContent.trim() : '';
-      addProductToCart({ name: productName, price: productPrice });
+      addProductToCart({ name: productName });
       showToast(`${productName} adicionado ao carrinho!`, 'success');
       const originalText = btn.textContent;
       const originalBackground = btn.style.background;
@@ -234,14 +233,6 @@ document.querySelectorAll('[data-account-button]').forEach(btn => {
   btn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'contato.html'; });
 });
 
-const parsePriceToNumber = (priceText) => {
-  if (!priceText) return 0;
-  const digits = priceText.replace(/[^\d,]/g, '').replace('.', '').replace(',', '.');
-  const value = parseFloat(digits);
-  return isNaN(value) ? 0 : value;
-};
-const formatNumberToPrice = (value) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
 const produtosData = Array.isArray(window.DROGAG_PRODUTOS) ? window.DROGAG_PRODUTOS : [];
 const produtosPorSku = {};
 produtosData.forEach((p) => { if (p && p.sku) produtosPorSku[p.sku.trim()] = p; });
@@ -257,11 +248,9 @@ const applyProductDataToCards = () => {
     const installmentEl = card.querySelector('.product-installment');
     const imgPlaceholder = card.querySelector('.product-image-placeholder');
     if (nameEl && data.nome) nameEl.textContent = data.nome.trim();
-    if (priceEl && typeof data.preco === 'number') priceEl.textContent = formatNumberToPrice(data.preco);
-    if (oldPriceEl && typeof data.precoAntigo === 'number') oldPriceEl.textContent = formatNumberToPrice(data.precoAntigo);
-    if (installmentEl && data.parcelasQuantidade && data.parcelasValor) {
-      installmentEl.textContent = `ou ${data.parcelasQuantidade}x de ${formatNumberToPrice(data.parcelasValor)}`;
-    }
+    if (priceEl) priceEl.textContent = '';
+    if (oldPriceEl) oldPriceEl.textContent = '';
+    if (installmentEl) installmentEl.textContent = '';
     if (imgPlaceholder && data.imagem) {
       const probe = new Image();
       probe.onload = () => {
@@ -378,21 +367,16 @@ if (cartPageContainer) {
     if (cartEmptyMessage) cartEmptyMessage.style.display = 'none';
     const grouped = {};
     cart.forEach(item => {
-      if (!grouped[item.name]) grouped[item.name] = { name: item.name, price: item.price, quantity: 0 };
+      if (!grouped[item.name]) grouped[item.name] = { name: item.name, quantity: 0 };
       grouped[item.name].quantity += 1;
     });
-    let total = 0;
     Object.values(grouped).forEach(item => {
-      const unitValue = parsePriceToNumber(item.price);
-      const subtotal = unitValue * item.quantity;
-      total += subtotal;
       const row = document.createElement('div');
       row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--neutral-medium);';
-      row.innerHTML = `<div style="flex:1"><strong>${item.name}</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ${item.quantity} | Unit: ${item.price}</span></div><div style="margin-left:16px"><strong>${formatNumberToPrice(subtotal)}</strong></div>`;
+      row.innerHTML = `<div style="flex:1"><strong>${item.name}</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ${item.quantity}</span></div>`;
       cartItemsContainer.appendChild(row);
     });
     if (cartSummary) cartSummary.style.display = 'block';
-    if (cartTotalValue) cartTotalValue.textContent = formatNumberToPrice(total);
   };
 
   renderCart();
@@ -416,17 +400,14 @@ if (cartPageContainer) {
       if (!nome || !telefone || !endereco || !bairro || !pagamento) { showToast('Preencha todos os campos obrigatórios.', 'info'); return; }
       const grouped = {};
       cart.forEach(item => {
-        if (!grouped[item.name]) grouped[item.name] = { name: item.name, price: item.price, quantity: 0 };
+        if (!grouped[item.name]) grouped[item.name] = { name: item.name, quantity: 0 };
         grouped[item.name].quantity += 1;
       });
-      let total = 0;
       const linhas = Object.values(grouped).map(item => {
-        total += parsePriceToNumber(item.price) * item.quantity;
-        return `${item.name} | Qtd: ${item.quantity} | Unit: ${item.price}`;
+        return `${item.name} | Qtd: ${item.quantity}`;
       });
       const msg = msgPedido({
         itens: linhas.map((l, k) => `${k + 1}. ${l}`).join('\n'),
-        total: formatNumberToPrice(total),
         nome, telefone, endereco, bairro, referencia, pagamento, observacoes
       });
       enviarWhatsApp(msg);
@@ -582,8 +563,6 @@ function msgPedido(d) {
     'ITENS (lançar no Dmaster)',
     d.itens,
     '',
-    'TOTAL ESTIMADO: ' + d.total + ' (valores finais no Dmaster)',
-    '',
     'CLIENTE',
     'Nome: ' + d.nome,
     'Telefone: ' + d.telefone,
@@ -669,12 +648,6 @@ if (produtoDetalhe) {
       '<div class="produto-info">',
       '  <span class="produto-categoria"><i class="fas fa-tag"></i> ' + cat + '</span>',
       '  <h1>' + data.nome + '</h1>',
-      (typeof data.preco === 'number' ? (
-        '<div class="produto-preco-bloco">' +
-        '  <span class="produto-preco">' + formatNumberToPrice(data.preco) + '</span>' +
-        (typeof data.precoAntigo === 'number' ? '  <span class="produto-preco-antigo">' + formatNumberToPrice(data.precoAntigo) + '</span>' : '') +
-        '</div>'
-      ) : ''),
       (typeof data.estoque === 'number' && data.estoque > 0
         ? '<div style="font-size:0.85rem;color:#16a34a;margin-bottom:14px;"><i class="fas fa-check-circle"></i> ' + data.estoque + ' unidade(s) em estoque</div>'
         : ''),
