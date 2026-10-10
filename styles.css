@@ -1896,8 +1896,16 @@ h1, h2, h3, h4, h5, h6 {
     .banner-generico p {
         font-size: 0.85rem;
     }
+    .banner-slide {
+        min-height: auto !important;
+        height: auto !important;
+    }
+    .banner-slide.hero-banner {
+        padding: 18px 0 28px;
+    }
     .banner-slide--cor {
-        padding: 16px 0 14px;
+        padding: 14px 0 12px;
+        min-height: 0 !important;
     }
     .banner-generico h2 {
         font-size: 1.05rem;
