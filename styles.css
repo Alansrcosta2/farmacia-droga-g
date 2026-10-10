@@ -1531,7 +1531,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     gap: 32px;
     width: max-content;
-    animation: beneficiosScroll 25s linear infinite;
+    animation: beneficiosScroll 30s linear infinite;
 }
 .beneficios-tracks:hover,
 .beneficios-tracks:focus-within {

@@ -752,55 +752,13 @@ if (favoritosGrid) {
   renderFavoritos();
 }
 
-/* --- BENEFÍCIOS: CARROSSEL AUTO NO CELULAR --- */
+/* --- BENEFÍCIOS: CARROSSEL CONTÍNUO --- */
 (function initBeneficiosCarousel() {
-  const lista = document.querySelector('.beneficios-lista');
-  if (!lista) return;
-  const items = lista.querySelectorAll('.beneficio-item');
-  if (!items.length) return;
-
-  // Só ativa no mobile
-  const isMobile = () => window.innerWidth <= 768;
-
-  function setup() {
-    // Remove tracks anteriores se existir
-    const oldTracks = lista.querySelectorAll('.beneficios-tracks');
-    oldTracks.forEach(t => t.remove());
-
-    if (!isMobile()) {
-      // Desktop: volta ao normal (itens direto na lista)
-      items.forEach(item => lista.appendChild(item));
-      return;
-    }
-
-    // Mobile: cria track e duplica itens para loop infinito
-    const tracks = document.createElement('div');
-    tracks.className = 'beneficios-tracks';
-    items.forEach(item => {
-      const clone = item.cloneNode(true);
-      tracks.appendChild(clone);
-    });
-    // Duplica de novo para preencher a largura
-    items.forEach(item => {
-      const clone = item.cloneNode(true);
-      tracks.appendChild(clone);
-    });
-    lista.appendChild(tracks);
-
-    // Pausa no toque
-    tracks.addEventListener('touchstart', () => tracks.classList.add('paused'), { passive: true });
-    tracks.addEventListener('touchend', () => {
-      setTimeout(() => tracks.classList.remove('paused'), 2000);
-    }, { passive: true });
-    // Também pausa no mouse (para teste)
-    tracks.addEventListener('mouseenter', () => tracks.classList.add('paused'));
-    tracks.addEventListener('mouseleave', () => tracks.classList.remove('paused'));
-  }
-
-  setup();
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(setup, 200);
+  const tracks = document.getElementById('beneficiosTracks');
+  if (!tracks) return;
+  // Duplica os itens para loop infinito (sem engasgo)
+  const items = Array.from(tracks.children);
+  items.forEach(item => {
+    tracks.appendChild(item.cloneNode(true));
   });
 })();
