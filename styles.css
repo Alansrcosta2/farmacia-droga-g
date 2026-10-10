@@ -28,10 +28,9 @@
     --primary-blue-dark: #004999;
     --primary-blue-light: #66B2FF;
     --accent-yellow: #FFC400;
-    --primary-yellow: #FFD700;
     --neutral-light: #F3F4F6;
     --neutral-medium: #CBD5E1;
-    --gradient-primary: linear-gradient(135deg, #FFD700, #0066CC);
+    --gradient-primary: linear-gradient(135deg, #00A651, #0066CC);
     --gradient-accent: linear-gradient(135deg, #FFF7ED, #FFE0B2);
     --success-green: #22C55E;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
