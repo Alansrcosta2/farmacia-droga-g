@@ -575,6 +575,13 @@ document.querySelectorAll('.product-card[data-sku]').forEach((card) => {
     if (e.target.closest('.favorite-btn') || e.target.closest('.btn')) return;
     window.location.href = 'produto.html?sku=' + encodeURIComponent(card.getAttribute('data-sku'));
   });
+  // botao WhatsApp dentro do card: abre WhatsApp, nao navega
+  const btnZap = card.querySelector('.btn');
+  if (btnZap) {
+    btnZap.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
 });
 
 /* --- PAGINA DO PRODUTO --- */
@@ -599,19 +606,26 @@ if (produtoDetalhe) {
       '  <img src="' + data.imagem + '" alt="' + data.nome + '" onerror="this.style.display=\'none\'">',
       '</div>',
       '<div class="produto-info">',
-      '  <span class="produto-categoria">' + cat + '</span>',
+      '  <span class="produto-categoria"><i class="fas fa-tag"></i> ' + cat + '</span>',
       '  <h1>' + data.nome + '</h1>',
+      (typeof data.preco === 'number' ? (
+        '<div class="produto-preco-bloco">' +
+        '  <span class="produto-preco">' + formatNumberToPrice(data.preco) + '</span>' +
+        (typeof data.precoAntigo === 'number' ? '  <span class="produto-preco-antigo">' + formatNumberToPrice(data.precoAntigo) + '</span>' : '') +
+        '</div>' +
+        (data.parcelasQuantidade && data.parcelasValor ? '<div class="produto-parcela">ou ' + data.parcelasQuantidade + 'x de ' + formatNumberToPrice(data.parcelasValor) + ' sem juros</div>' : '')
+      ) : ''),
       '  <ul class="produto-beneficios">',
       '    <li><i class="fas fa-truck-fast"></i> Entrega em até 30 minutos</li>',
       '    <li><i class="fas fa-shield-alt"></i> Produto original, com nota fiscal</li>',
       '    <li><i class="fas fa-store"></i> Retire em qualquer uma das nossas lojas</li>',
       '  </ul>',
-      '  <p class="produto-nota">Consulte disponibilidade e condição especial pelo WhatsApp.</p>',
+      '  <div class="produto-nota"><i class="fas fa-circle-info"></i> Consulte disponibilidade e condição especial pelo WhatsApp.</div>',
       '  <div class="produto-acoes">',
       '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Consulte pelo WhatsApp</a>',
       '    <button class="btn btn-outline" data-fav-produto="' + data.sku + '"><i class="far fa-heart"></i> Favoritar</button>',
       '  </div>',
-      '  <div class="produto-lojas"><strong>Central de atendimento:</strong> (31) 3476-2473 &nbsp;|&nbsp; WhatsApp: (31) 97171-6274</div>',
+      '  <div class="produto-lojas"><strong>Central:</strong> (31) 3476-2473 &nbsp;|&nbsp; <strong>WhatsApp:</strong> (31) 97171-6274</div>',
       '</div>'
     ].join('\n');
     const favBtn = produtoDetalhe.querySelector('[data-fav-produto]');
