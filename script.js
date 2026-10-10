@@ -351,7 +351,6 @@ if (cartPageContainer) {
   const cartItemsContainer = document.getElementById('cartItemsContainer');
   const cartEmptyMessage = document.getElementById('cartEmptyMessage');
   const cartSummary = document.getElementById('cartSummary');
-  const cartTotalValue = document.getElementById('cartTotalValue');
   const clearCartButton = document.getElementById('clearCartButton');
   const checkoutForm = document.getElementById('cartCheckoutForm');
 
