@@ -769,12 +769,11 @@ if (favoritosGrid) {
   renderFavoritos();
 }
 
-/* --- BENEFÍCIOS: CARROSSEL CONTÍNUO --- */
+/* --- BENEFÍCIOS: CARROSSEL --- */
 (function initBeneficiosCarousel() {
   const tracks = document.getElementById('beneficiosTracks');
   if (!tracks) return;
+  // Duplica uma vez para loop sem "pulo"
   const items = Array.from(tracks.children);
-  items.forEach(item => {
-    tracks.appendChild(item.cloneNode(true));
-  });
+  items.forEach(item => tracks.appendChild(item.cloneNode(true)));
 })();
