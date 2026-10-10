@@ -1887,10 +1887,13 @@ h1, h2, h3, h4, h5, h6 {
         text-align: center;
     }
     .banner-generico h2 {
-        font-size: 1.55rem;
+        font-size: 1.25rem;
     }
     .banner-generico p {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+    }
+    .banner-slide--cor {
+        padding: 28px 0 24px;
     }
     .banner-generico-visual {
         display: none;
@@ -1921,14 +1924,49 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
     }
     .section {
-        padding: 38px 0;
+        padding: 22px 0;
     }
     .section-categorias-round {
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 18px;
+        padding-bottom: 18px;
     }
     .product-card {
-        padding: 18px;
+        padding: 14px;
+    }
+    .product-card .product-name {
+        font-size: 0.82rem;
+        line-height: 1.25;
+    }
+    .product-card .product-price {
+        font-size: 0.95rem;
+    }
+    .product-card .btn {
+        font-size: 0.72rem;
+        padding: 8px 12px;
+    }
+    .product-card .product-image-placeholder {
+        min-height: 120px;
+        padding: 12px;
+    }
+    .prateleira-trilho .product-card {
+        flex: 0 0 55vw;
+        max-width: 200px;
+    }
+    .newsletter {
+        padding: 22px 16px;
+    }
+    .newsletter h3 {
+        font-size: 1.1rem;
+    }
+    .newsletter p {
+        font-size: 0.82rem;
+    }
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .page-content {
+        padding: 14px 0;
     }
 }
 
