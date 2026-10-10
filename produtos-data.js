@@ -3,7 +3,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "PARACETAMOL_500MG_20",
     nome: "PARACETAMOL 500MG 20 COMP",
-    preco: 4.47,
+    preco: 8.9,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-paracetamol-750mg-gen-rico-prati-do.webp"
@@ -11,7 +11,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "PARACETAMOL_750MG_20",
     nome: "PARACETAMOL 750MG 20 COMP REV",
-    preco: 2.29,
+    preco: 5.5,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-paracetamol-750mg-gen-rico-prati-do.webp"
@@ -19,7 +19,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "AAS_100MG_30",
     nome: "AAS 100MG CX 30 COMP",
-    preco: 21.72,
+    preco: 38.9,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -27,7 +27,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "AAS_PROTECT_100MG_30",
     nome: "AAS PROTECT 100MG C 30 COMP",
-    preco: 17.94,
+    preco: 32.9,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -35,7 +35,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABC_SPRAY_30ML",
     nome: "ABC 10MG/ML SOL SPRAY FR 30ML",
-    preco: 19.38,
+    preco: 34.9,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -45,7 +45,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "AZITROMICINA_500MG_5",
     nome: "AZITROMICINA 500MG 5 COMP",
-    preco: 6.08,
+    preco: 14.9,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -53,7 +53,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "DOXICICLINA_100MG",
     nome: "CLORIDRATO DE DOXICICLINA 100MG COM REV",
-    preco: 9.98,
+    preco: 22.9,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -61,7 +61,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABLOK_25MG_30",
     nome: "ABLOK 25MG 30CPR",
-    preco: 2.88,
+    preco: 7.9,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -69,7 +69,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "SULF_TRIM_SUSP_100ML",
     nome: "SULF+TRIM 200/40MG SUSP TEUTO",
-    preco: 5.14,
+    preco: 11.9,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -77,7 +77,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "SULFAMETOXAZOL_TRIMETOPRIMA",
     nome: "SULFAMETOXAZOL+TRIMETOPRIMA 40+8MG/ML C/100ML",
-    preco: 5.31,
+    preco: 12.5,
     categoria: "controlados",
     tarja: "tarja_vermelha",
     imagem: "img/caixa-drogag.webp"
@@ -85,7 +85,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "TRAZODONA_100MG_30",
     nome: "TRAZODONA 100MG 30 COMP",
-    preco: 14.85,
+    preco: 26.9,
     categoria: "controlados",
     tarja: "tarja_vermelha_c1",
     imagem: "img/caixa-drogag.webp"
@@ -93,7 +93,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "FLUOXETINA_20MG_GERMED_30",
     nome: "FLUOXETINA 20MG 30 CPS",
-    preco: 5.78,
+    preco: 12.9,
     categoria: "controlados",
     tarja: "tarja_vermelha_c1",
     imagem: "img/caixa-drogag.webp"
@@ -101,7 +101,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "FLUOXETINA_20MG_LEGRAND",
     nome: "FLUOXETINA 20MG CPR",
-    preco: 4.96,
+    preco: 11.5,
     categoria: "controlados",
     tarja: "tarja_vermelha_c1",
     imagem: "img/caixa-drogag.webp"
@@ -111,7 +111,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_ANTIBAC_INTIMUS",
     nome: "ABS ANTIBAC ULTRA FINO C/AB INT",
-    preco: 17.83,
+    preco: 29.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -119,7 +119,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_DRY_GERIAT",
     nome: "ABS DRY GERIAT 20-UN",
-    preco: 14.73,
+    preco: 24.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -127,7 +127,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_FLEEN_3UN",
     nome: "ABS FLEEN 03UN SUAVE ABAS",
-    preco: 2.27,
+    preco: 5.5,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -135,7 +135,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTERNO_OB_MED_8UN",
     nome: "ABS INTERNO OB PROCOMFORT MED 8UN",
-    preco: 10.24,
+    preco: 17.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -143,7 +143,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_14UN",
     nome: "ABS INTIMUS 14UN SUAVE COM ABAS",
-    preco: 9.80,
+    preco: 16.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -151,7 +151,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_INTERNO_MEDIO_8UN",
     nome: "ABS INTIMUS INTERNO MEDIO 8UN",
-    preco: 9.03,
+    preco: 15.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -159,7 +159,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_INTERNO_MINI_8UN",
     nome: "ABS INTIMUS INTERNO MINI 8UN",
-    preco: 9.18,
+    preco: 15.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -167,7 +167,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_INTERNO_SUPER_8UN",
     nome: "ABS INTIMUS INTERNO SUPER 8UN",
-    preco: 9.18,
+    preco: 15.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -175,7 +175,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_NOT_16UN",
     nome: "ABS INTIMUS NOT 16UN SUAVE COM ABAS",
-    preco: 14.09,
+    preco: 23.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -183,7 +183,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_NOTURNO_SUAVE",
     nome: "ABS INTIMUS NOTURNO SUAVE",
-    preco: 7.97,
+    preco: 13.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -191,7 +191,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_NOTURNO_CAB",
     nome: "ABS INTIMUS NOTURNO SUAVE C/AB",
-    preco: 22.33,
+    preco: 36.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -199,7 +199,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "ABS_INTIMUS_TP_SUAVE_8UN",
     nome: "ABS INTIMUS T.P SUAVE C/ABAS 8UN",
-    preco: 4.28,
+    preco: 8.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -207,7 +207,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "A_SAUDE_MULHER_SUSP_150ML",
     nome: "A SAUDE DA MULHER SUSP 150ML",
-    preco: 15.00,
+    preco: 26.9,
     categoria: "higiene",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -217,7 +217,7 @@ window.DROGAG_PRODUTOS = [
   {
     sku: "COLOR_MAXTON_050G",
     nome: "COLOR MAXTON CR 050G",
-    preco: 10.96,
+    preco: 19.9,
     categoria: "dermocosmeticos",
     tarja: "tarja_livre",
     imagem: "img/caixa-drogag.webp"
@@ -229,11 +229,11 @@ window.DROGAG_PRODUTOS = [
 
   // --- MEDICAMENTOS (venda livre / tarja vermelha) ---
   { sku: "DIPIRONA_1G_PRATI_30", nome: "DIPIRONA SÓDICA 1G GENÉRICO PRATI C/30", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-dipirona-1g-gen-rico-prati-donaduzz.webp" },
-  { sku: "DIPIRONA_500MG_GOTAS_20ML", nome: "DIPIRONA 500MG/ML GENÉRICO EMS GOTAS 20ML", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/banco/medicamentos/dipirona-s-dica-500mg-gotas-20ml-ems-gen-rico.webp" },
+  { sku: "DIPIRONA_500MG_GOTAS_20ML", nome: "DIPIRONA 500MG/ML GENÉRICO EMS GOTAS 20ML", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/caixa-drogag.webp" },
   { sku: "NOVALGINA_FLASH_1G_8", nome: "NOVALGINA FLASH 1G C/8 COMPRIMIDOS", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/banco/medicamentos/analg-sico-novalgina-flash-dipirona-1g-cafe-na-130mg-8-compr.webp" },
   { sku: "PARACETAMOL_750MG_CIMED_20", nome: "PARACETAMOL 750MG GENÉRICO CIMED C/20", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-paracetamol-750mg-gen-rico-cimed-20.webp" },
   { sku: "IBUPROFENO_600MG_10_CAPS", nome: "IBUPROFENO 600MG GENÉRICO ALTHAIA C/10 CÁPSULAS", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/caixa-drogag.webp" },
-  { sku: "DORFLEX_UNO_20", nome: "DORFLEX UNO DIPIONA 1G C/20 COMPRIMIDOS", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/banco/medicamentos/dorflex-uno-para-enxaqueca-dipirona-monoidratada-1g-20-compr.webp" },
+  { sku: "DORFLEX_UNO_20", nome: "DORFLEX UNO DIPIONA 1G C/20 COMPRIMIDOS", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/caixa-drogag.webp" },
   { sku: "LISADOR_DIP_1G_20", nome: "LISADOR DIP DIPIONA MONOIDRATADA 1G C/20", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/banco/medicamentos/lisador-dip-dipirona-monoidratada-1g-20-comprimidos.webp" },
   { sku: "DIPIRONA_1G_30_PRATI", nome: "DIPIRONA 1G 30 COMPRIMIDOS GENÉRICO PRATI", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/banco/medicamentos/dipirona-1g-30-comprimidos-g-nerico-prati-donaduzzi.webp" },
   { sku: "DIPIRONA_500MG_10_NOVA", nome: "DIPIRONA 500MG GENÉRICO NOVA QUÍMICA C/10", categoria: "medicamentos", tarja: "tarja_vermelha", imagem: "img/banco/medicamentos/dipirona-500mg-10-comprimidos-gen-rico-nova-qu-mica.webp" },
@@ -244,8 +244,8 @@ window.DROGAG_PRODUTOS = [
   { sku: "CAPTOPRIL_25MG_CIMED_30", nome: "CAPTOPRIL 25MG GENÉRICO CIMED C/30 COMPRIMIDOS", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/banco/genericos/captopril-25mg-gen-rico-cimed-30-comprimidos.webp" },
   { sku: "ENALAPRIL_10MG_GERMED_30", nome: "MALEATO DE ENALAPRIL 10MG GENÉRICO GERMED C/30", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/banco/genericos/maleato-de-enalapril-10mg-gen-rico-germed-30-comprimidos.webp" },
   { sku: "ATORVASTATINA_20MG_EMS_30", nome: "ATORVASTATINA 20MG GENÉRICO EMS C/30 CÁPSULAS", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/banco/genericos/atorvastatina-20mg-gen-rico-ems-30-c-psulas.webp" },
-  { sku: "SINVASTATINA_20MG_CIMED_30", nome: "SINVASTATINA 20MG GENÉRICO CIMED C/30 COMPRIMIDOS", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/banco/genericos/sinvastatina-20mg-gen-rico-cimed-30-comprimidos.webp" },
-  { sku: "METFORMINA_500MG_TEUTO_30", nome: "CLORIDRATO DE METFORMINA 500MG GENÉRICO TEUTO C/30", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/banco/genericos/cloridrato-de-metformina-500mg-gen-rico-teuto-30-comprimidos.webp" },
+  { sku: "SINVASTATINA_20MG_CIMED_30", nome: "SINVASTATINA 20MG GENÉRICO CIMED C/30 COMPRIMIDOS", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/caixa-drogag.webp" },
+  { sku: "METFORMINA_500MG_TEUTO_30", nome: "CLORIDRATO DE METFORMINA 500MG GENÉRICO TEUTO C/30", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/caixa-drogag.webp" },
   { sku: "LOSARTANA_HCTZ_50MG_SANDOZ_30", nome: "LOSARTANA 50MG + HIDROCLOROTIAZIDA 12,5MG SANDOZ C/30", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/banco/genericos/losartana-50mg-hidroclorotiazida-12-5mg-gen-rico-sandoz-30-c.webp" },
   { sku: "PREDNISONA_20MG_LEGRAND_10", nome: "PREDNISONA 20MG GENÉRICO LEGRAND C/10 COMPRIMIDOS", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/banco/genericos/prednisona-20mg-gen-rico-legrand-10-comprimidos.webp" },
   { sku: "ACICLOVIR_200MG_SANDOZ_50", nome: "ACICLOVIR 200MG GENÉRICO SANDOZ C/50 COMPRIMIDOS", categoria: "controlados", tarja: "tarja_vermelha", imagem: "img/banco/genericos/aciclovir-200mg-gen-rico-sandoz-50-comprimidos.webp" },
@@ -270,7 +270,7 @@ window.DROGAG_PRODUTOS = [
   { sku: "VITAMINA_C_1000MG_60_DOSES", nome: "VITAMINA C 1000MG C/60 DOSES", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-c-1000mg-60-doses.webp" },
   { sku: "VITAMINA_C_ATIVDAY_30_EFERV", nome: "VITAMINA C 1G ATIVDAY C/30 EFERVESCENTES", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/ativday-vitamina-c-1g-30-comprimidos-efervescentes.webp" },
   { sku: "VITAMINA_C_ATIVDAY_500MG_60", nome: "VITAMINA C 500MG ATIVDAY C/60 COMPRIMIDOS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
-  { sku: "VITAMINA_D3_1000UI_ATIVDAY_60", nome: "VITAMINA D3 1000UI ATIVDAY C/60 CÁPSULAS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/suplemento-alimentar-ativday-vitamina-d3-1000ui-com-60-c-psu.webp" },
+  { sku: "VITAMINA_D3_1000UI_ATIVDAY_60", nome: "VITAMINA D3 1000UI ATIVDAY C/60 CÁPSULAS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
   { sku: "VITAMINA_D3_2000UI_60", nome: "VITAMINA D3 2000UI PHNUTRE C/60 COMPRIMIDOS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-d3-2000-ui-phnutre-60-comprimidos.webp" },
   { sku: "VITAMINA_D3_2000UI_90", nome: "VITAMINA D3 2000UI C/90 CÁPSULAS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-d3-2000ui-90-c-psulas.webp" },
   { sku: "VITAMINA_D3_2000UI_NUTRIFY_120", nome: "VITAMINA D3 2000UI NUTRIFY C/120 CÁPSULAS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-d3-2000-ui-nutrify-120-c-psulas.webp" },
@@ -279,31 +279,31 @@ window.DROGAG_PRODUTOS = [
   { sku: "VITAMINA_B12_LIQUIDA_30ML", nome: "VITAMINA B12 LÍQUIDA 30ML", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-b12-l-quida-30ml.webp" },
   { sku: "VITAMINA_E_30_CAPS_DAUF", nome: "VITAMINA E 30 CÁPSULAS DAUF", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/suplemento-alimentar-dauf-vitamina-e-30-c-psulas.webp" },
   { sku: "VITAMINA_C_BE_BETTER_100", nome: "VITAMINA C 1000MG BE BETTER C/100 COMPRIMIDOS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vita-vitamina-c-be-better-1000mg-100-comprimidos-revestidos.webp" },
-  { sku: "VITAMINA_C_ZINCO_ATIVDAY_10", nome: "VITAMINA C 1G + ZINCO ATIVDAY C/10 EFERVESCENTES", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-c-zinco-ativday-1g-10-comprimidos-efervecentes.webp" },
+  { sku: "VITAMINA_C_ZINCO_ATIVDAY_10", nome: "VITAMINA C 1G + ZINCO ATIVDAY C/10 EFERVESCENTES", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
   { sku: "VITAMINA_C_ATIVDAY_INF_GOTAS_20ML", nome: "VITAMINA C ATIVDAY INFANTIL GOTAS 20ML", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-c-ativday-infantil-gotas-20ml.webp" },
   { sku: "VITA_POWER_MULHER_70", nome: "VITA POWER MULHER C/70 COMPRIMIDOS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-power-vita-mulher-70-comprimidos-revestidos.webp" },
-  { sku: "VITA_POWER_LTCIO_600MG_60", nome: "VITA POWER L-TIOCINA 600MG C/60 COMPRIMIDOS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-power-vita-c-lcio-600mg-60-comprimidos.webp" },
+  { sku: "VITA_POWER_LTCIO_600MG_60", nome: "VITA POWER L-TIOCINA 600MG C/60 COMPRIMIDOS", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
   { sku: "VITAMINA_D3_GOTAS_NUTRIGENES", nome: "VITAMINA D3 2000UI + K2 MK7 GOTAS NUTRIGENES", categoria: "vitaminas", tarja: "tarja_livre", imagem: "img/banco/vitaminas/vitamina-d3-2000-ui-k2-mk7-30mcg-gotas-nutrigenes.webp" },
 
   // --- HIGIENE ---
   { sku: "CREME_DENTAL_SENSODYNE_CLINICAL_66G", nome: "CREME DENTAL SENSODYNE CLINICAL WHITE 66G", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/creme-dental-sensodyne-clinical-white-66g.webp" },
-  { sku: "CREME_DENTAL_SENSODYNE_CLINICAL_100G", nome: "CREME DENTAL SENSODYNE CLINICAL WHITE C/FLÚOR 100G", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/creme-dental-sensodyne-clinical-white-com-fl-or-100g.webp" },
-  { sku: "CREME_DENTAL_SENSODYNE_ORIG_90G", nome: "CREME DENTAL SENSODYNE ORIGINAL 90G", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/creme-dental-sensodyne-original-para-dentes-sens-veis-90g.webp" },
+  { sku: "CREME_DENTAL_SENSODYNE_CLINICAL_100G", nome: "CREME DENTAL SENSODYNE CLINICAL WHITE C/FLÚOR 100G", categoria: "higiene", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
+  { sku: "CREME_DENTAL_SENSODYNE_ORIG_90G", nome: "CREME DENTAL SENSODYNE ORIGINAL 90G", categoria: "higiene", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
   { sku: "CREME_DENTAL_SENSODYNE_GENGIVAS_100G", nome: "CREME DENTAL SENSODYNE SENSIBILIDADE E GENGIVAS 100G", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/creme-dental-sensodyne-sensibilidade-e-gengivas-100g.webp" },
-  { sku: "CREME_DENTAL_SENSODYNE_PROTECAO_20G", nome: "CREME DENTAL SENSODYNE PROTEÇÃO COMPLETA ULTRA 20G", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/creme-dental-sensodyne-prote-o-completa-ultra-prote-o-20g.webp" },
-  { sku: "ESCova_ORALB_123_3U", nome: "ESCÓVA DENTAL ORAL-B 123 C/3 UNIDADES", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/escova-dental-oral-b-123-limpeza-brilhante-cerdas-m-dias-3-u.webp" },
-  { sku: "ESCova_ORALB_COMPLETE_3U", nome: "ESCÓVA DENTAL ORAL-B COMPLETE C/3 UNIDADES", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/escova-dental-oral-b-complete-40-macia-3-unidades.webp" },
+  { sku: "CREME_DENTAL_SENSODYNE_PROTECAO_20G", nome: "CREME DENTAL SENSODYNE PROTEÇÃO COMPLETA ULTRA 20G", categoria: "higiene", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
+  { sku: "ESCova_ORALB_123_3U", nome: "ESCÓVA DENTAL ORAL-B 123 C/3 UNIDADES", categoria: "higiene", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
+  { sku: "ESCova_ORALB_COMPLETE_3U", nome: "ESCÓVA DENTAL ORAL-B COMPLETE C/3 UNIDADES", categoria: "higiene", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
   { sku: "ESCova_ORALB_ULTRAMACIA_3U", nome: "ESCÓVA DENTAL ORAL-B ULTRAMACIA SENSITIVE C/3", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/escova-dental-oral-b-ultramacia-sensitive-iconic-3-unidades.webp" },
   { sku: "SENSODYNE_RAPIDO_ALIVIO_3U", nome: "SENSODYNE RÁPIDO ALÍVIO CREME DENTAL C/3 UNIDADES", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/sensodyne-r-pido-alivio-creme-dental-3-unidades.webp" },
   { sku: "ESCova_ORALB_ELETRICA_INFANTIL", nome: "ESCÓVA DENTAL ORAL-B ELÉTRICA INFANTIL 1 UNIDADE", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/escova-dental-oral-b-el-trica-infantil-1-unidade.webp" },
-  { sku: "ESCova_ORALB_ELETRICA_BIVOLT", nome: "ESCÓVA DENTAL ORAL-B ELÉTRICA X BIVOLT 1 UNIDADE", categoria: "higiene", tarja: "tarja_livre", imagem: "img/banco/higiene/escova-dental-oral-b-el-trica-x-bivolt-1-unidade.webp" },
+  { sku: "ESCova_ORALB_ELETRICA_BIVOLT", nome: "ESCÓVA DENTAL ORAL-B ELÉTRICA X BIVOLT 1 UNIDADE", categoria: "higiene", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
 
   // --- DERMOCOSMÉTICOS ---
-  { sku: "PROTETOR_DAU_FPS60_200ML", nome: "PROTETOR SOLAR DAUF FPS60 200ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/banco/dermocosmeticos/protetor-solar-dauf-fps60-200ml-gr-tis-protetor-solar-facial.webp" },
-  { sku: "PROTETOR_DAU_FPS60_500ML", nome: "PROTETOR SOLAR DAUF FPS60 500ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/banco/dermocosmeticos/protetor-solar-dauf-fps60-500ml.webp" },
+  { sku: "PROTETOR_DAU_FPS60_200ML", nome: "PROTETOR SOLAR DAUF FPS60 200ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
+  { sku: "PROTETOR_DAU_FPS60_500ML", nome: "PROTETOR SOLAR DAUF FPS60 500ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
   { sku: "PROTETOR_DAU_FPS30_200ML", nome: "PROTETOR SOLAR DAUF FPS30 200ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/banco/dermocosmeticos/protetor-solar-dauf-fps30-200ml.webp" },
   { sku: "PROTETOR_DAU_FPS30_500ML", nome: "PROTETOR SOLAR DAUF FPS30 500ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/banco/dermocosmeticos/protetor-solar-dauf-fps30-500ml.webp" },
-  { sku: "PROTETOR_DAU_KIDS_FPS60_200ML", nome: "PROTETOR SOLAR DAUF KIDS FPS60 200ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/banco/dermocosmeticos/protetor-solar-dauf-kids-fps60-200ml-gratis-protetor-solar-f.webp" },
+  { sku: "PROTETOR_DAU_KIDS_FPS60_200ML", nome: "PROTETOR SOLAR DAUF KIDS FPS60 200ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/caixa-drogag.webp" },
   { sku: "PROTETOR_EVERCARE_FPS70_200G", nome: "PROTETOR SOLAR CORPORAL EVER CARE FPS70 200G", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/banco/dermocosmeticos/protetor-solar-corporal-ever-care-fps70-200g.webp" },
   { sku: "PROTETOR_EVERCARE_FPS70_FACIAL_40G", nome: "PROTETOR SOLAR FACIAL EVER CARE FPS70 SEM COR 40G", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/banco/dermocosmeticos/protetor-solar-facial-ever-care-fps70-sem-cor-40g.webp" },
   { sku: "PROTETOR_DAU_FPS30_120ML", nome: "PROTETOR SOLAR DAUF FPS30 120ML", categoria: "dermocosmeticos", tarja: "tarja_livre", imagem: "img/banco/dermocosmeticos/protetor-solar-dauf-fps30-120ml.webp" },
