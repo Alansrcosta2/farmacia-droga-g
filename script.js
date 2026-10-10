@@ -276,22 +276,29 @@ const applyProductDataToCards = () => {
     // badge de tarja
     if (data.tarja === 'tarja_vermelha_c1') {
       const badge = card.querySelector('.product-badge');
-      if (badge) { badge.textContent = 'CONTROLADO'; badge.style.display = 'inline-flex'; badge.style.background = '#0066CC'; }
+      if (badge) { badge.textContent = 'CONTROLADO'; badge.style.display = 'inline-flex'; badge.style.background = '#dc2626'; }
     } else if (data.tarja === 'tarja_vermelha') {
       const badge = card.querySelector('.product-badge');
-      if (badge) { badge.textContent = 'COM RECEITA'; badge.style.display = 'inline-flex'; badge.style.background = '#FFD700'; badge.style.color = '#1a1a1a'; }
+      if (badge) { badge.textContent = 'COM RECEITA'; badge.style.display = 'inline-flex'; badge.style.background = '#ea580c'; }
     }
   });
 
   document.querySelectorAll('.product-card').forEach((card) => {
+    const sku = (card.getAttribute('data-sku') || '').trim();
+    const data = produtosPorSku[sku];
     const priceWrap = card.querySelector('.product-price-wrapper');
-    if (priceWrap) priceWrap.style.display = 'none';
     const btn = card.querySelector('.btn');
+    const nameEl = card.querySelector('.product-name');
+    const nome = nameEl ? nameEl.textContent.trim() : 'produto';
+
+    if (data && typeof data.preco === 'number') {
+      if (priceWrap) priceWrap.style.display = '';
+    } else {
+      if (priceWrap) priceWrap.style.display = 'none';
+    }
     if (btn) {
-      const nameEl = card.querySelector('.product-name');
-      const nome = nameEl ? nameEl.textContent.trim() : 'produto';
       btn.textContent = 'Consulte pelo WhatsApp';
-      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, card.getAttribute('data-sku') || '', 1));
+      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, sku, 1));
       btn.target = '_blank';
       btn.rel = 'noopener';
     }
@@ -304,9 +311,9 @@ const renderCatalogoDinamico = () => {
   if (!grid || !produtosData.length) return;
   grid.innerHTML = produtosData.map((p) => {
     const badgeHtml = p.tarja === 'tarja_vermelha_c1'
-      ? '<span class="product-badge" style="display:inline-flex;background:#0066CC;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">CONTROLADO</span>'
+      ? '<span class="product-badge" style="display:inline-flex;background:#dc2626;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">CONTROLADO</span>'
       : p.tarja === 'tarja_vermelha'
-      ? '<span class="product-badge" style="display:inline-flex;background:#FFD700;color:#1a1a1a;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">COM RECEITA</span>'
+      ? '<span class="product-badge" style="display:inline-flex;background:#ea580c;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">COM RECEITA</span>'
       : '';
     return [
       '<div class="product-card" data-sku="' + p.sku + '" data-category="' + (p.categoria || '') + '">',
