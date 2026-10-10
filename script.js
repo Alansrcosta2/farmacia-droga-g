@@ -335,10 +335,11 @@ const iniciarBuscaInicial = () => {
 };
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => { renderCatalogoDinamico(); applyProductDataToCards(); iniciarBuscaInicial(); reapplyCategoryFilter(); });
+  document.addEventListener('DOMContentLoaded', () => { renderCatalogoDinamico(); applyProductDataToCards(); initCardClick(); iniciarBuscaInicial(); reapplyCategoryFilter(); });
 } else {
   renderCatalogoDinamico();
   applyProductDataToCards();
+  initCardClick();
   iniciarBuscaInicial();
   reapplyCategoryFilter();
 }
@@ -618,20 +619,24 @@ function msgOferta(email) {
 }
 
 /* --- CARD CLICAVEL -> PRODUTO --- */
-document.querySelectorAll('.product-card[data-sku]').forEach((card) => {
-  card.style.cursor = 'pointer';
-  card.addEventListener('click', (e) => {
-    if (e.target.closest('.favorite-btn') || e.target.closest('.btn')) return;
-    window.location.href = 'produto.html?sku=' + encodeURIComponent(card.getAttribute('data-sku'));
-  });
-  // botao WhatsApp dentro do card: abre WhatsApp, nao navega
-  const btnZap = card.querySelector('.btn');
-  if (btnZap) {
-    btnZap.addEventListener('click', (e) => {
-      e.stopPropagation();
+function initCardClick() {
+  document.querySelectorAll('.product-card[data-sku]').forEach((card) => {
+    if (card._clickInit) return;
+    card._clickInit = true;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.favorite-btn') || e.target.closest('.btn')) return;
+      window.location.href = 'produto.html?sku=' + encodeURIComponent(card.getAttribute('data-sku'));
     });
-  }
-});
+    const btnZap = card.querySelector('.btn');
+    if (btnZap) {
+      btnZap.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+  });
+}
+initCardClick();
 
 /* --- PAGINA DO PRODUTO --- */
 const produtoDetalhe = document.querySelector('[data-produto-detalhe]');
