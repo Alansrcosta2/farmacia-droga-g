@@ -1528,9 +1528,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .beneficios-tracks {
     display: flex;
-    gap: 32px;
+    gap: 64px;
     width: max-content;
-    animation: beneficiosScroll 30s linear infinite;
+    animation: beneficiosScroll 25s linear infinite;
     will-change: transform;
 }
 .beneficios-tracks:hover,
@@ -1839,8 +1839,8 @@ h1, h2, h3, h4, h5, h6 {
         overflow: hidden;
     }
     .beneficios-tracks {
-        gap: 18px;
-        animation-duration: 25s;
+        gap: 48px;
+        animation-duration: 20s;
     }
     .beneficio-item {
         flex: 0 0 auto;
