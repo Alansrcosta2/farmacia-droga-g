@@ -1526,12 +1526,15 @@ h1, h2, h3, h4, h5, h6 {
 .beneficios-viewport {
     overflow: hidden;
     padding: 14px 0;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
 .beneficios-tracks {
     display: flex;
     gap: 32px;
     width: max-content;
-    animation: beneficiosScroll 30s linear infinite;
+    animation: beneficiosScroll 35s linear infinite;
+    will-change: transform;
 }
 .beneficios-tracks:hover,
 .beneficios-tracks:focus-within {
