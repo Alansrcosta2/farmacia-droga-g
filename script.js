@@ -102,10 +102,9 @@ if (searchBtn && searchInput) {
 }
 
 const filterButtons = document.querySelectorAll('.products-filter-btn');
-const allProductCards = document.querySelectorAll('.product-card');
 
 const applyCategoryFilter = (category) => {
-  allProductCards.forEach(card => {
+  document.querySelectorAll('.product-card').forEach(card => {
     const cardCategories = (card.getAttribute('data-category') || '').toLowerCase();
     card.style.display = (category === 'all' || cardCategories.includes(category)) ? '' : 'none';
   });
@@ -116,7 +115,7 @@ const applyCategoryFilter = (category) => {
   }
 };
 
-if (filterButtons.length && allProductCards.length) {
+if (filterButtons.length) {
   filterButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -292,7 +291,7 @@ const applyProductDataToCards = () => {
     const nome = nameEl ? nameEl.textContent.trim() : 'produto';
 
     if (data && typeof data.preco === 'number') {
-      if (priceWrap) priceWrap.style.display = '';
+      if (priceWrap) priceWrap.style.display = 'none';
     } else {
       if (priceWrap) priceWrap.style.display = 'none';
     }
@@ -320,8 +319,7 @@ const renderCatalogoDinamico = () => {
       '  <div class="product-image-placeholder"><img src="' + p.imagem + '" alt="' + p.nome + '" loading="lazy"></div>',
       '  ' + badgeHtml,
       '  <h3 class="product-name">' + p.nome + '</h3>',
-      '  <div class="product-price-wrapper" style="display:none"><span class="product-price">' + formatNumberToPrice(p.preco) + '</span></div>',
-      '  <span class="product-price" style="font-size:1.1rem;font-weight:700;color:#0066CC">' + formatNumberToPrice(p.preco) + '</span>',
+      '  <span class="product-price" style="font-size:0.8rem;color:#666">Consulte pelo WhatsApp</span>',
       '  <a href="https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(p.nome, p.sku, 1)) + '" target="_blank" rel="noopener" class="btn">Consulte pelo WhatsApp</a>',
       '</div>'
     ].join('\n');
@@ -337,11 +335,25 @@ const iniciarBuscaInicial = () => {
 };
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => { renderCatalogoDinamico(); applyProductDataToCards(); iniciarBuscaInicial(); });
+  document.addEventListener('DOMContentLoaded', () => { renderCatalogoDinamico(); applyProductDataToCards(); iniciarBuscaInicial(); reapplyCategoryFilter(); });
 } else {
   renderCatalogoDinamico();
   applyProductDataToCards();
   iniciarBuscaInicial();
+  reapplyCategoryFilter();
+}
+
+function reapplyCategoryFilter() {
+  const params = new URLSearchParams(window.location.search);
+  const cat = params.get('categoria');
+  if (cat) {
+    const btn = Array.from(document.querySelectorAll('.products-filter-btn')).find(b => b.getAttribute('data-filter-category') === cat);
+    if (btn) {
+      document.querySelectorAll('.products-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyCategoryFilter(cat);
+    }
+  }
 }
 
 const cartPageContainer = document.querySelector('.cart-page');
@@ -752,13 +764,14 @@ if (favoritosGrid) {
   renderFavoritos();
 }
 
-/* --- BENEFÍCIOS: CARROSSEL CONTÍNUO --- */
-(function initBeneficiosCarousel() {
-  const tracks = document.getElementById('beneficiosTracks');
-  if (!tracks) return;
-  // Duplica os itens para loop infinito (sem engasgo)
-  const items = Array.from(tracks.children);
-  items.forEach(item => {
-    tracks.appendChild(item.cloneNode(true));
-  });
+/* --- BENEFÍCIOS: DESTAQUE PROGRESSIVO --- */
+(function initBeneficiosHighlight() {
+  const items = document.querySelectorAll('.beneficios-viewport .beneficio-item');
+  if (!items.length) return;
+  let atual = 0;
+  setInterval(() => {
+    items[atual].classList.remove('ativo');
+    atual = (atual + 1) % items.length;
+    items[atual].classList.add('ativo');
+  }, 2500);
 })();

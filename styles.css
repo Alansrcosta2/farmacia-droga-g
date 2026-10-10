@@ -1524,31 +1524,31 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 .beneficios-viewport {
-    overflow: hidden;
-    padding: 14px 0;
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-}
-.beneficios-tracks {
     display: flex;
-    gap: 32px;
-    width: max-content;
-    animation: beneficiosScroll 35s linear infinite;
-    will-change: transform;
-}
-.beneficios-tracks:hover,
-.beneficios-tracks:focus-within {
-    animation-play-state: paused;
-}
-@keyframes beneficiosScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    justify-content: center;
+    gap: 28px;
+    padding: 14px 0;
+    flex-wrap: wrap;
 }
 .beneficio-item {
     display: flex;
     align-items: center;
     gap: 10px;
     flex: 0 0 auto;
+    opacity: 0.35;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: scale(0.95);
+}
+.beneficio-item.ativo {
+    opacity: 1;
+    transform: scale(1.05);
+}
+@media (max-width: 768px) {
+    .beneficios-viewport {
+        justify-content: flex-start;
+        overflow: hidden;
+        gap: 20px;
+    }
 }
 .beneficio-item > i {
     font-size: 1.35rem;
