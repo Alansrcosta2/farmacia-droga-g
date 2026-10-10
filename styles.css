@@ -1864,12 +1864,16 @@ h1, h2, h3, h4, h5, h6 {
     }
     .categoria-round {
         flex: 0 0 auto;
-        width: 96px;
+        width: 72px;
     }
     .categoria-round-img {
-        width: 96px;
-        height: 96px;
-        padding: 10px;
+        width: 72px;
+        height: 72px;
+        padding: 6px;
+    }
+    .categoria-round-name {
+        font-size: 0.68rem;
+        margin-top: 5px;
     }
     .banner-seta {
         width: 34px;
@@ -1893,7 +1897,19 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.85rem;
     }
     .banner-slide--cor {
-        padding: 28px 0 24px;
+        padding: 16px 0 14px;
+    }
+    .banner-generico h2 {
+        font-size: 1.05rem;
+        margin-bottom: 4px;
+    }
+    .banner-generico p {
+        font-size: 0.78rem;
+        margin-bottom: 10px;
+    }
+    .banner-generico .hero-pill {
+        font-size: 0.65rem;
+        padding: 4px 10px;
     }
     .banner-generico-visual {
         display: none;
