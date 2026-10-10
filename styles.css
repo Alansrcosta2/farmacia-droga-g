@@ -1824,13 +1824,28 @@ h1, h2, h3, h4, h5, h6 {
         display: none;
     }
     .beneficios-lista {
-        overflow-x: auto;
+        overflow: hidden;
         scrollbar-width: none;
         justify-content: flex-start;
-        gap: 18px;
+        gap: 0;
+        padding: 14px 0;
+        position: relative;
     }
     .beneficios-lista::-webkit-scrollbar {
         display: none;
+    }
+    .beneficios-tracks {
+        display: flex;
+        gap: 18px;
+        animation: beneficiosScroll 20s linear infinite;
+        will-change: transform;
+    }
+    .beneficios-tracks.paused {
+        animation-play-state: paused;
+    }
+    @keyframes beneficiosScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
     }
     .beneficio-item {
         flex: 0 0 auto;
