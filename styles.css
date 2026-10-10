@@ -1365,6 +1365,31 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* --- BARRA VOLTAR MOBILE --- */
+.back-bar {
+    display: none;
+}
+@media (max-width: 768px) {
+    .back-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: sticky;
+        top: 0;
+        z-index: 900;
+        background: linear-gradient(135deg, #00A651, #0066CC);
+        padding: 12px 16px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .back-bar i {
+        font-size: 1.1rem;
+    }
+}
+
 /* --- WHATSAPP FLUTUANTE --- */
 .whatsapp-float {
     position: fixed;
