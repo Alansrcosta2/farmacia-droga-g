@@ -752,7 +752,6 @@ if (favoritosGrid) {
   el.innerHTML = [
     '<a href="index.html" class="tab-item' + is('index.html') + '"><i class="fas fa-home"></i><span>Início</span></a>',
     '<a href="produtos.html" class="tab-item' + is('produtos.html') + '"><i class="fas fa-search"></i><span>Buscar</span></a>',
-    '<a href="produtos.html" class="tab-item"><i class="fas fa-th-large"></i><span>Categorias</span></a>',
     '<a href="carrinho.html" class="tab-item' + is('carrinho.html') + '"><i class="fas fa-shopping-cart"></i><span class="tab-badge" data-cart-count>0</span><span>Carrinho</span></a>',
     '<a href="#" class="tab-item" data-conta><i class="far fa-user"></i><span>Conta</span></a>'
   ].join('');
