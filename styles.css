@@ -1110,6 +1110,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
     .header-content,
     .header-main {
         flex-direction: column;
@@ -1120,6 +1123,12 @@ h1, h2, h3, h4, h5, h6 {
     }
     .search-input {
         width: 100%;
+        font-size: 16px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px;
     }
     .top-bar-content {
         flex-direction: column;
@@ -1251,14 +1260,49 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .mobile-menu-btn {
         display: block;
-        position: absolute;
-        top: 25px;
-        right: 20px;
-    }
-    .header-content {
+        position: static;
+        color: var(--white);
+        font-size: 1.4rem;
+        padding: 10px;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
+    .header-content {
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
     .header-icons {
+        display: flex;
+        gap: 4px;
+    }
+    .header-icon {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+    .header-search {
+        order: 10;
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-top: 4px;
+    }
+    .search-input {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px 48px 12px 16px;
+    }
+    .search-btn {
+        width: 44px;
+        height: 44px;
+    }
+    .header-cep {
         display: none;
     }
     .nav-bar {
@@ -1367,6 +1411,78 @@ h1, h2, h3, h4, h5, h6 {
     .menu-overlay.active {
         opacity: 1;
         visibility: visible;
+    }
+}
+
+/* --- BARRA INFERIOR (tab bar mobile) --- */
+.tab-bar {
+    display: none;
+}
+@media (max-width: 768px) {
+    .tab-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-top: 1px solid var(--neutral-medium);
+        box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+        z-index: 1000;
+        padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+    }
+    .tab-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        min-height: 52px;
+        min-width: 44px;
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-size: 0.65rem;
+        font-weight: 600;
+        position: relative;
+    }
+    .tab-item i {
+        font-size: 1.25rem;
+        line-height: 1;
+    }
+    .tab-item.active {
+        color: var(--primary-blue);
+    }
+    .tab-item.active i {
+        color: var(--primary-blue);
+    }
+    .tab-badge {
+        position: absolute;
+        top: 2px;
+        right: calc(50% - 18px);
+        background: var(--accent);
+        color: #fff;
+        font-size: 0.6rem;
+        font-weight: 700;
+        min-width: 16px;
+        height: 16px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 4px;
+    }
+    body {
+        padding-bottom: 70px;
+    }
+    .whatsapp-float {
+        bottom: 80px;
+    }
+    .toast-container {
+        bottom: 85px;
+    }
+    .scroll-to-top {
+        bottom: 85px;
     }
 }
 
@@ -1578,23 +1694,20 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 .beneficios-viewport {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding: 14px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.beneficios-viewport::-webkit-scrollbar {
+    display: none;
 }
 .beneficios-tracks {
     display: flex;
     gap: 64px;
     width: max-content;
-    animation: beneficiosScroll 25s linear infinite;
-    will-change: transform;
-}
-.beneficios-tracks:hover,
-.beneficios-tracks:focus-within {
-    animation-play-state: paused;
-}
-@keyframes beneficiosScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    padding: 0 24px;
 }
 .beneficio-item {
     display: flex;
@@ -1618,6 +1731,7 @@ h1, h2, h3, h4, h5, h6 {
     text-overflow: ellipsis;
 }
 .beneficio-item span {
+    display: block;
     font-size: 0.73rem;
     color: rgba(255,255,255,0.85);
     white-space: nowrap;
@@ -1891,11 +2005,12 @@ h1, h2, h3, h4, h5, h6 {
         display: none;
     }
     .beneficios-viewport {
-        overflow: hidden;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
     .beneficios-tracks {
         gap: 48px;
-        animation-duration: 20s;
+        padding: 0 16px;
     }
     .beneficio-item {
         flex: 0 0 auto;
@@ -2008,15 +2123,22 @@ h1, h2, h3, h4, h5, h6 {
         padding: 14px;
     }
     .product-card .product-name {
-        font-size: 0.82rem;
-        line-height: 1.25;
+        font-size: 0.9rem;
+        line-height: 1.3;
+        min-height: 44px;
     }
     .product-card .product-price {
-        font-size: 0.95rem;
+        font-size: 1.05rem;
     }
     .product-card .btn {
-        font-size: 0.72rem;
-        padding: 8px 12px;
+        font-size: 0.8rem;
+        padding: 12px 14px;
+        min-height: 44px;
+        width: 100%;
+    }
+    .product-card .favorite-btn {
+        min-width: 44px;
+        min-height: 44px;
     }
     .product-card .product-image-placeholder {
         min-height: 120px;

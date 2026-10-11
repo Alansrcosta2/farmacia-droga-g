@@ -741,11 +741,36 @@ if (favoritosGrid) {
   renderFavoritos();
 }
 
-/* --- BENEFÍCIOS: CARROSSEL --- */
-(function initBeneficiosCarousel() {
-  const tracks = document.getElementById('beneficiosTracks');
-  if (!tracks) return;
-  // Duplica uma vez para loop sem "pulo"
-  const items = Array.from(tracks.children);
-  items.forEach(item => tracks.appendChild(item.cloneNode(true)));
+/* --- BARRA INFERIOR (tab bar mobile) --- */
+(function initTabBar() {
+  if (document.querySelector('.tab-bar')) return;
+  const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  const is = (p) => path === p ? ' active' : '';
+  const el = document.createElement('nav');
+  el.className = 'tab-bar';
+  el.setAttribute('aria-label', 'Navegação principal');
+  el.innerHTML = [
+    '<a href="index.html" class="tab-item' + is('index.html') + '"><i class="fas fa-home"></i><span>Início</span></a>',
+    '<a href="produtos.html" class="tab-item' + is('produtos.html') + '"><i class="fas fa-search"></i><span>Buscar</span></a>',
+    '<a href="produtos.html#categorias" class="tab-item"><i class="fas fa-th-large"></i><span>Categorias</span></a>',
+    '<a href="carrinho.html" class="tab-item' + is('carrinho.html') + '"><i class="fas fa-shopping-cart"></i><span class="tab-badge" data-cart-count>0</span><span>Carrinho</span></a>',
+    '<a href="#" class="tab-item" data-conta><i class="far fa-user"></i><span>Conta</span></a>'
+  ].join('');
+  document.body.appendChild(el);
+  // badge do carrinho
+  try {
+    const cart = JSON.parse(localStorage.getItem('droga_g_cart') || '[]');
+    const badge = el.querySelector('[data-cart-count]');
+    if (badge) {
+      badge.textContent = String(cart.length || 0);
+      badge.style.display = cart.length ? '' : 'none';
+    }
+  } catch (e) {}
+  // aba ativa acompanha clique
+  el.querySelectorAll('.tab-item[data-conta]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast('Área da conta em breve.', 'info');
+    });
+  });
 })();
