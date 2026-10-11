@@ -774,39 +774,6 @@ if (favoritosGrid) {
   });
 })();
 
-/* --- MODAL CATEGORIAS (bottom sheet) --- */
-(function () {
-  const modal = document.getElementById('catModal');
-  if (!modal) return;
-  let ultimoFoco = null;
-  function abrir() {
-    ultimoFoco = document.activeElement;
-    modal.classList.add('aberto');
-    document.body.classList.add('modal-aberto');
-    setTimeout(() => modal.querySelector('.cat-modal-close').focus(), 80);
-  }
-  function fechar() {
-    modal.classList.remove('aberto');
-    document.body.classList.remove('modal-aberto');
-    if (ultimoFoco) ultimoFoco.focus();
-  }
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('[data-abre-categorias]')) { e.preventDefault(); abrir(); }
-    if (e.target.closest('[data-close-cat]')) fechar();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('aberto')) fechar();
-  });
-  /* foco preso dentro do modal (acessibilidade) */
-  modal.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab') return;
-    const f = modal.querySelectorAll('a[href], button:not([disabled])');
-    const primeiro = f[0], ultimo = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === primeiro) { ultimo.focus(); e.preventDefault(); }
-    else if (!e.shiftKey && document.activeElement === ultimo) { primeiro.focus(); e.preventDefault(); }
-  });
-})();
-
 /* --- BENEFÍCIOS: MARQUEE (2 grupos iguais, cada um 100vw) --- */
 (function initBeneficiosMarquee() {
   const tracks = document.getElementById('beneficiosTracks');
