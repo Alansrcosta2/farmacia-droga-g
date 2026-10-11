@@ -2402,3 +2402,37 @@ h1, h2, h3, h4, h5, h6 {
         min-width: 0;
     }
 }
+
+/* ===== FIX MOBILE — Droga G ===== */
+@media (max-width: 768px) {
+  /* 1) Categorias: classe certa + tamanho que comporta o nome */
+  .categoria-round-row { gap: 12px; }
+  .categoria-round { width: 80px; }
+  .categoria-round-img { width: 80px; height: 80px; padding: 8px; }
+  .categoria-round-label {           /* era -name, que não existe */
+    font-size: 0.68rem;
+    margin-top: 6px;
+    line-height: 1.2;
+    text-align: center;
+  }
+  /* 2) Fecha o buraco após o subtítulo */
+  .section-header { margin-bottom: 18px; }
+  /* 3) Header: linha 1 = menu + logo + ícones | linha 2 = busca */
+  .header-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .mobile-menu-btn { order: 1; }
+  .logo            { order: 2; flex: 1; text-align: center; font-size: 1.6rem; }
+  .header-icons    { order: 3; }
+  .header-search   { order: 4; flex: 1 1 100%; max-width: 100%; }
+  /* 4) Badge colado no ícone */
+  .icon-badge { top: 4px; right: 4px; padding: 1px 5px; font-size: 0.62rem; }
+  /* 5) WhatsApp ACIMA da tab bar, sem ficar atrás dela */
+  .whatsapp-float { bottom: 84px; right: 14px; z-index: 1001; }
+  /* 6) Opcional: top-bar ocupa 2 linhas à toa no celular */
+  .top-bar-links { display: none; } /* menu lateral e tab bar já cobrem */
+}
