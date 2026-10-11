@@ -806,3 +806,19 @@ if (favoritosGrid) {
     else if (!e.shiftKey && document.activeElement === ultimo) { primeiro.focus(); e.preventDefault(); }
   });
 })();
+
+/* ===== KIT FINAL — JS ===== */
+/* Some com badge zerado ("0") e mostra quando tiver itens */
+document.querySelectorAll('.icon-badge').forEach(function (b) {
+  var sync = function () {
+    b.style.display = b.textContent.trim() === '0' ? 'none' : '';
+  };
+  new MutationObserver(sync).observe(b, { childList: true, characterData: true, subtree: true });
+  sync();
+});
+/* Placeholder curto no mobile (não corta mais) */
+if (matchMedia('(max-width: 768px)').matches) {
+  document.querySelectorAll('.search-input').forEach(function (i) {
+    i.placeholder = 'Buscar medicamentos...';
+  });
+}
