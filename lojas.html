@@ -195,6 +195,26 @@
 
     <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
     <script src="produtos-data.js"></script>
+    
+    <!-- Modal Categorias -->
+    <div class="cat-modal" id="catModal" role="dialog" aria-modal="true" aria-labelledby="catModalTitle">
+      <div class="cat-modal-overlay" data-close-cat></div>
+      <div class="cat-modal-sheet">
+        <div class="cat-modal-handle" aria-hidden="true"></div>
+        <div class="cat-modal-head">
+          <h2 id="catModalTitle">Categorias</h2>
+          <button class="cat-modal-close" data-close-cat aria-label="Fechar categorias"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cat-modal-grid">
+          <a href="produtos.html?categoria=medicamentos"><i class="fas fa-pills"></i>Medicamentos</a>
+          <a href="produtos.html?categoria=controlados"><i class="fas fa-prescription-bottle-alt"></i>Controlados</a>
+          <a href="produtos.html?categoria=higiene"><i class="fas fa-soap"></i>Higiene</a>
+          <a href="produtos.html?categoria=dermocosmeticos"><i class="fas fa-spa"></i>Beleza</a>
+          <a href="farmacia-popular.html"><i class="fas fa-hand-holding-heart"></i>Farmácia Popular</a>
+          <a href="produtos.html"><i class="fas fa-th-large"></i>Ver tudo</a>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
 <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
