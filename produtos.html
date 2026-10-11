@@ -9,14 +9,13 @@
 </head>
 <body>
     <header class="header">
-        <div class="top-bar">
+                <div class="top-bar">
             <div class="container top-bar-content">
-                <span><i class="fas fa-map-marker-alt"></i> Entregamos em Santa Terezinha e bairros próximos.</span>
-                <div class="top-bar-links">
+                <span><i class="fas fa-map-marker-alt"></i> Jardim Alvorada • São Geraldo • Santa Terezinha</span>
+                <nav class="top-bar-links">
+                    <a href="contato.html"><i class="fas fa-phone"></i> Contato</a>
                     <a href="lojas.html"><i class="fas fa-store"></i> Nossas Lojas</a>
-                    <a href="#"><i class="fas fa-truck"></i> Rastrear Pedido</a>
-                    <a href="contato.html"><i class="fas fa-headset"></i> Atendimento</a>
-                </div>
+                </nav>
             </div>
         </div>
         <div class="header-main">
@@ -25,33 +24,26 @@
                 <a href="index.html" class="logo">DROGA <span>G</span></a>
                 <div class="header-search">
                     <div class="search-wrapper">
-                        <input type="text" class="search-input" placeholder="Buscar medicamentos, vitaminas...">
+                        <input type="search" class="search-input" placeholder="O que você está procurando?" aria-label="Buscar produtos">
                         <button class="search-btn" aria-label="Buscar"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
-                <button type="button" class="header-cep" data-cep>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>
-                        <small>Enviar para</small>
-                        <strong data-cep-text>Informe seu CEP</strong>
-                    </span>
-                </button>
                 <div class="header-icons">
-                    <a href="#" class="header-icon" data-conta title="Minha conta"><i class="far fa-user"></i></a>
-                    <a href="contato.html" class="header-icon" title="Ajuda"><i class="fas fa-headset"></i></a>
-                    <a href="#" class="header-icon" data-favorites-button><i class="far fa-heart"></i><span class="icon-badge" data-favorites-count>0</span></a>
-                    <a href="carrinho.html" class="header-icon"><i class="fas fa-shopping-cart"></i><span class="icon-badge" data-cart-count>0</span></a>
+                    <a href="#" class="header-icon" data-conta aria-label="Minha conta"><i class="fas fa-user"></i></a>
+                    <a href="contato.html" class="header-icon" aria-label="Contato"><i class="fas fa-headset"></i></a>
+                    <a href="favoritos.html" class="header-icon" aria-label="Favoritos"><i class="fas fa-heart"></i><span class="icon-badge" data-favorites-count>0</span></a>
                 </div>
             </div>
         </div>
-                <nav class="nav-bar">
+        <nav class="nav-bar">
             <div class="nav-bar-header">
                 <a href="index.html" class="logo">DROGA <span>G</span></a>
                 <button class="nav-bar-close" aria-label="Fechar menu">&times;</button>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
-                <li><a href="produtos.html" class="active"><i class="fas fa-pills"></i> Produtos</a></li>
+                <li><a href="#" data-abre-categorias><i class="fas fa-th-large"></i> Categorias</a></li>
+                <li><a href="produtos.html"><i class="fas fa-pills"></i> Produtos</a></li>
                 <li><a href="servicos.html"><i class="fas fa-concierge-bell"></i> Serviços</a></li>
                 <li><a href="farmacia-popular.html"><i class="fas fa-hand-holding-heart"></i> Farmácia Popular</a></li>
                 <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre Nós</a></li>
@@ -59,13 +51,12 @@
                 <li><a href="lojas.html"><i class="fas fa-store"></i> Nossas Lojas</a></li>
             </ul>
             <div class="nav-menu-icons">
-                <a href="#" data-favorites-button><i class="far fa-heart"></i> Favoritos</a>
-                <a href="carrinho.html"><i class="fas fa-shopping-cart"></i> Carrinho</a>
-                <a href="#" data-conta><i class="far fa-user"></i> Conta</a>
+                <a href="#" data-conta><i class="fas fa-user"></i> Conta</a>
+                <a href="favoritos.html"><i class="fas fa-heart"></i> Favoritos</a>
             </div>
         </nav>
         <div class="menu-overlay"></div>
-    </header>
+</header>
 
 
     <main class="page-content">
