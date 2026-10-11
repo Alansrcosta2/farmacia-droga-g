@@ -1,46 +1,53 @@
-# AUDITORIA — Farmácia Droga G (10/10/2026)
+# AUDITORIA — Farmácia Droga G (11/10/2026)
 
-## ✅ CORRIGIDO
+## 📞 TELEFONES OFICIAIS (usar no JSON-LD SEO local)
+| Loja | Telefone | Endereço |
+|------|----------|----------|
+| Jardim Alvorada | (31) 98378-5075 | R. Flor D'Água, 608 |
+| São Geraldo | (31) 3487-1209 | R. Silva Alvarenga, 607 |
+| Santa Terezinha | (31) 3476-2473 | Rua Julita Nogueira Soares, 610 |
+| WhatsApp (todas) | (31) 97171-6274 | wa.me/5531971716274 |
+
+⚠️ Dúvida: contato.html linha 179 mostra Santa Terezinha como (31) 9 7171-6274 — confirmar se é WhatsApp ou telefone da loja.
+
+## ✅ CORRIGIDO (11/10)
+| Item | Status |
+|------|--------|
+| Barra "← Início" mobile | Removida (não aprovada) |
+| Logo duplicado no desktop | nav-bar-header/ícones ocultos fora do mobile |
+| Benefícios duplicados (clone JS) | Removido — scroll horizontal |
+| Carrinho com total em R$ | Removido — "Consulte pelo WhatsApp" |
+| Categorias mobile classe errada | .categoria-round-name → .categoria-round-label |
+| Header mobile estilo app | 2 linhas: menu+logo+ícones / busca |
+| Tab bar inferior | Início/Buscar/Categorias/Carrinho/Conta |
+| Bottom sheet Categorias | Modal com foco preso (a11y) |
+| Badge "0" | Some quando zerado |
+| Header canônico | 10 páginas: 1 close, 1 menu-btn, 1 search, 3 icons, 1 overlay |
+| Links internos | Nenhum quebrado |
+
+## ✅ CORRIGIDO (10/10)
 | Item | Status |
 |------|--------|
 | Preços escondidos nos cards | Removido — mostra "Consulte pelo WhatsApp" |
 | Filtro categorias (produtos) | Corrigido — querySelector dinâmico |
 | Benefícios duplicados (fixos embaixo) | Removidos |
-| Carrossel engasgando | Substituído por destaque progressivo (sem loop) |
 | Menu "Serviços" duplicado | 1x em todas as páginas |
-| Aba "Fotos" | Removida do menu |
-| Newsletter email | "EM BREVE" (sem email ainda) |
-| Absorventes Farmácia Popular | Adicionados com regras Dignidade Menstrual |
-| Margem preços | 8% (dentro de 5-10%) |
-| Cores badges | Originais (vermelho CONTROLADO, laranja COM RECEITA) |
-| Mockups (16 imagens) | Trocados por caixa Droga G |
-| Sintaxe JS | Todas as 3 libs OK |
+| Newsletter email | "EM BREVE" |
+| Absorventes Farmácia Popular | Dignidade Menstrual |
+| Cores badges | CONTROLADO #dc2626, COM RECEITA #ea580c |
+| Sintaxe JS | OK |
 
 ## ⏳ PENDENTE
 | Item | Prioridade |
 |------|-----------|
-| 52 imagens do banco (podem ter logo outra farmácia) | Alta |
-| Bug: clique na foto do produto → produto.html | Alta |
-| 78 produtos sem preço no catálogo | Média |
-| Categorias vazias no filtro | Média |
-| Hero sem imagem (só texto) | Baixa |
+| 52 imagens do banco (logo outra farmácia?) | Alta |
+| Prints de revisão (home mobile, produtos, contato, home desktop) | Alta |
+| Confirmar telefone oficial Santa Terezinha | Alta |
+| Schema JSON-LD SEO local (3 lojas) | Média (quando ele pedir) |
 
-## 📄 PÁGINAS VERIFICADAS
-- index.html ✅
-- produtos.html ✅
-- produto.html ✅
-- carrinho.html ✅
-- favoritos.html ✅
-- contato.html ✅
-- sobre.html ✅
-- lojas.html ✅
-- servicos.html ✅
-- farmacia-popular.html ✅
-- fotos.html (removida do menu)
-
-## 📱 MOBILE
-- Benefícios: destaque progressivo (1 a cada 2.5s)
-- Banners: sem imagem, altura compacta
-- Seções: padding 22px (antes 38px)
-- Footer: 2 colunas
-- Cards: 14px padding, fontes menores
+## 📱 MOBILE (atual)
+- Tab bar fixa + bottom sheet categorias
+- Header 2 linhas, busca full-width 16px
+- Cards 2 col, touch 44px
+- Benefícios: scroll horizontal (sem clone)
+- Filtros produtos: chips scrolláveis
