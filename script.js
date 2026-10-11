@@ -807,6 +807,25 @@ if (favoritosGrid) {
   });
 })();
 
+/* --- BENEFÍCIOS: MARQUEE (2 grupos iguais, cada um 100vw) --- */
+(function initBeneficiosMarquee() {
+  const tracks = document.getElementById('beneficiosTracks');
+  if (!tracks || tracks.dataset.ready) return;
+  const items = Array.from(tracks.querySelectorAll('.beneficio-item'));
+  if (!items.length) return;
+  tracks.innerHTML = '';
+  const grupo = (aria) => {
+    const g = document.createElement('div');
+    g.className = 'beneficios-group';
+    if (aria) g.setAttribute('aria-hidden', 'true');
+    items.forEach(i => g.appendChild(i.cloneNode(true)));
+    return g;
+  };
+  tracks.appendChild(grupo(false));
+  tracks.appendChild(grupo(true));
+  tracks.dataset.ready = '1';
+})();
+
 /* ===== KIT FINAL — JS ===== */
 /* Some com badge zerado ("0") e mostra quando tiver itens */
 document.querySelectorAll('.icon-badge').forEach(function (b) {

@@ -1694,20 +1694,30 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 .beneficios-viewport {
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
     padding: 14px 0;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-.beneficios-viewport::-webkit-scrollbar {
-    display: none;
 }
 .beneficios-tracks {
     display: flex;
-    gap: 64px;
     width: max-content;
-    padding: 0 24px;
+    animation: beneficiosScroll 28s linear infinite;
+    will-change: transform;
+}
+.beneficios-tracks:hover,
+.beneficios-tracks:focus-within {
+    animation-play-state: paused;
+}
+.beneficios-group {
+    display: flex;
+    gap: 64px;
+    padding: 0 40px;
+    min-width: 100vw;
+    align-items: center;
+    flex: 0 0 auto;
+}
+@keyframes beneficiosScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 .beneficio-item {
     display: flex;
@@ -2005,12 +2015,14 @@ h1, h2, h3, h4, h5, h6 {
         display: none;
     }
     .beneficios-viewport {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow: hidden;
     }
     .beneficios-tracks {
+        animation-duration: 22s;
+    }
+    .beneficios-group {
         gap: 48px;
-        padding: 0 16px;
+        padding: 0 24px;
     }
     .beneficio-item {
         flex: 0 0 auto;
