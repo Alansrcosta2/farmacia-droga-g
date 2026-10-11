@@ -2596,3 +2596,52 @@ body.modal-aberto { overflow: hidden; }
   .cat-modal.aberto .cat-modal-sheet { transform: translateY(0); opacity: 1; }
   .cat-modal-handle { display: none; }
 }
+
+/* ===== KIT FINAL — PARTE A (auditoria) ===== */
+:root { --primary-green: #00A651; }        /* variável que não existia */
+section, [id] { scroll-margin-top: 96px; } /* âncoras não somem sob o header */
+@media (max-width: 768px) {
+    .tab-item { font-size: 0.7rem; }       /* labels da tab-bar mais legíveis */
+}
+
+/* ===== KIT FINAL — PARTE B (drawer, chips, desktop) ===== */
+/* Drawer: logo centralizado, X à direita */
+.nav-bar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+}
+.nav-bar-header .logo { order: 1; flex: 1; text-align: center; font-size: 1.3rem; }
+.nav-bar-close {
+  order: 2;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+/* Menu lateral aberto cobre a tab-bar */
+body:has(.nav-bar.active) .tab-bar { z-index: 900; }
+
+/* Mobile: filtro da produtos.html vira fileira de chips */
+@media (max-width: 768px) {
+  .products-sidebar { padding: 12px; border-radius: 14px; }
+  .products-sidebar-header p { display: none; }
+  .products-sidebar-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    margin-top: 10px;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .products-sidebar-menu::-webkit-scrollbar { display: none; }
+  .products-filter-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    min-height: 40px;
+    padding: 8px 14px;
+  }
+}
