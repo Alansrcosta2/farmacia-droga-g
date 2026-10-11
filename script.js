@@ -752,7 +752,7 @@ if (favoritosGrid) {
   el.innerHTML = [
     '<a href="index.html" class="tab-item' + is('index.html') + '"><i class="fas fa-home"></i><span>Início</span></a>',
     '<a href="produtos.html" class="tab-item' + is('produtos.html') + '"><i class="fas fa-search"></i><span>Buscar</span></a>',
-    '<a href="produtos.html#categorias" class="tab-item"><i class="fas fa-th-large"></i><span>Categorias</span></a>',
+    '<a href="#" class="tab-item" data-open-cat><i class="fas fa-th-large"></i><span>Categorias</span></a>',
     '<a href="carrinho.html" class="tab-item' + is('carrinho.html') + '"><i class="fas fa-shopping-cart"></i><span class="tab-badge" data-cart-count>0</span><span>Carrinho</span></a>',
     '<a href="#" class="tab-item" data-conta><i class="far fa-user"></i><span>Conta</span></a>'
   ].join('');
@@ -766,11 +766,62 @@ if (favoritosGrid) {
       badge.style.display = cart.length ? '' : 'none';
     }
   } catch (e) {}
-  // aba ativa acompanha clique
   el.querySelectorAll('.tab-item[data-conta]').forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
       showToast('Área da conta em breve.', 'info');
     });
+  });
+})();
+
+/* --- MODAL CATEGORIAS (bottom sheet) --- */
+(function initCatModal() {
+  if (document.getElementById('catModal')) return;
+  const modal = document.createElement('div');
+  modal.className = 'cat-modal';
+  modal.id = 'catModal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-labelledby', 'catModalTitle');
+  modal.innerHTML = [
+    '<div class="cat-modal-overlay" data-close-cat></div>',
+    '<div class="cat-modal-sheet">',
+    '  <div class="cat-modal-handle" aria-hidden="true"></div>',
+    '  <div class="cat-modal-head">',
+    '    <h2 id="catModalTitle">Categorias</h2>',
+    '    <button class="cat-modal-close" data-close-cat aria-label="Fechar categorias"><i class="fas fa-times"></i></button>',
+    '  </div>',
+    '  <div class="cat-modal-grid">',
+    '    <a href="produtos.html?categoria=medicamentos"><i class="fas fa-pills"></i>Medicamentos</a>',
+    '    <a href="produtos.html?categoria=controlados"><i class="fas fa-prescription-bottle-alt"></i>Controlados</a>',
+    '    <a href="produtos.html?categoria=higiene"><i class="fas fa-soap"></i>Higiene</a>',
+    '    <a href="produtos.html?categoria=dermocosmeticos"><i class="fas fa-spa"></i>Beleza</a>',
+    '    <a href="farmacia-popular.html"><i class="fas fa-hand-holding-heart"></i>Farmácia Popular</a>',
+    '    <a href="produtos.html"><i class="fas fa-th-large"></i>Ver tudo</a>',
+    '  </div>',
+    '</div>'
+  ].join('');
+  document.body.appendChild(modal);
+
+  const abrir = () => {
+    modal.classList.add('aberto');
+    document.body.classList.add('modal-aberto');
+  };
+  const fechar = () => {
+    modal.classList.remove('aberto');
+    document.body.classList.remove('modal-aberto');
+  };
+
+  document.querySelectorAll('[data-open-cat]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      abrir();
+    });
+  });
+  modal.querySelectorAll('[data-close-cat]').forEach(el => {
+    el.addEventListener('click', fechar);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('aberto')) fechar();
   });
 })();
