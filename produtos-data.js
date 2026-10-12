@@ -6,7 +6,7 @@ window.DROGAG_PRODUTOS = [
     preco: 5.5,
     categoria: "medicamentos",
     tarja: "tarja_vermelha",
-    imagem: "img/banco/medicamentos/analg-sico-e-antit-rmico-paracetamol-750mg-gen-rico-prati-do.webp"
+    imagem: "img/caixa-drogag.webp"
   },
   {
     sku: "PARACETAMOL_750MG_20",

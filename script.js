@@ -56,14 +56,28 @@ const searchBtn = document.querySelector('.search-btn');
 
 let buscaInicial = '';
 
-const filtrarCardsPorBusca = (termo) => {
+const normalizarTexto = (s) => (s == null ? '' : String(s))
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '');
+
+const categoriaAtiva = () => {
+  const btn = document.querySelector('.products-filter-btn.active');
+  return btn ? (btn.getAttribute('data-filter-category') || 'all') : 'all';
+};
+
+const filtrarCardsCombinado = () => {
+  const termo = normalizarTexto((searchInput && searchInput.value || '').trim().replaceAll('_', ' '));
+  const categoria = categoriaAtiva();
   let foundCount = 0;
   document.querySelectorAll('.product-card').forEach(card => {
     const nameEl = card.querySelector('.product-name');
-    const productName = nameEl ? nameEl.textContent.toLowerCase() : '';
-    const nomeSku = (card.getAttribute('data-sku') || '').toLowerCase().replaceAll('_', ' ');
-    const corresponde = productName.includes(termo) || nomeSku.includes(termo);
-    if (corresponde) {
+    const productName = normalizarTexto(nameEl ? nameEl.textContent : '');
+    const nomeSku = normalizarTexto((card.getAttribute('data-sku') || '').replaceAll('_', ' '));
+    const correspondeBusca = !termo || productName.includes(termo) || nomeSku.includes(termo);
+    const cardCategories = (card.getAttribute('data-category') || '').toLowerCase();
+    const correspondeCategoria = categoria === 'all' || cardCategories.includes(categoria);
+    if (correspondeBusca && correspondeCategoria) {
       card.style.display = '';
       card.classList.add('animate-on-scroll');
       foundCount++;
@@ -76,22 +90,19 @@ const filtrarCardsPorBusca = (termo) => {
 
 const performSearch = () => {
   if (!searchInput) return;
-  const searchTerm = searchInput.value.toLowerCase().trim();
-  if (!searchTerm) {
-    document.querySelectorAll('.product-card').forEach(card => card.style.display = '');
-    if (/produtos\.html$/.test(location.pathname)) history.replaceState({}, '', 'produtos.html');
-    return;
-  }
+  const searchTerm = searchInput.value.trim();
   const naPaginaProdutos = /produtos\.html$/.test(location.pathname);
   const temGrid = document.querySelector('.product-grid');
   if (!naPaginaProdutos || !temGrid) {
-    window.location.href = 'produtos.html?busca=' + encodeURIComponent(searchInput.value.trim());
+    window.location.href = 'produtos.html?busca=' + encodeURIComponent(searchTerm);
     return;
   }
-  document.querySelectorAll('.products-filter-btn').forEach(b => b.classList.remove('active'));
-  const btnTodos = document.querySelector('.products-filter-btn[data-filter-category="all"]');
-  if (btnTodos) btnTodos.classList.add('active');
-  const foundCount = filtrarCardsPorBusca(searchTerm);
+  if (!searchTerm) {
+    filtrarCardsCombinado();
+    if (/produtos\.html$/.test(location.pathname)) history.replaceState({}, '', 'produtos.html');
+    return;
+  }
+  const foundCount = filtrarCardsCombinado();
   if (foundCount > 0) showToast(`${foundCount} produto(s) encontrado(s)!`, 'success');
   else showToast('Nenhum produto encontrado. Fale no WhatsApp que buscamos pra você!', 'info');
 };
@@ -105,11 +116,8 @@ if (searchBtn && searchInput) {
 
 const filterButtons = document.querySelectorAll('.products-filter-btn');
 
-const applyCategoryFilter = (category) => {
-  document.querySelectorAll('.product-card').forEach(card => {
-    const cardCategories = (card.getAttribute('data-category') || '').toLowerCase();
-    card.style.display = (category === 'all' || cardCategories.includes(category)) ? '' : 'none';
-  });
+const applyCategoryFilter = () => {
+  filtrarCardsCombinado();
   const grid = document.querySelector('.products-main .product-grid') || document.querySelector('.product-grid');
   if (grid) {
     const topo = grid.getBoundingClientRect().top + window.pageYOffset - 110;
@@ -124,7 +132,7 @@ if (filterButtons.length) {
       const category = btn.getAttribute('data-filter-category');
       filterButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      applyCategoryFilter(category);
+      applyCategoryFilter();
     });
   });
   const params = new URLSearchParams(window.location.search);
@@ -135,7 +143,7 @@ if (filterButtons.length) {
     if (targetBtn) {
       filterButtons.forEach(b => b.classList.remove('active'));
       targetBtn.classList.add('active');
-      applyCategoryFilter(initialCategory);
+      applyCategoryFilter();
     }
   }
 }
@@ -161,7 +169,11 @@ const saveFavorites = (f) => { try { localStorage.setItem(FAVORITES_STORAGE_KEY,
 const updateCartBadge = () => {
   const badges = document.querySelectorAll('[data-cart-count]');
   if (!badges.length) return;
-  badges.forEach(b => b.textContent = loadCart().length);
+  const n = loadCart().length;
+  badges.forEach(b => {
+    b.textContent = n;
+    b.style.display = n ? '' : 'none';
+  });
 };
 const updateFavoritesBadge = () => {
   const badges = document.querySelectorAll('[data-favorites-count]');
@@ -307,31 +319,37 @@ const renderCatalogoDinamico = () => {
       '<div class="product-card" data-sku="' + p.sku + '" data-category="' + (p.categoria || '') + '">',
       '  <div class="product-image-placeholder"><img src="' + p.imagem + '" alt="' + p.nome + '" loading="lazy"></div>',
       '  ' + badgeHtml,
+      '  <button class="favorite-btn" type="button" title="Favoritar"><i class="far fa-heart"></i></button>',
       '  <h3 class="product-name">' + p.nome + '</h3>',
       '  <span class="product-price" style="font-size:0.8rem;color:#666">Consulte pelo WhatsApp</span>',
       '  <a href="https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(p.nome, p.sku, 1)) + '" target="_blank" rel="noopener" class="btn">Consulte pelo WhatsApp</a>',
       '</div>'
     ].join('\n');
   }).join('');
+  const favSkus = loadFavorites().map(f => f.sku);
+  grid.querySelectorAll('.product-card').forEach(card => {
+    const sku = (card.getAttribute('data-sku') || '').trim();
+    const btn = card.querySelector('.favorite-btn');
+    if (!btn || btn._favInit) return;
+    btn._favInit = true;
+    if (sku && favSkus.includes(sku)) btn.classList.add('favorited');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const nameEl = card.querySelector('.product-name');
+      toggleFavoriteForProduct({ sku, name: nameEl ? nameEl.textContent.trim() : 'Produto' });
+      btn.classList.toggle('favorited', loadFavorites().some(f => f.sku === sku));
+    });
+  });
 };
 
 const iniciarBuscaInicial = () => {
   if (!buscaInicial) return;
   if (searchInput) searchInput.value = buscaInicial;
-  const achados = filtrarCardsPorBusca(buscaInicial.toLowerCase());
+  const achados = filtrarCardsCombinado();
   if (achados > 0) showToast(`${achados} resultado(s) para "${buscaInicial}".`, 'success');
   else showToast('Nenhum produto encontrado. Fale no WhatsApp que buscamos pra você!', 'info');
 };
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => { renderCatalogoDinamico(); applyProductDataToCards(); initCardClick(); iniciarBuscaInicial(); reapplyCategoryFilter(); });
-} else {
-  renderCatalogoDinamico();
-  applyProductDataToCards();
-  initCardClick();
-  iniciarBuscaInicial();
-  reapplyCategoryFilter();
-}
 
 function reapplyCategoryFilter() {
   const params = new URLSearchParams(window.location.search);
@@ -341,9 +359,19 @@ function reapplyCategoryFilter() {
     if (btn) {
       document.querySelectorAll('.products-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      applyCategoryFilter(cat);
+      applyCategoryFilter();
     }
   }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => { renderCatalogoDinamico(); applyProductDataToCards(); initCardClick(); iniciarBuscaInicial(); reapplyCategoryFilter(); });
+} else {
+  renderCatalogoDinamico();
+  applyProductDataToCards();
+  initCardClick();
+  iniciarBuscaInicial();
+  reapplyCategoryFilter();
 }
 
 const cartPageContainer = document.querySelector('.cart-page');
@@ -794,7 +822,7 @@ if (favoritosGrid) {
 
 /* ===== KIT FINAL — JS ===== */
 /* Some com badge zerado ("0") e mostra quando tiver itens */
-document.querySelectorAll('.icon-badge').forEach(function (b) {
+document.querySelectorAll('.icon-badge, .tab-badge').forEach(function (b) {
   var sync = function () {
     b.style.display = b.textContent.trim() === '0' ? 'none' : '';
   };
