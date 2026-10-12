@@ -106,11 +106,41 @@ Itens **fora** desta etapa (conforme restrições):
 
 ---
 
-## 6. Commit
+## 6. Commit e publicação
 
-- **Commit local:** `Etapa 2: P3 imagem 500mg, P5 acentos, P6 busca+categoria, P7 badge, P8 favoritos catálogo`
-- **Push:** **não realizado** (conforme “não publique em produção”; aguardando autorização).
+- **Commit da Etapa 2 (código):** `b3a3dd43da2e221ecb9d43301f27db8e1280ad75` (`b3a3dd4`)
+- **Commit do relatório:** `d8a5483`
+- **Push:** **realizado.** Local = `origin/main` (diff vazio). Nada pendente de publicação.
 
 ---
 
-*Aguardando autorização para publicar (push) e para a próxima etapa.*
+## 7. Verificação de status (após publicação)
+
+Data da verificação: 12/10/2026 (somente leitura).
+
+### 7.1 Arquivos locais com Etapa 2 — presentes
+| Arquivo | Confirmação |
+|---------|-------------|
+| `script.js` | `normalizarTexto`, `filtrarCardsCombinado`, `_favInit`, badge com `display: none`, `.tab-badge` |
+| `produtos-data.js` | Paracetamol 500 mg → `img/caixa-drogag.webp` |
+| `index.html` | Card home do SKU 500 mg com a caixa genérica |
+
+### 7.2 Histórico da branch main
+| Hash | Mensagem |
+|------|----------|
+| `b3a3dd4` | Etapa 2: P3 imagem 500mg, P5 acentos, P6 busca+categoria, P7 badge, P8 favoritos catálogo |
+| `d8a5483` | Relatorio Etapa 2 |
+| `cdfa5a4` | Auditoria tecnica do catalogo (Etapa 1) |
+
+### 7.3 Local × remoto
+- Working tree limpa.
+- HEAD local = `origin/main` = `b3a3dd4`.
+- **Nenhuma alteração da Etapa 2 ficou sem publicar.**
+
+### 7.4 GitHub Pages
+- O JS publicado já contém as funções da Etapa 2 (`normalizarTexto` etc.).
+- Pode haver cache de 1–2 minutos do CDN do Pages no celular.
+
+---
+
+*Etapa 2 publicada. Aguardando testes no celular e autorização para a próxima etapa.*
