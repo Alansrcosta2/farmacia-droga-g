@@ -30,14 +30,11 @@ if (mobileMenuBtn && navBar && menuOverlay) {
   const toggleMenu = () => {
     navBar.classList.toggle('active');
     menuOverlay.classList.toggle('active');
-    const icon = mobileMenuBtn.querySelector('i');
     if (navBar.classList.contains('active')) {
-      icon.classList.remove('fa-bars');
-      icon.classList.add('fa-times');
+      mobileMenuBtn.style.visibility = 'hidden';
       body.style.overflow = 'hidden';
     } else {
-      icon.classList.remove('fa-times');
-      icon.classList.add('fa-bars');
+      mobileMenuBtn.style.visibility = '';
       body.style.overflow = '';
     }
   };
