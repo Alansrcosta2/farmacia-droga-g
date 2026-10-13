@@ -2861,3 +2861,53 @@ body { color: var(--ink); background: var(--surface-alt); }
 .banner-bolinha.ativo { background: var(--brand); }
 .banner-seta { background: rgba(255, 255, 255, 0.92); color: var(--brand-blue); box-shadow: var(--sh-2); }
 .banner-seta:hover { background: var(--brand); color: #fff; }
+
+/* --- Atalhos de categoria (home, estilo Araujo) --- */
+.section-cat-shortcuts { padding: 28px 0 8px; }
+.cat-shortcuts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+.cat-shortcut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 8px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-1);
+    text-decoration: none;
+    color: var(--ink-2);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+.cat-shortcut:hover {
+    border-color: var(--brand);
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--sh-2);
+}
+.cat-shortcut-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r-pill);
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 1.4rem;
+    transition: all 0.2s ease;
+}
+.cat-shortcut:hover .cat-shortcut-icon { background: var(--brand); color: #fff; }
+@media (max-width: 480px) {
+    .cat-shortcuts { gap: 8px; }
+    .cat-shortcut { padding: 12px 6px; font-size: 0.78rem; }
+    .cat-shortcut-icon { width: 46px; height: 46px; font-size: 1.2rem; }
+}
