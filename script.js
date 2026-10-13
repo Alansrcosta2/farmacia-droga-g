@@ -678,7 +678,7 @@ if (produtoDetalhe) {
       '  <ul class="produto-beneficios">',
       '    <li><i class="fas fa-truck-fast"></i> Entrega em até 30 minutos</li>',
       '    <li><i class="fas fa-shield-alt"></i> Produto original, com nota fiscal</li>',
-      '    <li><i class="fas fa-store"></i> Retire em qualquer uma das nossas lojas</li>',
+      '    <li><i class="fas fa-store"></i> Retire em nossa loja</li>',
       '  </ul>',
       (tarjaAviso || '  <div class="produto-nota"><i class="fas fa-circle-info"></i> Consulte disponibilidade e condição especial pelo WhatsApp.</div>'),
       '  <div class="produto-acoes">',
