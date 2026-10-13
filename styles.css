@@ -203,6 +203,15 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 5px;
 }
 
+/* Desktop: Contato e Nossas Lojas já ficam na barra superior,
+   então não repetimos no menu principal. */
+@media (min-width: 769px) {
+    .nav-menu li:has(> a[href="contato.html"]),
+    .nav-menu li:has(> a[href="lojas.html"]) {
+        display: none;
+    }
+}
+
 .header-main {
     padding: 15px 0;
 }
@@ -1710,8 +1719,7 @@ h1, h2, h3, h4, h5, h6 {
 .beneficios-group {
     display: flex;
     gap: 64px;
-    padding: 0 40px;
-    min-width: 100vw;
+    padding: 0 32px;
     align-items: center;
     flex: 0 0 auto;
 }
@@ -2099,6 +2107,9 @@ h1, h2, h3, h4, h5, h6 {
     .banner-generico-visual {
         display: none;
     }
+    .hero-visual {
+        display: none;
+    }
     .banner-generico .hero-buttons {
         justify-content: center;
     }
@@ -2415,6 +2426,33 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ===== BANNER DESKTOP ===== */
+@media (min-width: 769px) {
+    .banner-slide.hero-banner {
+        padding: 40px 0 52px;
+    }
+    .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+    }
+    .hero-text {
+        flex: 1;
+    }
+    .hero-text h1 {
+        font-size: 2.5rem;
+        line-height: 1.15;
+    }
+    .hero-visual {
+        flex: 0 0 auto;
+        font-size: 7rem;
+        color: rgba(25, 135, 84, 0.22);
+        display: flex;
+        align-items: center;
+    }
+}
+
 /* ===== FIX MOBILE — Droga G ===== */
 @media (max-width: 768px) {
   /* 1) Categorias: classe certa + tamanho que comporta o nome */
@@ -2567,22 +2605,24 @@ section, [id] { scroll-margin-top: 96px; } /* âncoras não somem sob o header *
 }
 
 /* ===== KIT FINAL — PARTE B (drawer, chips, desktop) ===== */
-/* Drawer: logo centralizado, X à direita */
-.nav-bar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-}
-.nav-bar-header .logo { order: 1; flex: 1; text-align: center; font-size: 1.3rem; }
-.nav-bar-close {
-  order: 2;
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255, 255, 255, 0.16);
-  border-radius: 50%;
-  font-size: 1.4rem;
-  line-height: 1;
+/* Drawer (mobile): logo centralizado, X à direita — só no mobile */
+@media (max-width: 768px) {
+  .nav-bar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+  }
+  .nav-bar-header .logo { order: 1; flex: 1; text-align: center; font-size: 1.3rem; }
+  .nav-bar-close {
+    order: 2;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
 }
 /* Menu lateral aberto cobre a tab-bar */
 body:has(.nav-bar.active) .tab-bar { z-index: 900; }
