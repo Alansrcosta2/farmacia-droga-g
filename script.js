@@ -207,7 +207,10 @@ updateFavoritesBadge();
 
 const toggleFavoriteForProduct = (product) => {
   const favorites = loadFavorites();
-  const index = favorites.findIndex(f => f.name === product.name);
+  // compara por SKU (unico e estavel). So usa o nome como reserva quando nao ha SKU.
+  const index = product.sku
+    ? favorites.findIndex(f => f.sku === product.sku)
+    : favorites.findIndex(f => !f.sku && f.name === product.name);
   if (index >= 0) { favorites.splice(index, 1); showToast('Removido dos favoritos.', 'info'); }
   else { favorites.push(product); showToast('Adicionado aos favoritos!', 'success'); }
   saveFavorites(favorites);
@@ -278,8 +281,8 @@ const applyProductDataToCards = () => {
     const data = produtosPorSku[sku];
     const priceWrap = card.querySelector('.product-price-wrapper');
     const btn = card.querySelector('.btn');
-    const nameEl = card.querySelector('.product-name');
-    const nome = nameEl ? nameEl.textContent.trim() : 'produto';
+    // usa o nome do DADOS, nao o texto do card (que comeca como "Carregando...")
+    const nome = (data && data.nome ? data.nome : (card.querySelector('.product-name') || {}).textContent || 'produto').trim();
 
     if (data && typeof data.preco === 'number') {
       if (priceWrap) priceWrap.style.display = 'none';

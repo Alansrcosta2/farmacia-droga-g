@@ -203,6 +203,21 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 5px;
 }
 
+/* Link "Santa Terezinha" da barra superior (vai para a pagina da loja) */
+.top-bar-store {
+    color: var(--white);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.top-bar-store i {
+    margin-right: 5px;
+}
+.top-bar-store:hover {
+    text-decoration: underline;
+}
+
 /* Desktop: Contato e Nossas Lojas já ficam na barra superior,
    então não repetimos no menu principal. */
 @media (min-width: 769px) {
@@ -1013,6 +1028,19 @@ h1, h2, h3, h4, h5, h6 {
 .footer-column a:hover {
     color: var(--accent-yellow);
     padding-left: 5px;
+}
+
+/* Titulo do rodape que tambem e link: mantem a cor e o tamanho do h3 */
+.footer-column h3 a {
+    color: inherit;
+    display: inline;
+    margin-bottom: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+.footer-column h3 a:hover {
+    color: var(--accent-yellow);
+    padding-left: 0;
 }
 
 .footer-logo {
