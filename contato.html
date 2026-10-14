@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20261014e">
+    <link rel="stylesheet" href="styles.css?v=20261014f">
     <style>
         .contact-form {
             background: var(--white);
@@ -84,6 +84,11 @@
             color: var(--white);
         }
     </style>
+    <!-- While o site esta em construcao, o Google nao deve indexar.
+         Remove estas duas linhas e o comentario de construcao.js
+         quando for publicar de verdade. -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
     <meta name="description" content="Contato da Farmácia Droga G: (31) 3476-2473, WhatsApp (31) 97171-6274. Rua Julita Nogueira Soares, 610 - Santa Terezinha, Belo Horizonte.">
     <meta name="theme-color" content="#00A651">
     <link rel="canonical" href="https://alansrcosta2.github.io/farmacia-droga-g/contato.html">
@@ -192,6 +197,8 @@
   }
 }
     </script>
+    <script src="construcao.js"></script>
+    <script src="construcao-inject.js"></script>
 </head>
 
 <body>
@@ -405,7 +412,7 @@
     </div>
     
 
-    <script src="script.js?v=20261014e"></script>
+    <script src="script.js?v=20261014f"></script>
 
 <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
