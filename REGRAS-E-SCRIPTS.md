@@ -2,7 +2,41 @@
 
 > Documento operacional. As ideias de pagamento estão em `PAGAMENTO.md`.
 
-## 1. Regra legal: medicamento controlado (tarja preta) — OBRIGATÓRIO
+## 1. Área de entrega — raio de 4 km
+
+Decisão do dono: a farmácia **não entrega em todo lugar**, só num raio de
+**4 km** da loja (Rua Julita Nogueira Soares, 610 - Santa Terezinha).
+
+Antes o site aceitava qualquer CEP começando com `30` ou `31` — ou seja, quase
+todo o estado de Minas Gerais — e ainda mostrava "Entrega disponível no seu
+CEP!". Isso gerava pedido que a farmácia não conseguia cumprir.
+
+Bairros medidos e dentro do raio (valem para a lista do site):
+
+| Bairro | Distância |
+|---|---|
+| Santa Terezinha | 0,45 km |
+| Residencial Sarandi | 0,87 km |
+| Ressaca | 0,93 km |
+| Bandeirantes | 2,53 km |
+| Pampulha | 3,58 km |
+
+Próximos ficam fora: Vila Santo Antônio (5,3 km), Lagoinha (8,0), Nova Granada
+(8,9), Venda Nova (10,6), Buritis (12,5).
+
+Onde mexer:
+- A lista fica em `script.js`, no começo, em `BAIRROS_ENTREGA`
+- O `<datalist>` com os nomes fica em `carrinho.html` (para o cliente não digitar errado)
+- O CEP no topo **não** decide mais nada: ele só guarda o número preenchido.
+  A cobertura é por bairro, não por CEP.
+
+Se o bairro digitado estiver fora da lista, o site avisa e pergunta se quer
+enviar mesmo assim — a loja confirma pelo WhatsApp.
+
+**Plano futuro:** quando entrar no iFood, a entrega deixa de ter limite de raio
+e passa a ser feita pela plataforma.
+
+## 2. Regra legal: medicamento controlado (tarja preta) — OBRIGATÓRIO
 
 ANVISA / Lei 11.343/2006 e Lei 13.021/2014:
 
@@ -72,7 +106,7 @@ Uso: copiar como `img/<SKU>.webp` dos medicamentos que não têm foto real
   loja ou buscar por EAN com `baixar_ean.py`)
 - **Só os controlados** (e os sem foto) usam a caixa padrão Droga G
 
-## 2. Regras de foto de produto (aprendizado — NÃO reverter)
+## 3. Regras de foto de produto (aprendizado — NÃO reverter)
 
 Fotos de farmácias grandes (Drogaria São Paulo, Pague Menos) são **mockups com
 o logo da loja na caixa** — não serve para o site da Droga G.
@@ -100,7 +134,7 @@ Filtros obrigatórios ao baixar foto:
 **Aviso:** o filtro automático de mockup NÃO é 100% — sempre conferir a foto na
 mão. Mockups escapam quando o nome do arquivo não contém `tarja`/`referencia`.
 
-## 3. Scripts do projeto
+## 4. Scripts do projeto
 
 Requisitos: `python3` + `pip install pillow` (a maioria usa `urllib` nativo).
 
@@ -140,7 +174,7 @@ Requisitos: `python3` + `pip install pillow` (a maioria usa `urllib` nativo).
 6. Rodar `python regenerar_fotos.py` (se mexer no banco)
 7. Commit + push (GitHub Pages atualiza sozinho em ~1 min)
 
-## 4. Backlog (ideias que NÃO foram implementadas)
+## 5. Backlog (ideias que NÃO foram implementadas)
 
 Nada aqui foi feito. Guardado só para não se perder:
 

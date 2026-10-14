@@ -163,6 +163,30 @@ const saveCart = (cart) => { try { localStorage.setItem(CART_STORAGE_KEY, JSON.s
 const loadFavorites = () => { try { return JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY)) || []; } catch { return []; } };
 const saveFavorites = (f) => { try { localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(f)); } catch {} };
 
+/* --- CARRINHO / LISTA DE PEDIDO ---
+   O site nao mostra preco, entao o carrinho e uma lista do que a pessoa
+   quer. O pedido so vira compra depois que a loja confirma valor,
+   estoque e prazo no WhatsApp. */
+const CONTROLADOS_REQUEREM_LOJA = (p) => !!(p && p.tarja === 'tarja_vermelha_c1');
+
+const addToCart = (produto) => {
+  if (!produto || !produto.sku) return;
+  const cart = loadCart();
+  const mesmo = cart.find(i => i.sku === produto.sku);
+  if (mesmo) mesmo.quantidade = (mesmo.quantidade || 1) + 1;
+  else cart.push({
+    sku: produto.sku,
+    nome: produto.nome,
+    quantidade: 1,
+    controlado: CONTROLADOS_REQUEREM_LOJA(produto)
+  });
+  saveCart(cart);
+  updateCartBadge();
+  showToast(produto.nome + ' adicionado à lista.', 'success');
+};
+
+const cartTemControlado = () => loadCart().some(i => i.controlado);
+
 const updateCartBadge = () => {
   const badges = document.querySelectorAll('[data-cart-count]');
   if (!badges.length) return;
@@ -177,30 +201,6 @@ const updateFavoritesBadge = () => {
   if (!badges.length) return;
   badges.forEach(b => b.textContent = loadFavorites().length);
 };
-
-const addProductToCart = (product) => {
-  const cart = loadCart();
-  cart.push(product);
-  saveCart(cart);
-  updateCartBadge();
-};
-
-document.querySelectorAll('.product-card .btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    if (btn.textContent.includes('Adicionar')) {
-      e.preventDefault();
-      const card = btn.closest('.product-card');
-      const productName = nameEl ? nameEl.textContent.trim() : 'Produto';
-      addProductToCart({ name: productName });
-      showToast(`${productName} adicionado ao carrinho!`, 'success');
-      const originalText = btn.textContent;
-      const originalBackground = btn.style.background;
-      btn.textContent = 'Adicionado!';
-      btn.style.background = 'var(--success-green)';
-      setTimeout(() => { btn.textContent = originalText; btn.style.background = originalBackground; }, 2000);
-    }
-  });
-});
 
 updateCartBadge();
 updateFavoritesBadge();
@@ -290,10 +290,19 @@ const applyProductDataToCards = () => {
       if (priceWrap) priceWrap.style.display = 'none';
     }
     if (btn) {
-      btn.textContent = 'Consulte pelo WhatsApp';
-      btn.href = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(nome, sku, 1));
-      btn.target = '_blank';
-      btn.rel = 'noopener';
+      // botao vira "adicionar a lista". O pedido so fecha pelo WhatsApp,
+      // na pagina do carrinho, onde o cliente preenche os dados.
+      btn.textContent = 'Adicionar à lista';
+      btn.href = 'carrinho.html';
+      btn.removeAttribute('target');
+      btn.removeAttribute('rel');
+      btn.classList.remove('btn-whatsapp');
+      if (data) {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          addToCart({ sku: sku, nome: nome, tarja: data.tarja });
+        });
+      }
     }
   });
 };
@@ -310,8 +319,8 @@ const renderCatalogoDinamico = () => {
       '  ' + badgeHtml,
       '  <button class="favorite-btn" type="button" title="Favoritar"><i class="far fa-heart"></i></button>',
       '  <h3 class="product-name">' + p.nome + '</h3>',
-      '  <span class="product-price" style="font-size:0.8rem;color:#666">Consulte pelo WhatsApp</span>',
-      '  <a href="https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(p.nome, p.sku, 1)) + '" target="_blank" rel="noopener" class="btn">Consulte pelo WhatsApp</a>',
+      '  <span class="product-price" style="font-size:0.8rem;color:#666">Valor confirmado pela loja</span>',
+      '  <button type="button" class="btn" data-add-carrinho="' + p.sku + '"><i class="fas fa-cart-plus"></i> Adicionar à lista</button>',
       '</div>'
     ].join('\n');
   }).join('');
@@ -329,6 +338,18 @@ const renderCatalogoDinamico = () => {
       toggleFavoriteForProduct({ sku, name: nameEl ? nameEl.textContent.trim() : 'Produto' });
       btn.classList.toggle('favorited', loadFavorites().some(f => f.sku === sku));
     });
+    // botao "adicionar a lista" dos cards do catalogo dinamico
+    const addBtn = card.querySelector('[data-add-carrinho]');
+    if (addBtn && !addBtn._addInit) {
+      addBtn._addInit = true;
+      addBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const p = produtosPorSku[sku];
+        if (!p) { showToast('Produto não encontrado.', 'info'); return; }
+        addToCart({ sku: p.sku, nome: p.nome, tarja: p.tarja });
+      });
+    }
   });
 };
 
@@ -383,19 +404,72 @@ if (cartPageContainer) {
     if (cartEmptyMessage) cartEmptyMessage.style.display = 'none';
     const grouped = {};
     cart.forEach(item => {
-      if (!grouped[item.name]) grouped[item.name] = { name: item.name, quantity: 0 };
-      grouped[item.name].quantity += 1;
+      const chave = item.sku || item.name;
+      if (!grouped[chave]) grouped[chave] = { name: item.name, quantity: 0, controlado: !!item.controlado };
+      grouped[chave].quantity += (item.quantidade || 1);
     });
     Object.values(grouped).forEach(item => {
       const row = document.createElement('div');
-      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--neutral-medium);';
-      row.innerHTML = `<div style="flex:1"><strong>${item.name}</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ${item.quantity}</span></div>`;
+      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--neutral-medium);';
+      const aviso = item.controlado
+        ? '<br><span style="font-size:0.8rem;color:#9a3412"><i class="fas fa-prescription"></i> Controlado: retirada na loja com receita</span>'
+        : '';
+      const menos = item.quantity > 1
+        ? ' <button type="button" data-cart-less="' + (item.sku || item.name) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">-</button>'
+        : '';
+      const mais = ' <button type="button" data-cart-more="' + (item.sku || item.name) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">+</button>';
+      row.innerHTML = '<div style="flex:1"><strong>' + item.name + '</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ' + item.quantity + '</span>' + aviso + '</div>' +
+        '<div style="display:flex;align-items:center;gap:4px;flex-shrink:0;">' + menos + mais + '</div>';
       cartItemsContainer.appendChild(row);
+    });
+    // botoes de quantidade
+    cartItemsContainer.querySelectorAll('[data-cart-more]').forEach(b => {
+      b.addEventListener('click', () => {
+        const chave = b.getAttribute('data-cart-more');
+        const c = loadCart();
+        const alvo = c.find(i => (i.sku || i.name) === chave);
+        if (alvo) { alvo.quantidade = (alvo.quantidade || 1) + 1; saveCart(c); updateCartBadge(); renderCart(); }
+      });
+    });
+    cartItemsContainer.querySelectorAll('[data-cart-less]').forEach(b => {
+      b.addEventListener('click', () => {
+        const chave = b.getAttribute('data-cart-less');
+        const c = loadCart();
+        const alvo = c.find(i => (i.sku || i.name) === chave);
+        if (!alvo) return;
+        alvo.quantidade = (alvo.quantidade || 1) - 1;
+        if (alvo.quantidade <= 0) c.splice(c.indexOf(alvo), 1);
+        saveCart(c); updateCartBadge(); renderCart();
+      });
     });
     if (cartSummary) cartSummary.style.display = 'block';
   };
 
   renderCart();
+
+  // retirada x entrega: esconde os campos de endereco quando for retirada
+  const sincronizarModoEntrega = () => {
+    const sel = document.querySelector('input[name="entrega"]:checked');
+    const entrega = sel ? sel.value : 'Retirada na loja';
+    const temControlado = cartTemControlado();
+    const aviso = document.getElementById('avisoControlado');
+    const campos = document.getElementById('camposEntrega');
+    if (aviso) aviso.style.display = temControlado ? 'block' : 'none';
+    if (temControlado) {
+      // bloqueia entrega quando tem controlado
+      document.querySelectorAll('input[name="entrega"]').forEach(r => {
+        if (r.value === 'Entrega') { r.checked = false; r.disabled = true; }
+      });
+      const ret = document.querySelector('input[name="entrega"][value^="Retirada"]');
+      if (ret) ret.checked = true;
+      if (campos) campos.style.display = 'none';
+    } else {
+      document.querySelectorAll('input[name="entrega"]').forEach(r => { r.disabled = false; });
+      if (campos) campos.style.display = (entrega === 'Entrega') ? '' : 'none';
+    }
+  };
+  document.querySelectorAll('input[name="entrega"]').forEach(r => r.addEventListener('change', sincronizarModoEntrega));
+  sincronizarModoEntrega();
 
   if (clearCartButton) {
     clearCartButton.addEventListener('click', () => { saveCart([]); updateCartBadge(); renderCart(); showToast('Carrinho limpo.', 'info'); });
@@ -413,22 +487,37 @@ if (cartPageContainer) {
       const pagamento = document.getElementById('checkoutPagamento').value;
       const referencia = document.getElementById('checkoutReferencia').value.trim();
       const observacoes = document.getElementById('checkoutObservacoes').value.trim();
-      if (!nome || !telefone || !endereco || !bairro || !pagamento) { showToast('Preencha todos os campos obrigatórios.', 'info'); return; }
+      const entregaEl = document.querySelector('input[name="entrega"]:checked');
+      let entrega = entregaEl ? entregaEl.value : 'Retirada na loja';
+      // controlado obriga retirada na loja
+      if (cartTemControlado() && entrega === 'Entrega') {
+        entrega = 'Retirada na loja (item controlado)';
+      }
+      if (!nome || !telefone || !pagamento) { showToast('Preencha os campos obrigatórios.', 'info'); return; }
+      if (entrega === 'Entrega') {
+        if (!bairro) { showToast('Informe o bairro para delivery.', 'info'); return; }
+        if (!bairroEntregue(bairro)) {
+          const seg = window.confirm('A gente só entrega em: ' + BAIRROS_ENTREGA.join(', ') + '.\n\nO bairro "' + bairro + '" está fora da nossa área.\n\nQuer enviar assim mesmo? A loja vai confirmar pelo WhatsApp se consegue entregar.');
+          if (!seg) return;
+        }
+        if (!endereco) { showToast('Informe o endereço para entrega.', 'info'); return; }
+      }
       const grouped = {};
       cart.forEach(item => {
-        if (!grouped[item.name]) grouped[item.name] = { name: item.name, quantity: 0 };
-        grouped[item.name].quantity += 1;
+        const chave = item.sku || item.name;
+        if (!grouped[chave]) grouped[chave] = { name: item.name, quantity: 0, controlado: !!item.controlado };
+        grouped[chave].quantity += (item.quantidade || 1);
       });
       const linhas = Object.values(grouped).map(item => {
-        return `${item.name} | Qtd: ${item.quantity}`;
+        return item.name + ' | Qtd: ' + item.quantity + (item.controlado ? ' | CONTROLADO (só retirada, com receita)' : '');
       });
       const msg = msgPedido({
         itens: linhas.map((l, k) => `${k + 1}. ${l}`).join('\n'),
-        nome, telefone, endereco, bairro, referencia, pagamento, observacoes
+        nome, telefone, endereco, bairro, referencia, pagamento, observacoes, entrega
       });
       enviarWhatsApp(msg);
       showToast('Pedido aberto no WhatsApp!', 'success');
-      saveCart([]); updateCartBadge(); renderCart(); checkoutForm.reset();
+      saveCart([]); updateCartBadge(); renderCart(); checkoutForm.reset(); sincronizarModoEntrega();
     });
   }
 }
@@ -491,28 +580,57 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
   });
 });
 
+/* --- ÁREA DE ENTREGA ---
+   Farmácia de bairro não entrega em todo lugar. O dono definiu um RAIO DE
+   4 KM a partir da loja (Rua Julita Nogueira Soares, 610 - Santa Terezinha).
+   Os bairros abaixo foram medidos e caem dentro desse raio.
+
+   Antes o site aceitava qualquer CEP começando com 30 ou 31, ou seja, quase
+   todo o estado de Minas Gerais — e prometia entrega onde não tem entrega.
+   Isso gerava pedido que a farmácia não conseguia cumprir.
+
+   Para incluir um bairro novo (ou quando entrar no iFood), acrescente o nome
+   aqui. Distâncias medidas a partir da loja:
+     Santa Terezinha .... 0,45 km
+     Residencial Sarandi . 0,87 km
+     Ressaca ............ 0,93 km
+     Bandeirantes ....... 2,53 km
+     Pampulha ........... 3,58 km  */
+const BAIRROS_ENTREGA = [
+  'Santa Terezinha',
+  'Residencial Sarandi',
+  'Ressaca',
+  'Bandeirantes',
+  'Pampulha'
+];
+
+const bairroEntregue = (nome) => {
+  const alvo = String(nome || '').trim().toLowerCase();
+  if (!alvo) return false;
+  return BAIRROS_ENTREGA.some(b => {
+    const b2 = String(b).toLowerCase();
+    return alvo === b2 || alvo.includes(b2) || b2.includes(alvo);
+  });
+};
+
 /* --- ENVIO / CEP NO TOPO --- */
 const cepBtn = document.querySelector('[data-cep]');
 if (cepBtn) {
   const cepTexto = cepBtn.querySelector('[data-cep-text]');
   const formatar = (v) => v.slice(0, 5) + '-' + v.slice(5);
-  const ehDaRegiao = (nums) => nums.startsWith('30') || nums.startsWith('31');
-  const mostrar = (v, ok) => { cepTexto.textContent = ok ? 'Entregando em ' + v : 'CEP ' + v + ' (consulte)'; };
+  // So o CEP e salvo para preenchimento. A cobertura NAO e decidida pelo CEP:
+  // depende do bairro, porque a farmacia entrega so em bairro perto.
+  const mostrar = (v) => { cepTexto.textContent = 'CEP ' + v; };
   const salvo = localStorage.getItem('droga_g_cep');
-  if (salvo) mostrar(salvo, ehDaRegiao(salvo.replace('-', '')));
+  if (salvo) mostrar(salvo);
   cepBtn.addEventListener('click', () => {
     const entrada = prompt('Informe seu CEP (8 números):', (salvo || '').replace('-', ''));
     if (entrada === null) return;
     const nums = entrada.replace(/\D/g, '');
     if (nums.length !== 8) { showToast('CEP inválido — digite 8 números.', 'info'); return; }
     localStorage.setItem('droga_g_cep', formatar(nums));
-    if (ehDaRegiao(nums)) {
-      mostrar(formatar(nums), true);
-      showToast('Entrega disponível no seu CEP!', 'success');
-    } else {
-      mostrar(formatar(nums), false);
-      showToast('Fora da região padrão — chame no WhatsApp para confirmar a entrega.', 'info');
-    }
+    mostrar(formatar(nums));
+    showToast('CEP salvo. Na hora do pedido a loja confirma se entrega na sua região.', 'info');
   });
 }
 
@@ -571,8 +689,9 @@ function msgConsultaProduto(nome, sku, qtd) {
   ].join('\n');
 }
 function msgPedido(d) {
+  const retirada = String(d.entrega || 'Retirada na loja').startsWith('Retirada');
   const linhas = [
-    'PEDIDO PELO SITE - Droga G',
+    'PEDIDO PELO SITE - Droga G Santa Terezinha',
     'Protocolo: ' + montarProtocolo(),
     'Data: ' + new Date().toLocaleString('pt-BR'),
     '',
@@ -581,14 +700,22 @@ function msgPedido(d) {
     '',
     'CLIENTE',
     'Nome: ' + d.nome,
-    'Telefone: ' + d.telefone,
-    'CEP: ' + cepSalvo(),
-    'Endereço: ' + d.endereco,
-    'Bairro: ' + d.bairro
+    'Telefone/WhatsApp: ' + d.telefone,
+    'Recebimento: ' + (d.entrega || 'Retirada na loja')
   ];
+  if (retirada) {
+    linhas.push('Retirada em: Rua Julita Nogueira Soares, 610 - Santa Terezinha');
+  } else {
+    linhas.push('CEP: ' + cepSalvo());
+    linhas.push('Endereço: ' + d.endereco);
+    linhas.push('Bairro: ' + d.bairro);
+  }
   if (d.referencia) linhas.push('Referência: ' + d.referencia);
   linhas.push('Pagamento: ' + d.pagamento);
   if (d.observacoes) linhas.push('Obs: ' + d.observacoes);
+  linhas.push('');
+  linhas.push('Ação balcão: conferir preço e estoque no Dmaster, confirmar');
+  linhas.push('disponibilidade e prazo, e passar o link de pagamento.');
   return linhas.join('\n');
 }
 function msgContato(d) {
@@ -676,12 +803,19 @@ if (produtoDetalhe) {
       '  </ul>',
       (tarjaAviso || '  <div class="produto-nota"><i class="fas fa-circle-info"></i> Consulte disponibilidade e condição especial pelo WhatsApp.</div>'),
       '  <div class="produto-acoes">',
-      '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> ' + (data.tarja === 'tarja_vermelha_c1' ? 'Consultar disponibilidade' : 'Consulte pelo WhatsApp') + '</a>',
+      '    <button type="button" class="btn" data-add-carrinho="' + data.sku + '"><i class="fas fa-cart-plus"></i> Adicionar à lista</button>',
+      '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-whatsapp"></i> ' + (data.tarja === 'tarja_vermelha_c1' ? 'Consultar disponibilidade' : 'Tirar dúvida') + '</a>',
       '    <button class="btn btn-outline" data-fav-produto="' + data.sku + '"><i class="far fa-heart"></i> Favoritar</button>',
       '  </div>',
       '  <div class="produto-lojas"><strong>Central:</strong> (31) 3476-2473 &nbsp;|&nbsp; <strong>WhatsApp:</strong> (31) 97171-6274</div>',
       '</div>'
     ].join('\n');
+    const addBtn = produtoDetalhe.querySelector('[data-add-carrinho]');
+    if (addBtn) {
+      addBtn.addEventListener('click', () => {
+        addToCart({ sku: data.sku, nome: data.nome, tarja: data.tarja });
+      });
+    }
     const favBtn = produtoDetalhe.querySelector('[data-fav-produto]');
     if (favBtn) {
       const jaFav = loadFavorites().some(f => f.sku === data.sku);
@@ -701,7 +835,7 @@ if (produtoDetalhe) {
           '<div class="product-card" data-sku="' + p.sku + '">',
           '  <div class="product-image-placeholder"><img src="' + p.imagem + '" alt="' + p.nome + '" loading="lazy"></div>',
           '  <h3 class="product-name">' + p.nome + '</h3>',
-          '  <a href="https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(p.nome, p.sku, 1)) + '" target="_blank" rel="noopener" class="btn">Consulte pelo WhatsApp</a>',
+          '  <button type="button" class="btn" data-add-rel="' + p.sku + '"><i class="fas fa-cart-plus"></i> Adicionar à lista</button>',
           '</div>'
         ].join('\n')).join('') + '</div>';
       produtoDetalhe.parentNode.appendChild(grid);
@@ -711,6 +845,16 @@ if (produtoDetalhe) {
           if (e.target.closest('.btn')) return;
           window.location.href = 'produto.html?sku=' + encodeURIComponent(c.getAttribute('data-sku'));
         });
+        const relBtn = c.querySelector('[data-add-rel]');
+        if (relBtn) {
+          relBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const p = produtosPorSku[relBtn.getAttribute('data-add-rel')];
+            if (!p) { showToast('Produto não encontrado.', 'info'); return; }
+            addToCart({ sku: p.sku, nome: p.nome, tarja: p.tarja });
+          });
+        }
       });
     }
   }

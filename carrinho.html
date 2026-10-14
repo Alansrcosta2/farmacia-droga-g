@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Carrinho - Farmácia Droga G</title>
-    <link rel="stylesheet" href="styles.css?v=20261014c">
+    <title>Meu Pedido - Farmácia Droga G</title>
+    <link rel="stylesheet" href="styles.css?v=20261014d">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -55,18 +55,18 @@
     <main class="page-content cart-page">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-title">Meu Carrinho</h1>
-                <p class="section-subtitle">Revise seus produtos e envie seu pedido pelo WhatsApp</p>
+                <h1 class="section-title">Meu Pedido</h1>
+                <p class="section-subtitle">Monte sua lista e envie pelo WhatsApp. A loja confirma valor, estoque e prazo antes de qualquer pagamento.</p>
             </div>
 
             <div class="products-layout">
                 <section class="products-main">
                     <div class="content-card">
-                        <h2>Produtos selecionados</h2>
+                        <h2>Produtos na sua lista</h2>
                         <div id="cartItemsContainer"></div>
                         <div id="cartEmptyMessage" style="display:none; text-align:center; padding:40px 0; color:var(--text-secondary);">
                             <i class="fas fa-shopping-basket" style="font-size:3rem; margin-bottom:15px; opacity:0.3;"></i>
-                            <p>Seu carrinho está vazio. Volte à página de produtos para adicionar itens.</p>
+                            <p>Sua lista está vazia. Volte aos produtos e toque em <strong>Adicionar à lista</strong>.</p>
                             <a href="produtos.html" class="btn" style="margin-top:20px;">Ver Produtos</a>
                         </div>
                     </div>
@@ -74,61 +74,91 @@
 
                 <aside class="products-sidebar">
                     <div id="cartSummary" style="display:none;">
-                        <h3>Resumo do Pedido</h3>
+                        <h3>Resumo</h3>
                         <div style="display:flex; justify-content:space-between; margin:15px 0; font-size:1.1rem; font-weight:700;">
-                            <span>Valores:</span>
-                            <span style="color:var(--primary-blue);">Consulte pelo WhatsApp</span>
+                            <span>Total:</span>
+                            <span style="color:var(--primary-blue);">Confirmado pela loja</span>
                         </div>
-                        <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:15px;">Os valores serão confirmados pela equipe no WhatsApp, especialmente em medicamentos sujeitos a variação de preço.</p>
+                        <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:15px;">O site não mostra preço. A equipe confere no sistema e informa o valor antes de você pagar.</p>
                         <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:20px;">Frete grátis para compras a partir de R$ 10,00 em Santa Terezinha e R$ 15,00 em bairros vizinhos.</p>
-                        <button id="clearCartButton" class="btn btn-outline" style="width:100%; margin-bottom:10px;">Limpar carrinho</button>
+                        <button id="clearCartButton" class="btn btn-outline" style="width:100%; margin-bottom:10px;">Limpar lista</button>
                         <a href="produtos.html" class="btn btn-outline" style="width:100%; text-align:center;">Continuar comprando</a>
                     </div>
                 </aside>
             </div>
 
             <div class="content-card" style="margin-top:30px;">
-                <h2>Dados para entrega</h2>
+                <h2>Dados do pedido</h2>
                 <form id="cartCheckoutForm" class="contact-form">
+                    <div class="form-group">
+                        <label>Como você quer receber? *</label>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+                            <label class="order-opt" style="flex:1;min-width:150px;border:2px solid var(--line);border-radius:var(--r-md);padding:14px;cursor:pointer;display:block;">
+                                <input type="radio" name="entrega" value="Retirada na loja" checked style="margin-right:8px;">
+                                <i class="fas fa-store"></i> <strong>Retirar na loja</strong>
+                                <br><span style="font-size:0.8rem;color:var(--text-secondary)">Rua Julita Nogueira Soares, 610</span>
+                            </label>
+                            <label class="order-opt" style="flex:1;min-width:150px;border:2px solid var(--line);border-radius:var(--r-md);padding:14px;cursor:pointer;display:block;">
+                                <input type="radio" name="entrega" value="Entrega" style="margin-right:8px;">
+                                <i class="fas fa-truck-fast"></i> <strong>Receber em casa</strong>
+                                <br><span style="font-size:0.8rem;color:var(--text-secondary)">Entrega em até 30 minutos</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="avisoControlado" style="display:none;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:var(--r-md);padding:14px;margin-bottom:18px;font-size:0.9rem;">
+                        <i class="fas fa-prescription"></i> Sua lista tem <strong>medicamento controlado</strong>. Esse item só pode ser <strong>retirado na loja</strong>, com receita médica. Por isso a entrega foi substituída por retirada.
+                    </div>
                     <div class="form-group">
                         <label for="checkoutNome">Nome completo *</label>
                         <input type="text" id="checkoutNome" required>
                     </div>
                     <div class="form-group">
                         <label for="checkoutTelefone">Telefone / WhatsApp *</label>
-                        <input type="tel" id="checkoutTelefone" required>
+                        <input type="tel" id="checkoutTelefone" required placeholder="(31) 90000-0000">
                     </div>
+                    <div id="camposEntrega">
                     <div class="form-group">
                         <label for="checkoutEndereco">Endereço completo *</label>
-                        <input type="text" id="checkoutEndereco" required>
+                        <input type="text" id="checkoutEndereco" placeholder="Rua, número e complemento">
                     </div>
                     <div class="form-group">
                         <label for="checkoutBairro">Bairro *</label>
-                        <input type="text" id="checkoutBairro" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="checkoutPagamento">Forma de pagamento *</label>
-                        <select id="checkoutPagamento" required>
-                            <option value="">Selecione</option>
-                            <option value="Dinheiro">Dinheiro</option>
-                            <option value="Pix">Pix</option>
-                            <option value="Cartão de Crédito">Cartão de Crédito</option>
-                            <option value="Cartão de Débito">Cartão de Débito</option>
-                        </select>
+                        <input type="text" id="checkoutBairro" list="bairrosEntrega" placeholder="Digite ou escolha seu bairro">
+                        <datalist id="bairrosEntrega">
+                            <option value="Santa Terezinha"></option>
+                            <option value="Residencial Sarandi"></option>
+                            <option value="Ressaca"></option>
+                            <option value="Bandeirantes"></option>
+                            <option value="Pampulha"></option>
+                        </datalist>
+                        <p style="font-size:0.78rem; color:var(--text-secondary); margin-top:6px;">
+                            <i class="fas fa-map-marker-alt"></i> Entregamos em um raio de 4 km da loja. Fora dessa área, confirmamos pelo WhatsApp se há entrega — ou você pode retirar na loja.
+                        </p>
                     </div>
                     <div class="form-group">
                         <label for="checkoutReferencia">Ponto de referência (opcional)</label>
                         <input type="text" id="checkoutReferencia">
                     </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkoutPagamento">Como prefere pagar? *</label>
+                        <select id="checkoutPagamento" required>
+                            <option value="">Selecione</option>
+                            <option value="Pix">Pix</option>
+                            <option value="Cartão de crédito (na maquininha da loja)">Cartão de crédito (na maquininha da loja)</option>
+                            <option value="Cartão de débito (na maquininha da loja)">Cartão de débito (na maquininha da loja)</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="checkoutObservacoes">Observações (opcional)</label>
-                        <textarea id="checkoutObservacoes" rows="3"></textarea>
+                        <textarea id="checkoutObservacoes" rows="3" placeholder="Ex: retirar depois das 18h, produto para adulto..."></textarea>
                     </div>
                     <button type="submit" class="btn" style="width:100%; font-size:1.1rem; padding:16px;">
                         <i class="fab fa-whatsapp"></i> Enviar pedido pelo WhatsApp
                     </button>
                     <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:15px; text-align:center;">
-                        Seu pedido será enviado para a Drogaria Droga G - Santa Terezinha via WhatsApp. A equipe irá confirmar os valores, disponibilidade e prazo de entrega de acordo com seu endereço. O pagamento é combinado diretamente com a farmácia (Pix, dinheiro ou cartão na entrega).
+                        Seu pedido chega no WhatsApp da Droga G Santa Terezinha. A equipe confirma <strong>valores, disponibilidade e prazo</strong> antes de qualquer pagamento. Nada é cobrado pelo site.
                     </p>
                 </form>
             </div>
@@ -173,8 +203,8 @@
     </footer>
 
     <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
-    <script src="produtos-data.js?v=20261014c"></script>
-    <script src="script.js?v=20261014c"></script>
+    <script src="produtos-data.js?v=20261014d"></script>
+    <script src="script.js?v=20261014d"></script>
 <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
 </html>
