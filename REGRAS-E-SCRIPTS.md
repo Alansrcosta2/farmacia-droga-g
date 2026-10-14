@@ -17,19 +17,41 @@ ANVISA / Lei 11.343/2006 e Lei 13.021/2014:
 - Ao buscar fotos em APIs de farmácia, **nunca incluir** termos de controlados
   (alprazolam, clonazepam, rivotril, frontal etc.)
 
-### Estado atual: a categoria "controlados" está com nome errado
+### Categorias de tarja (estado corrigido)
 
-Dos 25 produtos na categoria `controlados`, **só 4 são realmente controlados**
-(tarja preta / C1): Trazodona, Fluoxetina (2 versões) e Sertralina.
+Antes a categoria `controlados` tinha 25 produtos, mas só **4 eram controlados
+de verdade** (tarja preta / C1). Os outros 21 eram tarja vermelha — Azitromicina,
+Amoxicilina, Ciprofloxacino, Metformina, Loratadina, Aciclovir — que é venda
+livre em farmácia. Antibiótico comum estava com etiqueta de controlado.
 
-Os outros 21 são **tarja vermelha**, que é venda livre em farmácia: Azitromicina,
-Amoxicilina, Ciprofloxacino, Metformina, Loratadina, Aciclovir, Clotrimazol,
-Doxiciclina, Sulfametoxazol, Captopril, Enalapril, Atorvastatina, Sinvastatina,
-Losartana, Prednisona, Ondansetrona, Alendronato, Clotrimazol+Dexametasona.
+Agora está correto e batendo com o campo `tarja` de cada produto:
 
-Pendência: renomear a categoria para algo verdadeiro (ex: "Tarja Vermelha" /
-"Prescrição médica") e manter separado os 4 C1 de verdade. Confirmar com a
-farmácia junto com a revisão de receita que já estava pendente.
+| Categoria | Tarja | Qtd | Pode vender pela internet? |
+|---|---|---|---|
+| `medicamentos` | tarja vermelha | 41 | Sim, com aviso de prescrição |
+| `controlados` | tarja preta (C1) | 4 | **Não** — só na loja, com receita |
+| `higiene` | tarja livre | 24 | Sim |
+| `dermocosmeticos` | tarja livre | 16 | Sim |
+| `vitaminas` | tarja livre | 20 | Sim |
+
+Os 4 controlados: Trazodona 100mg, Fluoxetina 20mg (cps e cpr), Sertralina 50mg.
+
+### Onde o aviso de receita aparece
+
+Decisão de design, não esquecimento:
+
+- **Nos cartões: nada.** Nenhum selo sobre a foto — o catálogo fica limpo.
+- **Na página do produto: sempre.** É ali que o cliente decide comprar, e é
+  onde a informação é legally exigida. O texto muda conforme a tarja:
+  - tarja preta → "MEDICAMENTO CONTROLADO — venda exclusiva na loja, mediante
+    receita. Não realizamos venda pela internet"
+  - tarja vermelha → "Venda sob prescrição médica — retire na loja apresentando
+    a receita"
+- Para os controlados, o botão também muda de "Consulte pelo WhatsApp" para
+  "Consultar disponibilidade", para não parecer venda online.
+
+O texto fica montado em `script.js`, na busca por `aviso de tarja`. Para
+ajustar depois da conversa com a farmácia, é só editar aquele trecho.
 
 ### 1.1 Caixa padrão Droga G (decisão do dono)
 

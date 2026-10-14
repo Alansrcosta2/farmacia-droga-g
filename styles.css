@@ -2940,10 +2940,10 @@ body { color: var(--ink); background: var(--surface-alt); }
     .cat-shortcut-icon { width: 46px; height: 46px; font-size: 1.2rem; }
 }
 
-/* Badge de tarja e nota de receita desativados temporariamente:
-   o dono vai revisar com a farmacia quais realmente exigem receita.
-   Para reativar, descomente o bloco abaixo em script.js
-   (busca por "badge de tarja" e "aviso de tarja"). */
+/* Tarja/prescricao: decisao de design, nao esquecimento.
+   Os CARTOES ficam limpos de proposito (nenhum selo em cima da foto).
+   O aviso aparece so na pagina do produto, que e onde o cliente
+   decide comprar. Regra e texto em REGRAS-E-SCRIPTS.md. */
 
 /* Desktop: centralizar atalhos de categoria */
 @media (min-width: 769px) { .cat-shortcuts { max-width: 760px; margin: 0 auto; } }

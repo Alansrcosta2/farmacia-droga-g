@@ -650,8 +650,15 @@ if (produtoDetalhe) {
     const zaps = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(data.nome, data.sku, 1));
     document.title = data.nome + ' - Farmácia Droga G';
     if (breadcrumb) breadcrumb.innerHTML = '<a href="index.html">Início</a> / <a href="produtos.html">Produtos</a> / <a href="produtos.html?categoria=' + data.categoria + '">' + cat + '</a> / ' + data.nome;
-    // aviso de tarja (oculto ate o dono revisar com a farmacia)
+    // Avisos de tarja. Toggle unico: o dono liga/desliga aqui depois de
+    // revisar com a farmacia. Os cartoes continuam limpos de proposito;
+    // o aviso aparece na hora da compra, na pagina do produto.
     let tarjaAviso = '';
+    if (data.tarja === 'tarja_vermelha_c1') {
+      tarjaAviso = '<div class="produto-nota" style="background:#e6f0ff;border-color:#99bbff;color:#004080;"><i class="fas fa-prescription"></i> <strong>MEDICAMENTO CONTROLADO</strong> — Venda exclusiva na loja Droga G Santa Terezinha, mediante apresentação de receita médica. Não realizamos venda deste medicamento pela internet.</div>';
+    } else if (data.tarja === 'tarja_vermelha') {
+      tarjaAviso = '<div class="produto-nota" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;"><i class="fas fa-prescription"></i> <strong>Venda sob prescrição médica</strong> — retire na loja apresentando a receita. Consulte disponibilidade pelo WhatsApp.</div>';
+    }
     produtoDetalhe.innerHTML = [
       '<div class="produto-foto">',
       '  <img src="' + data.imagem + '" alt="' + data.nome + '" onerror="this.style.display=\'none\'">',
@@ -669,7 +676,7 @@ if (produtoDetalhe) {
       '  </ul>',
       (tarjaAviso || '  <div class="produto-nota"><i class="fas fa-circle-info"></i> Consulte disponibilidade e condição especial pelo WhatsApp.</div>'),
       '  <div class="produto-acoes">',
-      '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Consulte pelo WhatsApp</a>',
+      '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> ' + (data.tarja === 'tarja_vermelha_c1' ? 'Consultar disponibilidade' : 'Consulte pelo WhatsApp') + '</a>',
       '    <button class="btn btn-outline" data-fav-produto="' + data.sku + '"><i class="far fa-heart"></i> Favoritar</button>',
       '  </div>',
       '  <div class="produto-lojas"><strong>Central:</strong> (31) 3476-2473 &nbsp;|&nbsp; <strong>WhatsApp:</strong> (31) 97171-6274</div>',
