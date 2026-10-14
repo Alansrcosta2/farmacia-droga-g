@@ -270,14 +270,7 @@ const applyProductDataToCards = () => {
     if (data.categoria && !card.getAttribute('data-category')) {
       card.setAttribute('data-category', data.categoria);
     }
-    // badge de tarja
-    if (data.tarja === 'tarja_vermelha_c1') {
-      const badge = card.querySelector('.product-badge');
-      if (badge) { badge.textContent = 'CONTROLADO'; badge.style.display = 'inline-flex'; badge.style.background = '#dc2626'; }
-    } else if (data.tarja === 'tarja_vermelha') {
-      const badge = card.querySelector('.product-badge');
-      if (badge) { badge.textContent = 'COM RECEITA'; badge.style.display = 'inline-flex'; badge.style.background = '#ea580c'; }
-    }
+    // badge de tarja (oculto ate o dono revisar com a farmacia)
   });
 
   document.querySelectorAll('.product-card').forEach((card) => {
@@ -307,11 +300,7 @@ const renderCatalogoDinamico = () => {
   const grid = document.querySelector('[data-catalogo-grid]');
   if (!grid || !produtosData.length) return;
   grid.innerHTML = produtosData.map((p) => {
-    const badgeHtml = p.tarja === 'tarja_vermelha_c1'
-      ? '<span class="product-badge" style="display:inline-flex;background:#dc2626;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">CONTROLADO</span>'
-      : p.tarja === 'tarja_vermelha'
-      ? '<span class="product-badge" style="display:inline-flex;background:#ea580c;color:#fff;font-size:0.65rem;padding:3px 8px;border-radius:999px;font-weight:700;">COM RECEITA</span>'
-      : '';
+    const badgeHtml = '';
     return [
       '<div class="product-card" data-sku="' + p.sku + '" data-category="' + (p.categoria || '') + '">',
       '  <div class="product-image-placeholder"><img src="' + p.imagem + '" alt="' + p.nome + '" loading="lazy"></div>',
@@ -658,13 +647,8 @@ if (produtoDetalhe) {
     const zaps = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(data.nome, data.sku, 1));
     document.title = data.nome + ' - Farmácia Droga G';
     if (breadcrumb) breadcrumb.innerHTML = '<a href="index.html">Início</a> / <a href="produtos.html">Produtos</a> / <a href="produtos.html?categoria=' + data.categoria + '">' + cat + '</a> / ' + data.nome;
-    // aviso de tarja
+    // aviso de tarja (oculto ate o dono revisar com a farmacia)
     let tarjaAviso = '';
-    if (data.tarja === 'tarja_vermelha_c1') {
-      tarjaAviso = '<div class="produto-nota" style="background:#e6f0ff;border-color:#99bbff;color:#004080;"><i class="fas fa-prescription"></i> <strong>CONTROLADO (C1)</strong> — Venda sob prescrição médica. Retire na loja apresentando a receita (2ª via retida).</div>';
-    } else if (data.tarja === 'tarja_vermelha') {
-      tarjaAviso = '<div class="produto-nota" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;"><i class="fas fa-prescription"></i> Venda sob prescrição médica — retire na loja com receita.</div>';
-    }
     produtoDetalhe.innerHTML = [
       '<div class="produto-foto">',
       '  <img src="' + data.imagem + '" alt="' + data.nome + '" onerror="this.style.display=\'none\'">',
@@ -776,7 +760,7 @@ if (favoritosGrid) {
   el.setAttribute('aria-label', 'Navegação principal');
   el.innerHTML = [
     '<a href="index.html" class="tab-item' + is('index.html') + '"><i class="fas fa-home"></i><span>Início</span></a>',
-    '<a href="produtos.html" class="tab-item' + is('produtos.html') + '"><i class="fas fa-search"></i><span>Buscar</span></a>',
+    '<a href="produtos.html" class="tab-item' + is('produtos.html') + '"><i class="fas fa-pills"></i><span>Produtos</span></a>',
     '<a href="carrinho.html" class="tab-item' + is('carrinho.html') + '"><i class="fas fa-shopping-cart"></i><span class="tab-badge" data-cart-count>0</span><span>Carrinho</span></a>',
     '<a href="#" class="tab-item" data-conta><i class="far fa-user"></i><span>Conta</span></a>'
   ].join('');
