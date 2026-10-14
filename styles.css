@@ -2910,11 +2910,11 @@ body { color: var(--ink); background: var(--surface-alt); }
     .cat-shortcuts { gap: 8px; }
     .cat-shortcut { padding: 12px 6px; font-size: 0.78rem; }
     .cat-shortcut-icon { width: 46px; height: 46px; font-size: 1.2rem; }
+}
 
 /* --- Esconder badge de tarja e nota de receita (Fase 1) --- */
 .product-badge { display: none; }
 .produto-nota { display: none; }
-}
 
 /* Desktop: centralizar atalhos de categoria */
 @media (min-width: 769px) { .cat-shortcuts { max-width: 760px; margin: 0 auto; } }
