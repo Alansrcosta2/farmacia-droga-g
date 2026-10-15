@@ -1381,13 +1381,18 @@ const mostrarAvisoApp = (forcar) => {
     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   const ehSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
 
+  /* O texto precisa falar o caminho que REALMENTE funciona, com o nome
+     exato do botao. O Chrome do Android so oferece a janela de
+     instalacao para quem ja tem historico com o site, entao muita
+     gente nunca recebe o evento e cai aqui. */
   const dica = ehIphone && ehSafari
     ? '<p class="instrucao"><strong>No iPhone:</strong> toque no botão de '
       + 'compartilhar <span class="simbolo">􀈂</span> e depois em '
       + '<strong>"Adicionar à Tela de Início"</strong>.</p>'
-    : '<p class="instrucao">Se o seu celular perguntar, escolha '
-      + '<strong>"Adicionar à tela inicial"</strong> ou toque no menu e '
-      + 'em <strong>"Instalar aplicativo"</strong>.</p>';
+    : '<p class="instrucao"><strong>No Android:</strong> toque nos '
+      + '<strong>3 pontinhos</strong> no canto do navegador e depois em '
+      + '<strong>"Instalar aplicativo"</strong> (ou "Adicionar à tela '
+      + 'inicial").</p>';
 
   const box = document.createElement('div');
   box.className = 'aviso-app';
