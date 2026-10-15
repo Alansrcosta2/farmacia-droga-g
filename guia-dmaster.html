@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como pedir os dados do Dmaster - Documento para impressão</title>
+<meta name="description" content="O que pedir no Dmaster: códigos, EAN, preço, estoque, categoria e tarja. Como exportar e em que formato.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="stylesheet" href="styles.css?v=20261015a">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  body { background: #F4F6F8; }
+  .doc { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+  .doc-topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+  .logo-doc { font-size: 1.6rem; font-weight: 800; color: var(--brand); }
+  .logo-doc span { color: var(--primary-blue); }
+  .doc-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+  .doc-acoes .btn { font-size: 0.85rem; padding: 11px 16px; }
+  .folha { background: #fff; border-radius: 16px; padding: 34px 30px; box-shadow: 0 2px 12px rgba(15,23,42,.08); }
+  .folha h1 { font-size: 1.7rem; color: var(--ink); line-height: 1.25; margin: 0 0 8px; padding-bottom: 16px; border-bottom: 3px solid var(--brand); }
+  .folha h2 { font-size: 1.15rem; color: var(--primary-blue); margin: 30px 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--line); }
+  .folha h3 { font-size: 1rem; color: var(--ink); margin: 20px 0 8px; }
+  .folha p, .folha li { color: #374151; line-height: 1.7; font-size: 0.95rem; }
+  .folha ul, .folha ol { padding-left: 22px; }
+  .sub { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 22px; }
+  .cx { background: #FFF4E5; border-left: 4px solid #FFB020; border-radius: 8px; padding: 16px 18px; margin: 18px 0; }
+  .cx p { margin: 0; font-size: 0.93rem; }
+  .cx strong { color: #8A5200; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #F4F6F8; font-weight: 700; color: var(--ink); font-size: 0.85rem; }
+  code { background: #EEF2F6; padding: 2px 7px; border-radius: 5px; font-size: 0.86em; font-family: ui-monospace, monospace; color: #1E40AF; }
+  .rodape-doc { text-align: center; color: var(--text-secondary); font-size: 0.78rem; margin-top: 26px; line-height: 1.6; }
+  @media print { body { background: #fff; } .no-print { display: none !important; } .folha { box-shadow: none; padding: 0; } h2 { page-break-after: avoid; } }
+  @media (max-width: 480px) { .folha { padding: 24px 18px; } .folha h1 { font-size: 1.4rem; } table { font-size: 0.82rem; } th, td { padding: 9px 8px; } }
+</style>
+</head>
+<body>
+
+<div class="doc">
+  <div class="doc-topo">
+    <div class="logo-doc">DROGA <span>G</span></div>
+    <div class="doc-acoes no-print">
+      <button type="button" class="btn btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+    </div>
+  </div>
+
+  <div class="folha">
+    <h1>Como pedir os dados do Dmaster</h1>
+    <p class="sub">O que exportar do sistema da farmácia · Outubro 2026</p>
+
+    <div class="cx">
+      <p><strong>Por que isso é prioridade:</strong> sem preço e sem estoque o site não é
+      loja. Hoje só 27 dos 105 produtos têm preço e <strong>nenhum</strong> tem estoque.
+      Isso não se resolve com programação — só com o arquivo.</p>
+    </div>
+
+    <h2>1. O que pedir: Produtos</h2>
+    <table>
+      <tr><th>Campo</th><th>Para que serve no site</th><th>Exemplo</th></tr>
+      <tr><td><strong>Código interno</strong></td><td>Identificar o produto e bater com o Dmaster</td><td><code>AAS_100MG_30</code></td></tr>
+      <tr><td><strong>EAN</strong> (código de barras)</td><td>Buscar a foto real do produto automaticamente</td><td><code>7891234567890</code></td></tr>
+      <tr><td><strong>Nome</strong></td><td>Nome que aparece no site</td><td>AAS 100MG CX 30 COMP</td></tr>
+      <tr><td><strong>Preço de venda</strong></td><td>Preço no card e no carrinho</td><td>24,50</td></tr>
+      <tr><td><strong>Preço de referência</strong></td><td>Base do "de R$ X por R$ Y"</td><td>39,90</td></tr>
+      <tr><td><strong>Estoque</strong></td><td>Mostrar "em estoque" e avisar quando acabar</td><td>17</td></tr>
+      <tr><td><strong>Categoria</strong></td><td>Separar em Medicamentos / Controlados / Vitaminas / Higiene</td><td>medicamentos</td></tr>
+      <tr><td><strong>Fabricante</strong></td><td>Filtro e referência</td><td>EMS</td></tr>
+      <tr><td><strong>Tarja</strong></td><td>Vermelha, preta (controlado) ou livre</td><td>tarja_vermelha</td></tr>
+    </table>
+
+    <h2>2. O que pedir: Clientes <em>(opcional)</em></h2>
+    <p>Esse arquivo <strong>não entra no site</strong>. Fica fora, serve só para mandar
+    WhatsApp de voltamares.</p>
+    <table>
+      <tr><th>Campo</th><th>Para que serve</th></tr>
+      <tr><td>Nome</td><td>Personalizar a mensagem</td></tr>
+      <tr><td>Telefone / WhatsApp</td><td>Enviar a mensagem</td></tr>
+      <tr><td>CPF</td><td>Identificar</td></tr>
+      <tr><td>Bairro</td><td>Saber se está na área de entrega</td></tr>
+      <tr><td>Data da última compra</td><td>Saber quem está sumido</td></tr>
+    </table>
+    <div class="cx">
+      <p><strong>Atenção:</strong> o arquivo de clientes tem nome, CPF e telefone — dado
+      pessoal. Ele fica <strong>fora do site</strong>, não entra em página pública nem em
+      link. E a mensagem precisa sereducada: não pode virar spam.</p>
+    </div>
+
+    <h2>3. Como exportar</h2>
+    <ol>
+      <li>No Dmaster: <strong>Relatórios → Estoque / Produtos → Exportar</strong></li>
+      <li>Ou: <strong>Produtos → Relatórios → Inventário</strong></li>
+      <li>Se não achar o botão: tire <strong>print da tela</strong> de listagem de
+          produtos com preço e estoque. Eu leio o que estiver legível.</li>
+    </ol>
+    <p><strong>Formatos que eu leio:</strong> <code>.csv</code> · <code>.xlsx</code> ·
+    <code>.txt</code> · <code>.json</code> · ou print de tela.</p>
+
+    <h2>4. O que acontece depois</h2>
+    <ol>
+      <li>Leio o arquivo e confiro se bate com os 105 produtos do site</li>
+      <li>Gero o catálogo com preço, estoque e categoria corrigidos</li>
+      <li>Ligo a <strong>exibição de preço</strong> (hoje está escondida)</li>
+      <li>Adiciono "Em estoque" e "Últimas unidades" no card</li>
+      <li>Se tiver EAN, baixo <strong>foto real</strong> de cada produto</li>
+      <li>Sincronizo os 12 cards da página inicial</li>
+    </ol>
+    <p>Tempo estimado: <strong>uma tarde de trabalho</strong>, dependendo do tamanho do arquivo.</p>
+
+    <div class="rodape-doc">
+      Farmácia Droga G · CNPJ 10.352.394/0001-09<br>
+      Rua Julita Nogueira Soares, 610 · Santa Terezinha · Belo Horizonte<br>
+      (31) 3476-2473 · WhatsApp (31) 97171-6274
+    </div>
+  </div>
+</div>
+</body>
+</html>

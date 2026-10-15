@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O que precisamos da farmácia - Documento para impressão</title>
+<meta name="description" content="Lista do que a farmácia precisa entregar para o site ficar pronto: export do Dmaster, maquininha, responsável técnico, perfil no Google.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="stylesheet" href="styles.css?v=20261015a">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  body { background: #F4F6F8; }
+  .doc { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+  .doc-topo {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 18px;
+  }
+  .logo-doc { font-size: 1.6rem; font-weight: 800; color: var(--brand); }
+  .logo-doc span { color: var(--primary-blue); }
+  .doc-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+  .doc-acoes .btn { font-size: 0.85rem; padding: 11px 16px; }
+  .folha {
+    background: #fff; border-radius: 16px; padding: 34px 30px;
+    box-shadow: 0 2px 12px rgba(15,23,42,.08);
+  }
+  .folha h1 {
+    font-size: 1.7rem; color: var(--ink); line-height: 1.25;
+    margin: 0 0 8px; padding-bottom: 16px; border-bottom: 3px solid var(--brand);
+  }
+  .folha h2 {
+    font-size: 1.15rem; color: var(--primary-blue); margin: 30px 0 12px;
+    padding-bottom: 7px; border-bottom: 1px solid var(--line);
+  }
+  .folha h3 { font-size: 1rem; color: var(--ink); margin: 20px 0 6px; }
+  .folha p, .folha li { color: #374151; line-height: 1.7; font-size: 0.95rem; }
+  .folha ul, .folha ol { padding-left: 22px; }
+  .folha li { margin-bottom: 6px; }
+  .sub { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 22px; }
+  .cx {
+    background: #FFF4E5; border-left: 4px solid #FFB020;
+    border-radius: 8px; padding: 16px 18px; margin: 18px 0;
+  }
+  .cx p { margin: 0; font-size: 0.93rem; }
+  .cx strong { color: #8A5200; }
+  .cx-verde {
+    background: #E7F8EF; border-left: 4px solid var(--brand);
+    border-radius: 8px; padding: 16px 18px; margin: 18px 0;
+  }
+  .cx-verde p { margin: 0; font-size: 0.93rem; }
+  .cx-verde strong { color: #04663A; }
+  table {
+    width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem;
+  }
+  th, td {
+    text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th { background: #F4F6F8; font-weight: 700; color: var(--ink); font-size: 0.85rem; }
+  .check { list-style: none; padding-left: 0; }
+  .check li {
+    background: #F9FAFB; border: 1px solid var(--line); border-radius: 8px;
+    padding: 13px 14px; margin-bottom: 8px; font-size: 0.93rem;
+  }
+  .check li .n {
+    display: inline-block; width: 24px; height: 24px; line-height: 22px;
+    text-align: center; border: 2px solid var(--brand); border-radius: 6px;
+    color: var(--brand); font-weight: 700; margin-right: 9px; vertical-align: middle;
+  }
+  .prio { font-size: 0.72rem; font-weight: 700; padding: 3px 9px; border-radius: 50px; }
+  .prio-r { background: #FFE5E5; color: #A01818; }
+  .prio-a { background: #FFF4E5; color: #8A5200; }
+  .prio-v { background: #E7F8EF; color: #04663A; }
+  code {
+    background: #EEF2F6; padding: 2px 7px; border-radius: 5px;
+    font-size: 0.86em; font-family: ui-monospace, monospace; color: #1E40AF;
+  }
+  .rodape-doc {
+    text-align: center; color: var(--text-secondary); font-size: 0.78rem;
+    margin-top: 26px; line-height: 1.6;
+  }
+  @media print {
+    body { background: #fff; }
+    .doc-topo .doc-acoes, .no-print { display: none !important; }
+    .folha { box-shadow: none; padding: 0; }
+    .check li { page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+  }
+  @media (max-width: 480px) {
+    .folha { padding: 24px 18px; }
+    .folha h1 { font-size: 1.4rem; }
+    table { font-size: 0.82rem; }
+    th, td { padding: 9px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+  <div class="doc-topo">
+    <div class="logo-doc">DROGA <span>G</span></div>
+    <div class="doc-acoes no-print">
+      <button type="button" class="btn btn-outline" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimir
+      </button>
+      <a class="btn btn-whatsapp" id="btnCompartilhar" href="#">
+        <i class="fab fa-whatsapp"></i> Enviar no WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <div class="folha">
+    <h1>O que precisamos da farmácia<br>para o site ficar pronto</h1>
+    <p class="sub">Documento para impressão · Outubro 2026 · Página 1 de 1</p>
+
+    <div class="cx">
+      <p><strong>Resumo:</strong> 7 coisas destravam a venda. Sem elas o site fica bonito
+      mas não vende. As duas mais importantes são o <strong>export do Dmaster</strong> (dá preço
+      e estoque) e a <strong>marca da maquininha</strong> (dá o pagamento online).</p>
+    </div>
+
+    <h2>Prioridade 1 — Destrava a venda</h2>
+
+    <table>
+      <tr><th>#</th><th>O que precisamos</th><th>Por que</th><th>Onde achar</th></tr>
+      <tr>
+        <td>1</td>
+        <td><strong>Export de produtos do Dmaster</strong><br>
+          <span class="prio prio-r">🔴 TRAVA</span></td>
+        <td>Hoje o site <strong>não mostra preço</strong> (só 27 de 105 produtos têm) e
+            <strong>não sabe estoque</strong> (nenhum tem).</td>
+        <td>Dmaster → Relatórios → Estoque/Produtos → Exportar</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Marca da maquininha</strong><br>
+          <span class="prio prio-r">🔴 TRAVA</span></td>
+        <td>A conta da maquininha <strong>já é conta de pagamento</strong>. Não precisa
+            contratar gateway nem integrar nada.</td>
+        <td>É só o nome: Cielo, Elo, Getnet, Stone, PagBank, Mercado Pago, SafraPay…</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Link de pagamento</strong><br>
+          <span class="prio prio-r">🔴 TRAVA</span></td>
+        <td>Sem ele o cliente só paga no balcão.</td>
+        <td>No app da maquininha: Link de Pagamento</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Responsável técnico + CRF</strong><br>
+          <span class="prio prio-r">🔴 OBRIGAÇÃO LEGAL</span></td>
+        <td>Toda farmácia precisa ter farmacêutico responsável identificado.
+            Sem isso no site, parece que não tem farmacêutico.</td>
+        <td>Placa da loja / documento da farmácia</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>Registro na ANVISA</strong><br>
+          <span class="prio prio-r">🔴 OBRIGAÇÃO LEGAL</span></td>
+        <td>Identificação da farmácia.</td>
+        <td>Licença sanitária / placa</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>Perfil no Google</strong> — grátis<br>
+          <span class="prio prio-r">🔴 TRAVA</span></td>
+        <td>É o que <strong>mais traz cliente de bairro</strong>, sem custo.
+            Sem isso o site fica pronto e ninguém descobre.</td>
+        <td>Google → Perfil da Empresa (com CNPJ)</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><strong>Fotos reais dos produtos</strong><br>
+          <span class="prio prio-a">🟡 IMPORTANTE</span></td>
+        <td>Hoje <strong>64 de 105</strong> usam a caixa genérica. Foto real vende
+            remédio; caixa genérica não.</td>
+        <td>Via EAN no export, ou foto do celular no balcão</td>
+      </tr>
+    </table>
+
+    <h2>O que precisa de confirmação</h2>
+
+    <ul>
+      <li><strong>Quais medicamentos do Farmácia Popular vocês têm.</strong>
+        O site lista o elenco do programa (Ministério da Saúde), mas o que a farmácia
+        mantém pode ser menos. Prometer o que não tem é pior do que não prometer.</li>
+      <li><strong>Política de troca.</strong> Está no site: remédio aberto não pode ser
+        devolvido; produto aberto ou usado também não; com defeito ou errado a farmácia
+        troca; ainda lacrado, cancela sem problema. <em>Precisa confirmar se está certo.</em></li>
+      <li><strong>Área de entrega.</strong> Está no site: raio de 4 km — Santa Terezinha,
+        Residencial Sarandi, Ressaca, Bandeirantes e Pampulha. <em>Precisa confirmar.</em></li>
+    </ul>
+
+    <h2>Horários (já no site — confirmar)</h2>
+    <table>
+      <tr><th>Dias</th><th>Horário</th></tr>
+      <tr><td>Segunda a sexta</td><td>8h às 20h</td></tr>
+      <tr><td>Sábado</td><td>8h às 18h</td></tr>
+      <tr><td>Domingo e feriados</td><td>9h às 13h</td></tr>
+    </table>
+
+    <h2>Checklist</h2>
+    <ul class="check">
+      <li><span class="n">1</span> Export de produtos do Dmaster</li>
+      <li><span class="n">2</span> Marca da maquininha (só o nome)</li>
+      <li><span class="n">3</span> Link de pagamento criado</li>
+      <li><span class="n">4</span> Responsável técnico + CRF</li>
+      <li><span class="n">5</span> Registro ANVISA</li>
+      <li><span class="n">6</span> Perfil no Google criado</li>
+      <li><span class="n">7</span> Fotos reais (ou via EAN no export)</li>
+      <li><span class="n">8</span> Lista do Farmácia Popular que temos</li>
+      <li><span class="n">9</span> Política de troca confirmada</li>
+      <li><span class="n">10</span> Área de entrega confirmada</li>
+    </ul>
+
+    <h2>O que já está pronto</h2>
+    <div class="cx-verde">
+      <p><strong>Não falta mais nada no site:</strong> visual e identidade, 14 páginas com
+      navegação completa, busca e filtro por categoria, carrinho e envio do pedido no
+      WhatsApp, verificador de área de entrega, FAQ com 22 perguntas, política de privacidade
+      (LGPD), SEO local com mapa e horários, página 404, catálogo leve, e proteção para o
+      site não ser visto enquanto está em teste.</p>
+    </div>
+
+    <div class="rodape-doc">
+      Farmácia Droga G · CNPJ 10.352.394/0001-09<br>
+      Rua Julita Nogueira Soares, 610 · Santa Terezinha · Belo Horizonte<br>
+      (31) 3476-2473 · WhatsApp (31) 97171-6274
+    </div>
+  </div>
+</div>
+
+<script>
+  var texto = encodeURIComponent('Oi! Preciso de duas coisas para o site da farmácia:\n\n1. O export de produtos do Dmaster (código, nome, preço, estoque, categoria, tarja) — pode ser CSV, Excel, TXT ou até print da tela.\n\n2. A marca da maquininha (Cielo, Elo, Getnet, Stone, PagBank, Mercado Pago, SafraPay...).\n\nCom essas duas eu ligo o preço, o estoque e o pagamento online.');
+  document.getElementById('btnCompartilhar').href = 'https://wa.me/?text=' + texto;
+</script>
+</body>
+</html>
