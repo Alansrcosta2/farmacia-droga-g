@@ -3124,3 +3124,35 @@ body { color: var(--ink); background: var(--surface-alt); }
     font-size: 0.85rem;
     color: var(--text-secondary);
 }
+
+/* --- BOTAO DENTRO DO AVISO ---
+   Antes o aviso era so um texto: o cliente adicionava o produto e ficava
+   sem caminho para o carrinho. Agora o aviso traz o botao junto. */
+.toast-acao {
+    background: var(--accent-yellow);
+    color: #3D2B00;
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 7px 14px;
+    border-radius: 50px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 6px;
+}
+.toast-acao:hover {
+    background: #fff;
+    color: #3D2B00;
+}
+.toast {
+    flex-wrap: wrap;
+    row-gap: 8px;
+}
+@media (max-width: 420px) {
+    .toast {
+        min-width: 0;
+        width: calc(100% - 32px);
+        justify-content: flex-start;
+    }
+    .toast-acao { margin-left: 0; width: 100%; text-align: center; }
+}

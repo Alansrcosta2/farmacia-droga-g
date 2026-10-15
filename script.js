@@ -7,18 +7,22 @@ const createToastContainer = () => {
   return document.querySelector('.toast-container');
 };
 
-const showToast = (message, type = 'success') => {
+const showToast = (message, type = 'success', action = null) => {
   const container = createToastContainer();
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
   const icon = type === 'success' ? 'check-circle' : 'info-circle';
-  toast.innerHTML = `<i class="fas fa-${icon}"></i><span>${message}</span>`;
+  // 'action' = { texto, href }: cria um botao dentro do aviso.
+  // Sem isso, o cliente adicionava o produto e ficava sem caminho para o carrinho.
+  toast.innerHTML = `<i class="fas fa-${icon}"></i><span>${message}</span>` +
+    (action ? `<a class="toast-acao" href="${action.href}">${action.texto}</a>` : '');
   container.appendChild(toast);
   setTimeout(() => {
     toast.style.animation = 'slideDownFade 0.4s ease-in forwards';
     toast.addEventListener('animationend', () => toast.remove());
-  }, 3000);
+  }, action ? 6000 : 3000);
 };
+
 
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navBar = document.querySelector('.nav-bar');
@@ -182,7 +186,8 @@ const addToCart = (produto) => {
   });
   saveCart(cart);
   updateCartBadge();
-  showToast(produto.nome + ' adicionado à lista.', 'success');
+  showToast(produto.nome + ' adicionado à lista.', 'success',
+            { texto: 'Ver carrinho', href: 'carrinho.html' });
 };
 
 const cartTemControlado = () => loadCart().some(i => i.controlado);
