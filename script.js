@@ -1052,7 +1052,6 @@ if (produtoDetalhe) {
       '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-whatsapp"></i> ' + (data.tarja === 'tarja_vermelha_c1' ? 'Consultar disponibilidade' : 'Tirar dúvida') + '</a>',
       '    <button class="btn btn-outline" data-fav-produto="' + data.sku + '"><i class="far fa-heart"></i> Favoritar</button>',
       '  </div>',
-      '  <div class="produto-lojas"><strong>Central:</strong> (31) 3476-2473 &nbsp;|&nbsp; <strong>WhatsApp:</strong> (31) 97171-6274</div>',
       '</div>'
     ].join('\n');
     const addBtn = produtoDetalhe.querySelector('[data-add-carrinho]');
