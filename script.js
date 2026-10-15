@@ -556,7 +556,7 @@ if (cartPageContainer) {
         nome, telefone, endereco, bairro, referencia, pagamento, observacoes, entrega
       });
       enviarWhatsApp(msg);
-      showToast('Pedido aberto no WhatsApp!', 'success');
+      showToast('Pedido enviado! Confirme e pague pelo WhatsApp — o site não cobra.', 'success');
       saveCart([]); updateCartBadge(); renderCart(); checkoutForm.reset(); sincronizarModoEntrega();
     });
   }
@@ -805,7 +805,9 @@ function msgPedido(d) {
   L.push('_Ação do balcão:_');
   L.push('1. Conferir preço e estoque no Dmaster');
   L.push('2. Confirmar disponibilidade e prazo');
-  L.push('3. Enviar link de pagamento');
+  L.push('3. Responder o cliente e enviar o link de pagamento');
+  L.push('');
+  L.push('_Lembrete:_ o cliente não pagou nada ainda pelo site.');
   return L.join('\n');
 }
 

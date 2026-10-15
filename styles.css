@@ -3611,3 +3611,28 @@ body { color: var(--ink); background: var(--surface-alt); }
 @media (max-width: 420px) {
     .consentimento { font-size: 0.85rem; padding: 11px 12px; gap: 9px; }
 }
+
+/* --- AVISO DO PAGAMENTO ---
+   O campo "Como prefere pagar?" pode dar a impressao de que o site
+   cobra. Este aviso deixa claro que e so preferencia e que o
+   pagamento acontece no WhatsApp, depois da confirmacao da loja. */
+.aviso-pagamento {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 10px;
+    padding: 11px 13px;
+    background: #E8F4FD;
+    border: 1px solid #A8CFEF;
+    border-radius: 12px;
+    font-size: 0.83rem;
+    line-height: 1.55;
+    color: #1B4B72;
+}
+.aviso-pagamento i {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #128C7E;
+    font-size: 1rem;
+}
+.aviso-pagamento strong { color: #0D3B5C; }
