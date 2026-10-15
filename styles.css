@@ -4033,35 +4033,34 @@ body { color: var(--ink); background: var(--surface-alt); }
 }
 
 /* =========================================================
-   PAGINA DO PRODUTO — LAYOUT DAS ACOES (REGRA FINAL)
+   PAGINA DO PRODUTO — LAYOUT DAS ACOES (REGRA DEFINITIVA)
    =========================================================
-   No celular o botao "Adicionar a lista" aparecia AO LADO do
-   seletor de quantidade e cortado na direita.
+   Esse layout ja foi tentado duas vezes e nao pegou. A causa
+   provavelmente e a media query: a regra valia so ate 768px, e
+   celular com fonte do sistema aumentada ou "tamanho da tela" em
+   modo grande passa disso. A tela nao e mais estreita que 768, e a
+   regra simplesmente nao entrava — sobrando o CSS antigo, com o
+   botao espremido ao lado da quantidade.
 
-   Motivo: o container fica em coluna, mas a regra antiga usava
-   'flex: 1 1 100%'. Em coluna, o flex-basis 100% vale para a
-   ALTURA, nao para a largura — entao a largura do botao ficava
-   sem controle nenhum e o conjunto estourava a tela.
+   Por isso aqui nao se usa flex-direction para empilhar. O
+   container vira 'display: block': nesse modo os filhos SEMPRE ficam
+   um abaixo do outro, nao importa qual regra antiga exista nem em
+   que ordem o arquivo esteja. Nao ha mais como o botao voltar para
+   ao lado da quantidade.
 
-   Aqui o layout e imposto sem depender de regra antiga:
-     quantidade em cima, ocupando a largura toda
-     botao de adicionar logo ABAIXO, tambem largura toda
-     nada de estouro para a direita */
-@media (max-width: 768px) {
+   Vale ate 1024px para cobrir celular com fonte grande e tablet. */
+@media (max-width: 1024px) {
     .produto-acoes {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        flex-wrap: nowrap;
-        gap: 10px;
+        display: block !important;
         width: 100%;
+        max-width: 100%;
     }
     .produto-acoes .qtd-seletor,
     .produto-acoes .qtd-seletor-card {
         display: flex;
-        width: 100%;
+        width: 100% !important;
         max-width: 100%;
-        margin: 0;
+        margin: 0 0 10px !important;
     }
     .produto-acoes .qtd-btn {
         flex: 1 1 0;
@@ -4070,14 +4069,18 @@ body { color: var(--ink); background: var(--surface-alt); }
     }
     .produto-acoes .qtd-input {
         flex: 1 1 0;
-        width: auto;
+        width: auto !important;
         height: 46px;
         min-width: 0;
     }
     .produto-acoes .btn {
-        flex: none;
-        width: 100%;
-        max-width: 100%;
+        display: flex;
+        align-items: center;
         justify-content: center;
+        width: 100% !important;
+        max-width: 100%;
+        margin: 0 0 10px !important;
+        flex: none;
     }
 }
+
