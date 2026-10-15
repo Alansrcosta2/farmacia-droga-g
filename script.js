@@ -1024,7 +1024,13 @@ if (produtoDetalhe) {
     if (data.tarja === 'tarja_vermelha_c1') {
       tarjaAviso = '<div class="produto-nota" style="background:#e6f0ff;border-color:#99bbff;color:#004080;"><i class="fas fa-prescription"></i> <strong>MEDICAMENTO CONTROLADO</strong> — Venda exclusiva na loja Droga G Santa Terezinha, mediante apresentação de receita médica. Não realizamos venda deste medicamento pela internet.</div>';
     } else if (data.tarja === 'tarja_vermelha') {
-      tarjaAviso = '<div class="produto-nota" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;"><i class="fas fa-prescription"></i> <strong>Venda sob prescrição médica</strong> — retire na loja apresentando a receita. Consulte disponibilidade pelo WhatsApp.</div>';
+      /* Frase curta e verdadeira, no padrao das redes. A antiga dizia
+         "retire na loja apresentando a receita" para 41 produtos, mas
+         tarja vermelha simples PODE ser vendida pela internet — e a
+         RDC 44/2009 proibe so o controle especial e a tarja preta.
+         Alem disso o texto antigo repetia o WhatsApp, que ja tem um
+         botao logo abaixo. */
+      tarjaAviso = '<div class="produto-nota" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;"><i class="fas fa-prescription"></i> <strong>Venda sob prescrição médica.</strong> A receita pode ser feita na farmácia.</div>';
     }
     produtoDetalhe.innerHTML = [
       '<div class="produto-foto">',
