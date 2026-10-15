@@ -255,10 +255,6 @@ document.querySelectorAll('[data-favorites-button]').forEach(btn => {
   });
 });
 
-document.querySelectorAll('[data-account-button]').forEach(btn => {
-  btn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'contato.html'; });
-});
-
 const produtosData = Array.isArray(window.DROGAG_PRODUTOS) ? window.DROGAG_PRODUTOS : [];
 const produtosPorSku = {};
 produtosData.forEach((p) => { if (p && p.sku) produtosPorSku[p.sku.trim()] = p; });
@@ -327,6 +323,7 @@ const applyProductDataToCards = () => {
       }
       // botao vira "adicionar a lista". O pedido so fecha pelo WhatsApp,
       // na pagina do carrinho, onde o cliente preenche os dados.
+      btn.setAttribute('data-add-lista', '1');
       btn.textContent = 'Adicionar à lista';
       btn.href = 'carrinho.html';
       btn.removeAttribute('target');
@@ -734,9 +731,13 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.product-card, .feature-card, .content-card, .category-card').forEach(el => observer.observe(el));
 
 document.querySelectorAll('a[href="#"]').forEach(link => {
+  /* Botao de card vira "Adicionar a lista" e ganha listener proprio.
+     Este listener pega o mesmo elemento (foi preso antes da troca), e
+     sem este retorno aparecia um aviso errado junto: "Conteudo em
+     atualizacao" em cima de "produto adicionado". */
+  if (link.hasAttribute('data-add-lista')) return;
   link.addEventListener('click', (e) => {
     e.preventDefault();
-    if (link.hasAttribute('data-conta')) { showToast('Área do cliente em breve.', 'info'); return; }
     const t = link.textContent.trim();
     if (t.includes('Rastrear')) showToast('Rastreamento em breve.', 'info');
     else if (t.includes('Tele Entrega')) showToast('Frete grátis a partir de R$10 em Santa Terezinha.', 'info');
@@ -1159,7 +1160,7 @@ if (favoritosGrid) {
     '<a href="index.html" class="tab-item' + is('index.html') + '"><i class="fas fa-home"></i><span>Início</span></a>',
     '<a href="produtos.html" class="tab-item' + is('produtos.html') + '"><i class="fas fa-pills"></i><span>Produtos</span></a>',
     '<a href="carrinho.html" class="tab-item' + is('carrinho.html') + '"><i class="fas fa-shopping-cart"></i><span class="tab-badge" data-cart-count>0</span><span>Carrinho</span></a>',
-    '<a href="#" class="tab-item" data-conta><i class="far fa-user"></i><span>Conta</span></a>'
+    '<button type="button" class="tab-item" data-tab-instalar><i class="fas fa-download"></i><span>Instalar</span></button>'
   ].join('');
   document.body.appendChild(el);
   // badge do carrinho
@@ -1171,10 +1172,19 @@ if (favoritosGrid) {
       badge.style.display = cart.length ? '' : 'none';
     }
   } catch (e) {}
-  el.querySelectorAll('.tab-item[data-conta]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      showToast('Área da conta em breve.', 'info');
+  /* O 4o icone era "Conta", que so mostrava "em breve" e nao levava
+     a lugar nenhum. Icone que nao faz nada faz o cliente desconfiar.
+     No lugar dele entra o botao de instalar o app, que entrega algo
+     de verdade. */
+  el.querySelectorAll('[data-tab-instalar]').forEach(b => {
+    b.addEventListener('click', () => {
+      const jaInstalado = window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true;
+      if (jaInstalado) {
+        showToast('O app da Droga G ja esta instalado neste celular.', 'info');
+        return;
+      }
+      instalarNoCelular(true);
     });
   });
 })();
@@ -1266,3 +1276,123 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+
+/* --- INSTALAR NO CELULAR (PWA) ---
+   No Android o navegador mostra o aviso sozinho, mas no iPhone NUNCA
+   mostra: o cliente teria que adivinhar o caminho. Por isso o site
+   explica o passo a passo e guarda a resposta para nao repetir.
+
+   O aviso so aparece depois da 2a visita e some para sempre se a
+   pessoa fechar. Quem nao quiser nao ve mais. */
+const CHAVE_AVISO_APP = 'droga_g_aviso_app';
+const_visitas = () => {
+  const n = (parseInt(localStorage.getItem('droga_g_visitas') || '0', 10) || 0) + 1;
+  localStorage.setItem('droga_g_visitas', String(n));
+  return n;
+};
+
+const mostrarAvisoApp = (forcar) => {
+  /* 1) ja esta instalado como app? nao mostra nada */
+  const instalado = window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
+  if (instalado) return;
+
+  /* 2) ja fechou o aviso antes? nao insiste */
+  if (!forcar && localStorage.getItem(CHAVE_AVISO_APP) === 'escondido') return;
+
+  /* Ja apareceu e sumiu sozinho ha pouco? Espera 7 dias para nao
+     encher o saco de quem so nao olhou. */
+  const visto = parseInt(localStorage.getItem('droga_g_app_visto') || '0', 10) || 0;
+  const RELER_EM = 7 * 24 * 60 * 60 * 1000;
+  if (!forcar && visto && Date.now() - visto < RELER_EM) return;
+
+  /* 3) so na segunda visita em diante. Na primeira, ninguem quer
+    ver aviso antes de saber do que se trata. */
+  if (!forcar && visitas() < 2) return;
+
+  const ehIphone = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const ehSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
+
+  const dica = ehIphone && ehSafari
+    ? '<p class="instrucao"><strong>No iPhone:</strong> toque no botão de '
+      + 'compartilhar <span class="simbolo">􀈂</span> e depois em '
+      + '<strong>"Adicionar à Tela de Início"</strong>.</p>'
+    : '<p class="instrucao">Se o seu celular perguntar, escolha '
+      + '<strong>"Adicionar à tela inicial"</strong> ou toque no menu e '
+      + 'em <strong>"Instalar aplicativo"</strong>.</p>';
+
+  const box = document.createElement('div');
+  box.className = 'aviso-app';
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-label', 'Instalar o aplicativo da farmácia');
+  box.innerHTML =
+    '<img src="img/app-icon-192.png" alt="" width="48" height="48">' +
+    '<div class="aviso-app-texto">' +
+      '<strong>Instale a Droga G no seu celular</strong>' +
+      '<p class="instrucao">Fica com ícone próprio, abre mais rápido e '
+      + 'funciona mesmo sem internet.</p>' +
+      dica +
+    '</div>' +
+    '<button type="button" class="aviso-app-fechar" aria-label="Fechar aviso">&times;</button>';
+  document.body.appendChild(box);
+
+  /* Fechar no X = nunca mais mostrar.
+     Sumir sozinho = some por 7 dias e volta a aparecer depois, caso a
+     pessoa nao tenha visto. */
+  const fechar = () => {
+    localStorage.setItem(CHAVE_AVISO_APP, 'escondido');
+    box.remove();
+  };
+  box.querySelector('.aviso-app-fechar').addEventListener('click', fechar);
+
+  setTimeout(() => {
+    box.remove();
+    const visto = parseInt(localStorage.getItem('droga_g_app_visto') || '0', 10) || 0;
+    if (!visto || Date.now() - visto > RELER_EM) {
+      localStorage.setItem('droga_g_app_visto', String(Date.now()));
+    }
+  }, 12 * 1000);
+};
+
+/* Sem argumento, respeita as regras (ja instalado, ja fechou, ainda
+   na 2a visita). Com forcar=true ignora tudo: e o que o botao do
+   rodape usa, porque ali a pessoa JA pediu para ver o aviso. */
+const instalarNoCelular = (forcar) => {
+  if (forcar) {
+    const estavaEscondido = localStorage.getItem(CHAVE_AVISO_APP);
+    localStorage.removeItem('droga_g_app_visto');
+    mostrarAvisoApp(true);
+    // se a pessoa tinha fechado antes, continua fechado depois de ver
+    if (estavaEscondido !== 'escondido') localStorage.setItem(CHAVE_AVISO_APP, '');
+    return;
+  }
+  mostrarAvisoApp();
+};
+
+/* Botao "Instalar no celular" do rodape */
+document.querySelectorAll('[data-instalar-app]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    instalarNoCelular(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => instalarNoCelular());
+} else {
+  instalarNoCelular();
+}
+
+/* --- BOTAO "ENVIAR NO WHATSAPP" DOS DOCUMENTOS ---
+   O botao do relatorio e do guia ficava com href="#" e, sem nenhuma
+   acao presa, o listener generico caia no "else" e mostrava
+   "Conteudo em atualizacao" no lugar de abrir o WhatsApp. E esse e o
+   botao que o dono usa para me mandar os dados do Dmaster. */
+document.querySelectorAll('#btnCompartilhar, #btnEnviarDmaster').forEach(b => {
+  b.setAttribute('href', 'https://wa.me/5531971716274?text=' +
+    encodeURIComponent('Olá! Vim pelo site da Droga G. Preciso falar sobre o site.'));
+  b.setAttribute('target', '_blank');
+  b.setAttribute('rel', 'noopener');
+});

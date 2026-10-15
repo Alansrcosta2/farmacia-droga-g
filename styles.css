@@ -3774,6 +3774,90 @@ body { color: var(--ink); background: var(--surface-alt); }
    Cada item da lista tem o - N + (a quantidade pode ser digitada) e a
    lixeira, que tira so aquele item. Antes o "-" sumia com 1 unidade e
    nao havia como remover um produto sem limpar a lista inteira. */
+/* --- AVISO "INSTALAR NO CELULAR" ---
+   Fica no alto, logo abaixo do cabecalho, que e a unica faixa livre do
+   celular: embaixo ja tem a barra de abas, o botao do WhatsApp e o
+   voltar ao topo. E o aviso some sozinho depois de 12 segundos, ou na
+   hora se a pessoa fechar. */
+.aviso-app {
+    position: fixed;
+    top: 74px;
+    left: 10px;
+    right: 10px;
+    z-index: 1900;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    background: #fff;
+    border: 2px solid var(--brand, #00A651);
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+    animation: avisoAppEntra 0.35s ease-out;
+}
+@keyframes avisoAppEntra {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.aviso-app img {
+    flex-shrink: 0;
+    border-radius: 10px;
+}
+.aviso-app-texto { flex: 1; min-width: 0; }
+.aviso-app-texto > strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--ink, #0F172A);
+    margin-bottom: 4px;
+}
+.aviso-app .instrucao {
+    margin: 0 0 4px;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--text-secondary, #475569);
+}
+.aviso-app .simbolo { font-size: 1.05rem; }
+.aviso-app-fechar {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: #F1F5F9;
+    color: #475569;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.aviso-app-fechar:hover { background: #E2E8F0; }
+
+/* Botao fixo no rodape, para quem fechou o aviso e quiser instalar depois */
+.btn-instalar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #fff;
+    color: var(--brand, #00A651);
+    border: 2px solid var(--brand, #00A651);
+    border-radius: var(--r-md, 10px);
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-instalar:hover { background: #F0FBF4; }
+
+@media (min-width: 769px) {
+    .aviso-app {
+        top: 90px;
+        left: auto;
+        right: 24px;
+        width: 400px;
+    }
+}
+
 .cart-row {
     display: block;
     padding: 12px 0;
