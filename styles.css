@@ -1616,13 +1616,17 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
 }
 
-/* --- CARRINHO OCULTO TEMPORARIAMENTE (preços sob consulta) --- */
-.header-icon[href="carrinho.html"] {
-    display: none;
-}
+/* O carrinho voltou a existir (agora da para adicionar produto), mas estas
+   regras antigas continuavam escondendo o icone no topo e a caixa na lateral
+   da pagina de produtos. Era por isso que no computador nao havia NENHUMA
+   forma de chegar no carrinho: no celular so dava pela barra de baixo. */
 
 .products-sidebar-box {
-    display: none;
+    background: var(--brand-soft);
+    border: 1px solid var(--brand);
+    border-radius: var(--r-md);
+    padding: 18px;
+    margin-top: 22px;
 }
 
 /* --- HERO COM FOTOS REAIS --- */
