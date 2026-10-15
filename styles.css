@@ -3316,3 +3316,83 @@ body { color: var(--ink); background: var(--surface-alt); }
     gap: 6px;
     margin: 14px 0 18px;
 }
+
+/* --- CAIXA DE ENTREGA: versao compacta ---
+   Era uma caixa alta, com titulo grande e o campo de busca lado a lado
+   com o botao. Agora tudo fica UM ABAIXO DO OUTRO e com tamanho menor:
+   ocupa bem menos altura na tela do celular, que e onde a pessoa ve. */
+.entrega-check { padding: 18px 0; }
+.entrega-box {
+    background: linear-gradient(135deg, #F0FBF4 0%, #EEF5FF 100%);
+    border: 2px solid var(--brand);
+    border-radius: var(--r-lg);
+    padding: 20px 18px;
+    max-width: 520px;
+    margin: 0 auto;
+}
+.entrega-titulo {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.entrega-titulo i { color: var(--brand); font-size: 0.95rem; }
+.entrega-sub {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0 0 12px;
+}
+.entrega-form {
+    display: flex;
+    flex-direction: column;   /* empilhado: campo em cima, botao embaixo */
+    gap: 8px;
+}
+.entrega-input {
+    width: 100%;
+    padding: 11px 13px;
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    font-size: 0.95rem;
+    background: #fff;
+    color: var(--ink);
+}
+.entrega-input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.15);
+}
+.entrega-form .btn { width: 100%; }
+.entrega-resultado {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: var(--r-md);
+    font-size: 0.87rem;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+}
+.lista-bairros {
+    margin-top: 12px;
+    border-top: 1px solid #CFE6D8;
+    padding-top: 10px;
+}
+.lista-bairros summary {
+    font-size: 0.87rem;
+}
+.lista-bairros-tags { margin-top: 10px; }
+.entrega-obs {
+    margin-top: 12px !important;
+    font-size: 0.79rem !important;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+.entrega-obs i { margin-right: 4px; }
+@media (max-width: 420px) {
+    .entrega-box { padding: 16px 14px; }
+    .entrega-titulo { font-size: 0.98rem; }
+}
