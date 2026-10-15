@@ -1178,7 +1178,8 @@ if (favoritosGrid) {
      de verdade. */
   el.querySelectorAll('[data-tab-instalar]').forEach(b => {
     b.addEventListener('click', () => {
-      const jaInstalado = window.matchMedia('(display-mode: standalone)').matches ||
+      const jaInstalado = localStorage.getItem('droga_g_app_instalado') === '1' ||
+        window.matchMedia('(display-mode: standalone)').matches ||
         window.navigator.standalone === true;
       if (jaInstalado) {
         showToast('O app da Droga G ja esta instalado neste celular.', 'info');
@@ -1192,6 +1193,7 @@ if (favoritosGrid) {
         if (p.userChoice && p.userChoice.then) {
           p.userChoice.then((r) => {
             if (r && r.outcome === 'accepted') {
+              marcarAppInstalado();
               showToast('App instalado. Agora e so tocar no icone.', 'success');
             }
           });
@@ -1317,9 +1319,24 @@ window.addEventListener('beforeinstallprompt', (e) => {
   promptInstalar = e;
 });
 
+/* O modo "standalone" so vale depois que o app e aberto pelo icone.
+   No instante em que a pessoa aceita instalar, a pagina ainda parece
+   um site normal, e o aviso voltava a aparecer na visita seguinte.
+   Por isso marcamos na hora que ela aceitou. */
+const CHAVE_INSTALADO = 'droga_g_app_instalado';
+
+const marcarAppInstalado = () => {
+  localStorage.setItem(CHAVE_INSTALADO, '1');
+  // some com o aviso que estiver aberto, para nao ficar "instalado"
+  // e "veja como instalar" na mesma tela
+  const aberto = document.querySelector('.aviso-app');
+  if (aberto) aberto.remove();
+};
+
 const mostrarAvisoApp = (forcar) => {
   /* 1) ja esta instalado como app? nao mostra nada */
-  const instalado = window.matchMedia('(display-mode: standalone)').matches ||
+  const instalado = localStorage.getItem(CHAVE_INSTALADO) === '1' ||
+    window.matchMedia('(display-mode: standalone)').matches ||
     window.navigator.standalone === true;
   if (instalado) return;
 
@@ -1384,6 +1401,7 @@ const mostrarAvisoApp = (forcar) => {
       if (p.userChoice && p.userChoice.then) {
         p.userChoice.then((r) => {
           if (r && r.outcome === 'accepted') {
+            marcarAppInstalado();
             fechar();
             showToast('App instalado. Agora e so tocar no icone.', 'success');
           }
