@@ -1299,7 +1299,7 @@ if ('serviceWorker' in navigator) {
    O aviso so aparece depois da 2a visita e some para sempre se a
    pessoa fechar. Quem nao quiser nao ve mais. */
 const CHAVE_AVISO_APP = 'droga_g_aviso_app';
-const_visitas = () => {
+const visitas = () => {
   const n = (parseInt(localStorage.getItem('droga_g_visitas') || '0', 10) || 0) + 1;
   localStorage.setItem('droga_g_visitas', String(n));
   return n;
