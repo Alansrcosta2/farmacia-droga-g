@@ -306,6 +306,25 @@ const applyProductDataToCards = () => {
       if (priceWrap) priceWrap.style.display = 'none';
     }
     if (btn) {
+      /* Card do catalogo ja nasce com [data-add-carrinho] e ja tem
+         handler em ligarCardsCatalogo. Se esta funcao registrasse
+         outro clique aqui, o botao teria DOIS acoes: uma clicada
+         somaria a quantidade escolhida + 1. Por isso, card dinamico
+         e pulado e treated so aqui mesmo quando vem do HTML fixo
+         (cards da home), que ainda usa o botao antigo do WhatsApp. */
+      const jaTemHandler = btn.hasAttribute('data-add-carrinho');
+      if (jaTemHandler) return;
+
+      // card fixo (home): ganha o - N + antes do botao
+      if (!card.querySelector('.qtd-seletor-card')) {
+        const seletor = document.createElement('div');
+        seletor.className = 'qtd-seletor qtd-seletor-card';
+        seletor.innerHTML =
+          '<button type="button" class="qtd-btn" data-qtd="-1" aria-label="Diminuir quantidade">&minus;</button>' +
+          '<input type="number" class="qtd-input" value="1" min="1" max="99" inputmode="numeric" aria-label="Quantidade">' +
+          '<button type="button" class="qtd-btn" data-qtd="1" aria-label="Aumentar quantidade">+</button>';
+        btn.parentNode.insertBefore(seletor, btn);
+      }
       // botao vira "adicionar a lista". O pedido so fecha pelo WhatsApp,
       // na pagina do carrinho, onde o cliente preenche os dados.
       btn.textContent = 'Adicionar à lista';
@@ -316,11 +335,38 @@ const applyProductDataToCards = () => {
       if (data) {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
-          addToCart({ sku: sku, nome: nome, tarja: data.tarja });
+          addToCart({ sku: sku, nome: nome, tarja: data.tarja }, lerQtdDoCard(card));
+          const caixa = card.querySelector('.qtd-input');
+          if (caixa) caixa.value = '1';
         });
       }
     }
   });
+};
+
+/* --- SELETOR DE QUANTIDADE (UM SO LUGAR) ---
+   Antes cada botao "+"/"-" era ligado separadamente em cada card.
+   Isso quebrava: os cards novos do "carregar mais" e do "voce tambem
+   pode gostar" naso tinham botao funcionando. Com um unico listener
+   delegado, qualquer seletor novo passa a funcionar sozinho. */
+const ligarQtdGeral = () => {
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-qtd]');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const caixa = btn.parentElement && btn.parentElement.querySelector('.qtd-input');
+    if (!caixa) return;
+    const passo = Number(btn.getAttribute('data-qtd')) || 0;
+    const atual = Math.max(1, Math.min(99, parseInt(caixa.value, 10) || 1));
+    caixa.value = String(Math.max(1, Math.min(99, atual + passo)));
+  });
+};
+ligarQtdGeral();
+
+const lerQtdDoCard = (card) => {
+  const caixa = card && card.querySelector('.qtd-input');
+  return Math.max(1, Math.min(99, parseInt(caixa && caixa.value, 10) || 1));
 };
 
 /* --- GERA CARDS DINAMICOS DO ESTOQUE --- */
@@ -338,6 +384,11 @@ const montarCardProduto = (p) => {
       '  <button class="favorite-btn" type="button" title="Favoritar"><i class="far fa-heart"></i></button>',
       '  <h3 class="product-name">' + p.nome + '</h3>',
       '  <span class="product-price" style="font-size:0.8rem;color:#666">Valor confirmado pela loja</span>',
+      '  <div class="qtd-seletor qtd-seletor-card">',
+      '    <button type="button" class="qtd-btn" data-qtd="-1" aria-label="Diminuir quantidade">&minus;</button>',
+      '    <input type="number" class="qtd-input" value="1" min="1" max="99" inputmode="numeric" aria-label="Quantidade">',
+      '    <button type="button" class="qtd-btn" data-qtd="1" aria-label="Aumentar quantidade">+</button>',
+      '  </div>',
       '  <button type="button" class="btn" data-add-carrinho="' + p.sku + '"><i class="fas fa-cart-plus"></i> Adicionar à lista</button>',
       '</div>'
   ].join('\n');
@@ -367,7 +418,9 @@ const ligarCardsCatalogo = (grid) => {
         e.stopPropagation();
         const p = produtosPorSku[sku];
         if (!p) { showToast('Produto não encontrado.', 'info'); return; }
-        addToCart({ sku: p.sku, nome: p.nome, tarja: p.tarja });
+        addToCart({ sku: p.sku, nome: p.nome, tarja: p.tarja }, lerQtdDoCard(card));
+        const caixa = card.querySelector('.qtd-input');
+        if (caixa) caixa.value = '1';
       });
     }
   });
@@ -849,7 +902,11 @@ function initCardClick() {
     card._clickInit = true;
     card.style.cursor = 'pointer';
     card.addEventListener('click', (e) => {
-      if (e.target.closest('.favorite-btn') || e.target.closest('.btn')) return;
+      /* .qtd-btn e .qtd-input entram na lista porque o seletor de
+         quantidade NAO tem a classe .btn. Sem esta linha, clicar no
+         "+" do card era lido como "clique no card" e abria a pagina
+         do produto em vez de aumentar a quantidade. */
+      if (e.target.closest('.favorite-btn, .btn, .qtd-seletor, .qtd-btn, .qtd-input')) return;
       window.location.href = 'produto.html?sku=' + encodeURIComponent(card.getAttribute('data-sku'));
     });
     const btnZap = card.querySelector('.btn');
@@ -918,7 +975,7 @@ if (produtoDetalhe) {
       '</div>'
     ].join('\n');
     const addBtn = produtoDetalhe.querySelector('[data-add-carrinho]');
-    const campoQtd = document.getElementById('qtdProduto');
+    const campoQtd = produtoDetalhe.querySelector('.qtd-input');
     if (addBtn) {
       addBtn.addEventListener('click', () => {
         const qtd = Math.max(1, Math.min(99, parseInt(campoQtd && campoQtd.value, 10) || 1));
@@ -927,13 +984,6 @@ if (produtoDetalhe) {
       });
     }
     if (campoQtd) {
-      produtoDetalhe.querySelectorAll('[data-qtd]').forEach(b => {
-        b.addEventListener('click', () => {
-          const passo = Number(b.getAttribute('data-qtd'));
-          const atual = Math.max(1, Math.min(99, parseInt(campoQtd.value, 10) || 1));
-          campoQtd.value = String(Math.max(1, Math.min(99, atual + passo)));
-        });
-      });
       campoQtd.addEventListener('change', () => {
         campoQtd.value = String(Math.max(1, Math.min(99, parseInt(campoQtd.value, 10) || 1)));
       });
@@ -957,6 +1007,11 @@ if (produtoDetalhe) {
           '<div class="product-card" data-sku="' + p.sku + '">',
           '  <div class="product-image-placeholder"><img src="' + p.imagem + '" alt="' + p.nome + '" loading="lazy"></div>',
           '  <h3 class="product-name">' + p.nome + '</h3>',
+          '  <div class="qtd-seletor qtd-seletor-card">',
+          '    <button type="button" class="qtd-btn" data-qtd="-1" aria-label="Diminuir quantidade">&minus;</button>',
+          '    <input type="number" class="qtd-input" value="1" min="1" max="99" inputmode="numeric" aria-label="Quantidade">',
+          '    <button type="button" class="qtd-btn" data-qtd="1" aria-label="Aumentar quantidade">+</button>',
+          '  </div>',
           '  <button type="button" class="btn" data-add-rel="' + p.sku + '"><i class="fas fa-cart-plus"></i> Adicionar à lista</button>',
           '</div>'
         ].join('\n')).join('') + '</div>';
@@ -974,7 +1029,9 @@ if (produtoDetalhe) {
             e.stopPropagation();
             const p = produtosPorSku[relBtn.getAttribute('data-add-rel')];
             if (!p) { showToast('Produto não encontrado.', 'info'); return; }
-            addToCart({ sku: p.sku, nome: p.nome, tarja: p.tarja });
+            addToCart({ sku: p.sku, nome: p.nome, tarja: p.tarja }, lerQtdDoCard(c));
+      const caixaRel = c.querySelector('.qtd-input');
+      if (caixaRel) caixaRel.value = '1';
           });
         }
       });

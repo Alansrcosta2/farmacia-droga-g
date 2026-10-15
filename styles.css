@@ -3769,6 +3769,27 @@ body { color: var(--ink); background: var(--surface-alt); }
     align-items: center;
     gap: 10px;
 }
+
+/* Versao compacta do seletor, para os cards do catalogo.
+   O card e pequeno, entao aqui o seletor ocupa a largura toda e fica
+   logo acima do botao "Adicionar a lista". */
+.qtd-seletor-card {
+    display: flex;
+    width: 100%;
+    margin: 0 0 8px;
+}
+.qtd-seletor-card .qtd-btn {
+    flex: 1 1 0;
+    width: auto;
+    height: 40px;
+    font-size: 1.05rem;
+}
+.qtd-seletor-card .qtd-input {
+    flex: 1 1 0;
+    width: auto;
+    height: 40px;
+}
+.product-card > .qtd-seletor-card + .btn { width: 100%; }
 @media (max-width: 420px) {
     .produto-acoes { width: 100%; }
     .produto-acoes .btn { flex: 1 1 100%; }
