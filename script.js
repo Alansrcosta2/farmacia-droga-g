@@ -507,41 +507,105 @@ if (cartPageContainer) {
     const grouped = {};
     cart.forEach(item => {
       const chave = item.sku || item.nome;
-      if (!grouped[chave]) grouped[chave] = { nome: item.nome || item.name, quantidade: 0, controlado: !!item.controlado };
+      if (!grouped[chave]) grouped[chave] = { sku: item.sku, nome: item.nome || item.name, quantidade: 0, controlado: !!item.controlado };
       grouped[chave].quantidade += (item.quantidade || 1);
     });
     Object.values(grouped).forEach(item => {
       const row = document.createElement('div');
-      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--neutral-medium);';
       const aviso = item.controlado
         ? '<br><span style="font-size:0.8rem;color:#9a3412"><i class="fas fa-prescription"></i> Controlado: retirada na loja com receita</span>'
         : '';
-      const menos = item.quantidade > 1
-        ? ' <button type="button" data-cart-less="' + (item.sku || item.nome) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">-</button>'
-        : '';
-      const mais = ' <button type="button" data-cart-more="' + (item.sku || item.nome) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">+</button>';
-      row.innerHTML = '<div style="flex:1"><strong>' + (item.nome || '(produto)') + '</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ' + item.quantidade + '</span>' + aviso + '</div>' +
-        '<div style="display:flex;align-items:center;gap:4px;flex-shrink:0;">' + menos + mais + '</div>';
+      /* Antes o botao "-" so aparecia com 2 ou mais. Com 1 unidade o
+         cliente nao tinha como tirar aquele item: so existia "limpar
+         a lista inteira". Agora a lixeira esta sempre visivel e a
+         quantidade pode ser digitada direto. */
+      const idItem = item.sku || item.nome;
+      row.className = 'cart-row';
+      row.innerHTML =
+        '<div class="cart-row-top">' +
+          '<strong>' + (item.nome || '(produto)') + '</strong>' +
+          '<button type="button" class="cart-remove" data-cart-remove="' + idItem + '" aria-label="Remover ' + (item.nome || 'item') + '" title="Remover">' +
+            '<i class="fas fa-trash-alt"></i></button>' +
+        '</div>' +
+        '<div class="cart-qtd">' +
+          '<button type="button" class="cart-qtd-btn" data-cart-less="' + idItem + '" aria-label="Diminuir">&minus;</button>' +
+          '<input type="number" class="cart-qtd-input" data-cart-qtd="' + idItem + '" value="' + item.quantidade + '" min="1" max="99" inputmode="numeric" aria-label="Quantidade">' +
+          '<button type="button" class="cart-qtd-btn" data-cart-more="' + idItem + '" aria-label="Aumentar">+</button>' +
+        '</div>' +
+        aviso;
       cartItemsContainer.appendChild(row);
     });
-    // botoes de quantidade
+    /* --- EDITAR O CARRINHO ---
+       Um unico lugar trata os tres jeitos de editar (somar, diminuir
+       e digitar), e a lixeira tira so o item escolhido. Antes cada
+       botao tinha seu propio bloco repetido. */
+    const ajustar = (chave, novaQtd) => {
+      const c = loadCart();
+      const alvo = c.find(i => (i.sku || i.nome) === chave);
+      if (!alvo) return;
+      const qtd = Math.max(1, Math.min(99, parseInt(novaQtd, 10) || 1));
+      alvo.quantidade = qtd;
+      saveCart(c);
+      updateCartBadge();
+      renderCart();
+    };
+
     cartItemsContainer.querySelectorAll('[data-cart-more]').forEach(b => {
       b.addEventListener('click', () => {
         const chave = b.getAttribute('data-cart-more');
         const c = loadCart();
         const alvo = c.find(i => (i.sku || i.nome) === chave);
-        if (alvo) { alvo.quantidade = (alvo.quantidade || 1) + 1; saveCart(c); updateCartBadge(); renderCart(); }
+        ajustar(chave, (alvo && alvo.quantidade || 1) + 1);
       });
     });
+
     cartItemsContainer.querySelectorAll('[data-cart-less]').forEach(b => {
       b.addEventListener('click', () => {
         const chave = b.getAttribute('data-cart-less');
         const c = loadCart();
         const alvo = c.find(i => (i.sku || i.nome) === chave);
         if (!alvo) return;
-        alvo.quantidade = (alvo.quantidade || 1) - 1;
-        if (alvo.quantidade <= 0) c.splice(c.indexOf(alvo), 1);
-        saveCart(c); updateCartBadge(); renderCart();
+        if ((alvo.quantidade || 1) <= 1) {
+          const nome = alvo.nome || 'item';
+          c.splice(c.indexOf(alvo), 1);
+          saveCart(c);
+          updateCartBadge();
+          renderCart();
+          showToast(nome + ' removido da lista.', 'info');
+          return;
+        }
+        ajustar(chave, (alvo.quantidade || 1) - 1);
+      });
+    });
+
+    // digitar a quantidade direto (celular abre o teclado numerico)
+    cartItemsContainer.querySelectorAll('[data-cart-qtd]').forEach(inp => {
+      inp.addEventListener('change', () => {
+        const chave = inp.getAttribute('data-cart-qtd');
+        const bruta = inp.value.trim();
+        if (bruta === '') { renderCart(); return; }
+        const c = loadCart();
+        const alvo = c.find(i => (i.sku || i.nome) === chave);
+        if (!alvo) return;
+        const n = Math.max(1, Math.min(99, parseInt(bruta, 10) || 1));
+        if (n === (alvo.quantidade || 1)) { renderCart(); return; }
+        ajustar(chave, n);
+      });
+    });
+
+    // lixeira: tira so aquele item
+    cartItemsContainer.querySelectorAll('[data-cart-remove]').forEach(b => {
+      b.addEventListener('click', () => {
+        const chave = b.getAttribute('data-cart-remove');
+        const c = loadCart();
+        const alvo = c.find(i => (i.sku || i.nome) === chave);
+        if (!alvo) return;
+        const nome = alvo.nome || 'item';
+        c.splice(c.indexOf(alvo), 1);
+        saveCart(c);
+        updateCartBadge();
+        renderCart();
+        showToast(nome + ' removido da lista.', 'info');
       });
     });
     if (cartSummary) cartSummary.style.display = 'block';

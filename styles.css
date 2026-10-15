@@ -3770,6 +3770,78 @@ body { color: var(--ink); background: var(--surface-alt); }
     gap: 10px;
 }
 
+/* --- EDITAR O CARRINHO ---
+   Cada item da lista tem o - N + (a quantidade pode ser digitada) e a
+   lixeira, que tira so aquele item. Antes o "-" sumia com 1 unidade e
+   nao havia como remover um produto sem limpar a lista inteira. */
+.cart-row {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--neutral-medium);
+}
+.cart-row-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+.cart-row-top strong { flex: 1; line-height: 1.35; }
+.cart-remove {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--neutral-medium);
+    background: #fff;
+    color: #b91c1c;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.cart-remove:hover { background: #FEF2F2; border-color: #fca5a5; }
+.cart-remove:active { background: #FEE2E2; }
+.cart-qtd {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    background: #fff;
+}
+.cart-qtd-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #F1F5F9;
+    color: var(--brand);
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.15s ease;
+}
+.cart-qtd-btn:hover { background: var(--brand-soft); }
+.cart-qtd-btn:active { background: #BFE8CF; }
+.cart-qtd-input {
+    width: 48px;
+    height: 40px;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    background: #fff;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+.cart-qtd-input::-webkit-outer-spin-button,
+.cart-qtd-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.cart-qtd-input:focus { outline: none; background: #F0FBF4; }
+
 /* Versao compacta do seletor, para os cards do catalogo.
    O card e pequeno, entao aqui o seletor ocupa a largura toda e fica
    logo acima do botao "Adicionar a lista". */
