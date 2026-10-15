@@ -53,7 +53,7 @@ O repositório no GitHub também é público: quem souber o endereço vê o cód
 os dados do catálogo. Para catálogo de farmácia pequena, o risco é baixo (nome
 de produto, preço de venda), mas é público.
 
-### Se quiser proteção real (opcional, quaseGrátis)
+### Se quiser proteção real (opcional, quase grátis)
 
 | Opção | Custo | O que faz |
 |---|---|---|
@@ -62,7 +62,7 @@ de produto, preço de venda), mas é público.
 | **Domínio + Cloudflare Access** | ~R$ 40/ano + R$ 0 | Senha real, página inteira protegida. É a solução profissional |
 
 A terceira só vale se o site for receber muito tráfego antes de estar pronto.
-**Minha recomendação: não域 comprar nada agora.** O modo construção + não
+**Minha recomendação: não comprar nada agora.** O modo construção + não
 compartilhar o link resolve o problema imediato.
 
 ### Como abrir o site de verdade (quando publicar)
@@ -71,6 +71,59 @@ compartilhar o link resolve o problema imediato.
 2. Todas as páginas → apagar as 2 linhas `<meta name="robots" ...>` e o
    comentário que explica
 3. Commit + push
+
+---
+
+## 1.5 O que ainda falta, em uma lista só
+
+Atualizado out/2026. Ordem pensada pelo que mais trava a venda.
+
+### 🔴 Trava a venda (precisa de você)
+
+| # | O quê | Onde está | Quem resolve |
+|---|---|---|---|
+| 1 | **Export do Dmaster** | preço 27/105, estoque 0/105 | Você — roteiro em `COMO-PEDIR-DMASTER.md` |
+| 2 | **Link de pagamento da maquininha** | não existe | Você (falta saber a marca) |
+| 3 | **Perfil no Google** | não existe | Você — 15 min, grátis |
+| 4 | **Responsável técnico + CRF** | não existe no site | Você (obrigação legal) |
+| 5 | **Registro ANVISA** | não existe no site | Você |
+| 6 | **Foto real dos produtos** | 41 de 105 | Junto com o item 1 (via EAN) ou foto no balcão |
+| 7 | **Nome da maquininha** | — | Você |
+
+### 🟡 Importante, mas dá para depois
+
+| # | O quê | Situação |
+|---|---|---|
+| 8 | Testar o pedido ponta a ponta no celular | precisa do seu olho |
+| 9 | WhatsApp Business: etiquetas e respostas rápidas | de graça no app |
+| 10 | Catálogo de produtos no WhatsApp Business | de graça no app |
+| 11 | Google Analytics (ver quantas pessoas entram) | grátis, 10 min de cadastro |
+| 12 | WhatsApp de retomada para cliente antigo | usa o export de clientes |
+
+### 🟢 Opcional (só quando fizer sentido)
+
+| # | O quê | Quando |
+|---|---|---|
+| 13 | Conta do cliente com histórico | Quando quiser fidelizar |
+| 14 | Carrinho abandonado | Quando tiver tráfego |
+| 15 | Domínio próprio (`drogag.com.br`) | Quando quiser independente |
+| 16 | Entrar no iFood | Quando a entrega de 4 km limitar |
+| 17 | Painel do administrador | Quando o catálogo tiver 500+ itens |
+
+### Já resolvido (não precisa mais)
+
+- Design e identidade visual
+- Estrutura das 14 páginas e navegação
+- Busca e filtro por categoria
+- Carrinho e envio do pedido no WhatsApp
+- Política de Privacidade (LGPD)
+- FAQ e verificação de área de entrega
+- Regra de medicamento controlado
+- SEO local (JSON-LD, horários, mapa)
+- robots.txt, sitemap.xml, favicon, página 404
+- Carregamento leve (24 produtos por vez)
+- Voltar ao topo ao abrir a página
+- Modo construção com código de acesso
 
 ---
 
@@ -86,7 +139,9 @@ Hoje só **27 dos 105 produtos** têm preço no `produtos-data.js`.
 
 ### Como resolver
 
-O caminho certo é exportar do sistema da farmácia (Dmaster):
+O caminho certo é exportar do sistema da farmácia (Dmaster). O roteiro
+completo do que pedir está em `COMO-PEDIR-DMASTER.md`:
+
 1. Pedir o export de produtos com código, nome, preço e quantidade
 2. Gerar o `produtos-data.js` com tudo preenchido
 3. Ligar a exibição de preço no site

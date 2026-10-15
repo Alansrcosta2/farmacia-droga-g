@@ -444,9 +444,9 @@ if (cartPageContainer) {
     if (cartEmptyMessage) cartEmptyMessage.style.display = 'none';
     const grouped = {};
     cart.forEach(item => {
-      const chave = item.sku || item.name;
-      if (!grouped[chave]) grouped[chave] = { name: item.name, quantity: 0, controlado: !!item.controlado };
-      grouped[chave].quantity += (item.quantidade || 1);
+      const chave = item.sku || item.nome;
+      if (!grouped[chave]) grouped[chave] = { nome: item.nome || item.name, quantidade: 0, controlado: !!item.controlado };
+      grouped[chave].quantidade += (item.quantidade || 1);
     });
     Object.values(grouped).forEach(item => {
       const row = document.createElement('div');
@@ -454,11 +454,11 @@ if (cartPageContainer) {
       const aviso = item.controlado
         ? '<br><span style="font-size:0.8rem;color:#9a3412"><i class="fas fa-prescription"></i> Controlado: retirada na loja com receita</span>'
         : '';
-      const menos = item.quantity > 1
-        ? ' <button type="button" data-cart-less="' + (item.sku || item.name) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">-</button>'
+      const menos = item.quantidade > 1
+        ? ' <button type="button" data-cart-less="' + (item.sku || item.nome) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">-</button>'
         : '';
-      const mais = ' <button type="button" data-cart-more="' + (item.sku || item.name) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">+</button>';
-      row.innerHTML = '<div style="flex:1"><strong>' + item.name + '</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ' + item.quantity + '</span>' + aviso + '</div>' +
+      const mais = ' <button type="button" data-cart-more="' + (item.sku || item.nome) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">+</button>';
+      row.innerHTML = '<div style="flex:1"><strong>' + (item.nome || '(produto)') + '</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ' + item.quantity + '</span>' + aviso + '</div>' +
         '<div style="display:flex;align-items:center;gap:4px;flex-shrink:0;">' + menos + mais + '</div>';
       cartItemsContainer.appendChild(row);
     });
@@ -467,7 +467,7 @@ if (cartPageContainer) {
       b.addEventListener('click', () => {
         const chave = b.getAttribute('data-cart-more');
         const c = loadCart();
-        const alvo = c.find(i => (i.sku || i.name) === chave);
+        const alvo = c.find(i => (i.sku || i.nome) === chave);
         if (alvo) { alvo.quantidade = (alvo.quantidade || 1) + 1; saveCart(c); updateCartBadge(); renderCart(); }
       });
     });
@@ -475,7 +475,7 @@ if (cartPageContainer) {
       b.addEventListener('click', () => {
         const chave = b.getAttribute('data-cart-less');
         const c = loadCart();
-        const alvo = c.find(i => (i.sku || i.name) === chave);
+        const alvo = c.find(i => (i.sku || i.nome) === chave);
         if (!alvo) return;
         alvo.quantidade = (alvo.quantidade || 1) - 1;
         if (alvo.quantidade <= 0) c.splice(c.indexOf(alvo), 1);
@@ -544,12 +544,12 @@ if (cartPageContainer) {
       }
       const grouped = {};
       cart.forEach(item => {
-        const chave = item.sku || item.name;
-        if (!grouped[chave]) grouped[chave] = { name: item.name, quantity: 0, controlado: !!item.controlado };
-        grouped[chave].quantity += (item.quantidade || 1);
+        const chave = item.sku || item.nome;
+        if (!grouped[chave]) grouped[chave] = { nome: item.nome || item.name, quantidade: 0, controlado: !!item.controlado };
+        grouped[chave].quantidade += (item.quantidade || 1);
       });
       const linhas = Object.values(grouped).map(item => {
-        return item.name + ' | Qtd: ' + item.quantity + (item.controlado ? ' | CONTROLADO (só retirada, com receita)' : '');
+        return (item.nome || '(produto)') + ' | Qtd: ' + item.quantidade + (item.controlado ? ' | CONTROLADO (só retirada, com receita)' : '');
       });
       const msg = msgPedido({
         itens: linhas.map((l, k) => `${k + 1}. ${l}`).join('\n'),
@@ -745,34 +745,48 @@ function msgConsultaProduto(nome, sku, qtd) {
 }
 function msgPedido(d) {
   const retirada = String(d.entrega || 'Retirada na loja').startsWith('Retirada');
-  const linhas = [
-    'PEDIDO PELO SITE - Droga G Santa Terezinha',
-    'Protocolo: ' + montarProtocolo(),
-    'Data: ' + new Date().toLocaleString('pt-BR'),
-    '',
-    'ITENS (lançar no Dmaster)',
-    d.itens,
-    '',
-    'CLIENTE',
-    'Nome: ' + d.nome,
-    'Telefone/WhatsApp: ' + d.telefone,
-    'Recebimento: ' + (d.entrega || 'Retirada na loja')
-  ];
-  if (retirada) {
-    linhas.push('Retirada em: Rua Julita Nogueira Soares, 610 - Santa Terezinha');
-  } else {
-    linhas.push('CEP: ' + cepSalvo());
-    linhas.push('Endereço: ' + d.endereco);
-    linhas.push('Bairro: ' + d.bairro);
+  const barra = '━━━━━━━━━━━━━━━━━━━━';
+  const L = [];
+
+  L.push('*NOVO PEDIDO — SITE DROGA G*');
+  L.push(barra);
+  L.push('*Protocolo:* ' + montarProtocolo());
+  L.push('*Data:* ' + new Date().toLocaleString('pt-BR'));
+  L.push('');
+  L.push('*1. PRODUTOS*');
+  L.push(d.itens);
+  L.push('');
+  L.push('*2. CLIENTE*');
+  L.push('*Nome:* ' + d.nome);
+  L.push('*WhatsApp:* ' + d.telefone);
+  if (!retirada) {
+    L.push('*CEP:* ' + cepSalvo());
+    L.push('*Endereço:* ' + d.endereco);
+    L.push('*Bairro:* ' + d.bairro);
   }
-  if (d.referencia) linhas.push('Referência: ' + d.referencia);
-  linhas.push('Pagamento: ' + d.pagamento);
-  if (d.observacoes) linhas.push('Obs: ' + d.observacoes);
-  linhas.push('');
-  linhas.push('Ação balcão: conferir preço e estoque no Dmaster, confirmar');
-  linhas.push('disponibilidade e prazo, e passar o link de pagamento.');
-  return linhas.join('\n');
+  L.push('');
+  L.push('*3. RECEBIMENTO*');
+  L.push('*Modalidade:* ' + (d.entrega || 'Retirada na loja'));
+  if (retirada) {
+    L.push('*Local:* Rua Julita Nogueira Soares, 610');
+    L.push('*Bairro:* Santa Terezinha - BH');
+  }
+  L.push('*Pagamento:* ' + d.pagamento);
+  if (d.referencia) L.push('*Referência:* ' + d.referencia);
+  L.push('');
+  if (d.observacoes) {
+    L.push('*4. OBSERVAÇÕES DO CLIENTE*');
+    L.push(d.observacoes);
+    L.push('');
+  }
+  L.push(barra);
+  L.push('_Ação do balcão:_');
+  L.push('1. Conferir preço e estoque no Dmaster');
+  L.push('2. Confirmar disponibilidade e prazo');
+  L.push('3. Enviar link de pagamento');
+  return L.join('\n');
 }
+
 function msgContato(d) {
   return [
     'MENSAGEM PELO SITE - Droga G',
