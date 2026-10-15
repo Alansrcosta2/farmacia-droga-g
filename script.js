@@ -674,6 +674,21 @@ if (cepBtn) {
   });
 }
 
+
+/* --- VOLTAR AO TOPO AO ABRIR A PAGINA ---
+   O navegador guarda a posicao da rolagem quando voce atualiza (F5).
+   Num site de loja isso desorienta: a pessoa recarrega e continua
+   no meio da lista, sem saber que recarregou. Aqui a pagina sempre
+   abre no topo.
+
+   Isso NAO afeta o botao "carregar mais": ele nao recarrega a pagina,
+   entao a rolagem dele e mantida de proposito. */
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.addEventListener('load', () => { window.scrollTo(0, 0); });
+if (document.readyState === 'complete') { window.scrollTo(0, 0); }
+
 /* --- SETAS DAS PRATELEIRAS --- */
 document.querySelectorAll('.prateleira-seta').forEach((btn) => {
   btn.addEventListener('click', () => {
