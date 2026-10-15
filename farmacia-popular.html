@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="img/favicon-32.png">
-    <link rel="stylesheet" href="styles.css?v=20261014u">
+    <link rel="stylesheet" href="styles.css?v=20261014v">
     <!-- While o site esta em construcao, o Google nao deve indexar.
          Remove estas duas linhas e o comentario de construcao.js
          quando for publicar de verdade. -->
@@ -189,27 +189,30 @@
                 </div>
                 <div class="farmacia-popular-content">
                     <div class="farmacia-popular-text">
-                        <h2>Medicamentos GRATUITOS do Governo Federal</h2>
-                        <p>Quem paga é o <strong>Ministério da Saúde</strong>, não a farmácia.
+                        <h2>Medicamentos <span class="destaque-gratuito">100% GRATUITOS</span></h2>
+                        <p>Quem paga é o <strong>Ministério da Saúde</strong> — não a farmácia.
                            Por isso você não paga nada ao retirar.</p>
-                        <p style="margin-top:10px;">São <strong>41 itens gratuitos</strong> do programa, para estas condições:</p>
-                        <ul class="farmacia-popular-list">
-                            <li><span class="highlight">Hipertensão</span></li>
-                            <li><span class="highlight">Diabetes</span></li>
-                            <li><span class="highlight">Asma</span></li>
-                            <li><span class="highlight">Colesterol alto</span></li>
-                            <li><span class="highlight">Osteoporose</span></li>
-                            <li><span class="highlight">Rinite</span></li>
-                            <li><span class="highlight">Doença de Parkinson</span></li>
-                            <li><span class="highlight">Glaucoma</span></li>
-                            <li><span class="highlight">Anticoncepcionais</span></li>
-                            <li>Fraldas geriátricas</li>
-                            <li>Absorventes higiênicos</li>
-                        </ul>
-                        <p style="margin-top:14px; font-size:0.92rem;">
-                            <strong>É para qualquer cidadão</strong> — não precisa usar o SUS nem ter renda baixa.
-                            Beneficiário do <strong>Bolsa Família</strong> tem tudo do programa gratuito.
+
+                        <div class="chips-condicoes">
+                            <span class="chip-cond">Hipertensão</span>
+                            <span class="chip-cond">Diabetes</span>
+                            <span class="chip-cond">Asma</span>
+                            <span class="chip-cond">Colesterol alto</span>
+                            <span class="chip-cond">Osteoporose</span>
+                            <span class="chip-cond">Rinite</span>
+                            <span class="chip-cond">Parkinson</span>
+                            <span class="chip-cond">Glaucoma</span>
+                            <span class="chip-cond">Anticoncepcionais</span>
+                            <span class="chip-cond">Fraldas geriátricas</span>
+                            <span class="chip-cond">Absorventes</span>
+                        </div>
+
+                        <p class="obs-fp">
+                            <i class="fas fa-info-circle"></i>
+                            São 41 itens no total. <strong>É para qualquer cidadão</strong> — não precisa usar o SUS.
+                            Beneficiário do <strong>Bolsa Família</strong> tem tudo gratuito.
                         </p>
+
                         <a href="https://wa.me/5531971716274?text=Ol%C3%A1,%20gostaria%20de%20enviar%20minha%20receita%20para%20o%20Programa%20Farm%C3%A1cia%20Popular%20da%20Droga%20G.%20"
                            class="btn btn-secondary"
                            target="_blank">
@@ -252,30 +255,88 @@
                 </div>
 
                 <div class="content-card">
-                    <h2>Medicamentos Gratuitos</h2>
-                    <p>Confira a lista de medicamentos disponíveis gratuitamente através do Programa Farmácia Popular:
-                    </p>
+                    <h2>Medicamentos gratuitos, por condição</h2>
+                    <p>Esta é a lista do <strong>Programa Farmácia Popular</strong> (Ministério da Saúde, atualizado em
+                        agosto de 2026). O que a Droga G mantém em estoque pode variar —
+                        <a href="https://wa.me/5531971716274" target="_blank" rel="noopener">confirme pelo WhatsApp</a> antes de vir.</p>
 
-                    <h3 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">Diabetes</h3>
-                    <p>• Cloridrato de Metformina 500mg e 850mg<br>
-                        • Glibenclamida 5mg<br>
-                        • Insulina Humana NPH 100 UI/mL<br>
-                        • Insulina Humana Regular 100 UI/mL</p>
+                    <div class="grade-condicoes">
+                        <div class="bloco-cond">
+                            <h4>Diabetes</h4>
+                            <ul>
+                                <li>Cloridrato de Metformina 500mg</li>
+                                <li>Cloridrato de Metformina 500mg (ação prolongada)</li>
+                                <li>Cloridrato de Metformina 850mg</li>
+                                <li>Glibenclamida 5mg</li>
+                                <li>Insulina Humana Regular 100 UI/mL</li>
+                                <li>Dapagliflozina 10mg</li>
+                            </ul>
+                        </div>
+                        <div class="bloco-cond">
+                            <h4>Hipertensão</h4>
+                            <ul>
+                                <li>Atenolol 25mg</li>
+                                <li>Besilato de Anlodipino 5mg</li>
+                                <li>Captopril 25mg</li>
+                                <li>Cloridrato de Propranolol 40mg</li>
+                                <li>Hidroclorotiazida 25mg</li>
+                                <li>Losartana Potássica 50mg</li>
+                                <li>Maleato de Enalapril 10mg</li>
+                                <li>Espironolactona 25mg</li>
+                                <li>Furosemida 40mg</li>
+                                <li>Succinato de Metoprolol 25mg</li>
+                            </ul>
+                        </div>
+                        <div class="bloco-cond">
+                            <h4>Asma</h4>
+                            <ul>
+                                <li>Brometo de Ipratrópio 0,02mg</li>
+                                <li>Brometo de Ipratrópio 0,25mg</li>
+                                <li>Dipropionato de Beclometasona 200mcg</li>
+                                <li>Dipropionato de Beclometasona 250mcg</li>
+                                <li>Budesonida 50mcg</li>
+                                <li>Sulfato de Salbutamol 100mcg</li>
+                            </ul>
+                        </div>
+                        <div class="bloco-cond">
+                            <h4>Colesterol alto</h4>
+                            <ul>
+                                <li>Sinvastatina 10mg</li>
+                                <li>Sinvastatina 20mg</li>
+                                <li>Sinvastatina 40mg</li>
+                            </ul>
+                        </div>
+                        <div class="bloco-cond">
+                            <h4>Osteoporose</h4>
+                            <ul>
+                                <li>Alendronato de Sódio 70mg</li>
+                            </ul>
+                        </div>
+                        <div class="bloco-cond">
+                            <h4>Doença de Parkinson</h4>
+                            <ul>
+                                <li>Carbidopa 25mg + Levodopa 100mg</li>
+                                <li>Carbidopa 25mg + Levodopa 250mg</li>
+                            </ul>
+                        </div>
+                        <div class="bloco-cond">
+                            <h4>Glaucoma</h4>
+                            <ul>
+                                <li>Maleato de Timolol 2,5mg</li>
+                                <li>Maleato de Timolol 5mg</li>
+                            </ul>
+                        </div>
+                        <div class="bloco-cond">
+                            <h4>Anticoncepcionais</h4>
+                            <ul>
+                                <li>Etinilestradiol + Levonorgestrel</li>
+                                <li>Acetato de Medroxiprogesterona 150mg</li>
+                                <li>Noretisterona 0,35mg</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                    <h3 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">Hipertensão</h3>
-                    <p>• Atenolol 25mg<br>
-                        • Captopril 25mg<br>
-                        • Losartana Potássica 50mg<br>
-                        • Maleato de Enalapril 10mg<br>
-                        • Propranolol 40mg<br>
-                        • Hidroclorotiazida 25mg</p>
-
-                    <h3 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">Asma</h3>
-                    <p>• Brometo de Ipratrópio 0,25mg/mL<br>
-                        • Dipropionato de Beclometasona 200mcg e 250mcg<br>
-                        • Sulfato de Salbutamol 100mcg</p>
-
-                    <h3 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">Fraldas Geriátricas e Absorventes — GRATUITOS
+<h3 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">Fraldas Geriátricas e Absorventes — GRATUITOS
                     </h3>
                     <p><strong>Fraldas Geriátricas</strong> (100% gratuitas):<br>
                         • Para pessoas com 60+ anos ou pessoas com deficiência<br>
@@ -353,7 +414,7 @@
     </div>
     
 
-    <script src="script.js?v=20261014u"></script>
+    <script src="script.js?v=20261014v"></script>
 
 <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
