@@ -107,6 +107,41 @@ gratuito. Misturar os dois é o que gerou a confusão.
 4. A lista por condição é o **elenco do programa**, não o estoque da loja.
    Sempre mandar confirmar no WhatsApp.
 
+## 1.8 Segurança do repositório (GitHub é público)
+
+O repositório é **público**: qualquer pessoa pode ver e copiar o código. Isso
+**não permite alterar o site** — só o dono é colaborador. Clonar é só copiar,
+não afeta nada.
+
+**O que o público vê hoje:** nome dos 105 produtos, preço de venda dos 27 que
+já têm, categoria, tarja, endereço e CNPJ. Tudo isso é informação pública que
+aparece no Google e em qualquer drogaria online.
+
+**O que nunca deve entrar no repositório:**
+
+| Proibido | Onde isso pode aparecer |
+|---|---|
+| Chave de API (Supabase, Firebase) | `.js` ou arquivo de configuração |
+| Chave do link de pagamento | qualquer arquivo |
+| Lista de clientes com CPF/telefone | qualquer arquivo |
+| Arquivo do Dmaster com clientes | qualquer arquivo |
+| Senha do painel | qualquer arquivo |
+
+**Se algum desses entrar:** o repositório tem que virar **privado** e o site
+mudar de hospedagem.
+
+| Onde hospedar repo privado | Custo |
+|---|---|
+| GitHub Pages | Exige **GitHub Pro, ~R$ 22/mês** |
+| **Netlify** | **Grátis**, e aceita repositório privado |
+
+⚠️ **Cuidado com o histórico do Git.** Apagar um arquivo hoje **não remove** o
+conteúdo do passado: ele continua no histórico para sempre. Por isso a regra é
+"nunca commitar", e não "apagar depois".
+
+**Como checar antes de subir:** `git status` e olhar os arquivos que vão ser
+publicados. Se aparecer algo com cara de dado pessoal, não commitar.
+
 ## 2. Regra legal: medicamento controlado (tarja preta) — OBRIGATÓRIO
 
 ANVISA / Lei 11.343/2006 e Lei 13.021/2014:
