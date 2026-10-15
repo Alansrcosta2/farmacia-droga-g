@@ -6,7 +6,7 @@
 <title>Como pedir os dados do Dmaster - Documento para impressão</title>
 <meta name="description" content="O que pedir no Dmaster: códigos, EAN, preço, estoque, categoria e tarja. Como exportar e em que formato.">
 <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="stylesheet" href="styles.css?v=20261015q">
+<link rel="stylesheet" href="styles.css?v=20261015r">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   body { background: #F4F6F8; }
@@ -86,7 +86,53 @@
       link. E a mensagem precisa sereducada: não pode virar spam.</p>
     </div>
 
-    <h2>3. Como exportar</h2>
+    <h2>3. Promo&ccedil;&otilde;es</h2>
+  <p>J&aacute; existem ofertas no balc&atilde;o &mdash; tipo <strong>dipirona a
+    R$ 4,99</strong> ou <strong>3 por R$ 12</strong>. Cada uma precisa destes
+    campos para aparecer no site:</p>
+
+  <table>
+    <tr><th>Campo</th><th>Para que serve</th><th>Exemplo</th></tr>
+    <tr><td><strong>Produto</strong></td><td>Qual item est&aacute; em promo&ccedil;&atilde;o</td><td><code>DIPIRONA_500MG_20</code></td></tr>
+    <tr><td><strong>Pre&ccedil;o normal</strong></td><td>O "de R$ X" que aparece riscado</td><td><code>7,90</code></td></tr>
+    <tr><td><strong>Pre&ccedil;o da promo&ccedil;&atilde;o</strong></td><td>O valor em destaque</td><td><code>4,99</code></td></tr>
+    <tr><td><strong>Tipo</strong></td><td>Desconto fixo ou "N por R$ Y"</td><td><code>desconto</code></td></tr>
+    <tr><td><strong>Qtd do combo</strong></td><td>Unidades pelo pre&ccedil;o combinado</td><td><code>3</code></td></tr>
+    <tr><td><strong>Data final</strong></td><td>"V&aacute;lido at&eacute;" &mdash; <strong>obrigat&oacute;rio</strong></td><td><code>30/11</code></td></tr>
+    <tr><td><strong>Condi&ccedil;&atilde;o</strong></td><td>S&oacute; cliente? S&oacute; cart&atilde;o?</td><td><code>qualquer um</code></td></tr>
+  </table>
+
+  <div class="aviso">
+    <p><strong>Tr&ecirc;s coisas importantes sobre promo&ccedil;&atilde;o:</strong></p>
+    <ol>
+      <li><strong>Promo&ccedil;&atilde;o tem que mostrar o pre&ccedil;o que ela substitui.</strong>
+        Se o site mostrar s&oacute; "Dipirona R$ 4,99" sem o "de R$ 7,90", o cliente n&atilde;o
+        sabe que &eacute; desconto &mdash; e n&atilde;o existe como provar o abatimento.
+        Ou seja: <strong>mostrar promo&ccedil;&atilde;o &eacute; mostrar pre&ccedil;o normal junto.</strong></li>
+      <li><strong>Medicamento controlado n&atilde;o entra em promo&ccedil;&atilde;o.</strong>
+        A Receita Federal pro&iacute;be desconto sobre controlado. S&atilde;o 4 aqui:
+        <strong>Trazodona, Fluoxetina (2) e Sertralina</strong>.</li>
+      <li><strong>Promo&ccedil;&atilde;o vencida no site d&aacute; problema</strong> &mdash; &eacute; multa e
+        cliente bravo no balc&atilde;o. Por isso a data final &eacute; obrigat&oacute;ria.</li>
+    </ol>
+  </div>
+
+  <h2>4. Perguntas para o suporte do Dmaster</h2>
+  <p>Leve estas <strong>4 perguntas</strong>. A resposta muda a forma de trabalhar:</p>
+  <table>
+    <tr><th>#</th><th>Pergunta</th><th>Por que importa</th></tr>
+    <tr><td>1</td><td><strong>O Dmaster tem API?</strong> Libera pre&ccedil;o e estoque?</td><td>Se tem, o site atualiza sozinho</td></tr>
+    <tr><td>2</td><td><strong>&Eacute; gratuita ou s&oacute; no plano pago?</strong></td><td>Pode mudar o custo</td></tr>
+    <tr><td>3</td><td><strong>Com que frequ&ecirc;ncia os pre&ccedil;os mudam?</strong></td><td>Se muda toda semana, site velho &eacute; problema</td></tr>
+    <tr><td>4</td><td><strong>D&aacute; para exportar s&oacute; as promo&ccedil;&otilde;es?</strong></td><td>Evita planilha com 105 produtos</td></tr>
+  </table>
+  <div class="aviso">
+    <p><strong>N&atilde;o coloque senha de API dentro do site.</strong> O site &eacute;
+      p&uacute;blico no GitHub. Se a API exigir senha, o caminho muda
+      (privar o site ou usar um servidor no meio).</p>
+  </div>
+
+  <h2>5. Como exportar</h2>
     <ol>
       <li>No Dmaster: <strong>Relatórios → Estoque / Produtos → Exportar</strong></li>
       <li>Ou: <strong>Produtos → Relatórios → Inventário</strong></li>
@@ -96,16 +142,48 @@
     <p><strong>Formatos que eu leio:</strong> <code>.csv</code> · <code>.xlsx</code> ·
     <code>.txt</code> · <code>.json</code> · ou print de tela.</p>
 
-    <h2>4. O que acontece depois</h2>
+    <h2>6. O que acontece depois</h2>
     <ol>
       <li>Leio o arquivo e confiro se bate com os 105 produtos do site</li>
       <li>Gero o catálogo com preço, estoque e categoria corrigidos</li>
       <li>Ligo a <strong>exibição de preço</strong> (hoje está escondida)</li>
-      <li>Adiciono "Em estoque" e "Últimas unidades" no card</li>
+      <li>Adiciono <strong>disponibilidade</strong> no card (sem número exato)</li>
+      <li>Se vier a lista de promoções, monto os selos "de R$ X por R$ Y"</li>
       <li>Se tiver EAN, baixo <strong>foto real</strong> de cada produto</li>
-      <li>Sincronizo os 12 cards da página inicial</li>
+      <li>Sincronizo os cards da página inicial</li>
     </ol>
     <p>Tempo estimado: <strong>uma tarde de trabalho</strong>, dependendo do tamanho do arquivo.</p>
+
+    <h2>7. Resumo para levar na farmácia</h2>
+    <p><strong>Peça uma vez só:</strong></p>
+    <ol>
+      <li>Lista de produtos com <strong>preço</strong> e <strong>estoque</strong></li>
+      <li>Lista de <strong>promoções</strong> (se tiver), com a <strong>data final</strong> de cada uma</li>
+      <li>Resposta das <strong>4 perguntas do suporte</strong> (seção 4)</li>
+      <li>Se tiver, o <strong>código de barras</strong> de cada produto</li>
+    </ol>
+
+    <div class="aviso">
+      <p><strong>Não leve para o site:</strong> arquivo de clientes com CPF e
+        telefone. Fica fora do site, serve só para mensagem de retomada.</p>
+    </div>
+
+    <p><strong>Antes de publicar o site com preço, confirme:</strong></p>
+    <ul>
+      <li>Preços revisados pelo farmacêutico responsável</li>
+      <li>Data final de cada promoção conferida</li>
+      <li>Preço de Farmácia Popular separado (é regulado e diferente)</li>
+      <li>Controlados fora de promoção: Trazodona, Fluoxetina, Sertralina</li>
+    </ul>
+
+    <div class="aviso">
+      <p><strong>Sobre mostrar o estoque:</strong> o site vai mostrar
+        <strong>disponibilidade</strong> ("disponível" ou "consulte"), e não a
+        quantidade exata. Se o site disser "12 unidades" e chegar 0 na loja,
+        o cliente foi até lá à toa &mdash; e isso queima a confiança mais rápido
+        do que preço errado.</p>
+      <p>Quando você alterar um preço, me avise que eu atualizo em 1 minuto.</p>
+    </div>
 
     <div class="rodape-doc">
       Farmácia Droga G · CNPJ 10.352.394/0001-09<br>
