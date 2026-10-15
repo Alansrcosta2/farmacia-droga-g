@@ -3008,3 +3008,16 @@ body { color: var(--ink); background: var(--surface-alt); }
         width: 100%;
     }
 }
+
+/* Com o boneco fora, sobrou espaco na barra de cima. Os 3 icones que
+   sobraram (Nossa Loja, Contato, Favoritos) ganham mais espaco entre si
+   e area de toque maior, que facilita para quem tem a mao grande ou
+   usa o celular com dificuldade. */
+@media (max-width: 768px) {
+    .header-icons { gap: 10px; }
+    .header-icon {
+        min-width: 46px;
+        min-height: 46px;
+        font-size: 1.25rem;
+    }
+}
