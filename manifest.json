@@ -1,0 +1,54 @@
+{
+  "name": "Farmácia Droga G — Santa Terezinha",
+  "short_name": "Droga G",
+  "description": "Farmácia Droga G em Santa Terezinha, Belo Horizonte. Monte sua lista de pedido e envie pelo WhatsApp.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFFFFF",
+  "theme_color": "#00A651",
+  "categories": ["shopping", "health", "medical"],
+  "icons": [
+    {
+      "src": "img/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/app-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Meu pedido",
+      "short_name": "Pedido",
+      "description": "Abrir a lista de pedido",
+      "url": "carrinho.html"
+    },
+    {
+      "name": "Produtos",
+      "short_name": "Produtos",
+      "description": "Ver o catálogo completo",
+      "url": "produtos.html"
+    },
+    {
+      "name": "Falar no WhatsApp",
+      "short_name": "WhatsApp",
+      "description": "Tirar dúvida com a farmácia",
+      "url": "contato.html"
+    }
+  ]
+}

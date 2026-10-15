@@ -1253,3 +1253,16 @@ if (matchMedia('(max-width: 768px)').matches) {
   modal.querySelectorAll('[data-fechar-modal]').forEach(el => el.addEventListener('click', hide));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) hide(); });
 })();
+
+/* --- APP (PWA) ---
+   Permite instalar o site como se fosse aplicativo, sem loja e sem
+   custo. O service worker guarda as FOTOS para o site abrir mesmo sem
+   internet, mas nunca serve pagina velha: preco e telefone precisam
+   estar sempre atualizados. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {
+      // site continua funcionando normalmente se nao der para instalar
+    });
+  });
+}
