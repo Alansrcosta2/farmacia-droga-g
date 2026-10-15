@@ -1189,15 +1189,12 @@ if (favoritosGrid) {
       if (promptInstalar) {
         const p = promptInstalar;
         promptInstalar = null;
+        instalarConfirmado = false;
         p.prompt();
-        if (p.userChoice && p.userChoice.then) {
-          p.userChoice.then((r) => {
-            if (r && r.outcome === 'accepted') {
-              marcarAppInstalado();
-              showToast('App instalado. Agora e so tocar no icone.', 'success');
-            }
-          });
-        }
+        /* Nao se marca nada aqui: a confirmacao vem no appinstalled.
+           Se o app nao instalar em 6s, avisamos que nao deu certo em
+           vez de dizer que instalou. */
+        setTimeout(instalarNaoConcluiu, 6000);
         return;
       }
       /* iPhone (ou navegador sem suporte): mostra o passo a passo */
@@ -1314,10 +1311,37 @@ const_visitas = () => {
    mao. No iPhone esse evento nao existe: ai as instrucoes sao a
    unica forma, e continuam sendo mostradas. */
 let promptInstalar = null;
+let instalarConfirmado = false;
+
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   promptInstalar = e;
+  /* O navegador so dispara este evento quando o app NAO esta
+     instalado. Se ele disparou, a marca que o site guardou antes
+     estava errada, e vale mais o navegador do que a memoria.
+     Esta linha conserta sozinha os celulares que ficaram presos
+     com "instalado" sem terem o app. */
+  localStorage.removeItem('droga_g_app_instalado');
 });
+
+/* Este e o sinal de verdade: so dispara quando a instalacao
+   TERMINOU de verdade. */
+window.addEventListener('appinstalled', () => {
+  instalarConfirmado = true;
+  marcarAppInstalado();
+  const aberto = document.querySelector('.aviso-app');
+  if (aberto) aberto.remove();
+  showToast('App instalado. Agora e so tocar no icone.', 'success');
+});
+
+/* Se o usuario aceitou mas o appinstalled nao veio, a instalacao
+   falhou. A tela dizia "instalado" e mentia, e a marca ficava
+   gravada para sempre. */
+const instalarNaoConcluiu = () => {
+  if (instalarConfirmado) return;
+  localStorage.removeItem('droga_g_app_instalado');
+  showToast('Nao foi possivel instalar. Tente de novo em alguns instantes.', 'info');
+};
 
 /* O modo "standalone" so vale depois que o app e aberto pelo icone.
    No instante em que a pessoa aceita instalar, a pagina ainda parece
@@ -1396,17 +1420,9 @@ const mostrarAvisoApp = (forcar) => {
       const p = promptInstalar;
       if (!p) return;
       promptInstalar = null;
+      instalarConfirmado = false;
       p.prompt();
-      botaoInstalar.remove();
-      if (p.userChoice && p.userChoice.then) {
-        p.userChoice.then((r) => {
-          if (r && r.outcome === 'accepted') {
-            marcarAppInstalado();
-            fechar();
-            showToast('App instalado. Agora e so tocar no icone.', 'success');
-          }
-        });
-      }
+      setTimeout(instalarNaoConcluiu, 6000);
     });
   }
 
