@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farmácia Droga G | Santa Terezinha, BH</title>
-    <link rel="stylesheet" href="styles.css?v=20261014j">
+    <link rel="stylesheet" href="styles.css?v=20261014k">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- While o site esta em construcao, o Google nao deve indexar.
          Remove estas duas linhas e o comentario de construcao.js
@@ -250,6 +250,36 @@
             </div>
         </section>
 
+        <!-- ENTREGA: primeira duvida do cliente antes de comprar -->
+        <section class="section entrega-check">
+            <div class="container">
+                <div class="entrega-box">
+                    <div class="entrega-box-texto">
+                        <h2><i class="fas fa-truck-fast"></i> A gente entrega no seu bairro?</h2>
+                        <p>Entregamos em até 30 minutos num raio de <strong>4 km</strong> da loja. Digite seu bairro para saber na hora:</p>
+                        <div class="entrega-input-linha">
+                            <input type="text" id="entregaBairroInput" class="entrega-input" list="entregaBairros" placeholder="Ex.: Santa Terezinha" autocomplete="off">
+                            <datalist id="entregaBairros">
+                                <option value="Santa Terezinha"></option>
+                                <option value="Residencial Sarandi"></option>
+                                <option value="Ressaca"></option>
+                                <option value="Bandeirantes"></option>
+                                <option value="Pampulha"></option>
+                            </datalist>
+                            <button type="button" class="btn" id="entregaVerificar">Verificar</button>
+                        </div>
+                        <p id="entregaResultado" class="entrega-resultado" hidden></p>
+                        <p class="entrega-obs">
+                            <i class="fas fa-info-circle"></i>
+                            Frete grátis em Santa Terezinha. Fora do raio, fale com a gente no
+                            <a href="https://wa.me/5531971716274" target="_blank" rel="noopener" style="color:var(--brand);font-weight:700">(31) 97171-6274</a> —
+                            ou retire na loja, sem custo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="section">
             <div class="container">
                 <div class="prateleira-header">
@@ -446,8 +476,8 @@
     </footer>
 
     <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
-    <script src="produtos-data.js?v=20261014j"></script>
-    <script src="script.js?v=20261014j"></script>
+    <script src="produtos-data.js?v=20261014k"></script>
+    <script src="script.js?v=20261014k"></script>
     <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
 </html>

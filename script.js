@@ -970,3 +970,39 @@ if (matchMedia('(max-width: 768px)').matches) {
     i.placeholder = 'Buscar medicamentos...';
   });
 }
+
+/* --- VERIFICADOR DE ENTREGA (home) ---
+   Reutiliza a lista BAIRROS_ENTREGA. Responde a primeira duvida do
+   cliente antes de ele montar o pedido. */
+(function initVerificadorEntrega() {
+  const input = document.getElementById('entregaBairroInput');
+  const botao = document.getElementById('entregaVerificar');
+  const saida = document.getElementById('entregaResultado');
+  if (!input || !botao || !saida || typeof bairroEntregue !== 'function') return;
+
+  function responder() {
+    const bairro = input.value.trim();
+    if (!bairro) {
+      saida.hidden = false;
+      saida.className = 'entrega-resultado nao';
+      saida.innerHTML = '<i class="fas fa-question-circle"></i> Digite seu bairro para eu verificar.';
+      return;
+    }
+    const ok = bairroEntregue(bairro);
+    saida.hidden = false;
+    if (ok) {
+      saida.className = 'entrega-resultado sim';
+      saida.innerHTML = '<i class="fas fa-check-circle"></i> Entregamos em ' +
+        bairro.charAt(0).toUpperCase() + bairro.slice(1) +
+        ' em até 30 minutos. Frete grátis em Santa Terezinha.';
+    } else {
+      saida.className = 'entrega-resultado nao';
+      saida.innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + bairro.charAt(0).toUpperCase() + bairro.slice(1) +
+        ' está fora do raio de 4 km. Pergunte no WhatsApp se ainda é possível entregar — ou <strong>retire na loja</strong>, sem custo: Rua Julita Nogueira Soares, 610.';
+    }
+  }
+
+  botao.addEventListener('click', responder);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); responder(); } });
+  input.addEventListener('input', () => { saida.hidden = true; });
+})();

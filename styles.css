@@ -3021,3 +3021,80 @@ body { color: var(--ink); background: var(--surface-alt); }
         font-size: 1.25rem;
     }
 }
+
+/* --- VERIFICADOR DE ENTREGA ---
+   Resposta a primeira duvida do cliente antes de comprar: "entrega
+   no meu bairro?". Precisa aparecer ANTES do carrinho, nao so no
+   final do pedido. */
+.entrega-box {
+    background: linear-gradient(135deg, #F0FBF4 0%, #EEF5FF 100%);
+    border: 2px solid var(--brand);
+    border-radius: var(--r-lg);
+    padding: 28px 24px;
+}
+.entrega-box-texto h2 {
+    font-size: 1.35rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.entrega-box-texto h2 i { color: var(--brand); }
+.entrega-box-texto > p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+.entrega-input-linha {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.entrega-input {
+    flex: 1 1 220px;
+    min-width: 0;
+    padding: 13px 15px;
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    font-size: 1rem;
+    background: #fff;
+    color: var(--ink);
+}
+.entrega-input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.15);
+}
+.entrega-input-linha .btn { flex: 0 0 auto; }
+.entrega-resultado {
+    margin-top: 14px;
+    padding: 13px 15px;
+    border-radius: var(--r-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+.entrega-resultado.sim {
+    background: #E7F8EF;
+    color: #04663A;
+    border: 1px solid #9BE0BF;
+}
+.entrega-resultado.nao {
+    background: #FFF6E8;
+    color: #8A5200;
+    border: 1px solid #FFD08A;
+}
+.entrega-obs {
+    margin-top: 14px;
+    font-size: 0.85rem !important;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+@media (max-width: 420px) {
+    .entrega-input-linha .btn { width: 100%; }
+    .entrega-box { padding: 22px 18px; }
+}
