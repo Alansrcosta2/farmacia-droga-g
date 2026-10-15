@@ -2988,3 +2988,23 @@ body { color: var(--ink); background: var(--surface-alt); }
 
 /* Desktop: centralizar atalhos de categoria */
 @media (min-width: 769px) { .cat-shortcuts { max-width: 760px; margin: 0 auto; } }
+/* --- BOTOES LADO A LADO ---
+   Inline styles com margin-left quebravam o layout no celular: os dois
+   botoes juntos passavam de 360px e o segundo caia para fora da tela
+   (ou ficava torto). Este contêiner deixa quebrar a linha de forma
+   limpa, com o espaco indo para cima em vez de para o lado. */
+.btn-linha {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+.btn-linha .btn {
+    margin-left: 0 !important;
+}
+@media (max-width: 420px) {
+    .btn-linha .btn {
+        width: 100%;
+    }
+}
