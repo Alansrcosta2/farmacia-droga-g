@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Droga G">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="stylesheet" href="styles.css?v=20261016l">
+    <link rel="stylesheet" href="styles.css?v=20261016m">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- While o site esta em construcao, o Google nao deve indexar.
          Remove estas duas linhas e o comentario de construcao.js
@@ -256,17 +256,14 @@
                     </div>
                     </div>
                     <div class="form-group">
-                        <label for="checkoutPagamento">Como prefere pagar? *</label>
-                        <select id="checkoutPagamento" required>
-                            <option value="">Selecione</option>
-                            <option value="Pix">Pix</option>
-                            <option value="Cartão de crédito">Cartão de crédito</option>
-                            <option value="Cartão de débito">Cartão de débito</option>
-                            <option value="Dinheiro">Dinheiro na retirada</option>
-                        </select>
+                        <label class="consentimento" for="checkoutDinheiro">
+                            <input type="checkbox" id="checkoutDinheiro">
+                            <span>Vou pagar <strong>em dinheiro na retirada</strong></span>
+                        </label>
                         <p class="aviso-pagamento">
                             <i class="fab fa-whatsapp"></i>
-                            O site <strong>não cobra nada</strong>. É só a sua preferência: a gente confirma o valor e manda o link de pagamento no WhatsApp.
+                            <strong>O site não cobra nada.</strong>
+                            A gente confirma o valor com você e manda o pagamento por <strong>Pix ou link de cartão</strong> no WhatsApp, junto com a confirmação.
                         </p>
                     </div>
                     <div class="form-group">
@@ -322,8 +319,8 @@
     </footer>
 
     <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
-    <script src="produtos-data.js?v=20261016l"></script>
-    <script src="script.js?v=20261016l"></script>
+    <script src="produtos-data.js?v=20261016m"></script>
+    <script src="script.js?v=20261016m"></script>
 <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
 </html>

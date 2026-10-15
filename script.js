@@ -662,7 +662,12 @@ if (cartPageContainer) {
       const telefone = document.getElementById('checkoutTelefone').value.trim();
       const endereco = document.getElementById('checkoutEndereco').value.trim();
       const bairro = document.getElementById('checkoutBairro').value.trim();
-      const pagamento = document.getElementById('checkoutPagamento').value;
+      /* Antes era um <select> obrigatorio com "Pix / Cartao de credito /
+         Cartao de debito / Dinheiro". O cliente nao escolhe a maquina da
+         farmacia — e a farmacia que manda o link. A unica escolha real
+         dele e se paga em dinheiro na retirada. */
+      const dinheiro = document.getElementById('checkoutDinheiro');
+      const pagamento = dinheiro && dinheiro.checked ? 'Dinheiro na retirada' : 'Pix ou link de cartão (enviado pelo WhatsApp)';
       const referencia = document.getElementById('checkoutReferencia').value.trim();
       const observacoes = document.getElementById('checkoutObservacoes').value.trim();
       const entregaEl = document.querySelector('input[name="entrega"]:checked');
@@ -671,7 +676,7 @@ if (cartPageContainer) {
       if (cartTemControlado() && entrega === 'Entrega') {
         entrega = 'Retirada na loja (item controlado)';
       }
-      if (!nome || !telefone || !pagamento) { showToast('Preencha os campos obrigatórios.', 'info'); return; }
+      if (!nome || !telefone) { showToast('Preencha os campos obrigatórios.', 'info'); return; }
       if (entrega === 'Entrega') {
         if (!bairro) { showToast('Informe o bairro para delivery.', 'info'); return; }
         if (!bairroEntregue(bairro)) {
@@ -937,6 +942,9 @@ function msgPedido(d) {
     L.push('*Bairro:* Santa Terezinha - BH');
   }
   L.push('*Pagamento:* ' + d.pagamento);
+  if (!/dinheiro/i.test(d.pagamento)) {
+    L.push('_Se for link: o cliente espera receber o Pix ou o link apos a confirmacao._');
+  }
   if (d.referencia) L.push('*Referência:* ' + d.referencia);
   L.push('');
   if (d.observacoes) {
