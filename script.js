@@ -640,7 +640,6 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
      Castelo 1,32 · Bandeirantes 2,53 · Ouro Preto 2,66 · Pampulha 3,58  */
 const BAIRROS_ENTREGA = [
   'Santa Terezinha',
-  'Ressaca',
   'Serrano',
   'Urca',
   'Castelo',
@@ -651,26 +650,19 @@ const BAIRROS_ENTREGA = [
   'São Gotardo',
   'Itatiaia',
   'Vila Santa Luzia',
-  'Tijuca',
   'Paquetá',
-  'Parque Recreio',
-  'Estrela d’Alva',
   'São Joaquim',
-  'Recanto da Pampulha',
   'Alípio de Melo',
   'Braúnas',
   'Carajás',
   'Manacás',
   'Coqueiros',
-  'Cabral',
   'Xangri-lá',
-  'Arpoador',
   'Trevo',
   'Pedra Azul',
   'Jardim São José',
   'Jardim Alvorada',
   'Nossa Senhora da Glória',
-  'Balneário da Ressaca',
   'Residencial Sarandi'
 ];
 
