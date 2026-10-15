@@ -756,7 +756,7 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
     if (link.hasAttribute('data-add-lista')) return;
     const t = link.textContent.trim();
     if (t.includes('Rastrear')) showToast('Rastreamento em breve.', 'info');
-    else if (t.includes('Tele Entrega')) showToast('Frete grátis a partir de R$10 em Santa Terezinha.', 'info');
+    else if (t.includes('Tele Entrega')) showToast('Frete grátis acima de R$ 10 no bairro.', 'info');
     else if (t.includes('Blog')) showToast('Blog em construção.', 'info');
     else if (t.includes('Trabalhe')) showToast('Envie currículo pelo formulário de contato.', 'info');
     else showToast('Conteúdo em atualização.', 'info');
