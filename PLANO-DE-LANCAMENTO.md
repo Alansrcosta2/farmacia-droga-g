@@ -74,6 +74,43 @@ compartilhar o link resolve o problema imediato.
 
 ---
 
+
+## 1.2 Como o site vai funcionar (o caminho completo)
+
+Documento visual e imprimível: **`como-funciona.html`** (abre no celular).
+Relatório de entrega para a farmácia: **`relatorio.html`**.
+Guia do que exportar do Dmaster: **`guia-dmaster.html`**.
+
+### O passo a passo da venda
+
+| # | Etapa | Situação |
+|---|---|---|
+| 1 | Cliente acha a farmácia | ✅ pronto |
+| 2 | Vê produtos, categorias e busca | ✅ pronto |
+| 3 | **Vê preço e estoque** | ❌ falta export do Dmaster |
+| 4 | Adiciona na lista | ✅ pronto |
+| 5 | Vê se entregam no bairro dele | ✅ pronto (25 bairros) |
+| 6 | Escolhe retirada ou entrega | ✅ pronto |
+| 7 | Preenche dados e aceita a política | ✅ pronto |
+| 8 | **Você confirma e manda o link de pagamento** | ❌ falta o link |
+| 9 | Cliente paga e você entrega | ✅ pronto |
+
+**Faltam 2 peças, e nenhuma é o site:** o export do Dmaster (dá preço e estoque)
+e o link de pagamento da maquininha. Uma é dado, a outra é cadastro.
+
+### Comparado com uma rede grande
+
+| Etapa | Rede grande | Droga G |
+|---|---|---|
+| Preço e estoque | Automático | Você confirma no balcão |
+| Pagamento | Automático | Você manda o link |
+| Pedido na loja | Cai sozinho no sistema | Chega no WhatsApp, organizado |
+| Cliente paga sem ter o produto | **Pode acontecer** | **Não acontece** |
+
+Na operação de uma farmácia de bairro, essa última linha é **vantagem**: a rede
+grande precisa automatizar e às vezes aceita pedido de remédio que depois não tem.
+Aqui tem uma pessoa conferindo o estoque antes de cobrar.
+
 ## 1.5 O que ainda falta, em uma lista só
 
 Atualizado out/2026. Ordem pensada pelo que mais trava a venda.

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como o site vai funcionar - Farmácia Droga G</title>
+<meta name="description" content="O passo a passo de como fica a venda no site da Droga G, do cliente entrando até a entrega na loja.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="stylesheet" href="styles.css?v=20261015h">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  body { background: #F4F6F8; }
+  .doc { max-width: 880px; margin: 0 auto; padding: 20px 16px 60px; }
+  .doc-topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+  .logo-doc { font-size: 1.6rem; font-weight: 800; color: var(--brand); }
+  .logo-doc span { color: var(--primary-blue); }
+  .doc-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+  .doc-acoes .btn { font-size: 0.85rem; padding: 11px 16px; }
+  .folha { background: #fff; border-radius: 16px; padding: 34px 30px; box-shadow: 0 2px 12px rgba(15,23,42,.08); }
+  .folha h1 { font-size: 1.7rem; color: var(--ink); line-height: 1.25; margin: 0 0 8px; padding-bottom: 16px; border-bottom: 3px solid var(--brand); }
+  .folha h2 { font-size: 1.12rem; color: var(--primary-blue); margin: 28px 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--line); }
+  .folha p, .folha li { color: #374151; line-height: 1.7; font-size: 0.95rem; }
+  .folha ul, .folha ol { padding-left: 22px; }
+  .sub { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 22px; }
+  .cx { background: #FFF4E5; border-left: 4px solid #FFB020; border-radius: 8px; padding: 16px 18px; margin: 18px 0; }
+  .cx p { margin: 0; font-size: 0.93rem; }
+  .cx strong { color: #8A5200; }
+  .cx-verde { background: #E7F8EF; border-left: 4px solid var(--brand); border-radius: 8px; padding: 16px 18px; margin: 18px 0; }
+  .cx-verde p { margin: 0; font-size: 0.93rem; }
+  .cx-verde strong { color: #04663A; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #F4F6F8; font-weight: 700; color: var(--ink); font-size: 0.85rem; }
+  code { background: #EEF2F6; padding: 2px 7px; border-radius: 5px; font-size: 0.86em; font-family: ui-monospace, monospace; color: #1E40AF; }
+
+  /* fluxo */
+  .fluxo { list-style: none; padding: 0; margin: 14px 0; counter-reset: passo; }
+  .fluxo li {
+    counter-increment: passo;
+    position: relative;
+    padding: 12px 14px 12px 46px;
+    background: #F9FAFB;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-size: 0.93rem;
+  }
+  .fluxo li::before {
+    content: counter(passo);
+    position: absolute;
+    left: 14px; top: 12px;
+    width: 22px; height: 22px;
+    background: var(--brand);
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 22px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .fluxo li.falta { background: #FFF7ED; border-color: #FED7AA; }
+  .fluxo li.falta::before { background: #EA580C; }
+  .fluxo li.pronto { background: #F0FDF4; border-color: #BBF7D0; }
+  .marca { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; margin-left: 6px; white-space: nowrap; }
+  .marca-falta { background: #FFEDD5; color: #9A3412; }
+  .marca-pronto { background: #DCFCE7; color: #166534; }
+  .divisor { text-align: center; margin: 22px 0; color: var(--text-secondary); font-size: 0.85rem; }
+  .divisor::before, .divisor::after { content: ' — '; }
+  .divisor::after { content: ' — '; }
+  .rodape-doc { text-align: center; color: var(--text-secondary); font-size: 0.78rem; margin-top: 26px; line-height: 1.6; }
+  @media print { body { background: #fff; } .no-print { display: none !important; } .folha { box-shadow: none; padding: 0; } h2 { page-break-after: avoid; } }
+  @media (max-width: 480px) { .folha { padding: 24px 18px; } .folha h1 { font-size: 1.4rem; } table { font-size: 0.82rem; } th, td { padding: 9px 8px; } }
+</style>
+</head>
+<body>
+
+<div class="doc">
+  <div class="doc-topo">
+    <div class="logo-doc">DROGA <span>G</span></div>
+    <div class="doc-acoes no-print">
+      <button type="button" class="btn btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+    </div>
+  </div>
+
+  <div class="folha">
+    <h1>Como o site vai funcionar</h1>
+    <p class="sub">Do cliente entrando até a entrega na loja · Outubro 2026</p>
+
+    <div class="cx-verde">
+      <p><strong>Resumo:</strong> o site já funciona do passo 1 ao 9. Faltam só
+      <strong>2 peças</strong>: o <strong>export do Dmaster</strong> (que dá preço e estoque) e o
+      <strong>link de pagamento da maquininha</strong>. Nada disso é o site — é dado e cadastro.</p>
+    </div>
+
+    <h2>O passo a passo da venda</h2>
+
+    <ul class="fluxo">
+      <li class="pronto">Cliente acha a farmácia <span class="marca marca-pronto">pronto</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">No Google, no Instagram ou pelo link que você passa no WhatsApp.</span></li>
+      <li class="pronto">Vê os produtos, com categorias e busca <span class="marca marca-pronto">pronto</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">105 produtos, 5 categorias, busca que funciona.</span></li>
+      <li class="falta">Vê o <strong>preço e se tem em estoque</strong> <span class="marca marca-falta">falta o Dmaster</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">Hoje o site não mostra preço. Depende do export do sistema.</span></li>
+      <li class="pronto">Adiciona na lista <span class="marca marca-pronto">pronto</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">Com botão "Adicionar à lista" e controle de quantidade.</span></li>
+      <li class="pronto">Confere se a loja entrega no bairro dele <span class="marca marca-pronto">pronto</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">Cardão na home com os 25 bairros. Fora da lista, o site convida a perguntar no WhatsApp.</span></li>
+      <li class="pronto">Escolhe <strong>retirar na loja</strong> ou <strong>receber em casa</strong> <span class="marca marca-pronto">pronto</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">Com controlado (tarja preta), a entrega trava e vira retirada — porque a receita precisa ser mostrada no balcão.</span></li>
+      <li class="pronto">Preenche nome, telefone e endereço, e aceita a política de privacidade <span class="marca marca-pronto">pronto</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">O pedido é enviado com protocolo, hora e tudo organizado para o balcão.</span></li>
+      <li class="falta">Você <strong>confirma preço e estoque</strong> e manda o <strong>link de pagamento</strong> <span class="marca marca-falta">falta o link</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">Rápido: você confere no Dmaster e responde com o link da maquininha.</span></li>
+      <li class="pronto">Cliente paga e você entrega <span class="marca marca-pronto">pronto</span><br>
+        <span style="color:var(--text-secondary);font-size:.87rem">Pix, cartão na maquininha ou dinheiro. Entrega em até 30 min na área, ou retirada.</span></li>
+    </ul>
+
+    <h2>Comparado com as redes</h2>
+
+    <table>
+      <tr><th>Etapa</th><th>Como é numa rede grande</th><th>Como é na Droga G</th></tr>
+      <tr><td>Preço e estoque</td><td>Automático, em tempo real</td><td>Você confirma no balcão antes de cobrar</td></tr>
+      <tr><td>Pagamento</td><td>Automático, cartão ou PIX</td><td>Você manda o link, cliente paga</td></tr>
+      <tr><td>Pedido na loja</td><td>Cai sozinho no sistema</td><td>Chega no seu WhatsApp, organizado</td></tr>
+      <tr><td>Cliente paga sem ter o produto</td><td><strong>Pode acontecer</strong></td><td><strong>Não acontece</strong> — você confirma antes</td></tr>
+    </table>
+
+    <div class="cx">
+      <p><strong>Na sua operação, essa diferença é uma vantagem.</strong> A rede grande precisa
+      automatizar e às vezes aceita pedido de remédio que depois não tem. Você tem uma pessoa
+      conferindo o estoque antes de cobrar — o melhor filtro que existe.</p>
+    </div>
+
+    <h2>O que falta, e quem resolve</h2>
+
+    <table>
+      <tr><th>O quê</th><th>Quem resolve</th><th>Como</th></tr>
+      <tr>
+        <td><strong>Export do Dmaster</strong><br>preço e estoque</td>
+        <td>Você</td>
+        <td>Relatórios → Estoque/Produtos → Exportar. Pode ser CSV, Excel, TXT ou print de tela.</td>
+      </tr>
+      <tr>
+        <td><strong>Marca da maquininha</strong></td>
+        <td>Você</td>
+        <td>Só o nome: Cielo, Elo, Getnet, Stone, PagBank, Mercado Pago, SafraPay…</td>
+      </tr>
+      <tr>
+        <td><strong>Link de pagamento</strong></td>
+        <td>Você</td>
+        <td>Criar no app da maquininha e me passar o link. Eu colo na tela do pedido.</td>
+      </tr>
+    </table>
+
+    <p>Depois disso, ainda faltam (mas não travam a venda):
+      <strong>farmacêutico responsável e CRF</strong>, <strong>registro ANVISA</strong> (obrigação legal),
+      <strong>perfil no Google</strong> (é o que mais traz cliente de bairro, e é grátis)
+      e <strong>fotos reais</strong> dos produtos.</p>
+
+    <div class="rodape-doc">
+      Farmácia Droga G · CNPJ 10.352.394/0001-09<br>
+      Rua Julita Nogueira Soares, 610 · Santa Terezinha · Belo Horizonte<br>
+      (31) 3476-2473 · WhatsApp (31) 97171-6274
+    </div>
+  </div>
+</div>
+</body>
+</html>
