@@ -1796,10 +1796,18 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
         justify-content: center;
     }
+    /* justify-content: space-between espalha os 5 beneficios pela largura toda,
+       em vez de ficarem presos no meio. O padrao de mercado e o item comecar
+       na margem da tela e o outro terminar na margem oposta. */
     .beneficios-group {
         padding: 0;
-        gap: 40px;
+        gap: 16px;
+        flex: 1 0 auto;
+        justify-content: space-between;
+        max-width: 1320px;
+        margin: 0 auto;
     }
+    .beneficio-item { flex: 0 1 auto; min-width: 0; }
     .beneficios-group[aria-hidden="true"] {
         display: none;
     }
