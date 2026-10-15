@@ -4084,3 +4084,59 @@ body { color: var(--ink); background: var(--surface-alt); }
     }
 }
 
+/* =========================================================
+   AVISO (toast) E AVISO DE INSTALAR — POSICAO FINAL
+   =========================================================
+   Dois defeitos aqui:
+
+   1) O aviso do app (1900) e o aviso de carrinho (2000) ficavam
+      ambos em top: 74px, lado a lado. O de maior z-index cobria o
+      outro inteiro, incluindo o botao de instalar.
+
+   2) A caixa do aviso de carrinho acabava com top: 74px E
+      bottom: 90px ao mesmo tempo (o 'bottom: auto' foi sobrescrito
+      por uma regra antiga mais abaixo). Com os dois lados fixos, a
+      caixa se esticava pela altura inteira da tela.
+
+   Aqui cada um tem seu lugar: o aviso do app logo abaixo do
+   cabecalho, e o aviso de carrinho mais abaixo ainda, para nunca
+   se cobrem. */
+.aviso-app {
+    top: 74px;
+    bottom: auto !important;
+    z-index: 1900;
+}
+.toast-container {
+    top: 150px !important;
+    bottom: auto !important;
+    z-index: 2000;
+}
+@media (min-width: 769px) {
+    .aviso-app {
+        top: 90px;
+    }
+    .toast-container {
+        top: auto !important;
+        bottom: 25px !important;
+    }
+}
+
+/* =========================================================
+   BOTOES FLUTUANTES vs MENU LATERAL (REGRA FINAL)
+   =========================================================
+   O cabecalho tem position: sticky e z-index: 1000. Isso cria um
+   "contexto de empilhamento": o menu lateral (1050) e a tela
+   escura (1040) ficam presas dentro dele e nunca sobem acima do
+   cabecalho.
+
+   Os botoes flutuantes do WhatsApp e do voltar ao topo estao FORA
+   do cabecalho, com z-index 1001. Resultado: ao abrir o menu, eles
+   ficavam flutuando por cima da tela escura e clicaveis do lado de
+   fora do menu.
+
+   Aqui eles sao abaixados enquanto o menu estiver aberto. */
+body:has(.nav-bar.active) .whatsapp-float,
+body:has(.nav-bar.active) .scroll-to-top {
+    opacity: 0;
+    pointer-events: none;
+}

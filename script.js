@@ -308,7 +308,13 @@ const applyProductDataToCards = () => {
          somaria a quantidade escolhida + 1. Por isso, card dinamico
          e pulado e treated so aqui mesmo quando vem do HTML fixo
          (cards da home), que ainda usa o botao antigo do WhatsApp. */
-      const jaTemHandler = btn.hasAttribute('data-add-carrinho');
+      /* Guarda contra clique duplo. Vale para os cards do catalogo
+         (data-add-carrinho) E para os de "voce tambem pode gostar"
+         (data-add-rel): antes so o primeiro era coberto, o segundo
+         recebia um listener a mais e o cliente ganhava sempre 1
+         unidade a mais do que tinha escolhido. */
+      const jaTemHandler = btn.hasAttribute('data-add-carrinho') ||
+        btn.hasAttribute('data-add-rel');
       if (jaTemHandler) return;
 
       // card fixo (home): ganha o - N + antes do botao
@@ -448,7 +454,12 @@ document.addEventListener('click', (e) => {
   const y = window.scrollY;
   renderCatalogoDinamico();
   filtrarCardsCombinado();
-  window.scrollTo({ top: y, behavior: 'instant' in window ? 'instant' : 'auto' });
+  /* renderCatalogoDinamico() troca todo o HTML do grid, entao os cards
+     novos — e os antigos — perdem o clique que leva para a pagina do
+     produto. Sem esta linha, depois do primeiro "carregar mais" nenhum
+     card do catalogo abria mais. */
+  initCardClick();
+  window.scrollTo({ top: y, behavior: 'smooth' });
 });
 
 
@@ -602,10 +613,14 @@ if (cartPageContainer) {
         saveCart(c);
         updateCartBadge();
         renderCart();
+        /* Tirou um controlado? A entrega ficava bloqueada e so voltava
+           recarregando a pagina. Aqui destrava na hora. */
+        sincronizarModoEntrega();
         showToast(nome + ' removido da lista.', 'info');
       });
     });
     if (cartSummary) cartSummary.style.display = 'block';
+
   };
 
   renderCart();
@@ -731,13 +746,14 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.product-card, .feature-card, .content-card, .category-card').forEach(el => observer.observe(el));
 
 document.querySelectorAll('a[href="#"]').forEach(link => {
-  /* Botao de card vira "Adicionar a lista" e ganha listener proprio.
-     Este listener pega o mesmo elemento (foi preso antes da troca), e
-     sem este retorno aparecia um aviso errado junto: "Conteudo em
-     atualizacao" em cima de "produto adicionado". */
-  if (link.hasAttribute('data-add-lista')) return;
   link.addEventListener('click', (e) => {
     e.preventDefault();
+    /* A guarda precisa ficar AQUI dentro, e nao antes do
+       addEventListener: o atributo data-add-lista so e gravado depois,
+       no DOMContentLoaded. Checando na hora de ligar, a guarda nunca
+       pegava e cada "Adicionar a lista" da home mostrava dois avisos,
+       com "Conteudo em atualizacao" por cima do correto. */
+    if (link.hasAttribute('data-add-lista')) return;
     const t = link.textContent.trim();
     if (t.includes('Rastrear')) showToast('Rastreamento em breve.', 'info');
     else if (t.includes('Tele Entrega')) showToast('Frete grátis a partir de R$10 em Santa Terezinha.', 'info');
