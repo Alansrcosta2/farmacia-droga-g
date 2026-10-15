@@ -195,7 +195,7 @@ const addToCart = (produto, quantidade) => {
   });
   saveCart(cart);
   updateCartBadge();
-  showToast(produto.nome + (qtd > 1 ? ' — ' + qtd + ' unidades' : '') + ' adicionado à lista.', 'success',
+  showToast(produto.nome + ' adicionado à lista.', 'success',
             { texto: 'Ver carrinho', href: 'carrinho.html' });
 };
 
