@@ -4031,3 +4031,53 @@ body { color: var(--ink); background: var(--surface-alt); }
         bottom: 150px;
     }
 }
+
+/* =========================================================
+   PAGINA DO PRODUTO — LAYOUT DAS ACOES (REGRA FINAL)
+   =========================================================
+   No celular o botao "Adicionar a lista" aparecia AO LADO do
+   seletor de quantidade e cortado na direita.
+
+   Motivo: o container fica em coluna, mas a regra antiga usava
+   'flex: 1 1 100%'. Em coluna, o flex-basis 100% vale para a
+   ALTURA, nao para a largura — entao a largura do botao ficava
+   sem controle nenhum e o conjunto estourava a tela.
+
+   Aqui o layout e imposto sem depender de regra antiga:
+     quantidade em cima, ocupando a largura toda
+     botao de adicionar logo ABAIXO, tambem largura toda
+     nada de estouro para a direita */
+@media (max-width: 768px) {
+    .produto-acoes {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        flex-wrap: nowrap;
+        gap: 10px;
+        width: 100%;
+    }
+    .produto-acoes .qtd-seletor,
+    .produto-acoes .qtd-seletor-card {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+    .produto-acoes .qtd-btn {
+        flex: 1 1 0;
+        width: auto;
+        height: 46px;
+    }
+    .produto-acoes .qtd-input {
+        flex: 1 1 0;
+        width: auto;
+        height: 46px;
+        min-width: 0;
+    }
+    .produto-acoes .btn {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+    }
+}
