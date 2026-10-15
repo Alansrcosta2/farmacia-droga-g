@@ -143,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
 }
 
-.form-group input,
+.form-group input:not([type="checkbox"]):not([type="radio"]),
 .form-group textarea,
 .form-group select {
     width: 100%;
@@ -3569,4 +3569,45 @@ body { color: var(--ink); background: var(--surface-alt); }
     color: var(--text-secondary);
     line-height: 1.55;
     margin: 0;
+}
+
+
+/* --- CONSENTIMENTO DE PRIVACIDADE (LGPD) ---
+   O .form-group input dava width:100% tambem no checkbox, e isso
+   empurrava o texto para o canto. Aqui o checkbox fica com tamanho
+   proprio e o texto ocupa a linha inteira. */
+.consentimento {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    cursor: pointer;
+    margin: 0;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-primary);
+    padding: 13px 14px;
+    background: #F4F9F6;
+    border: 1px solid #CFE6D8;
+    border-radius: 12px;
+}
+.consentimento input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+    min-width: 19px;
+    flex-shrink: 0;
+    margin: 1px 0 0;
+    accent-color: var(--brand);
+    cursor: pointer;
+}
+.consentimento span {
+    flex: 1;
+    min-width: 0;
+}
+.consentimento a {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+@media (max-width: 420px) {
+    .consentimento { font-size: 0.85rem; padding: 11px 12px; gap: 9px; }
 }
