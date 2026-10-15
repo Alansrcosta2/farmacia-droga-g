@@ -173,20 +173,21 @@ const saveFavorites = (f) => { try { localStorage.setItem(FAVORITES_STORAGE_KEY,
    estoque e prazo no WhatsApp. */
 const CONTROLADOS_REQUEREM_LOJA = (p) => !!(p && p.tarja === 'tarja_vermelha_c1');
 
-const addToCart = (produto) => {
+const addToCart = (produto, quantidade) => {
   if (!produto || !produto.sku) return;
+  const qtd = Math.max(1, Math.min(99, parseInt(quantidade, 10) || 1));
   const cart = loadCart();
   const mesmo = cart.find(i => i.sku === produto.sku);
-  if (mesmo) mesmo.quantidade = (mesmo.quantidade || 1) + 1;
+  if (mesmo) mesmo.quantidade = (mesmo.quantidade || 1) + qtd;
   else cart.push({
     sku: produto.sku,
     nome: produto.nome,
-    quantidade: 1,
+    quantidade: qtd,
     controlado: CONTROLADOS_REQUEREM_LOJA(produto)
   });
   saveCart(cart);
   updateCartBadge();
-  showToast(produto.nome + ' adicionado à lista.', 'success',
+  showToast(produto.nome + (qtd > 1 ? ' — ' + qtd + ' unidades' : '') + ' adicionado à lista.', 'success',
             { texto: 'Ver carrinho', href: 'carrinho.html' });
 };
 
@@ -896,6 +897,11 @@ if (produtoDetalhe) {
       '  </ul>',
       (tarjaAviso || '  <div class="produto-nota"><i class="fas fa-circle-info"></i> Consulte disponibilidade e condição especial pelo WhatsApp.</div>'),
       '  <div class="produto-acoes">',
+      '    <div class="qtd-seletor">',
+      '      <button type="button" class="qtd-btn" data-qtd="-1" aria-label="Diminuir quantidade">&minus;</button>',
+      '      <input type="number" class="qtd-input" id="qtdProduto" value="1" min="1" max="99" inputmode="numeric" aria-label="Quantidade">',
+      '      <button type="button" class="qtd-btn" data-qtd="1" aria-label="Aumentar quantidade">+</button>',
+      '    </div>',
       '    <button type="button" class="btn" data-add-carrinho="' + data.sku + '"><i class="fas fa-cart-plus"></i> Adicionar à lista</button>',
       '    <a href="' + zaps + '" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-whatsapp"></i> ' + (data.tarja === 'tarja_vermelha_c1' ? 'Consultar disponibilidade' : 'Tirar dúvida') + '</a>',
       '    <button class="btn btn-outline" data-fav-produto="' + data.sku + '"><i class="far fa-heart"></i> Favoritar</button>',
@@ -904,9 +910,24 @@ if (produtoDetalhe) {
       '</div>'
     ].join('\n');
     const addBtn = produtoDetalhe.querySelector('[data-add-carrinho]');
+    const campoQtd = document.getElementById('qtdProduto');
     if (addBtn) {
       addBtn.addEventListener('click', () => {
-        addToCart({ sku: data.sku, nome: data.nome, tarja: data.tarja });
+        const qtd = Math.max(1, Math.min(99, parseInt(campoQtd && campoQtd.value, 10) || 1));
+        addToCart({ sku: data.sku, nome: data.nome, tarja: data.tarja }, qtd);
+        if (campoQtd) campoQtd.value = '1';
+      });
+    }
+    if (campoQtd) {
+      produtoDetalhe.querySelectorAll('[data-qtd]').forEach(b => {
+        b.addEventListener('click', () => {
+          const passo = Number(b.getAttribute('data-qtd'));
+          const atual = Math.max(1, Math.min(99, parseInt(campoQtd.value, 10) || 1));
+          campoQtd.value = String(Math.max(1, Math.min(99, atual + passo)));
+        });
+      });
+      campoQtd.addEventListener('change', () => {
+        campoQtd.value = String(Math.max(1, Math.min(99, parseInt(campoQtd.value, 10) || 1)));
       });
     }
     const favBtn = produtoDetalhe.querySelector('[data-fav-produto]');

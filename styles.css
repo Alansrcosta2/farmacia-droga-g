@@ -3636,3 +3636,64 @@ body { color: var(--ink); background: var(--surface-alt); }
     font-size: 1rem;
 }
 .aviso-pagamento strong { color: #0D3B5C; }
+
+/* --- SELETOR DE QUANTIDADE (página do produto) ---
+   Antes de adicionar, o cliente escolhe quantas unidades quer.
+   Sem isso, "Adicionar à lista" somava sempre 1 e ele precisava
+   corrigir depois no carrinho. */
+.qtd-seletor {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    background: #fff;
+}
+.qtd-btn {
+    width: 42px;
+    height: 46px;
+    border: none;
+    background: #F1F5F9;
+    color: var(--brand);
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.15s ease;
+}
+.qtd-btn:hover { background: var(--brand-soft); }
+.qtd-btn:active { background: #BFE8CF; }
+.qtd-input {
+    width: 52px;
+    height: 46px;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    background: #fff;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+.qtd-input::-webkit-outer-spin-button,
+.qtd-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.qtd-input:focus {
+    outline: none;
+    background: #F0FBF4;
+}
+.produto-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+@media (max-width: 420px) {
+    .produto-acoes { width: 100%; }
+    .produto-acoes .btn { flex: 1 1 100%; }
+    .qtd-seletor { width: 100%; }
+    .qtd-btn { flex: 1; height: 44px; }
+    .qtd-input { flex: 1; height: 44px; width: auto; }
+}
