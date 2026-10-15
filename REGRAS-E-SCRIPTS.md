@@ -11,18 +11,39 @@ Antes o site aceitava qualquer CEP começando com `30` ou `31` — ou seja, quas
 todo o estado de Minas Gerais — e ainda mostrava "Entrega disponível no seu
 CEP!". Isso gerava pedido que a farmácia não conseguia cumprir.
 
-Bairros medidos e dentro do raio (valem para a lista do site):
+A lista completa está em `script.js`, em `BAIRROS_ENTREGA` — **é a fonte única**.
+A home, o FAQ, o campo do pedido e o aviso de bairro fora do raio leem todos
+dessa lista, então nunca ficam diferentes entre si.
 
-| Bairro | Distância |
-|---|---|
-| Santa Terezinha | 0,45 km |
-| Residencial Sarandi | 0,87 km |
-| Ressaca | 0,93 km |
-| Bandeirantes | 2,53 km |
-| Pampulha | 3,58 km |
+**33 bairros dentro do raio de 4 km**, medidos a partir da loja:
 
-Próximos ficam fora: Vila Santo Antônio (5,3 km), Lagoinha (8,0), Nova Granada
-(8,9), Venda Nova (10,6), Buritis (12,5).
+| Bairro | Km | Bairro | Km |
+|---|---|---|---|
+| Santa Terezinha | 0,45 | Vila Boa Vista | 2,32 |
+| Ressaca | 0,93 | São Mateus | 2,30 |
+| **Serrano** | 1,17 | Jardim Balneário | 2,13 |
+| Urca | 0,85 | Estrela d'Alva | 1,86 |
+| **Castelo** | 1,32 | Parque Recreio | 1,78 |
+| **Ouro Preto** | 2,66 | Tijuca | 1,72 |
+| Bandeirantes | 2,53 | Paquetá | 1,59 |
+| Pampulha | 3,58 | São Gotardo | 1,35 |
+| Confisco | 1,31 | Itatiaia | 0,55 |
+| Vila Santa Luzia | 1,24 | São Joaquim | 1,83 |
+| Recanto da Pampulha | 1,91 | Alípio de Melo | 2,45 |
+| Braúnas | 2,68 | Carajás | 2,74 |
+| Manacás | 3,05 | Coqueiros | 3,49 |
+| Cabral | 3,69 | Xangri-lá | 3,77 |
+| Arpoador | 3,51 | Trevo | 3,78 |
+| Pedra Azul | 2,97 | Jardim São José | 3,92 |
+| Jardim Alvorada | 3,63 | N. Sra. da Glória | 3,14 |
+| Balneário da Ressaca | 2,52 | Residencial Sarandi | 0,87 |
+
+Ficam **fora** (medidos, todos acima de 6 km): Itapoã (6,3), Santa Rosa (6,5),
+Venda Nova (7,9), Ipiranga (8,1), Lagoinha (8,3), Nova Granada (8,9),
+Jardim América (9,1), Tupi (9,5), Buritis (12,5).
+
+⚠️ **Atenção com nome repetido:** existem dois "Castelo" na região. O que está
+na lista é o **Castelo da Pampulha, a 1,32 km**. O outro (10,7 km) fica fora.
 
 Onde mexer:
 - A lista fica em `script.js`, no começo, em `BAIRROS_ENTREGA`

@@ -537,7 +537,7 @@ if (cartPageContainer) {
       if (entrega === 'Entrega') {
         if (!bairro) { showToast('Informe o bairro para delivery.', 'info'); return; }
         if (!bairroEntregue(bairro)) {
-          const seg = window.confirm('A gente só entrega em: ' + BAIRROS_ENTREGA.join(', ') + '.\n\nO bairro "' + bairro + '" está fora da nossa área.\n\nQuer enviar assim mesmo? A loja vai confirmar pelo WhatsApp se consegue entregar.');
+          const seg = window.confirm('Entregamos em ' + BAIRROS_ENTREGA.length + ' bairros num raio de 4 km.\n\n"' + bairro + '" não está na lista.\n\nQuer enviar assim mesmo? A loja confirma pelo WhatsApp se consegue entregar.');
           if (!seg) return;
         }
         if (!endereco) { showToast('Informe o endereço para entrega.', 'info'); return; }
@@ -623,25 +623,55 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
 /* --- ÁREA DE ENTREGA ---
    Farmácia de bairro não entrega em todo lugar. O dono definiu um RAIO DE
    4 KM a partir da loja (Rua Julita Nogueira Soares, 610 - Santa Terezinha).
-   Os bairros abaixo foram medidos e caem dentro desse raio.
+
+   Esta lista foi levantada medindo a distancia de cada bairro ate a loja,
+   e conferida com o dono. Tudo que esta aqui esta dentro do raio.
 
    Antes o site aceitava qualquer CEP começando com 30 ou 31, ou seja, quase
    todo o estado de Minas Gerais — e prometia entrega onde não tem entrega.
    Isso gerava pedido que a farmácia não conseguia cumprir.
 
-   Para incluir um bairro novo (ou quando entrar no iFood), acrescente o nome
-   aqui. Distâncias medidas a partir da loja:
-     Santa Terezinha .... 0,45 km
-     Residencial Sarandi . 0,87 km
-     Ressaca ............ 0,93 km
-     Bandeirantes ....... 2,53 km
-     Pampulha ........... 3,58 km  */
+   Para incluir um bairro novo, acrescente o nome aqui. A lista aparece
+   na tela para o cliente (home, FAQ e pedido), entao mexer aqui
+   atualiza tudo de uma vez.
+
+   Os 8 primeiros sao os bairros "de nome" que as pessoas mais usam:
+     Santa Terezinha 0,45 · Ressaca 0,93 · Serrano 1,17 · Urca 2,51
+     Castelo 1,32 · Bandeirantes 2,53 · Ouro Preto 2,66 · Pampulha 3,58  */
 const BAIRROS_ENTREGA = [
   'Santa Terezinha',
-  'Residencial Sarandi',
   'Ressaca',
+  'Serrano',
+  'Urca',
+  'Castelo',
+  'Ouro Preto',
   'Bandeirantes',
-  'Pampulha'
+  'Pampulha',
+  'Confisco',
+  'São Gotardo',
+  'Itatiaia',
+  'Vila Santa Luzia',
+  'Tijuca',
+  'Paquetá',
+  'Parque Recreio',
+  'Estrela d’Alva',
+  'São Joaquim',
+  'Recanto da Pampulha',
+  'Alípio de Melo',
+  'Braúnas',
+  'Carajás',
+  'Manacás',
+  'Coqueiros',
+  'Cabral',
+  'Xangri-lá',
+  'Arpoador',
+  'Trevo',
+  'Pedra Azul',
+  'Jardim São José',
+  'Jardim Alvorada',
+  'Nossa Senhora da Glória',
+  'Balneário da Ressaca',
+  'Residencial Sarandi'
 ];
 
 const bairroEntregue = (nome) => {
@@ -1063,6 +1093,37 @@ const buscarBairroPorCep = (cep) => {
 };
 
 const textoBairro = (v) => String(v || '').trim();
+
+
+
+/* Mostra a lista de bairros com entrega na tela, a partir da mesma
+   lista que a verificacao usa. Nada escrito a mao, nada desatualiza. */
+(function exibeListaBairros() {
+  const area = document.querySelector('[data-lista-bairros]');
+  if (!area || typeof BAIRROS_ENTREGA === 'undefined') return;
+  area.innerHTML = BAIRROS_ENTREGA.map((b, k) =>
+    '<span class="tag-bairro' + (k === 0 ? ' tag-bairro--principal' : '') + '">' + b + '</span>'
+  ).join('');
+  const total = document.querySelector('[data-total-bairros]');
+  if (total) total.textContent = BAIRROS_ENTREGA.length;
+  const faq = document.querySelector('[data-faq-bairros]');
+  if (faq) faq.innerHTML = BAIRROS_ENTREGA.map(b => '<span class="tag-bairro">' + b + '</span>').join('');
+})();
+
+/* Gera as opcoes do campo de bairro a partir de BAIRROS_ENTREGA.
+   Assim a lista sugerida nunca desatualiza em relacao a verificacao. */
+(function populaBairros() {
+  const dl = document.createElement('datalist');
+  dl.id = 'bairrosSugeridos';
+  BAIRROS_ENTREGA.forEach(b => {
+    const o = document.createElement('option');
+    o.value = b;
+    dl.appendChild(o);
+  });
+  document.body.appendChild(dl);
+  document.querySelectorAll('input[list="entregaBairros"], input[list="bairrosEntrega"]')
+    .forEach(inp => { inp.setAttribute('list', 'bairrosSugeridos'); });
+})();
 
 /* --- VERIFICADOR DE ENTREGA (home) ---
    Reutiliza a lista BAIRROS_ENTREGA. Responde a primeira duvida do

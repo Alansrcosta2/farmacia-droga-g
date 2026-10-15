@@ -3249,3 +3249,70 @@ body { color: var(--ink); background: var(--surface-alt); }
     .grade-condicoes { grid-template-columns: 1fr; gap: 14px; }
     .bloco-cond { padding: 14px 15px; }
 }
+
+/* --- LISTA DE BAIRROS COM ENTREGA ---
+   O cliente não deveria precisar descobrir se a farmácia entrega na rua
+   dele digitando e errando. A lista aparece aberta para ele conferir
+   sozinho, e os nomes vêm da mesma lista que a verificação usa. */
+.lista-bairros {
+    margin-top: 18px;
+    border-top: 1px solid #CFE6D8;
+    padding-top: 14px;
+}
+.lista-bairros summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: #04663A;
+    font-size: 0.93rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.lista-bairros summary::-webkit-details-marker { display: none; }
+.lista-bairros summary::before {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+.lista-bairros[open] summary::before { transform: rotate(180deg); }
+.lista-bairros summary:hover { color: var(--brand); }
+.lista-bairros-intro {
+    font-size: 0.85rem !important;
+    color: #3F5D4C !important;
+    margin: 12px 0 14px !important;
+    line-height: 1.6;
+}
+.lista-bairros-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+.tag-bairro {
+    background: #fff;
+    border: 1px solid #BFE8CF;
+    color: #04663A;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+.tag-bairro--principal {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+}
+@media (max-width: 420px) {
+    .tag-bairro { font-size: 0.78rem; padding: 5px 10px; }
+}
+
+/* Lista de bairros dentro do FAQ (mesma fonte da verificação) */
+.faq-bairros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 14px 0 18px;
+}

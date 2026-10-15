@@ -6,7 +6,7 @@
     <title>Farmácia Droga G | Santa Terezinha, BH</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="img/favicon-32.png">
-    <link rel="stylesheet" href="styles.css?v=20261015b">
+    <link rel="stylesheet" href="styles.css?v=20261015c">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- While o site esta em construcao, o Google nao deve indexar.
          Remove estas duas linhas e o comentario de construcao.js
@@ -240,16 +240,19 @@
                         <p>Entregamos em até 30 minutos num raio de <strong>4 km</strong> da loja. Digite seu <strong>bairro</strong> ou seu <strong>CEP</strong> para saber na hora:</p>
                         <div class="entrega-input-linha">
                             <input type="text" id="entregaBairroInput" class="entrega-input" list="entregaBairros" placeholder="Ex.: Santa Terezinha ou 31360-120" autocomplete="off">
-                            <datalist id="entregaBairros">
-                                <option value="Santa Terezinha"></option>
-                                <option value="Residencial Sarandi"></option>
-                                <option value="Ressaca"></option>
-                                <option value="Bandeirantes"></option>
-                                <option value="Pampulha"></option>
-                            </datalist>
                             <button type="button" class="btn" id="entregaVerificar">Verificar</button>
                         </div>
                         <p id="entregaResultado" class="entrega-resultado" hidden></p>
+
+                        <details class="lista-bairros">
+                            <summary>Ver os <span data-total-bairros>33</span> bairros com entrega</summary>
+                            <p class="lista-bairros-intro">
+                                Todos os bairros abaixo ficam dentro do raio de 4 km da loja.
+                                Se o seu não estiver na lista, <strong>chame no WhatsApp</strong> que a gente
+                                confirma se entrega — ou você pode retirar na loja, sem custo.
+                            </p>
+                            <div class="lista-bairros-tags" data-lista-bairros></div>
+                        </details>
                         <p class="entrega-obs">
                             <i class="fas fa-info-circle"></i>
                             Frete grátis em Santa Terezinha. Fora do raio, fale com a gente no
@@ -458,8 +461,8 @@
     </footer>
 
     <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
-    <script src="produtos-data.js?v=20261015b"></script>
-    <script src="script.js?v=20261015b"></script>
+    <script src="produtos-data.js?v=20261015c"></script>
+    <script src="script.js?v=20261015c"></script>
     <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
 </html>
