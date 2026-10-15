@@ -537,7 +537,7 @@ if (cartPageContainer) {
       if (entrega === 'Entrega') {
         if (!bairro) { showToast('Informe o bairro para delivery.', 'info'); return; }
         if (!bairroEntregue(bairro)) {
-          const seg = window.confirm('Entregamos em ' + BAIRROS_ENTREGA.length + ' bairros num raio de 4 km.\n\n"' + bairro + '" não está na lista.\n\nQuer enviar assim mesmo? A loja confirma pelo WhatsApp se consegue entregar.');
+          const seg = window.confirm('"' + bairro + '" não está na lista dos ' + BAIRROS_ENTREGA.length + ' bairros que entregamos.\n\nMas a lista pode não estar completa — pode ser que a gente entregue aí sim.\n\nQuer enviar o pedido assim mesmo? A loja confirma pelo WhatsApp antes de qualquer pagamento.');
           if (!seg) return;
         }
         if (!endereco) { showToast('Informe o endereço para entrega.', 'info'); return; }
@@ -1070,123 +1070,42 @@ if (matchMedia('(max-width: 768px)').matches) {
   });
 }
 
-/* --- TRADUZIR O QUE A PESSOA DIGITOU ---
-   O campo pede "bairro", mas a reacao natural e digitar o CEP. Antes,
-   um CEP nunca batia com a lista e o site respondia "fora do raio" para
-   gente que esta dentro do raio -- chegou a acontecer com o CEP
-   31360-120 (Rua Jose Alves de Souza, Santa Terezinha), que e o proprio
-   bairro da farmacia.
+/* --- MODAL DE BAIRROS COM ENTREGA ---
+   O cliente abre e ve a lista completa. Sem digitar bairro, sem CEP,
+   sem depender de servico externo: o nome do bairro dele esta na lista. */
 
-   Aqui o CEP e convertido em bairro antes de conferir. */
-const pareceCep = (v) => /^\d{5}-?\d{3}$/.test(String(v || '').trim());
-const soDigitos = (v) => String(v || '').replace(/\D/g, '');
-
-/* Consulta o CEP no servico publico do Correios (ViaCEP, sem chave).
-   Devolve o bairro, ou '' se nao der. */
-const buscarBairroPorCep = (cep) => {
-  const num = soDigitos(cep);
-  if (num.length !== 8) return Promise.resolve('');
-  return fetch('https://viacep.com.br/ws/' + num + '/json/')
-    .then(r => r.json())
-    .then(d => (d && !d.erro) ? String(d.bairro || '').trim() : '')
-    .catch(() => '');   // sem internet ou CEP inexistente: devolve vazio
-};
-
-const textoBairro = (v) => String(v || '').trim();
-
-
-
-/* Mostra a lista de bairros com entrega na tela, a partir da mesma
-   lista que a verificacao usa. Nada escrito a mao, nada desatualiza. */
 (function exibeListaBairros() {
-  const area = document.querySelector('[data-lista-bairros]');
-  if (!area || typeof BAIRROS_ENTREGA === 'undefined') return;
-  area.innerHTML = BAIRROS_ENTREGA.map((b, k) =>
+  if (typeof BAIRROS_ENTREGA === 'undefined') return;
+  const montar = () => BAIRROS_ENTREGA.map((b, k) =>
     '<span class="tag-bairro' + (k === 0 ? ' tag-bairro--principal' : '') + '">' + b + '</span>'
   ).join('');
-  const total = document.querySelector('[data-total-bairros]');
-  if (total) total.textContent = BAIRROS_ENTREGA.length;
-  const faq = document.querySelector('[data-faq-bairros]');
-  if (faq) faq.innerHTML = BAIRROS_ENTREGA.map(b => '<span class="tag-bairro">' + b + '</span>').join('');
+  document.querySelectorAll('[data-lista-bairros]').forEach(el => { el.innerHTML = montar(); });
+  document.querySelectorAll('[data-total-bairros]').forEach(el => { el.textContent = BAIRROS_ENTREGA.length; });
+  document.querySelectorAll('[data-faq-bairros]').forEach(el => { el.innerHTML = montar(); });
 })();
 
-/* Gera as opcoes do campo de bairro a partir de BAIRROS_ENTREGA.
-   Assim a lista sugerida nunca desatualiza em relacao a verificacao. */
-(function populaBairros() {
-  const dl = document.createElement('datalist');
-  dl.id = 'bairrosSugeridos';
-  BAIRROS_ENTREGA.forEach(b => {
-    const o = document.createElement('option');
-    o.value = b;
-    dl.appendChild(o);
-  });
-  document.body.appendChild(dl);
-  document.querySelectorAll('input[list="entregaBairros"], input[list="bairrosEntrega"]')
-    .forEach(inp => { inp.setAttribute('list', 'bairrosSugeridos'); });
-})();
+(function modalBairros() {
+  if (typeof BAIRROS_ENTREGA === 'undefined') return;
+  const modal = document.getElementById('modalBairros');
+  const abrir = document.getElementById('abrirEntrega');
+  if (!modal || !abrir) return;
 
-/* --- VERIFICADOR DE ENTREGA (home) ---
-   Reutiliza a lista BAIRROS_ENTREGA. Responde a primeira duvida do
-   cliente antes de ele montar o pedido. */
-(function initVerificadorEntrega() {
-  const input = document.getElementById('entregaBairroInput');
-  const botao = document.getElementById('entregaVerificar');
-  const saida = document.getElementById('entregaResultado');
-  if (!input || !botao || !saida || typeof bairroEntregue !== 'function') return;
+  let scrollAntes = 0;
+  const show = () => {
+    scrollAntes = window.scrollY;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    const fechar = modal.querySelector('.modal-bairros-fechar');
+    if (fechar) fechar.focus();
+  };
+  const hide = () => {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    window.scrollTo(0, scrollAntes);
+    abrir.focus();
+  };
 
-  function responder() {
-    const digitado = textoBairro(input.value);
-    saida.hidden = false;
-
-    if (!digitado) {
-      saida.className = 'entrega-resultado nao';
-      saida.innerHTML = '<i class="fas fa-question-circle"></i> Digite seu <strong>bairro</strong> ou seu <strong>CEP</strong> para eu verificar.';
-      return;
-    }
-
-    // digitou CEP: descobre o bairro antes de responder
-    if (pareceCep(digitado)) {
-      saida.className = 'entrega-resultado nao';
-      saida.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Consultando seu CEP...';
-      buscarBairroPorCep(digitado).then(bairro => {
-        const fmt = soDigitos(digitado).replace(/^(\d{5})(\d{3})$/, '$1-$2');
-        if (!bairro) {
-          saida.className = 'entrega-resultado nao';
-          saida.innerHTML = '<i class="fas fa-question-circle"></i> Não consegui identificar o bairro desse CEP (' + fmt +
-            '). <strong>Digite o nome do bairro</strong> ou pergunte no WhatsApp (31) 97171-6274.';
-          return;
-        }
-        if (bairroEntregue(bairro)) {
-          saida.className = 'entrega-resultado sim';
-          saida.innerHTML = '<i class="fas fa-check-circle"></i> Seu CEP ' + fmt +
-            ' é do bairro <strong>' + bairro + '</strong> — entregamos em até 30 minutos.' +
-            (bairro.toLowerCase() === 'santa terezinha' ? ' Frete grátis.' : '');
-        } else {
-          saida.className = 'entrega-resultado nao';
-          saida.innerHTML = '<i class="fas fa-map-marker-alt"></i> Seu CEP ' + fmt +
-            ' é do bairro <strong>' + bairro + '</strong>, que está fora do raio de 4 km. ' +
-            'Pergunte no WhatsApp se ainda é possível entregar — ou <strong>retire na loja</strong>, sem custo.';
-        }
-      });
-      return;
-    }
-
-    // digitou bairro: confere direto
-    const ok = bairroEntregue(digitado);
-    const nome = digitado.charAt(0).toUpperCase() + digitado.slice(1);
-    if (ok) {
-      saida.className = 'entrega-resultado sim';
-      saida.innerHTML = '<i class="fas fa-check-circle"></i> Entregamos em <strong>' + nome +
-        '</strong> em até 30 minutos.' + (digitado.toLowerCase() === 'santa terezinha' ? ' Frete grátis.' : '');
-    } else {
-      saida.className = 'entrega-resultado nao';
-      saida.innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + nome +
-        ' está fora do raio de 4 km. <strong>Se preferir, digite seu CEP</strong> — eu confiro. ' +
-        'Ou retire na loja, sem custo: Rua Julita Nogueira Soares, 610.';
-    }
-  }
-
-  botao.addEventListener('click', responder);
-  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); responder(); } });
-  input.addEventListener('input', () => { saida.hidden = true; });
+  abrir.addEventListener('click', show);
+  modal.querySelectorAll('[data-fechar-modal]').forEach(el => el.addEventListener('click', hide));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) hide(); });
 })();

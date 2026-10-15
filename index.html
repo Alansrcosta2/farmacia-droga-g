@@ -6,7 +6,7 @@
     <title>Farmácia Droga G | Santa Terezinha, BH</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="img/favicon-32.png">
-    <link rel="stylesheet" href="styles.css?v=20261015d">
+    <link rel="stylesheet" href="styles.css?v=20261015f">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- While o site esta em construcao, o Google nao deve indexar.
          Remove estas duas linhas e o comentario de construcao.js
@@ -232,39 +232,58 @@
 
 
         <!-- ENTREGA: primeira duvida do cliente antes de comprar.
-             Compacta de proposito: um elemento abaixo do outro, para
-             ocupar pouca altura na tela do celular. -->
+             Cartao curto que abre a lista completa de bairros. Sem digitar
+             nada: o cliente ve a lista e procura o nome dele. -->
         <section class="section entrega-check">
             <div class="container">
-                <div class="entrega-box">
-                    <h2 class="entrega-titulo">
-                        <i class="fas fa-truck-fast"></i> A gente entrega no seu bairro?
-                    </h2>
+                <button type="button" class="entrega-cartao" id="abrirEntrega">
+                    <span class="entrega-cartao-icone"><i class="fas fa-truck-fast"></i></span>
+                    <span class="entrega-cartao-texto">
+                        <strong>A gente entrega no seu bairro?</strong>
+                        <span>Toque para ver os <b data-total-bairros>33</b> bairros com entrega</span>
+                    </span>
+                    <i class="fas fa-chevron-right entrega-cartao-seta"></i>
+                </button>
+            </div>
+        </section>
 
-                    <p class="entrega-sub">Até 30 minutos, num raio de <strong>4 km</strong> da loja.</p>
+        <!-- MODAL: lista completa de bairros -->
+        <div class="modal-bairros" id="modalBairros" hidden>
+            <div class="modal-bairros-fundo" data-fechar-modal></div>
+            <div class="modal-bairros-caixa" role="dialog" aria-modal="true" aria-labelledby="tituloModalBairros">
+                <div class="modal-bairros-topo">
+                    <h2 id="tituloModalBairros"><i class="fas fa-truck-fast"></i> Bairros com entrega</h2>
+                    <button type="button" class="modal-bairros-fechar" data-fechar-modal aria-label="Fechar">&times;</button>
+                </div>
 
-                    <div class="entrega-form">
-                        <input type="text" id="entregaBairroInput" class="entrega-input" list="bairrosSugeridos"
-                               placeholder="Seu bairro ou CEP" autocomplete="off" aria-label="Digite seu bairro ou CEP">
-                        <button type="button" class="btn" id="entregaVerificar">Verificar</button>
+                <p class="modal-bairros-sub">
+                    Entregamos em até 30 minutos num raio de <strong>4 km</strong> da loja.
+                    <strong><span data-total-bairros>33</span> bairros</strong> na lista.
+                </p>
+
+                <div class="modal-bairros-lista" data-lista-bairros></div>
+
+                <div class="modal-bairros-rodape">
+                    <div class="modal-aviso">
+                        <p>
+                            <i class="fas fa-search"></i>
+                            <strong>O seu bairro não está na lista?</strong>
+                            Pode ser que ainda tenhamos entrega aí — esta lista pode não estar completa.
+                            Pergunte que a gente confirma.
+                        </p>
+                        <a href="https://wa.me/5531971716274?text=Ol%C3%A1!%20Gostaria%20de%20saber%20se%20voc%C3%As%20entregam%20no%20meu%20bairro." target="_blank" rel="noopener" class="btn btn-whatsapp" style="width:100%">
+                            <i class="fab fa-whatsapp"></i> Perguntar sobre meu bairro
+                        </a>
                     </div>
 
-                    <p id="entregaResultado" class="entrega-resultado" hidden></p>
-
-                    <details class="lista-bairros">
-                        <summary>Ver os <span data-total-bairros>33</span> bairros com entrega</summary>
-                        <div class="lista-bairros-tags" data-lista-bairros></div>
-                    </details>
-
-                    <p class="entrega-obs">
-                        <i class="fas fa-store"></i> Frete grátis em Santa Terezinha.
-                        Fora do raio, pergunte no
-                        <a href="https://wa.me/5531971716274" target="_blank" rel="noopener">(31) 97171-6274</a>
-                        ou retire na loja, sem custo.
+                    <p class="modal-bairros-loja">
+                        <i class="fas fa-store"></i> <strong>Frete grátis</strong> em Santa Terezinha.
+                        Pode <strong>retirar na loja</strong> sem custo:
+                        Rua Julita Nogueira Soares, 610.
                     </p>
                 </div>
             </div>
-        </section>
+        </div>
 
         <section class="section">
             <div class="container">
@@ -463,8 +482,8 @@
     </footer>
 
     <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
-    <script src="produtos-data.js?v=20261015d"></script>
-    <script src="script.js?v=20261015d"></script>
+    <script src="produtos-data.js?v=20261015f"></script>
+    <script src="script.js?v=20261015f"></script>
     <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
 </html>
