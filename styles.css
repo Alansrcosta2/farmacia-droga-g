@@ -1785,6 +1785,47 @@ h1, h2, h3, h4, h5, h6 {
     text-overflow: ellipsis;
 }
 
+/* Desktop: a faixa de beneficios fica PARADA.
+   Na tela larga cabem os 5 itens, entao nao ha motivo para rolar.
+   Rolling com apenas 2 copias fazia os mesmos beneficios passarem duas
+   vezes ao mesmo tempo, e a leitura ficava impossivel.
+   So o celular rola (nao cabe). */
+@media (min-width: 769px) {
+    .beneficios-tracks {
+        animation: none;
+        width: 100%;
+        justify-content: center;
+    }
+    .beneficios-group {
+        padding: 0;
+        gap: 40px;
+    }
+    .beneficios-group[aria-hidden="true"] {
+        display: none;
+    }
+}
+
+/* Notebook menor: aperta o espacamento para os 5 itens caberem inteiros,
+   sem cortar nenhum texto. */
+@media (min-width: 769px) and (max-width: 1150px) {
+    .beneficios-group {
+        gap: 22px;
+    }
+    .beneficio-item {
+        gap: 7px;
+    }
+    .beneficio-item > i {
+        font-size: 1.1rem;
+        width: 26px;
+    }
+    .beneficio-item strong {
+        font-size: 0.78rem;
+    }
+    .beneficio-item span {
+        font-size: 0.68rem;
+    }
+}
+
 /* --- CATEGORIAS REDONDAS --- */
 .section-categorias-round {
     padding-top: 38px;
