@@ -36,6 +36,43 @@ enviar mesmo assim — a loja confirma pelo WhatsApp.
 **Plano futuro:** quando entrar no iFood, a entrega deixa de ter limite de raio
 e passa a ser feita pela plataforma.
 
+## 1.7 Farmácia Popular — o que é verdade (confirmei na legislação)
+
+Verificado em outubro/2026. Isto aqui **não pode ser mudado sem conferir de novo**.
+
+**O programa é 100% gratuito. Não existe mais pagar parte.**
+
+- **Portaria GM/MS nº 6.613, de 13/02/2025, Art. 7º:** *"os contraceptivos,
+  absorventes higiênicos, as fraldas geriátricas e os medicamentos para
+  tratamento de hipertensão arterial, diabetes mellitus, asma, osteoporose,
+  dislipidemia, rinite, doença de Parkinson, glaucoma [...] serão
+  disponibilizados **gratuitamente** aos usuários."*
+- O próprio título da portaria: *"[...] **extinguindo a modalidade do
+  copagamento** do Programa."*
+- **Ministério da Saúde, ago/2026:** *"Farmácia Popular oferta 41 produtos
+  **100% gratuitos** à população."*
+
+### O erro que já foi cometido duas vezes
+
+| Onde | O que estava | Por que está errado |
+|---|---|---|
+| Banner da home | "gratuitos ou com até 90% de desconto" | O copagamento foi extinto em fev/2025 |
+| Banner da página | "AGORA É 100% GRATUITO" (sem dizer quem paga) | Dava a impressão de que a farmácia dava de graça |
+| Seção do subsídio | "subsidiado: você paga a diferença" | Não existe mais essa modalidade |
+| Texto do programa | "até 90% de desconto" | Informação velha, de antes de 2025 |
+
+O "até 90%" vem do **Farmácia Popular antigo** (Lei 10.858/2004, segmento
+populacional). O programa atual é o **Aqui Tem Farmácia Popular**, que é
+gratuito. Misturar os dois é o que gerou a confusão.
+
+### Regra para o site
+
+1. Dizer que é **gratuito**, nunca "desconto"
+2. Dizer que quem paga é o **Ministério da Saúde**, não a farmácia
+3. **Não citar quantidade** ("41 itens") — a farmácia pode não ter tudo
+4. A lista por condição é o **elenco do programa**, não o estoque da loja.
+   Sempre mandar confirmar no WhatsApp.
+
 ## 2. Regra legal: medicamento controlado (tarja preta) — OBRIGATÓRIO
 
 ANVISA / Lei 11.343/2006 e Lei 13.021/2014:
