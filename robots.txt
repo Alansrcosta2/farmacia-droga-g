@@ -1,0 +1,25 @@
+# robots.txt — Farmácia Droga G
+# Diz ao Google o que ele pode ou não pode indexar.
+# https://alansrcosta2.github.io/farmacia-droga-g/
+
+# ============================================================
+# ATENCAO: SITE EM TESTE — TUDO BLOQUEADO
+# ------------------------------------------------------------
+# O site ainda esta em construcao. Enquanto for assim, nenhuma
+# pagina pode entrar no Google. E o que o "Disallow: /" faz.
+#
+# QUANDO PUBLICAR DE VERDADE:
+#   troque "Disallow: /" por "Allow: /" e grave o sitemap.
+# ============================================================
+
+User-agent: *
+Disallow: /
+
+# ============================================================
+# SITE PUBLICADO (comente estas 2 linhas e apague o Disallow acima)
+# User-agent: *
+# Allow: /
+# ============================================================
+
+# Endereco do mapa do site (comente junto ao publicar)
+# Sitemap: https://alansrcosta2.github.io/farmacia-droga-g/sitemap.xml

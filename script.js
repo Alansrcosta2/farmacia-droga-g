@@ -267,7 +267,9 @@ const applyProductDataToCards = () => {
       const probe = new Image();
       probe.onload = () => {
         imgPlaceholder.innerHTML = `<img src="${data.imagem}" alt="${(data.nome || '').trim()}">`;
-      };
+};
+
+
       probe.src = data.imagem;
     }
     if (data.categoria && !card.getAttribute('data-category')) {
@@ -308,12 +310,14 @@ const applyProductDataToCards = () => {
 };
 
 /* --- GERA CARDS DINAMICOS DO ESTOQUE --- */
-const renderCatalogoDinamico = () => {
-  const grid = document.querySelector('[data-catalogo-grid]');
-  if (!grid || !produtosData.length) return;
-  grid.innerHTML = produtosData.map((p) => {
-    const badgeHtml = '';
-    return [
+/* Catalogo em paginas de 24. Antes eram 105 cards de uma vez, o que
+   deixava a pagina imensa e lenta no 4G do celular. */
+const CATALOGO_PAGINA = 24;
+let catalogoMostrados = CATALOGO_PAGINA;
+
+const montarCardProduto = (p) => {
+  const badgeHtml = '';
+  return [
       '<div class="product-card" data-sku="' + p.sku + '" data-category="' + (p.categoria || '') + '">',
       '  <div class="product-image-placeholder"><img src="' + p.imagem + '" alt="' + p.nome + '" loading="lazy"></div>',
       '  ' + badgeHtml,
@@ -322,8 +326,10 @@ const renderCatalogoDinamico = () => {
       '  <span class="product-price" style="font-size:0.8rem;color:#666">Valor confirmado pela loja</span>',
       '  <button type="button" class="btn" data-add-carrinho="' + p.sku + '"><i class="fas fa-cart-plus"></i> Adicionar à lista</button>',
       '</div>'
-    ].join('\n');
-  }).join('');
+  ].join('\n');
+};
+
+const ligarCardsCatalogo = (grid) => {
   const favSkus = loadFavorites().map(f => f.sku);
   grid.querySelectorAll('.product-card').forEach(card => {
     const sku = (card.getAttribute('data-sku') || '').trim();
@@ -352,6 +358,35 @@ const renderCatalogoDinamico = () => {
     }
   });
 };
+
+const renderCatalogoDinamico = () => {
+  const grid = document.querySelector('[data-catalogo-grid]');
+  if (!grid || !produtosData.length) return;
+  const mostrar = produtosData.slice(0, catalogoMostrados);
+  grid.innerHTML = mostrar.map(montarCardProduto).join('');
+  ligarCardsCatalogo(grid);
+
+  const btnMais = document.querySelector('[data-carregar-mais]');
+  const info = document.querySelector('[data-catalogo-total]');
+  const restantes = produtosData.length - catalogoMostrados;
+  if (btnMais) btnMais.hidden = restantes <= 0;
+  if (info) {
+    info.textContent = restantes > 0
+      ? 'Mostrando ' + mostrar.length + ' de ' + produtosData.length + ' produtos'
+      : 'Todos os ' + produtosData.length + ' produtos carregados';
+  }
+};
+
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-carregar-mais]');
+  if (!btn) return;
+  catalogoMostrados += CATALOGO_PAGINA;
+  const y = window.scrollY;
+  renderCatalogoDinamico();
+  filtrarCardsCombinado();
+  window.scrollTo({ top: y, behavior: 'instant' in window ? 'instant' : 'auto' });
+});
+
 
 const iniciarBuscaInicial = () => {
   if (!buscaInicial) return;

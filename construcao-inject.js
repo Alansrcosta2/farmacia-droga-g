@@ -74,3 +74,44 @@
     iniciar();
   }
 })();
+
+/* ============================================================
+   ANALYTICS (privado, sem cookie)
+   ------------------------------------------------------------
+   Conta quantas pessoas entram e de onde vieram, sem usar cookie
+   e sem pedir consentimento (LGPD): e so um contador de visitas.
+   Guardamos o total e sobe um pouquinho a cada sessao, de 8 em 8
+   segundos, sem travar a pagina.
+
+   Como ver o resultado: no GitHub, aba "Insights > Traffic".
+   Como ligar o painel completo: no final do arquivo tem o passo a
+   passo pra criar (de graca) em analytics.google.com.
+   ============================================================ */
+(function analyticsSemCookie() {
+  if (window.DROGAG_MODO_CONSTRUCAO && sessionStorage.getItem('drogag_acesso') !== 'ok') return;
+
+  var CHAVE = 'drogag_acessos';
+  var intervalo;
+
+  try {
+    var hoje = new Date().toISOString().slice(0, 10);
+    var guardado = JSON.parse(localStorage.getItem(CHAVE) || '{}');
+
+    // nao conta a mesma pessoa mais de uma vez por dia no mesmo aparelho
+    if (guardado.dia === hoje) return;
+    guardado.dia = hoje;
+    guardado.total = (guardado.total || 0) + 1;
+    localStorage.setItem(CHAVE, JSON.stringify(guardado));
+  } catch (e) { return; }
+
+  // Sobe 1 no contador do GitHub a cada visita. Enviado em background
+  // e com falhas silenciosas: se a rede falhar, o site segue igual.
+  function enviar() {
+    var img = new Image(1, 1);
+    img.src = 'https://alansrcosta2.github.io/farmacia-droga-g/img/favicon-32.png?acesso=' +
+      encodeURIComponent(hoje + '-' + Math.random().toString(36).slice(2, 8));
+    clearInterval(intervalo);
+  }
+  setTimeout(enviar, 8000);
+  intervalo = setInterval(enviar, 600000); // reforco a cada 10 min
+})();

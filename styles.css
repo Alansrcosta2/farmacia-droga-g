@@ -3098,3 +3098,21 @@ body { color: var(--ink); background: var(--surface-alt); }
     .entrega-input-linha .btn { width: 100%; }
     .entrega-box { padding: 22px 18px; }
 }
+
+/* --- CARREGAR MAIS PRODUTOS ---
+   Sem isso, os 105 produtos do catalogo eram criados de uma vez: HTML
+   imenso e lento no 4G. Agora sao 24 por vez. */
+.carregar-mais-wrap {
+    text-align: center;
+    margin-top: 32px;
+}
+.carregar-mais-btn {
+    min-width: 240px;
+    font-size: 1rem;
+    padding: 15px 24px;
+}
+.carregar-mais-info {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
