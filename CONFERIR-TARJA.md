@@ -93,7 +93,7 @@ Estes **podem** precisar de receita. Confirme se sao:
 
 - O aviso dos 4 controlados: **mantido** (exigência legal)
 - O aviso da tarja vermelha: **encurtado** para frase verdadeira, no
-  padrao das redes. A versao antiga dizia "retire na loja apresentando a
+  padrao das redes. A versao anterior dizia "retire na loja apresentando a
   receita" para 41 produtos, o que e incorreto para tarja vermelha simples
   (pode vender pela internet) e repetia o WhatsApp, que ja tem botao
 

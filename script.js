@@ -1030,7 +1030,7 @@ if (produtoDetalhe) {
          RDC 44/2009 proibe so o controle especial e a tarja preta.
          Alem disso o texto antigo repetia o WhatsApp, que ja tem um
          botao logo abaixo. */
-      tarjaAviso = '<div class="produto-nota" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;"><i class="fas fa-prescription"></i> <strong>Venda sob prescrição médica.</strong> A receita pode ser feita na farmácia.</div>';
+      tarjaAviso = '<div class="produto-nota" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;"><i class="fas fa-prescription"></i> <strong>Venda sob prescrição médica.</strong> A receita pode ser pedida na farmácia.</div>';
     }
     produtoDetalhe.innerHTML = [
       '<div class="produto-foto">',
