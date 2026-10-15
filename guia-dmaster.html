@@ -6,7 +6,7 @@
 <title>Como pedir os dados do Dmaster - Documento para impressão</title>
 <meta name="description" content="O que pedir no Dmaster: códigos, EAN, preço, estoque, categoria e tarja. Como exportar e em que formato.">
 <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="stylesheet" href="styles.css?v=20261016n">
+<link rel="stylesheet" href="styles.css?v=20261016o">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   body { background: #F4F6F8; }
@@ -33,6 +33,25 @@
   .rodape-doc { text-align: center; color: var(--text-secondary); font-size: 0.78rem; margin-top: 26px; line-height: 1.6; }
   @media print { body { background: #fff; } .no-print { display: none !important; } .folha { box-shadow: none; padding: 0; } h2 { page-break-after: avoid; } }
   @media (max-width: 480px) { .folha { padding: 24px 18px; } .folha h1 { font-size: 1.4rem; } table { font-size: 0.82rem; } th, td { padding: 9px 8px; } }
+
+  /* As caixas de aviso deste documento: usei a classe .aviso, mas nao
+     escrevi a regra nem aqui nem no styles.css. Ficavam como texto
+     solto, sem cor nem destaque. */
+  .aviso {
+      background: #FFF8E6;
+      border: 1px solid #F5C97B;
+      border-left: 4px solid #E8A317;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 18px 0;
+      color: #5C4410;
+  }
+  .aviso p { margin: 0 0 8px; }
+  .aviso p:last-child { margin-bottom: 0; }
+  .aviso ol, .aviso ul { margin: 8px 0 0; padding-left: 22px; }
+  .aviso li { margin-bottom: 8px; }
+  .aviso strong { color: #3D2E0A; }
+  .aviso table { background: #fff; }
 </style>
 </head>
 <body>

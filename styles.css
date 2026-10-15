@@ -1,11 +1,8 @@
-/* --- ESTILOS GLOBAIS --- */
-* {
+/* --- ESTILOS GLOBAIS --- */ * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-:root {
+} :root {
     --primary: #00A651;
     --primary-dark: #008542;
     --primary-light: #E8F5E9;
@@ -41,42 +38,28 @@
     --border-radius-md: 12px;
     --border-radius-lg: 16px;
     --border-radius-xl: 24px;
-}
-
-body {
+} body {
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
     background: var(--gray-100);
     color: var(--text-primary);
     line-height: 1.5;
-}
-
-.container {
+} .container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 24px;
-}
-
-/* TYPOGRAPHY */
-h1, h2, h3, h4, h5, h6 {
+} /* TYPOGRAPHY */ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
-}
-
-.section-title {
+} .section-title {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 8px;
-}
-
-.section-subtitle {
+} .section-subtitle {
     font-size: 1rem;
     color: var(--text-secondary);
     margin-bottom: 32px;
-}
-
-/* BUTTONS */
-.btn {
+} /* BUTTONS */ .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -91,61 +74,33 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--primary);
     color: var(--white);
     text-decoration: none;
-}
-
-.btn:hover {
+} .btn:hover {
     background: var(--primary-dark);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
-}
-
-.btn-outline {
+} .btn-outline {
     background: transparent;
     border: 1.5px solid var(--primary);
     color: var(--primary);
-}
-
-.btn-outline:hover {
+} .btn-outline:hover {
     background: var(--primary-light);
     transform: translateY(-1px);
     box-shadow: none;
-}
-
-.btn-secondary {
+} .btn-secondary {
     background: var(--secondary);
-}
-
-.btn-secondary:hover {
+} .btn-secondary:hover {
     background: var(--secondary-dark);
-}
-
-.btn-accent {
-    background: var(--accent);
-}
-
-.btn-accent:hover {
-    background: #E56000;
-}
-
-.btn-sm {
+} .btn-sm {
     padding: 8px 16px;
     font-size: 0.75rem;
-}
-
-.form-group {
+} .form-group {
     margin-bottom: 25px;
-}
-
-.form-group label {
+} .form-group label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
     color: var(--text-primary);
-}
-
-.form-group input:not([type="checkbox"]):not([type="radio"]),
-.form-group textarea,
-.form-group select {
+} .form-group input:not([type="checkbox"]):not([type="radio"]), .form-group textarea, .form-group select {
     width: 100%;
     padding: 14px 20px;
     border: 2px solid var(--neutral-medium);
@@ -153,23 +108,14 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.95rem;
     font-family: inherit;
     transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+} .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
     outline: none;
     border-color: var(--primary-blue);
     box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
-}
-
-.form-group textarea {
+} .form-group textarea {
     resize: vertical;
     min-height: 150px;
-}
-
-/* --- HEADER --- */
-.header {
+} /* --- HEADER --- */ .header {
     background: var(--primary-blue);
     color: var(--white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -177,106 +123,71 @@ h1, h2, h3, h4, h5, h6 {
     position: sticky;
     top: 0;
     z-index: 1000;
-}
-
-.top-bar {
+} .top-bar {
     background: var(--primary-blue-dark);
     color: var(--white);
     padding: 8px 0;
     font-size: 0.85rem;
-}
-
-.top-bar-content {
+} .top-bar-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.top-bar-links a {
+} .top-bar-links a {
     color: var(--white);
     margin-left: 20px;
     font-size: 0.85rem;
     text-decoration: none;
-}
-
-.top-bar-links i {
+} .top-bar-links i {
     margin-right: 5px;
-}
-
-/* Link "Santa Terezinha" da barra superior (vai para a pagina da loja) */
-.top-bar-store {
+} /* Link "Santa Terezinha" da barra superior (vai para a pagina da loja) */ .top-bar-store {
     color: var(--white);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
-}
-.top-bar-store i {
+} .top-bar-store i {
     margin-right: 5px;
-}
-.top-bar-store:hover {
+} .top-bar-store:hover {
     text-decoration: underline;
-}
-
-/* Desktop: Contato e Nossas Lojas já ficam na barra superior,
-   então não repetimos no menu principal. */
-@media (min-width: 769px) {
+} /* Desktop: Contato e Nossas Lojas já ficam na barra superior, então não repetimos no menu principal. */ @media (min-width: 769px) {
     .nav-menu li:has(> a[href="contato.html"]),
     .nav-menu li:has(> a[href="lojas.html"]) {
         display: none;
     }
-}
-
-.header-main {
+} .header-main {
     padding: 15px 0;
-}
-
-.header-content {
+} .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
-}
-
-.logo {
+} .logo {
     font-family: 'Arial Black', sans-serif;
     font-size: 2rem;
     font-weight: 900;
     color: var(--white);
     letter-spacing: -1px;
     text-decoration: none;
-}
-
-.logo span {
+} .logo span {
     color: var(--accent-yellow);
-}
-
-.header-search {
+} .header-search {
     flex: 1;
     max-width: 600px;
-}
-
-.search-wrapper {
+} .search-wrapper {
     position: relative;
     width: 100%;
-}
-
-.search-input {
+} .search-input {
     width: 100%;
     padding: 14px 50px 14px 20px;
     border: 2px solid var(--neutral-medium);
     border-radius: 50px;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-}
-
-.search-input:focus {
+} .search-input:focus {
     outline: none;
     border-color: var(--primary-blue);
     box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
-}
-
-.search-btn {
+} .search-btn {
     position: absolute;
     right: 5px;
     top: 50%;
@@ -289,31 +200,21 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--white);
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.search-btn:hover {
+} .search-btn:hover {
     transform: translateY(-50%) scale(1.05);
-}
-
-.header-icons {
+} .header-icons {
     display: flex;
     gap: 25px;
     align-items: center;
-}
-
-.header-icon {
+} .header-icon {
     position: relative;
     color: var(--white);
     font-size: 1.4rem;
     transition: color 0.3s ease;
     text-decoration: none;
-}
-
-.header-icon:hover {
+} .header-icon:hover {
     color: var(--accent-yellow);
-}
-
-.icon-badge {
+} .icon-badge {
     position: absolute;
     top: -8px;
     right: -8px;
@@ -323,28 +224,18 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     padding: 2px 6px;
     border-radius: 10px;
-}
-
-/* --- NAVEGAÇÃO --- */
-.nav-bar {
+} /* --- NAVEGAÇÃO --- */ .nav-bar {
     background: transparent;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 12px 0;
-}
-
-.nav-bar-header,
-.nav-menu-icons {
+} .nav-bar-header{
     display: none;
-}
-
-.nav-menu {
+} .nav-menu {
     display: flex;
     justify-content: center;
     gap: 40px;
     list-style: none;
-}
-
-.nav-menu li a {
+} .nav-menu li a {
     color: var(--white);
     font-weight: 500;
     font-size: 0.95rem;
@@ -352,16 +243,10 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
     text-decoration: none;
-}
-
-.nav-menu li a:hover,
-.nav-menu li a.active {
+} .nav-menu li a:hover, .nav-menu li a.active {
     color: var(--accent-yellow);
     border-bottom-color: var(--accent-yellow);
-}
-
-/* --- HERO BANNER --- */
-.hero-banner {
+} /* --- HERO BANNER --- */ .hero-banner {
     position: relative;
     background: #ffffff;
     color: var(--text-primary);
@@ -369,31 +254,23 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
     border-bottom: 1px solid var(--neutral-medium);
     overflow: hidden;
-}
-
-.hero-content {
+} .hero-content {
     position: relative;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-}
-
-.hero-text h1 {
+} .hero-text h1 {
     color: var(--text-primary);
     font-size: 2.4rem;
     margin-bottom: 12px;
     line-height: 1.15;
-}
-
-.hero-text p {
+} .hero-text p {
     font-size: 1.1rem;
     margin-bottom: 20px;
     max-width: 520px;
-}
-
-.hero-pill {
+} .hero-pill {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -405,73 +282,32 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.04em;
     text-transform: uppercase;
     margin-bottom: 16px;
-}
-
-.hero-pill strong {
+} .hero-pill strong {
     font-weight: 800;
     color: var(--accent);
-}
-
-.hero-buttons {
+} .hero-buttons {
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
-}
-
-.hero-image {
-    flex-shrink: 0;
-}
-
-.hero-image-placeholder {
-    width: 220px;
-    height: 220px;
-    background: #fff5f5;
-    border-radius: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 7rem;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-}
-
-/* --- SEÇÕES --- */
-.section {
+} /* --- SEÇÕES --- */ .section {
     padding: 56px 0;
-}
-
-.section-header {
+} .section-header {
     text-align: center;
     margin-bottom: 45px;
-}
-
-.section-title {
+} .section-title {
     font-size: 2.4rem;
     margin-bottom: 10px;
     color: var(--text-primary);
     letter-spacing: -0.03em;
-}
-
-.section-subtitle {
+} .section-subtitle {
     font-size: 1rem;
     color: var(--text-secondary);
-}
-
-/* --- CATEGORIAS HOME --- */
-.section-categories {
+} /* --- CATEGORIAS HOME --- */ .section-categories {
     background: #fff7f2;
     border-bottom: 1px solid var(--neutral-medium);
     padding-top: 32px;
     padding-bottom: 40px;
-}
-
-.category-row {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-}
-
-.category-chip {
+} .category-chip {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -485,34 +321,23 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: 0.3s;
-}
-
-.category-chip i {
+} .category-chip i {
     font-size: 1.4rem;
     color: var(--primary-blue);
     margin-bottom: 6px;
-}
-
-.category-chip:hover i {
+} .category-chip:hover i {
     color: var(--primary-blue-dark);
-}
-
-.category-chip:hover {
+} .category-chip:hover {
     border-color: var(--primary-blue);
     background: #ffe0e0;
     color: var(--primary-blue-dark);
     transform: translateY(-4px);
-}
-
-/* --- FEATURE CARDS --- */
-.feature-cards {
+} /* --- FEATURE CARDS --- */ .feature-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
     margin-bottom: 40px;
-}
-
-.feature-card {
+} .feature-card {
     background: var(--white);
     border-radius: 16px;
     padding: 30px;
@@ -520,15 +345,11 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
     border: 1px solid var(--neutral-medium);
-}
-
-.feature-card:hover {
+} .feature-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
     border-color: var(--primary-blue);
-}
-
-.feature-icon {
+} .feature-icon {
     width: 70px;
     height: 70px;
     background: var(--gradient-primary);
@@ -539,27 +360,18 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto 20px;
     font-size: 2rem;
     color: var(--white);
-}
-
-.feature-card h3 {
+} .feature-card h3 {
     font-size: 1.3rem;
     margin-bottom: 12px;
     color: var(--text-primary);
-}
-
-.feature-card p {
+} .feature-card p {
     color: var(--text-secondary);
     font-size: 0.95rem;
-}
-
-/* --- PRODUCT GRID --- */
-.product-grid {
+} /* --- PRODUCT GRID --- */ .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
-}
-
-.product-card {
+} .product-card {
     background: var(--white);
     border-radius: 16px;
     padding: 25px;
@@ -569,9 +381,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--neutral-medium);
     position: relative;
     overflow: hidden;
-}
-
-.favorite-btn {
+} .favorite-btn {
     position: absolute;
     top: 12px;
     left: 12px;
@@ -587,19 +397,13 @@ h1, h2, h3, h4, h5, h6 {
     color: #9CA3AF;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     transition: all 0.2s ease;
-}
-
-.favorite-btn:hover {
+} .favorite-btn:hover {
     transform: translateY(-1px);
     color: #EF4444;
-}
-
-.favorite-btn.favorited {
+} .favorite-btn.favorited {
     color: #EF4444;
     background: #FEE2E2;
-}
-
-.product-card::before {
+} .product-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -609,91 +413,54 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--gradient-primary);
     transform: scaleX(0);
     transition: transform 0.3s ease;
-}
-
-.product-card:hover::before {
+} .product-card:hover::before {
     transform: scaleX(1);
-}
-
-.product-card:hover {
+} .product-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
     border-color: var(--primary-blue-light);
-}
-
-.product-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--accent-yellow);
-    color: var(--text-primary);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-.product-image-placeholder {
+} .product-image-placeholder {
     font-size: 4.5rem;
     margin-bottom: 20px;
     filter: grayscale(0.2);
     transition: all 0.3s ease;
-}
-
-.product-image-placeholder img {
+} .product-image-placeholder img {
     max-width: 100%;
     max-height: 120px;
     object-fit: contain;
     display: block;
     margin: 0 auto;
-}
-
-.product-card:hover .product-image-placeholder {
+} .product-card:hover .product-image-placeholder {
     transform: scale(1.1);
     filter: grayscale(0);
-}
-
-.product-name {
+} .product-name {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 15px;
     min-height: 50px;
     line-height: 1.4;
-}
-
-.product-price-wrapper {
+} .product-price-wrapper {
     margin-bottom: 20px;
-}
-
-.product-price-old {
+} .product-price-old {
     font-size: 0.9rem;
     color: var(--text-secondary);
     text-decoration: line-through;
     margin-bottom: 5px;
-}
-
-.product-price {
+} .product-price {
     font-size: 1.8rem;
     font-weight: 800;
     color: var(--primary-blue);
-}
-
-.product-installment {
+} .product-installment {
     font-size: 0.85rem;
     color: var(--text-secondary);
     margin-top: 5px;
-}
-
-/* --- PRODUCTS LAYOUT --- */
-.products-layout {
+} /* --- PRODUCTS LAYOUT --- */ .products-layout {
     display: grid;
     grid-template-columns: 260px minmax(0, 1fr);
     gap: 30px;
     align-items: flex-start;
-}
-
-.products-sidebar {
+} .products-sidebar {
     background: var(--white);
     border-radius: 16px;
     padding: 20px 18px;
@@ -701,26 +468,18 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--neutral-medium);
     position: sticky;
     top: 90px;
-}
-
-.products-sidebar-header h2 {
+} .products-sidebar-header h2 {
     font-size: 1.1rem;
     margin-bottom: 4px;
-}
-
-.products-sidebar-header p {
+} .products-sidebar-header p {
     font-size: 0.85rem;
     color: var(--text-secondary);
-}
-
-.products-sidebar-menu {
+} .products-sidebar-menu {
     margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-.products-filter-btn {
+} .products-filter-btn {
     border: 1px solid var(--neutral-medium);
     background: #f8fafc;
     border-radius: 999px;
@@ -729,63 +488,42 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
     cursor: pointer;
     transition: all 0.2s ease;
-}
-
-.products-filter-btn:hover {
+} .products-filter-btn:hover {
     border-color: var(--primary-blue-light);
     background: #e0f2fe;
-}
-
-.products-filter-btn.active {
+} .products-filter-btn.active {
     border-color: var(--primary-blue);
     background: #dbeafe;
     color: var(--primary-blue-dark);
     font-weight: 600;
-}
-
-.products-sidebar-box {
+} .products-sidebar-box {
     margin-top: 20px;
     padding-top: 14px;
     border-top: 1px solid var(--neutral-medium);
-}
-
-.products-sidebar-box h3 {
+} .products-sidebar-box h3 {
     font-size: 0.95rem;
     margin-bottom: 4px;
-}
-
-.products-sidebar-box p {
+} .products-sidebar-box p {
     font-size: 0.85rem;
     color: var(--text-secondary);
-}
-
-.products-main .section-header {
+} .products-main .section-header {
     text-align: left;
-}
-
-.products-toolbar {
+} .products-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-}
-
-.products-toolbar-info span {
+} .products-toolbar-info span {
     font-size: 0.85rem;
     color: var(--text-secondary);
-}
-
-/* --- FARMÁCIA POPULAR --- */
-.farmacia-popular {
+} /* --- FARMÁCIA POPULAR --- */ .farmacia-popular {
     background: var(--gradient-primary);
     color: var(--white);
     border-radius: 20px;
     padding: 60px 0;
     position: relative;
     overflow: hidden;
-}
-
-.farmacia-popular::before {
+} .farmacia-popular::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -794,13 +532,9 @@ h1, h2, h3, h4, h5, h6 {
     height: 500px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
-}
-
-.farmacia-popular .section-title {
+} .farmacia-popular .section-title {
     color: var(--white);
-}
-
-.farmacia-popular-content {
+} .farmacia-popular-content {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -809,76 +543,24 @@ h1, h2, h3, h4, h5, h6 {
     gap: 40px;
     position: relative;
     z-index: 1;
-}
-
-.farmacia-popular-text h2 {
+} .farmacia-popular-text h2 {
     font-size: 2.8rem;
     margin-bottom: 20px;
     color: var(--white);
-}
-
-.farmacia-popular-text p {
+} .farmacia-popular-text p {
     font-size: 1.3rem;
     margin-bottom: 30px;
-}
-
-.farmacia-popular-list {
-    list-style: none;
-    text-align: left;
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-}
-
-.farmacia-popular-list li {
-    margin-bottom: 12px;
-    padding-left: 30px;
-    position: relative;
-}
-
-.farmacia-popular-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--accent-yellow);
-    font-weight: 900;
-    font-size: 1.3rem;
-}
-
-.highlight {
-    color: var(--accent-yellow);
-    font-weight: 700;
-}
-
-.dr-g-mascot-img {
-    max-width: 220px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.dr-g-mascot-img img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* --- AMBULATÓRIO --- */
-.ambulatorio {
+} /* --- AMBULATÓRIO --- */ .ambulatorio {
     background: var(--white);
     border-radius: 20px;
     padding: 50px;
     box-shadow: var(--shadow-md);
     border: 2px solid var(--neutral-medium);
-}
-
-.ambulatorio-content {
+} .ambulatorio-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
-}
-
-.ambulatorio-item {
+} .ambulatorio-item {
     display: flex;
     align-items: flex-start;
     gap: 15px;
@@ -886,15 +568,11 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--neutral-light);
     border-radius: 12px;
     transition: all 0.3s ease;
-}
-
-.ambulatorio-item:hover {
+} .ambulatorio-item:hover {
     background: var(--primary-blue);
     color: var(--white);
     transform: translateX(5px);
-}
-
-.ambulatorio-icon {
+} .ambulatorio-icon {
     width: 50px;
     height: 50px;
     background: var(--gradient-primary);
@@ -905,163 +583,91 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--white);
     font-size: 1.5rem;
     flex-shrink: 0;
-}
-
-.ambulatorio-item:hover .ambulatorio-icon {
+} .ambulatorio-item:hover .ambulatorio-icon {
     background: var(--white);
     color: var(--primary-blue);
-}
-
-.ambulatorio-text h4 {
+} .ambulatorio-text h4 {
     font-size: 1.1rem;
     margin-bottom: 5px;
-}
-
-.ambulatorio-text p {
+} .ambulatorio-text p {
     font-size: 0.9rem;
     color: var(--text-secondary);
-}
-
-.ambulatorio-item:hover .ambulatorio-text p {
+} .ambulatorio-item:hover .ambulatorio-text p {
     color: rgba(255, 255, 255, 0.9);
-}
-
-/* --- NEWSLETTER --- */
-.newsletter {
-    background: var(--gradient-accent);
-    padding: 50px 0;
-    border-radius: 20px;
-}
-
-.newsletter-content {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.newsletter h3 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: var(--text-primary);
-}
-
-.newsletter p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-    color: var(--text-primary);
-}
-
-.newsletter-form {
+} .newsletter-form {
     display: flex;
     gap: 10px;
     max-width: 500px;
     margin: 0 auto;
-}
-
-.newsletter-input {
+} .newsletter-input {
     flex: 1;
     padding: 14px 20px;
     border: 2px solid transparent;
     border-radius: 50px;
     font-size: 0.95rem;
-}
-
-.newsletter-input:focus {
+} .newsletter-input:focus {
     outline: none;
     border-color: var(--primary-blue);
-}
-
-/* --- PAGE CONTENT --- */
-.page-content {
+} /* --- PAGE CONTENT --- */ .page-content {
     min-height: 60vh;
     padding: 40px 0;
-}
-
-.content-card {
+} .content-card {
     background: var(--white);
     border-radius: 16px;
     padding: 40px;
     box-shadow: var(--shadow-sm);
     margin-bottom: 30px;
-}
-
-.content-card h2 {
+} .content-card h2 {
     margin-bottom: 20px;
     color: var(--primary-blue);
-}
-
-.content-card p {
+} .content-card p {
     margin-bottom: 15px;
     line-height: 1.8;
-}
-
-/* --- FOOTER --- */
-.footer {
+} /* --- FOOTER --- */ .footer {
     background: var(--text-primary);
     color: var(--neutral-medium);
     padding: 60px 0 20px;
     margin-top: 60px;
-}
-
-.footer-content {
+} .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
     margin-bottom: 40px;
-}
-
-.footer-column h3 {
+} .footer-column h3 {
     color: var(--white);
     margin-bottom: 25px;
     font-size: 1.2rem;
-}
-
-.footer-column p,
-.footer-column a {
+} .footer-column p, .footer-column a {
     color: var(--neutral-medium);
     margin-bottom: 12px;
     display: block;
     transition: color 0.3s ease;
     text-decoration: none;
-}
-
-.footer-column a:hover {
+} .footer-column a:hover {
     color: var(--accent-yellow);
     padding-left: 5px;
-}
-
-/* Titulo do rodape que tambem e link: mantem a cor e o tamanho do h3 */
-.footer-column h3 a {
+} /* Titulo do rodape que tambem e link: mantem a cor e o tamanho do h3 */ .footer-column h3 a {
     color: inherit;
     display: inline;
     margin-bottom: 0;
     font-size: inherit;
     font-weight: inherit;
-}
-.footer-column h3 a:hover {
+} .footer-column h3 a:hover {
     color: var(--accent-yellow);
     padding-left: 0;
-}
-
-.footer-logo {
+} .footer-logo {
     font-family: 'Arial Black', sans-serif;
     font-size: 2.5rem;
     color: var(--primary-blue-light);
     margin-bottom: 15px;
     font-weight: 900;
-}
-
-.footer-logo span {
+} .footer-logo span {
     color: var(--accent-yellow);
-}
-
-.footer-social {
+} .footer-social {
     display: flex;
     gap: 15px;
     margin-top: 20px;
-}
-
-.social-icon {
+} .social-icon {
     width: 40px;
     height: 40px;
     background: rgba(255, 255, 255, 0.12);
@@ -1075,34 +681,23 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
     cursor: pointer;
     text-decoration: none;
-}
-
-.social-icon i {
+} .social-icon i {
     font-size: 1.2rem;
     line-height: 1;
     display: block;
-}
-
-.social-icon:hover {
+} .social-icon:hover {
     background: var(--accent-yellow);
     color: var(--text-primary);
     transform: translateY(-3px);
-}
-
-.footer-divider {
+} .footer-divider {
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
     margin: 30px 0;
-}
-
-.copyright {
+} .copyright {
     text-align: center;
     font-size: 0.9rem;
     color: var(--text-secondary);
-}
-
-/* --- SCROLL TO TOP --- */
-.scroll-to-top {
+} /* --- SCROLL TO TOP --- */ .scroll-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -1120,20 +715,13 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     visibility: hidden;
     z-index: 999;
-}
-
-.scroll-to-top.visible {
+} .scroll-to-top.visible {
     opacity: 1;
     visibility: visible;
-}
-
-.scroll-to-top:hover {
+} .scroll-to-top:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
-}
-
-/* --- RESPONSIVIDADE --- */
-@media (max-width: 992px) {
+} /* --- RESPONSIVIDADE --- */ @media (max-width: 992px) {
     .hero-content {
         flex-direction: column;
         text-align: center;
@@ -1146,111 +734,56 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-@media (max-width: 768px) {
-    body {
+@media (max-width: 768px) { body {
         font-size: 16px;
-    }
-    .header-content,
-    .header-main {
+    } .header-content, .header-main {
         flex-direction: column;
         gap: 10px;
-    }
-    .header-search {
+    } .header-search {
         max-width: 100%;
-    }
-    .search-input {
+    } .search-input {
         width: 100%;
         font-size: 16px;
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
+    } .form-group input, .form-group textarea, .form-group select {
         font-size: 16px;
-    }
-    .top-bar-content {
+    } .top-bar-content {
         flex-direction: column;
         gap: 10px;
         text-align: center;
-    }
-    .top-bar-links {
+    } .top-bar-links {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 15px;
-    }
-    .top-bar-links a {
+    } .top-bar-links a {
         margin-left: 0;
-    }
-    .nav-menu {
+    } .nav-menu {
         flex-wrap: wrap;
         gap: 15px;
-    }
-    .hero-content {
+    } .hero-content {
         flex-direction: column;
         text-align: center;
-    }
-    .hero-image-placeholder {
-        width: 100%;
-        max-width: 260px;
-        margin: 15px auto 0;
-    }
-    .hero-produtos {
-        width: 100%;
-        max-width: 260px;
-        margin: 15px auto 0;
-    }
-    .hero-text h1 {
+    } .hero-text h1 {
         font-size: 2rem;
-    }
-    .section-title {
+    } .section-title {
         font-size: 2rem;
-    }
-    .farmacia-popular-content {
+    } .farmacia-popular-content {
         flex-direction: column;
-    }
-    .newsletter-form {
+    } .newsletter-form {
         flex-direction: column;
-    }
-    .category-row {
+    } .product-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .products-layout {
+    } .products-layout {
         grid-template-columns: minmax(0, 1fr);
-    }
-    .products-sidebar {
+    } .products-sidebar {
         position: static;
     }
-    .dr-g-mascot-img {
-        max-width: 150px;
-        margin: 0 auto;
-    }
-}
-
-/* --- ANIMAÇÕES --- */
-@keyframes fadeInUp {
+} /* --- ANIMAÇÕES --- */ @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-on-scroll {
+} .animate-on-scroll {
     animation: fadeInUp 0.6s ease-out;
-}
-
-/* --- TOAST NOTIFICATIONS --- */
-/* --- BALOES DE AVISO (toast) ---
-   Era um formato de "bola": border-radius 50px, min-width 300px e
-   conteudo centralizado. Com o botao "Ver carrinho" dentro, ficava
-   espremido e difficult de ler. Agora e um cartao: cantos suaves,
-   conteudo a esquerda, icone em circulo e acao a direita. */
-/* No computador o balao fica no canto inferior ESQUERDO e desliza da
-   esquerda (como Gmail e Facebook). A esquerda foi escolhida porque o
-   canto oposto ja tem dois botoes flutuantes (WhatsApp e voltar ao
-   topo) — colar o balao em cima deles esconderia o WhatsApp, que e o
-   botao mais importante do site. */
-.toast-container {
+} /* --- TOAST NOTIFICATIONS --- */ /* --- BALOES DE AVISO (toast) --- Era um formato de "bola": border-radius 50px, min-width 300px e conteudo centralizado. Com o botao "Ver carrinho" dentro, ficava espremido e difficult de ler. Agora e um cartao: cantos suaves, conteudo a esquerda, icone em circulo e acao a direita. */ /* No computador o balao fica no canto inferior ESQUERDO e desliza da esquerda (como Gmail e Facebook). A esquerda foi escolhida porque o canto oposto ja tem dois botoes flutuantes (WhatsApp e voltar ao topo) — colar o balao em cima deles esconderia o WhatsApp, que e o botao mais importante do site. */ .toast-container {
     position: fixed;
     bottom: 24px;
     left: 24px;
@@ -1261,9 +794,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 10px;
     width: min(400px, calc(100vw - 48px));
     pointer-events: none;
-}
-
-.toast {
+} .toast {
     background: rgba(15, 23, 42, 0.96);
     color: #fff;
     border-radius: 14px;
@@ -1278,12 +809,9 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: auto;
     backdrop-filter: blur(8px);
     border-left: 4px solid var(--brand);
-}
-.toast.saindo {
+} .toast.saindo {
     animation: toastSai 0.28s ease-in forwards;
-}
-
-.toast > i {
+} .toast > i {
     flex-shrink: 0;
     width: 26px;
     height: 26px;
@@ -1293,18 +821,12 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     font-size: 0.8rem;
     background: rgba(255, 255, 255, 0.14);
-}
-.toast.success { border-left-color: #22C55E; }
-.toast.info    { border-left-color: #3B82F6; }
-
-.toast > span {
+} .toast.success { border-left-color: #22C55E; } .toast.info { border-left-color: #3B82F6; } .toast > span {
     flex: 1;
     min-width: 0;
     align-self: center;
     word-break: break-word;
-}
-
-.toast-acao {
+} .toast-acao {
     flex-shrink: 0;
     align-self: center;
     background: var(--accent-yellow);
@@ -1315,8 +837,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 9px;
     text-decoration: none;
     white-space: nowrap;
-}
-.toast-acao:hover { background: #fff; color: #3D2B00; }
+} .toast-acao:hover { background: #fff; color: #3D2B00; }
 
 @keyframes toastEntra {
     from { opacity: 0; transform: translateX(-28px) scale(0.97); }
@@ -1324,10 +845,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @keyframes toastSai {
     to { opacity: 0; transform: translateX(-20px) scale(0.97); }
-}
-
-/* No celular:cartao cheio acima da barra inferior, como app de banco */
-@media (max-width: 768px) {
+} /* No celular:cartao cheio acima da barra inferior, como app de banco */ @media (max-width: 768px) {
     .toast-container {
         top: 74px;
         bottom: auto;
@@ -1360,10 +878,7 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes slideDownFade {
     from { opacity: 1; transform: translateY(0); }
     to { opacity: 0; transform: translateY(20px); }
-}
-
-/* --- MOBILE MENU --- */
-.mobile-menu-btn {
+} /* --- MOBILE MENU --- */ .mobile-menu-btn {
     display: none;
     font-size: 1.5rem;
     color: var(--primary-blue);
@@ -1373,8 +888,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1100;
 }
 
-@media (max-width: 768px) {
-    .mobile-menu-btn {
+@media (max-width: 768px) { .mobile-menu-btn {
         display: block;
         position: static;
         color: var(--white);
@@ -1385,43 +899,35 @@ h1, h2, h3, h4, h5, h6 {
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-    .header-content {
+    } .header-content {
         justify-content: space-between;
         gap: 8px;
         flex-wrap: wrap;
-    }
-    .header-icons {
+    } .header-icons {
         display: flex;
         gap: 4px;
-    }
-    .header-icon {
+    } .header-icon {
         min-width: 44px;
         min-height: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.25rem;
-    }
-    .header-search {
+    } .header-search {
         order: 10;
         flex: 1 1 100%;
         max-width: 100%;
         margin-top: 4px;
-    }
-    .search-input {
+    } .search-input {
         width: 100%;
         font-size: 1rem;
         padding: 12px 48px 12px 16px;
-    }
-    .search-btn {
+    } .search-btn {
         width: 44px;
         height: 44px;
-    }
-    .header-cep {
+    } .header-cep {
         display: none;
-    }
-    .nav-bar {
+    } .nav-bar {
         position: fixed;
         top: 0;
         left: -100%;
@@ -1435,43 +941,35 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
         justify-content: flex-start;
         padding-top: 0;
-    }
-    .nav-bar.active {
+    } .nav-bar.active {
         left: 0;
-    }
-    .nav-bar-header {
+    } .nav-bar-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 20px 30px;
         background: linear-gradient(135deg, #00A651, #0066CC);
         margin-bottom: 10px;
-    }
-    .nav-bar-header .logo {
+    } .nav-bar-header .logo {
         font-size: 1.3rem;
         color: #fff;
-    }
-    .nav-bar-header .logo span {
+    } .nav-bar-header .logo span {
         color: #FFD700;
-    }
-    .nav-bar-close {
+    } .nav-bar-close {
         background: none;
         border: none;
         color: #fff;
         font-size: 1.5rem;
         cursor: pointer;
         padding: 5px 10px;
-    }
-    .nav-menu {
+    } .nav-menu {
         flex-direction: column;
         gap: 0;
         width: 100%;
-    }
-    .nav-menu li {
+    } .nav-menu li {
         width: 100%;
         text-align: left;
-    }
-    .nav-menu li a {
+    } .nav-menu li a {
         display: flex;
         align-items: center;
         gap: 12px;
@@ -1480,38 +978,15 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.1rem;
         color: var(--text-primary);
         text-decoration: none;
-    }
-    .nav-menu li a i {
+    } .nav-menu li a i {
         color: var(--primary-blue);
         width: 20px;
         text-align: center;
-    }
-    .nav-menu li a:hover,
-    .nav-menu li a.active {
+    } .nav-menu li a:hover, .nav-menu li a.active {
         background: var(--neutral-light);
         border-left: 4px solid var(--primary-green);
         padding-left: 26px;
-    }
-    .nav-menu-icons {
-        display: flex;
-        gap: 20px;
-        padding: 20px 30px;
-        border-top: 2px solid var(--neutral-medium);
-        margin-top: auto;
-    }
-    .nav-menu-icons a {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--text-primary);
-        text-decoration: none;
-        font-size: 0.95rem;
-    }
-    .nav-menu-icons a i {
-        color: var(--primary-blue);
-        font-size: 1.2rem;
-    }
-    .menu-overlay {
+    } .menu-overlay {
         position: fixed;
         top: 0;
         left: 0;
@@ -1523,19 +998,14 @@ h1, h2, h3, h4, h5, h6 {
         visibility: hidden;
         transition: all 0.3s ease;
         backdrop-filter: blur(3px);
-    }
-    .menu-overlay.active {
+    } .menu-overlay.active {
         opacity: 1;
         visibility: visible;
     }
-}
-
-/* --- BARRA INFERIOR (tab bar mobile) --- */
-.tab-bar {
+} /* --- BARRA INFERIOR (tab bar mobile) --- */ .tab-bar {
     display: none;
 }
-@media (max-width: 768px) {
-    .tab-bar {
+@media (max-width: 768px) { .tab-bar {
         display: flex;
         position: fixed;
         bottom: 0;
@@ -1546,8 +1016,7 @@ h1, h2, h3, h4, h5, h6 {
         box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
         z-index: 1000;
         padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
-    }
-    .tab-item {
+    } .tab-item {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -1572,18 +1041,14 @@ h1, h2, h3, h4, h5, h6 {
         cursor: pointer;
         -webkit-appearance: none;
         appearance: none;
-    }
-    .tab-item i {
+    } .tab-item i {
         font-size: 1.25rem;
         line-height: 1;
-    }
-    .tab-item.active {
+    } .tab-item.active {
         color: var(--primary-blue);
-    }
-    .tab-item.active i {
+    } .tab-item.active i {
         color: var(--primary-blue);
-    }
-    .tab-badge {
+    } .tab-badge {
         position: absolute;
         top: 2px;
         right: calc(50% - 18px);
@@ -1598,24 +1063,17 @@ h1, h2, h3, h4, h5, h6 {
         align-items: center;
         justify-content: center;
         padding: 0 4px;
-    }
-    body {
+    } body {
         padding-bottom: 70px;
-    }
-    .whatsapp-float {
+    } .whatsapp-float {
         bottom: 80px;
-    }
-    .toast-container {
+    } .toast-container {
         bottom: 85px;
-    }
-    .scroll-to-top {
+    } .scroll-to-top {
         bottom: 148px;
         right: 20px;
     }
-}
-
-/* --- WHATSAPP FLUTUANTE --- */
-.whatsapp-float {
+} /* --- WHATSAPP FLUTUANTE --- */ .whatsapp-float {
     position: fixed;
     bottom: 25px;
     right: 25px;
@@ -1633,9 +1091,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 998;
     transition: all 0.3s ease;
     animation: pulseWhatsapp 2s infinite;
-}
-
-.whatsapp-float:hover {
+} .whatsapp-float:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(37,211,102,0.7);
 }
@@ -1645,113 +1101,25 @@ h1, h2, h3, h4, h5, h6 {
     50% { box-shadow: 0 4px 25px rgba(37,211,102,0.8); }
 }
 
-@media (max-width: 768px) {
-    .whatsapp-float {
+@media (max-width: 768px) { .whatsapp-float {
         bottom: 20px;
         right: 15px;
         width: 55px;
         height: 55px;
         font-size: 28px;
     }
-}
-
-/* --- AVALIAÇÕES GOOGLE --- */
-.avaliacoes-google {
-    text-align: center;
-}
-.avaliacoes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.avaliacao-card {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--neutral-medium);
-    text-align: left;
-    transition: all 0.3s ease;
-}
-
-.avaliacao-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--accent-yellow);
-}
-
-.avaliacao-estrelas {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-}
-
-.avaliacao-estrelas i {
-    color: #F59E0B;
-    font-size: 1.05rem;
-    margin-right: 4px;
-}
-
-.avaliacao-texto {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 15px;
-    font-style: italic;
-}
-
-.avaliacao-autor {
-    font-weight: 700;
-    color: var(--primary-blue);
-    font-size: 0.9rem;
-}
-
-/* O carrinho voltou a existir (agora da para adicionar produto), mas estas
-   regras antigas continuavam escondendo o icone no topo e a caixa na lateral
-   da pagina de produtos. Era por isso que no computador nao havia NENHUMA
-   forma de chegar no carrinho: no celular so dava pela barra de baixo. */
-
-.products-sidebar-box {
+} /* O carrinho voltou a existir (agora da para adicionar produto), mas estas regras antigas continuavam escondendo o icone no topo e a caixa na lateral da pagina de produtos. Era por isso que no computador nao havia NENHUMA forma de chegar no carrinho: no celular so dava pela barra de baixo. */ .products-sidebar-box {
     background: var(--brand-soft);
     border: 1px solid var(--brand);
     border-radius: var(--r-md);
     padding: 18px;
     margin-top: 22px;
-}
-
-/* --- HERO COM FOTOS REAIS --- */
-.hero-produtos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    width: 260px;
-}
-
-.hero-produtos img {
-    width: 100%;
-    height: 124px;
-    object-fit: contain;
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 10px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.14);
-    transition: transform 0.3s ease;
-}
-
-.hero-produtos img:hover {
-    transform: translateY(-5px) scale(1.03);
-}
-
-/* --- PAGINA DE FOTOS (banco de imagens) --- */
-.fotos-grid {
+} /* --- PAGINA DE FOTOS (banco de imagens) --- */ .fotos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     padding: 10px 0 45px;
-}
-
-.fotos-item {
+} .fotos-item {
     background: #ffffff;
     border: 1px solid var(--neutral-medium);
     border-radius: 14px;
@@ -1760,31 +1128,20 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--shadow-sm);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin: 0;
-}
-
-.fotos-item:hover {
+} .fotos-item:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
-}
-
-.fotos-item img {
+} .fotos-item img {
     width: 100%;
     height: 160px;
     object-fit: contain;
-}
-
-.fotos-item figcaption {
+} .fotos-item figcaption {
     margin-top: 12px;
     font-size: 0.8rem;
     color: var(--text-secondary);
     line-height: 1.35;
     word-break: break-word;
-}
-
-/* ============ HOME ESTILO PROFISSIONAL ============ */
-
-/* --- ENVIO / CEP NO TOPO --- */
-.header-cep {
+} /* ============ HOME ESTILO PROFISSIONAL ============ */ /* --- ENVIO / CEP NO TOPO --- */ .header-cep {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1795,22 +1152,18 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 10px;
     text-align: left;
     transition: background 0.2s ease;
-}
-.header-cep:hover {
+} .header-cep:hover {
     background: #eef6ff;
-}
-.header-cep i {
+} .header-cep i {
     color: var(--primary-blue);
     font-size: 1.15rem;
-}
-.header-cep small {
+} .header-cep small {
     display: block;
     font-size: 0.66rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-}
-.header-cep strong {
+} .header-cep strong {
     display: block;
     font-size: 0.8rem;
     color: var(--text-primary);
@@ -1818,28 +1171,20 @@ h1, h2, h3, h4, h5, h6 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-/* --- BARRA DE BENEFICIOS --- */
-.beneficios-bar {
+} /* --- BARRA DE BENEFICIOS --- */ .beneficios-bar {
     background: linear-gradient(135deg, #00A651, #0066CC);
     overflow: hidden;
-}
-.beneficios-viewport {
+} .beneficios-viewport {
     overflow: hidden;
     padding: 14px 0;
-}
-.beneficios-tracks {
+} .beneficios-tracks {
     display: flex;
     width: max-content;
     animation: beneficiosScroll 28s linear infinite;
     will-change: transform;
-}
-.beneficios-tracks:hover,
-.beneficios-tracks:focus-within {
+} .beneficios-tracks:hover, .beneficios-tracks:focus-within {
     animation-play-state: paused;
-}
-.beneficios-group {
+} .beneficios-group {
     display: flex;
     gap: 64px;
     padding: 0 32px;
@@ -1849,43 +1194,32 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes beneficiosScroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
-}
-.beneficio-item {
+} .beneficio-item {
     display: flex;
     align-items: center;
     gap: 10px;
     flex: 0 0 auto;
-}
-.beneficio-item > i {
+} .beneficio-item > i {
     font-size: 1.35rem;
     color: #FFFFFF;
     width: 34px;
     text-align: center;
     flex-shrink: 0;
-}
-.beneficio-item strong {
+} .beneficio-item strong {
     display: block;
     font-size: 0.86rem;
     color: #FFFFFF;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-.beneficio-item span {
+} .beneficio-item span {
     display: block;
     font-size: 0.73rem;
     color: rgba(255,255,255,0.85);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-/* Desktop: a faixa de beneficios fica PARADA.
-   Na tela larga cabem os 5 itens, entao nao ha motivo para rolar.
-   Rolling com apenas 2 copias fazia os mesmos beneficios passarem duas
-   vezes ao mesmo tempo, e a leitura ficava impossivel.
-   So o celular rola (nao cabe). */
-@media (min-width: 769px) {
+} /* Desktop: a faixa de beneficios fica PARADA. Na tela larga cabem os 5 itens, entao nao ha motivo para rolar. Rolling com apenas 2 copias fazia os mesmos beneficios passarem duas vezes ao mesmo tempo, e a leitura ficava impossivel. So o celular rola (nao cabe). */ @media (min-width: 769px) {
     .beneficios-tracks {
         animation: none;
         width: 100%;
@@ -1906,11 +1240,7 @@ h1, h2, h3, h4, h5, h6 {
     .beneficios-group[aria-hidden="true"] {
         display: none;
     }
-}
-
-/* Notebook menor: aperta o espacamento para os 5 itens caberem inteiros,
-   sem cortar nenhum texto. */
-@media (min-width: 769px) and (max-width: 1150px) {
+} /* Notebook menor: aperta o espacamento para os 5 itens caberem inteiros, sem cortar nenhum texto. */ @media (min-width: 769px) and (max-width: 1150px) {
     .beneficios-group {
         gap: 22px;
     }
@@ -1927,78 +1257,24 @@ h1, h2, h3, h4, h5, h6 {
     .beneficio-item span {
         font-size: 0.68rem;
     }
-}
-
-/* --- CATEGORIAS REDONDAS --- */
-.section-categorias-round {
-    padding-top: 38px;
-    padding-bottom: 38px;
-}
-.categoria-round-row {
-    display: flex;
-    gap: 26px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.categoria-round {
-    width: 112px;
-    text-align: center;
-    text-decoration: none;
-    color: var(--text-primary);
-}
-.categoria-round-img {
-    display: block;
-    width: 112px;
-    height: 112px;
-    box-sizing: border-box;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 3px solid #ffffff;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
-    padding: 12px;
-    transition: transform 0.25s ease, border-color 0.25s ease;
-}
-.categoria-round-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-.categoria-round:hover .categoria-round-img {
-    transform: translateY(-5px);
-    border-color: var(--primary-blue);
-}
-.categoria-round-label {
-    display: block;
-    margin-top: 10px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    line-height: 1.25;
-}
-
-/* --- CARROSSEL DE BANNERS --- */
-.banner-carrossel {
+} /* --- CARROSSEL DE BANNERS --- */ .banner-carrossel {
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid var(--neutral-medium);
-}
-.banner-trilho {
+} .banner-trilho {
     display: flex;
     transition: transform 0.5s ease;
-}
-.banner-slide {
+} .banner-slide {
     flex: 0 0 100%;
     min-width: 100%;
     display: flex;
     align-items: center;
     padding-bottom: 42px;
-}
-.banner-slide > .container {
+} .banner-slide > .container {
     width: 100%;
-}
-.banner-slide.hero-banner {
+} .banner-slide.hero-banner {
     padding: 28px 0 42px;
-}
-.banner-seta {
+} .banner-seta {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -2012,17 +1288,13 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.95rem;
     cursor: pointer;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
-}
-.banner-seta:hover {
+} .banner-seta:hover {
     background: #ffffff;
-}
-.banner-seta-esq {
+} .banner-seta-esq {
     left: 14px;
-}
-.banner-seta-dir {
+} .banner-seta-dir {
     right: 14px;
-}
-.banner-bolinhas {
+} .banner-bolinhas {
     position: absolute;
     bottom: 12px;
     left: 50%;
@@ -2034,8 +1306,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 6px 11px;
     border-radius: 999px;
     backdrop-filter: blur(3px);
-}
-.banner-bolinha {
+} .banner-bolinha {
     width: 9px;
     height: 9px;
     padding: 0;
@@ -2044,82 +1315,63 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(255, 255, 255, 0.65);
     cursor: pointer;
     transition: all 0.25s ease;
-}
-.banner-bolinha.ativo {
+} .banner-bolinha.ativo {
     width: 24px;
     background: #ffffff;
-}
-.banner-slide--cor {
+} .banner-slide--cor {
     color: #ffffff;
     padding: 56px 0 46px;
-}
-.banner-slide--popular {
+} .banner-slide--popular {
     background: linear-gradient(135deg, #0b7a3b, #17b058);
-}
-.banner-slide--entrega {
+} .banner-slide--entrega {
     background: linear-gradient(135deg, #c2410c, #f97316);
-}
-.banner-generico {
+} .banner-generico {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-}
-.banner-generico h2 {
+} .banner-generico h2 {
     font-size: 2.1rem;
     line-height: 1.2;
     margin-bottom: 10px;
-}
-.banner-generico p {
+} .banner-generico p {
     font-size: 1.02rem;
     opacity: 0.95;
     margin-bottom: 20px;
     max-width: 520px;
-}
-.banner-generico .hero-pill {
+} .banner-generico .hero-pill {
     background: rgba(255, 255, 255, 0.18);
     border-color: rgba(255, 255, 255, 0.4);
     color: #ffffff;
-}
-.banner-generico .hero-pill strong {
+} .banner-generico .hero-pill strong {
     color: #ffffff;
-}
-.banner-generico .btn {
+} .banner-generico .btn {
     background: #ffffff;
     color: var(--text-primary);
-}
-.banner-generico .btn:hover {
+} .banner-generico .btn:hover {
     background: #eef2f7;
-}
-.banner-generico-visual i {
+} .banner-generico-visual i {
     font-size: 7rem;
     opacity: 0.4;
-}
-
-/* --- PRATELEIRAS (ROLAGEM HORIZONTAL) --- */
-.prateleira-header {
+} /* --- PRATELEIRAS (ROLAGEM HORIZONTAL) --- */ .prateleira-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     margin-bottom: 22px;
-}
-.prateleira-titulo {
+} .prateleira-titulo {
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 1.55rem;
     margin: 0;
     color: var(--text-primary);
-}
-.prateleira-titulo i {
+} .prateleira-titulo i {
     color: var(--accent-yellow, #F59E0B);
-}
-.prateleira-setas {
+} .prateleira-setas {
     display: flex;
     gap: 8px;
-}
-.prateleira-seta {
+} .prateleira-seta {
     width: 38px;
     height: 38px;
     border-radius: 50%;
@@ -2129,68 +1381,29 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.2s ease;
-}
-.prateleira-seta:hover {
+} .prateleira-seta:hover {
     background: var(--primary-blue);
     color: #ffffff;
     border-color: var(--primary-blue);
-}
-.prateleira-trilho {
+} .prateleira-trilho {
     display: flex;
     gap: 16px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 4px 4px 14px;
     scrollbar-width: none;
-}
-.prateleira-trilho::-webkit-scrollbar {
+} .prateleira-trilho::-webkit-scrollbar {
     display: none;
-}
-.prateleira-trilho .product-card {
+} .prateleira-trilho .product-card {
     flex: 0 0 218px;
     scroll-snap-align: start;
     padding: 18px;
-}
-
-/* --- FAIXA BANNER PROMOCIONAL --- */
-.faixa-banner {
-    background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-dark));
-    color: #ffffff;
-    border-radius: 18px;
-    padding: 28px 34px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    margin: 10px 0 46px;
-    flex-wrap: wrap;
-}
-.faixa-banner-info {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-.faixa-banner-info > i {
-    font-size: 2.4rem;
-}
-.faixa-banner h3 {
-    font-size: 1.3rem;
-    margin-bottom: 4px;
-}
-.faixa-banner p {
-    font-size: 0.92rem;
-    opacity: 0.92;
-}
-.faixa-banner .btn {
+} .faixa-banner .btn {
     background: #ffffff;
     color: var(--primary-blue-dark);
-}
-.faixa-banner .btn:hover {
+} .faixa-banner .btn:hover {
     background: #eef6ff;
-}
-
-/* --- AJUSTES MOBILE (celular) --- */
-@media (max-width: 768px) {
+} /* --- AJUSTES MOBILE (celular) --- */ @media (max-width: 768px) {
     .header-cep {
         display: none;
     }
@@ -2359,22 +1572,16 @@ h1, h2, h3, h4, h5, h6 {
     .page-content {
         padding: 14px 0;
     }
-}
-
-/* --- PAGINA DO PRODUTO --- */
-.produto-breadcrumb {
+} /* --- PAGINA DO PRODUTO --- */ .produto-breadcrumb {
     font-size: 0.85rem;
     color: var(--text-secondary);
     margin-bottom: 22px;
-}
-.produto-breadcrumb a {
+} .produto-breadcrumb a {
     color: var(--primary-blue);
     text-decoration: none;
-}
-.produto-breadcrumb a:hover {
+} .produto-breadcrumb a:hover {
     text-decoration: underline;
-}
-.produto-layout {
+} .produto-layout {
     display: grid;
     grid-template-columns: minmax(300px, 480px) 1fr;
     gap: 0;
@@ -2384,8 +1591,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-}
-.produto-foto {
+} .produto-foto {
     background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
     display: flex;
     align-items: center;
@@ -2393,20 +1599,17 @@ h1, h2, h3, h4, h5, h6 {
     padding: 40px 30px;
     min-height: 380px;
     border-right: 1px solid var(--neutral-medium);
-}
-.produto-foto img {
+} .produto-foto img {
     width: 100%;
     max-width: 360px;
     border-radius: 12px;
     object-fit: contain;
     filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.10));
-}
-.produto-info {
+} .produto-info {
     padding: 34px 36px;
     display: flex;
     flex-direction: column;
-}
-.produto-categoria {
+} .produto-categoria {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -2420,56 +1623,29 @@ h1, h2, h3, h4, h5, h6 {
     padding: 6px 14px;
     border-radius: 999px;
     margin-bottom: 14px;
-}
-.produto-info h1 {
+} .produto-info h1 {
     font-size: 1.55rem;
     color: #111827;
     margin: 0 0 8px;
     line-height: 1.3;
-}
-.produto-preco-bloco {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 6px;
-}
-.produto-preco {
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: var(--primary-blue);
-}
-.produto-preco-antigo {
-    font-size: 1.05rem;
-    color: #9ca3af;
-    text-decoration: line-through;
-}
-.produto-parcela {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    margin-bottom: 18px;
-}
-.produto-beneficios {
+} .produto-beneficios {
     list-style: none;
     padding: 14px 0;
     margin: 0 0 14px;
     border-top: 1px solid #f0f2f5;
     border-bottom: 1px solid #f0f2f5;
-}
-.produto-beneficios li {
+} .produto-beneficios li {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 7px 0;
     color: var(--text-secondary);
     font-size: 0.92rem;
-}
-.produto-beneficios i {
+} .produto-beneficios i {
     color: var(--primary-blue);
     width: 18px;
     text-align: center;
-}
-.produto-nota {
+} .produto-nota {
     background: #f0fdf4;
     border: 1px solid #bbf7d0;
     border-radius: 10px;
@@ -2480,18 +1656,15 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     gap: 9px;
-}
-.produto-nota i {
+} .produto-nota i {
     color: #16a34a;
     flex-shrink: 0;
-}
-.produto-acoes {
+} .produto-acoes {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     margin-bottom: 18px;
-}
-.btn-whatsapp {
+} .btn-whatsapp {
     background: #25d366 !important;
     color: #fff !important;
     display: inline-flex;
@@ -2501,11 +1674,9 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     flex: 1;
     min-width: 200px;
-}
-.btn-whatsapp:hover {
+} .btn-whatsapp:hover {
     background: #1ebe5b !important;
-}
-.btn-outline {
+} .btn-outline {
     background: #fff !important;
     color: var(--primary-blue) !important;
     border: 2px solid var(--primary-blue) !important;
@@ -2513,93 +1684,59 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     gap: 9px;
-}
-.btn-outline:hover {
+} .btn-outline:hover {
     background: rgba(0, 102, 204, 0.06) !important;
-}
-.produto-lojas {
-    font-size: 0.84rem;
-    color: var(--text-secondary);
-    margin-top: auto;
-    padding-top: 14px;
-    border-top: 1px dashed #e5e7eb;
-}
-.produto-carregando,
-.produto-vazio {
+} .produto-carregando, .produto-vazio {
     grid-column: 1 / -1;
     text-align: center;
     padding: 60px 20px;
     color: var(--text-secondary);
-}
-.produto-vazio i,
-.favoritos-vazio i {
+} .produto-vazio i, .favoritos-vazio i {
     font-size: 3rem;
     color: var(--primary-blue);
     margin-bottom: 14px;
     display: block;
-}
-.produto-vazio .btn,
-.favoritos-vazio .btn {
+} .produto-vazio .btn, .favoritos-vazio .btn {
     margin-top: 16px;
     display: inline-block;
-}
-.relacionados {
+} .relacionados {
     margin-top: 46px;
-}
-.relacionados .section-title {
+} .relacionados .section-title {
     margin-bottom: 20px;
-}
-
-/* --- FAVORITOS --- */
-.favoritos-vazio {
+} /* --- FAVORITOS --- */ .favoritos-vazio {
     text-align: center;
     padding: 70px 20px;
     background: #fff;
     border: 1px solid var(--neutral-medium);
     border-radius: 14px;
-}
-.favoritos-vazio p {
+} .favoritos-vazio p {
     font-size: 1.05rem;
     color: var(--text-secondary);
 }
 
-@media (max-width: 768px) {
-    .produto-layout {
+@media (max-width: 768px) { .produto-layout {
         grid-template-columns: 1fr;
         gap: 0;
-    }
-    .produto-foto {
+    } .produto-foto {
         min-height: 260px;
         padding: 24px 20px;
         border-right: none;
         border-bottom: 1px solid var(--neutral-medium);
-    }
-    .produto-foto img {
+    } .produto-foto img {
         max-width: 260px;
-    }
-    .produto-info {
+    } .produto-info {
         padding: 22px 20px;
-    }
-    .produto-info h1 {
+    } .produto-info h1 {
         font-size: 1.2rem;
-    }
-    .produto-preco {
-        font-size: 1.5rem;
-    }
-    .produto-acoes {
+    } .produto-acoes {
         flex-direction: column;
-    }
-    .produto-acoes .btn {
+    } .produto-acoes .btn {
         width: 100%;
         justify-content: center;
-    }
-    .btn-whatsapp {
+    } .btn-whatsapp {
         min-width: 0;
     }
-}
-
-/* ===== BANNER DESKTOP ===== */
-@media (min-width: 769px) {
+} /* ===== BANNER DESKTOP ===== */ @media (min-width: 769px) {
     .banner-slide.hero-banner {
         padding: 40px 0 52px;
     }
@@ -2623,10 +1760,7 @@ h1, h2, h3, h4, h5, h6 {
         display: flex;
         align-items: center;
     }
-}
-
-/* ===== FIX MOBILE — Droga G ===== */
-@media (max-width: 768px) {
+} /* ===== FIX MOBILE — Droga G ===== */ @media (max-width: 768px) {
   /* 1) Categorias: classe certa + tamanho que comporta o nome */
   .categoria-round-row { gap: 12px; }
   .categoria-round { width: 80px; }
@@ -2657,10 +1791,7 @@ h1, h2, h3, h4, h5, h6 {
   .whatsapp-float { bottom: 84px; right: 14px; z-index: 1001; }
   /* 6) Opcional: top-bar ocupa 2 linhas à toa no celular */
   .top-bar-links { display: none; } /* menu lateral e tab bar já cobrem */
-}
-
-/* ===== DROGA G UPGRADE — PARTE 1/3 (header mobile) ===== */
-@media (max-width: 768px) {
+} /* ===== DROGA G UPGRADE — PARTE 1/3 (header mobile) ===== */ @media (max-width: 768px) {
     .container { padding: 0 16px; }
     .top-bar { display: none; }
     .header-main { padding: 10px 0; }
@@ -2683,10 +1814,7 @@ h1, h2, h3, h4, h5, h6 {
     .header-search { order: 4; flex: 1 1 100%; max-width: 100%; margin-top: 6px; }
     .search-input { padding: 12px 48px 12px 16px; font-size: 1rem; }
     .search-btn { width: 44px; height: 44px; right: 4px; }
-}
-
-/* ===== DROGA G UPGRADE — PARTE 2/3 (correções de conteúdo) ===== */
-@media (max-width: 768px) {
+} /* ===== DROGA G UPGRADE — PARTE 2/3 (correções de conteúdo) ===== */ @media (max-width: 768px) {
     .section { padding: 28px 0; }
     .section-header { margin-bottom: 18px; }
     .section-subtitle { font-size: 0.9rem; }
@@ -2711,49 +1839,21 @@ h1, h2, h3, h4, h5, h6 {
     .toast-container { bottom: 90px; }
     .footer { padding: 40px 0 16px; margin-top: 40px; }
     .footer-content { gap: 24px; }
-}
-
-/* ===== DROGA G UPGRADE — PARTE 3/3 (acabamento profissional) ===== */
-html { scroll-behavior: smooth; }
-::selection { background: var(--accent-yellow); color: var(--text-primary); }
-button, a { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 3px solid rgba(0, 102, 204, 0.45); outline-offset: 2px; }
-/* Títulos fluidos: se ajustam sozinhos do celular ao monitor */
-.section-title { font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem); }
-.hero-text h1 { font-size: clamp(1.9rem, 1.4rem + 2.5vw, 2.6rem); }
-/* Categorias com "snap" e fade na borda (dica de arrastar) */
-.categoria-round-row { scroll-snap-type: x proximity; }
-.categoria-round { scroll-snap-align: start; }
-/* Cards com altura alinhada e botão sempre no rodapé do card */
-.product-card { display: flex; flex-direction: column; }
-.product-card .btn { margin-top: auto; }
-.product-name {
+} /* ===== DROGA G UPGRADE — PARTE 3/3 (acabamento profissional) ===== */ html { scroll-behavior: smooth; } ::selection { background: var(--accent-yellow); color: var(--text-primary); } button, a { -webkit-tap-highlight-color: transparent; } :focus-visible { outline: 3px solid rgba(0, 102, 204, 0.45); outline-offset: 2px; } /* Títulos fluidos: se ajustam sozinhos do celular ao monitor */ .section-title { font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem); } .hero-text h1 { font-size: clamp(1.9rem, 1.4rem + 2.5vw, 2.6rem); } /* Cards com altura alinhada e botão sempre no rodapé do card */ .product-card { display: flex; flex-direction: column; } .product-card .btn { margin-top: auto; } .product-name {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-/* Feedback de toque (cara de app no celular) */
-@media (hover: none) {
+} /* Feedback de toque (cara de app no celular) */ @media (hover: none) {
     .categoria-round:active .categoria-round-img,
     .product-card:active,
     .btn:active { transform: scale(0.96); }
 }
-@media (max-width: 768px) {
-    /* fade nas bordas da fileira de categorias */
-    .categoria-round-row {
-        mask-image: linear-gradient(90deg, #000 88%, transparent);
-        -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
-    }
-    /* busca com cara de app */
-    .search-input {
+@media (max-width: 768px) { /* busca com cara de app */ .search-input {
         border-color: transparent;
         background: #f1f5f9;
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
-    }
-    .search-input:focus { background: #fff; border-color: var(--primary-blue); }
-    /* tab-bar com indicador ativo */
-    .tab-item.active::before {
+    } .search-input:focus { background: #fff; border-color: var(--primary-blue); } /* tab-bar com indicador ativo */ .tab-item.active::before {
         content: "";
         position: absolute;
         top: 0; left: 50%;
@@ -2761,28 +1861,16 @@ button, a { -webkit-tap-highlight-color: transparent; }
         width: 28px; height: 3px;
         border-radius: 999px;
         background: var(--primary-blue);
-    }
-    .tab-badge { box-shadow: 0 0 0 2px #fff; }
-}
-/* Respeita quem prefere menos animação */
-@media (prefers-reduced-motion: reduce) {
+    } .tab-badge { box-shadow: 0 0 0 2px #fff; }
+} /* Respeita quem prefere menos animação */ @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-}
-
-/* ===== KIT FINAL — PARTE A (auditoria) ===== */
-:root { --primary-green: #00A651; }        /* variável que não existia */
-section, [id] { scroll-margin-top: 96px; } /* âncoras não somem sob o header */
-@media (max-width: 768px) {
+} /* ===== KIT FINAL — PARTE A (auditoria) ===== */ :root { --primary-green: #00A651; } /* variável que não existia */ section, [id] { scroll-margin-top: 96px; } /* âncoras não somem sob o header */ @media (max-width: 768px) {
     .tab-item { font-size: 0.7rem; }       /* labels da tab-bar mais legíveis */
-}
-
-/* ===== KIT FINAL — PARTE B (drawer, chips, desktop) ===== */
-/* Drawer (mobile): logo centralizado, X à direita — só no mobile */
-@media (max-width: 768px) {
+} /* ===== KIT FINAL — PARTE B (drawer, chips, desktop) ===== */ /* Drawer (mobile): logo centralizado, X à direita — só no mobile */ @media (max-width: 768px) {
   .nav-bar-header {
     display: flex;
     align-items: center;
@@ -2799,12 +1887,7 @@ section, [id] { scroll-margin-top: 96px; } /* âncoras não somem sob o header *
     font-size: 1.4rem;
     line-height: 1;
   }
-}
-/* Menu lateral aberto cobre a tab-bar */
-body:has(.nav-bar.active) .tab-bar { z-index: 900; }
-
-/* Mobile: filtro da produtos.html vira fileira de chips */
-@media (max-width: 768px) {
+} /* Menu lateral aberto cobre a tab-bar */ body:has(.nav-bar.active) .tab-bar { z-index: 900; } /* Mobile: filtro da produtos.html vira fileira de chips */ @media (max-width: 768px) {
   .products-sidebar { padding: 12px; border-radius: 14px; }
   .products-sidebar-header p { display: none; }
   .products-sidebar-menu {
@@ -2822,16 +1905,7 @@ body:has(.nav-bar.active) .tab-bar { z-index: 900; }
     min-height: 40px;
     padding: 8px 14px;
   }
-}
-
-/* =====================================================================
-   DESIGN SYSTEM V2 — Droga G  (Fase 1: base visual)
-   Paleta verde + azul da marca. Unifica cores, raios, sombras, botões,
-   cabeçalho, cards, chips e prateleiras. Remove tons fora da marca
-   (laranja/rosa) herdados do template.
-   ===================================================================== */
-
-:root {
+} /* ===================================================================== DESIGN SYSTEM V2 — Droga G (Fase 1: base visual) Paleta verde + azul da marca. Unifica cores, raios, sombras, botões, cabeçalho, cards, chips e prateleiras. Remove tons fora da marca (laranja/rosa) herdados do template. ===================================================================== */ :root {
     /* Marca */
     --brand: #00A651;
     --brand-dark: #008542;
@@ -2883,98 +1957,51 @@ body:has(.nav-bar.active) .tab-bar { z-index: 900; }
     --shadow-sm: var(--sh-1);
     --shadow-md: var(--sh-2);
     --shadow-lg: var(--sh-3);
-}
-
-/* --- Tipografia base --- */
-body { color: var(--ink); background: var(--surface-alt); }
-
-.section-title {
+} /* --- Tipografia base --- */ body { color: var(--ink); background: var(--surface-alt); } .section-title {
     font-size: clamp(1.5rem, 2.6vw, 2rem);
     letter-spacing: -0.02em;
     color: var(--ink);
-}
-
-/* --- Cabeçalho --- */
-.header { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 6px 20px rgba(0, 64, 122, 0.10); }
-.top-bar { background: var(--brand-blue-dark); }
-.header-main { padding: 14px 0; }
-.logo { letter-spacing: -0.5px; }
-
-.search-input {
+} /* --- Cabeçalho --- */ .header { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 6px 20px rgba(0, 64, 122, 0.10); } .top-bar { background: var(--brand-blue-dark); } .header-main { padding: 14px 0; } .logo { letter-spacing: -0.5px; } .search-input {
     border: 2px solid transparent;
     background: var(--surface);
     box-shadow: var(--sh-1);
     font-weight: 500;
-}
-.search-input:focus {
+} .search-input:focus {
     border-color: var(--brand-yellow);
     box-shadow: 0 0 0 4px rgba(255, 196, 0, 0.25);
-}
-.search-btn { background: var(--brand); }
-.search-btn:hover { background: var(--brand-dark); transform: translateY(-50%) scale(1.05); }
-
-.nav-menu li a { font-weight: 600; }
-.nav-menu li a:hover,
-.nav-menu li a.active { color: var(--brand-yellow); border-bottom-color: var(--brand-yellow); }
-
-/* --- Botões --- */
-.btn {
+} .search-btn { background: var(--brand); } .search-btn:hover { background: var(--brand-dark); transform: translateY(-50%) scale(1.05); } .nav-menu li a { font-weight: 600; } .nav-menu li a:hover, .nav-menu li a.active { color: var(--brand-yellow); border-bottom-color: var(--brand-yellow); } /* --- Botões --- */ .btn {
     border-radius: var(--r-md);
     font-weight: 700;
     letter-spacing: 0.01em;
     box-shadow: none;
-}
-.btn:hover { transform: translateY(-1px); box-shadow: var(--sh-2); }
-.btn-outline { border: 1.5px solid var(--brand); color: var(--brand); background: transparent; }
-.btn-outline:hover { background: var(--brand-soft); }
-.btn-accent { background: var(--brand-yellow); color: var(--ink); }
-.btn-accent:hover { background: #E5B000; }
-.product-card .btn { width: 100%; }
-
-/* --- Cards genéricos --- */
-.feature-card,
-.content-card,
-.products-sidebar {
+} .btn:hover { transform: translateY(-1px); box-shadow: var(--sh-2); } .btn-outline { border: 1.5px solid var(--brand); color: var(--brand); background: transparent; } .btn-outline:hover { background: var(--brand-soft); } .product-card .btn { width: 100%; } /* --- Cards genéricos --- */ .feature-card, .content-card, .products-sidebar {
     border-radius: var(--r-lg);
     border: 1px solid var(--line);
     box-shadow: var(--sh-1);
     background: var(--surface);
-}
-
-/* --- Chips de categoria (home) --- */
-.section-categories { background: var(--surface); border-bottom: 1px solid var(--line); }
-.category-chip {
+} /* --- Chips de categoria (home) --- */ .section-categories { background: var(--surface); border-bottom: 1px solid var(--line); } .category-chip {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--r-lg);
     box-shadow: var(--sh-1);
     font-weight: 600;
     color: var(--ink-2);
-}
-.category-chip i { color: var(--brand); }
-.category-chip:hover {
+} .category-chip i { color: var(--brand); } .category-chip:hover {
     border-color: var(--brand);
     background: var(--brand-soft);
     color: var(--brand-dark);
     transform: translateY(-3px);
     box-shadow: var(--sh-2);
-}
-.category-chip:hover i { color: var(--brand-dark); }
-
-/* --- Cards de produto --- */
-.product-card {
+} .category-chip:hover i { color: var(--brand-dark); } /* --- Cards de produto --- */ .product-card {
     border-radius: var(--r-lg);
     border: 1px solid var(--line);
     box-shadow: var(--sh-1);
     padding: 16px;
-}
-.product-card::before { display: none; }              /* remove faixa-topo antiga */
-.product-card:hover {
+} .product-card::before { display: none; } /* remove faixa-topo antiga */ .product-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--sh-3);
     border-color: var(--brand);
-}
-.product-image-placeholder {
+} .product-image-placeholder {
     height: 150px;
     display: flex;
     align-items: center;
@@ -2984,10 +2011,7 @@ body { color: var(--ink); background: var(--surface-alt); }
     background: var(--surface-alt);
     border-radius: var(--r-md);
     filter: none;
-}
-.product-image-placeholder img { max-height: 100%; max-width: 100%; }
-.product-card:hover .product-image-placeholder { transform: none; filter: none; }
-.product-name {
+} .product-image-placeholder img { max-height: 100%; max-width: 100%; } .product-card:hover .product-image-placeholder { transform: none; filter: none; } .product-name {
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--ink);
@@ -2997,237 +2021,62 @@ body { color: var(--ink); background: var(--surface-alt); }
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-.product-badge {
-    background: var(--brand-yellow);
-    color: var(--ink);
-    border-radius: var(--r-pill);
-    font-weight: 800;
-    letter-spacing: 0.02em;
-}
-
-/* --- Filtros / chips de produto --- */
-.products-filter-btn {
+} /* --- Filtros / chips de produto --- */ .products-filter-btn {
     border: 1px solid var(--line);
     background: var(--surface);
     border-radius: var(--r-pill);
     color: var(--ink-2);
     font-weight: 600;
-}
-.products-filter-btn:hover { border-color: var(--brand); background: var(--brand-soft); color: var(--brand-dark); }
-.products-filter-btn.active {
+} .products-filter-btn:hover { border-color: var(--brand); background: var(--brand-soft); color: var(--brand-dark); } .products-filter-btn.active {
     border-color: var(--brand);
     background: var(--brand);
     color: #fff;
-}
-
-/* --- Prateleiras --- */
-.prateleira-titulo { font-size: 1.25rem; letter-spacing: -0.01em; }
-.prateleira-titulo i { color: var(--brand); }
-.prateleira-seta { background: var(--surface); border: 1px solid var(--line); color: var(--brand-blue); }
-.prateleira-seta:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
-
-/* --- Tab bar (mobile) --- */
-.tab-item.active { color: var(--brand); }
-.tab-item.active i { color: var(--brand); }
-.tab-item.active::before { background: var(--brand) !important; }
-
-/* --- Banner/carrossel --- */
-.banner-bolinha { background: rgba(15, 23, 42, 0.18); }
-.banner-bolinha.ativo { background: var(--brand); }
-.banner-seta { background: rgba(255, 255, 255, 0.92); color: var(--brand-blue); box-shadow: var(--sh-2); }
-.banner-seta:hover { background: var(--brand); color: #fff; }
-
-/* --- Atalhos de categoria (home, estilo Araujo) --- */
-.section-cat-shortcuts { padding: 28px 0 8px; }
-.cat-shortcuts {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-}
-.cat-shortcut {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 8px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    box-shadow: var(--sh-1);
-    text-decoration: none;
-    color: var(--ink-2);
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-align: center;
-    transition: all 0.2s ease;
-}
-.cat-shortcut:hover {
-    border-color: var(--brand);
-    background: var(--brand-soft);
-    color: var(--brand-dark);
-    transform: translateY(-3px);
-    box-shadow: var(--sh-2);
-}
-.cat-shortcut-icon {
-    width: 54px;
-    height: 54px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--r-pill);
-    background: var(--brand-soft);
-    color: var(--brand);
-    font-size: 1.4rem;
-    transition: all 0.2s ease;
-}
-.cat-shortcut:hover .cat-shortcut-icon { background: var(--brand); color: #fff; }
-@media (max-width: 480px) {
-    .cat-shortcuts { gap: 8px; }
-    .cat-shortcut { padding: 12px 6px; font-size: 0.78rem; }
-    .cat-shortcut-icon { width: 46px; height: 46px; font-size: 1.2rem; }
-}
-
-/* Tarja/prescricao: decisao de design, nao esquecimento.
-   Os CARTOES ficam limpos de proposito (nenhum selo em cima da foto).
-   O aviso aparece so na pagina do produto, que e onde o cliente
-   decide comprar. Regra e texto em REGRAS-E-SCRIPTS.md. */
-
-/* Desktop: centralizar atalhos de categoria */
-@media (min-width: 769px) { .cat-shortcuts { max-width: 760px; margin: 0 auto; } }
-/* --- BOTOES LADO A LADO ---
-   Inline styles com margin-left quebravam o layout no celular: os dois
-   botoes juntos passavam de 360px e o segundo caia para fora da tela
-   (ou ficava torto). Este contêiner deixa quebrar a linha de forma
-   limpa, com o espaco indo para cima em vez de para o lado. */
-.btn-linha {
+} /* --- Prateleiras --- */ .prateleira-titulo { font-size: 1.25rem; letter-spacing: -0.01em; } .prateleira-titulo i { color: var(--brand); } .prateleira-seta { background: var(--surface); border: 1px solid var(--line); color: var(--brand-blue); } .prateleira-seta:hover { background: var(--brand); border-color: var(--brand); color: #fff; } /* --- Tab bar (mobile) --- */ .tab-item.active { color: var(--brand); } .tab-item.active i { color: var(--brand); } .tab-item.active::before { background: var(--brand) !important; } /* --- Banner/carrossel --- */ .banner-bolinha { background: rgba(15, 23, 42, 0.18); } .banner-bolinha.ativo { background: var(--brand); } .banner-seta { background: rgba(255, 255, 255, 0.92); color: var(--brand-blue); box-shadow: var(--sh-2); } .banner-seta:hover { background: var(--brand); color: #fff; } /* Tarja/prescricao: decisao de design, nao esquecimento. Os CARTOES ficam limpos de proposito (nenhum selo em cima da foto). O aviso aparece so na pagina do produto, que e onde o cliente decide comprar. Regra e texto em REGRAS-E-SCRIPTS.md. */ /* Desktop: centralizar atalhos de categoria */ @media (min-width: 769px) { .cat-shortcuts { max-width: 760px; margin: 0 auto; } } /* --- BOTOES LADO A LADO --- Inline styles com margin-left quebravam o layout no celular: os dois botoes juntos passavam de 360px e o segundo caia para fora da tela (ou ficava torto). Este contêiner deixa quebrar a linha de forma limpa, com o espaco indo para cima em vez de para o lado. */ .btn-linha {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
     margin-top: 40px;
-}
-.btn-linha .btn {
+} .btn-linha .btn {
     margin-left: 0 !important;
 }
-@media (max-width: 420px) {
-    .btn-linha .btn {
+@media (max-width: 420px) { .btn-linha .btn {
         width: 100%;
     }
-}
-
-/* Com o boneco fora, sobrou espaco na barra de cima. Os 3 icones que
-   sobraram (Nossa Loja, Contato, Favoritos) ganham mais espaco entre si
-   e area de toque maior, que facilita para quem tem a mao grande ou
-   usa o celular com dificuldade. */
-@media (max-width: 768px) {
+} /* Com o boneco fora, sobrou espaco na barra de cima. Os 3 icones que sobraram (Nossa Loja, Contato, Favoritos) ganham mais espaco entre si e area de toque maior, que facilita para quem tem a mao grande ou usa o celular com dificuldade. */ @media (max-width: 768px) {
     .header-icons { gap: 10px; }
     .header-icon {
         min-width: 46px;
         min-height: 46px;
         font-size: 1.25rem;
     }
-}
-
-/* --- VERIFICADOR DE ENTREGA ---
-   Resposta a primeira duvida do cliente antes de comprar: "entrega
-   no meu bairro?". Precisa aparecer ANTES do carrinho, nao so no
-   final do pedido. */
-.entrega-box {
+} /* --- VERIFICADOR DE ENTREGA --- Resposta a primeira duvida do cliente antes de comprar: "entrega no meu bairro?". Precisa aparecer ANTES do carrinho, nao so no final do pedido. */ .entrega-box {
     background: linear-gradient(135deg, #F0FBF4 0%, #EEF5FF 100%);
     border: 2px solid var(--brand);
     border-radius: var(--r-lg);
     padding: 28px 24px;
-}
-.entrega-box-texto h2 {
-    font-size: 1.35rem;
-    color: var(--ink);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.entrega-box-texto h2 i { color: var(--brand); }
-.entrega-box-texto > p {
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-    font-size: 0.95rem;
-}
-.entrega-input-linha {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.entrega-input {
-    flex: 1 1 220px;
-    min-width: 0;
-    padding: 13px 15px;
-    border: 2px solid var(--line);
-    border-radius: var(--r-md);
-    font-size: 1rem;
-    background: #fff;
-    color: var(--ink);
-}
-.entrega-input:focus {
-    outline: none;
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.15);
-}
-.entrega-input-linha .btn { flex: 0 0 auto; }
-.entrega-resultado {
-    margin-top: 14px;
-    padding: 13px 15px;
-    border-radius: var(--r-md);
-    font-size: 0.95rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-}
-.entrega-resultado.sim {
+} .entrega-input-linha .btn { flex: 0 0 auto; } .entrega-resultado.sim {
     background: #E7F8EF;
     color: #04663A;
     border: 1px solid #9BE0BF;
-}
-.entrega-resultado.nao {
+} .entrega-resultado.nao {
     background: #FFF6E8;
     color: #8A5200;
     border: 1px solid #FFD08A;
 }
-.entrega-obs {
-    margin-top: 14px;
-    font-size: 0.85rem !important;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-@media (max-width: 420px) {
-    .entrega-input-linha .btn { width: 100%; }
-    .entrega-box { padding: 22px 18px; }
-}
-
-/* --- CARREGAR MAIS PRODUTOS ---
-   Sem isso, os 105 produtos do catalogo eram criados de uma vez: HTML
-   imenso e lento no 4G. Agora sao 24 por vez. */
-.carregar-mais-wrap {
+@media (max-width: 420px) { .entrega-input-linha .btn { width: 100%; } .entrega-box { padding: 22px 18px; }
+} /* --- CARREGAR MAIS PRODUTOS --- Sem isso, os 105 produtos do catalogo eram criados de uma vez: HTML imenso e lento no 4G. Agora sao 24 por vez. */ .carregar-mais-wrap {
     text-align: center;
     margin-top: 32px;
-}
-.carregar-mais-btn {
+} .carregar-mais-btn {
     min-width: 240px;
     font-size: 1rem;
     padding: 15px 24px;
-}
-.carregar-mais-info {
+} .carregar-mais-info {
     margin-top: 12px;
     font-size: 0.85rem;
     color: var(--text-secondary);
-}
-
-/* --- BOTAO DENTRO DO AVISO ---
-   Antes o aviso era so um texto: o cliente adicionava o produto e ficava
-   sem caminho para o carrinho. Agora o aviso traz o botao junto. */
-.toast-acao {
+} /* --- BOTAO DENTRO DO AVISO --- Antes o aviso era so um texto: o cliente adicionava o produto e ficava sem caminho para o carrinho. Agora o aviso traz o botao junto. */ .toast-acao {
     background: var(--accent-yellow);
     color: #3D2B00;
     font-weight: 700;
@@ -3238,39 +2087,27 @@ body { color: var(--ink); background: var(--surface-alt); }
     white-space: nowrap;
     flex-shrink: 0;
     margin-left: 6px;
-}
-.toast-acao:hover {
+} .toast-acao:hover {
     background: #fff;
     color: #3D2B00;
-}
-.toast {
+} .toast {
     flex-wrap: wrap;
     row-gap: 8px;
 }
-@media (max-width: 420px) {
-    .toast {
+@media (max-width: 420px) { .toast {
         min-width: 0;
         width: calc(100% - 32px);
         justify-content: flex-start;
-    }
-    .toast-acao { margin-left: 0; width: 100%; text-align: center; }
-}
-
-/* --- FARMÁCIA POPULAR: condições como etiquetas ---
-   Era uma lista de 11 linhas com fonte de 1.1rem: uma parede de texto
-   que empurrava o botão para fora do banner. Virou etiquetas compactas,
-   que ocupam 3 linhas e são varridas com o olho de relance. */
-.destaque-gratuito {
+    } .toast-acao { margin-left: 0; width: 100%; text-align: center; }
+} /* --- FARMÁCIA POPULAR: condições como etiquetas --- Era uma lista de 11 linhas com fonte de 1.1rem: uma parede de texto que empurrava o botão para fora do banner. Virou etiquetas compactas, que ocupam 3 linhas e são varridas com o olho de relance. */ .destaque-gratuito {
     color: var(--accent-yellow);
     font-weight: 800;
-}
-.chips-condicoes {
+} .chips-condicoes {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin: 18px 0 16px;
-}
-.chip-cond {
+} .chip-cond {
     background: rgba(255, 255, 255, 0.16);
     border: 1px solid rgba(255, 255, 255, 0.38);
     color: #fff;
@@ -3279,113 +2116,58 @@ body { color: var(--ink); background: var(--surface-alt); }
     padding: 7px 14px;
     border-radius: 50px;
     white-space: nowrap;
-}
-.obs-fp {
+} .obs-fp {
     font-size: 0.86rem;
     line-height: 1.6;
     opacity: 0.92;
     margin-bottom: 20px;
-}
-.obs-fp i {
+} .obs-fp i {
     margin-right: 5px;
-}
-/* Se o banner ficar escuro, as etiquetas se adaptam */
-@media (max-width: 420px) {
+} /* Se o banner ficar escuro, as etiquetas se adaptam */ @media (max-width: 420px) {
     .chip-cond {
         font-size: 0.8rem;
         padding: 6px 11px;
     }
-}
-
-/* --- FARMÁCIA POPULAR: grade de condições ---
-   A lista era uma coluna única com 10 headings e <p> com <br>. Ficava
-   um texto endlesso, impossível de bater o olho. Virou grade: cada
-   condição é um cartão, com o nome em destaque e os medicamentos abaixo. */
-.grade-condicoes {
+} /* --- FARMÁCIA POPULAR: grade de condições --- A lista era uma coluna única com 10 headings e <p> com <br>. Ficava um texto endlesso, impossível de bater o olho. Virou grade: cada condição é um cartão, com o nome em destaque e os medicamentos abaixo. */ .grade-condicoes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 18px;
     margin-top: 22px;
-}
-.bloco-cond {
+} .bloco-cond {
     background: var(--brand-soft, #F0FBF4);
     border: 1px solid #BFE8CF;
     border-radius: var(--r-md, 12px);
     padding: 16px 18px;
-}
-.bloco-cond h4 {
+} .bloco-cond h4 {
     color: var(--brand, #00A651);
     font-size: 1rem;
     font-weight: 700;
     margin: 0 0 10px;
     padding-bottom: 8px;
     border-bottom: 1px solid #BFE8CF;
-}
-.bloco-cond ul {
+} .bloco-cond ul {
     list-style: none;
     margin: 0;
     padding: 0;
-}
-.bloco-cond li {
+} .bloco-cond li {
     font-size: 0.88rem;
     line-height: 1.6;
     color: var(--ink, #0F172A);
     padding-left: 14px;
     position: relative;
-}
-.bloco-cond li::before {
+} .bloco-cond li::before {
     content: '·';
     position: absolute;
     left: 3px;
     font-weight: 700;
     color: var(--brand, #00A651);
 }
-@media (max-width: 420px) {
-    .grade-condicoes { grid-template-columns: 1fr; gap: 14px; }
-    .bloco-cond { padding: 14px 15px; }
-}
-
-/* --- LISTA DE BAIRROS COM ENTREGA ---
-   O cliente não deveria precisar descobrir se a farmácia entrega na rua
-   dele digitando e errando. A lista aparece aberta para ele conferir
-   sozinho, e os nomes vêm da mesma lista que a verificação usa. */
-.lista-bairros {
+@media (max-width: 420px) { .grade-condicoes { grid-template-columns: 1fr; gap: 14px; } .bloco-cond { padding: 14px 15px; }
+} /* --- LISTA DE BAIRROS COM ENTREGA --- O cliente não deveria precisar descobrir se a farmácia entrega na rua dele digitando e errando. A lista aparece aberta para ele conferir sozinho{
     margin-top: 18px;
     border-top: 1px solid #CFE6D8;
     padding-top: 14px;
-}
-.lista-bairros summary {
-    cursor: pointer;
-    font-weight: 700;
-    color: #04663A;
-    font-size: 0.93rem;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.lista-bairros summary::-webkit-details-marker { display: none; }
-.lista-bairros summary::before {
-    content: '\f078';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    font-size: 0.8rem;
-    transition: transform 0.2s ease;
-}
-.lista-bairros[open] summary::before { transform: rotate(180deg); }
-.lista-bairros summary:hover { color: var(--brand); }
-.lista-bairros-intro {
-    font-size: 0.85rem !important;
-    color: #3F5D4C !important;
-    margin: 12px 0 14px !important;
-    line-height: 1.6;
-}
-.lista-bairros-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-}
-.tag-bairro {
+} .tag-bairro {
     background: #fff;
     border: 1px solid #BFE8CF;
     color: #04663A;
@@ -3394,111 +2176,27 @@ body { color: var(--ink); background: var(--surface-alt); }
     padding: 6px 12px;
     border-radius: 50px;
     white-space: nowrap;
-}
-.tag-bairro--principal {
+} .tag-bairro--principal {
     background: var(--brand);
     border-color: var(--brand);
     color: #fff;
 }
-@media (max-width: 420px) {
-    .tag-bairro { font-size: 0.78rem; padding: 5px 10px; }
-}
-
-/* Lista de bairros dentro do FAQ (mesma fonte da verificação) */
-.faq-bairros {
+@media (max-width: 420px) { .tag-bairro { font-size: 0.78rem; padding: 5px 10px; }
+} /* Lista de bairros dentro do FAQ (mesma fonte da verificação) */ .faq-bairros {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
     margin: 14px 0 18px;
-}
-
-/* --- CAIXA DE ENTREGA: versao compacta ---
-   Era uma caixa alta, com titulo grande e o campo de busca lado a lado
-   com o botao. Agora tudo fica UM ABAIXO DO OUTRO e com tamanho menor:
-   ocupa bem menos altura na tela do celular, que e onde a pessoa ve. */
-.entrega-check { padding: 18px 0; }
-.entrega-box {
+} /* --- CAIXA DE ENTREGA: versao compacta --- Era uma caixa alta, com titulo grande e o campo de busca lado a lado com o botao. Agora tudo fica UM ABAIXO DO OUTRO e com tamanho menor: ocupa bem menos altura na tela do celular, que e onde a pessoa ve. */ .entrega-check { padding: 18px 0; } .entrega-box {
     background: linear-gradient(135deg, #F0FBF4 0%, #EEF5FF 100%);
     border: 2px solid var(--brand);
     border-radius: var(--r-lg);
     padding: 20px 18px;
     max-width: 520px;
     margin: 0 auto;
-}
-.entrega-titulo {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin: 0 0 4px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.entrega-titulo i { color: var(--brand); font-size: 0.95rem; }
-.entrega-sub {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    margin: 0 0 12px;
-}
-.entrega-form {
-    display: flex;
-    flex-direction: column;   /* empilhado: campo em cima, botao embaixo */
-    gap: 8px;
-}
-.entrega-input {
-    width: 100%;
-    padding: 11px 13px;
-    border: 2px solid var(--line);
-    border-radius: var(--r-md);
-    font-size: 0.95rem;
-    background: #fff;
-    color: var(--ink);
-}
-.entrega-input:focus {
-    outline: none;
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.15);
-}
-.entrega-form .btn { width: 100%; }
-.entrega-resultado {
-    margin-top: 10px;
-    padding: 10px 12px;
-    border-radius: var(--r-md);
-    font-size: 0.87rem;
-    font-weight: 600;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    line-height: 1.5;
-}
-.lista-bairros {
-    margin-top: 12px;
-    border-top: 1px solid #CFE6D8;
-    padding-top: 10px;
-}
-.lista-bairros summary {
-    font-size: 0.87rem;
-}
-.lista-bairros-tags { margin-top: 10px; }
-.entrega-obs {
-    margin-top: 12px !important;
-    font-size: 0.79rem !important;
-    color: var(--text-secondary);
-    line-height: 1.55;
-}
-.entrega-obs i { margin-right: 4px; }
-@media (max-width: 420px) {
-    .entrega-box { padding: 16px 14px; }
-    .entrega-titulo { font-size: 0.98rem; }
-}
-
-/* --- CARTAO + MODAL DE BAIRROS ---
-   O cliente nao precisa mais digitar nada: ele abre o modal, ve a lista
-   completa dos bairros e procura o nome dele. Sem campo, sem CEP, sem
-   depender de serviço externo. */
-
-/* Cartao que abre o modal */
-.entrega-cartao {
+} .entrega-form .btn { width: 100%; }
+@media (max-width: 420px) { .entrega-box { padding: 16px 14px; }
+} /* --- CARTAO + MODAL DE BAIRROS --- O cliente nao precisa mais digitar nada: ele abre o modal, ve a lista completa dos bairros e procura o nome dele. Sem campo, sem CEP, sem depender de serviço externo. */ /* Cartao que abre o modal */ .entrega-cartao {
     display: flex;
     align-items: center;
     gap: 14px;
@@ -3513,13 +2211,10 @@ body { color: var(--ink); background: var(--surface-alt); }
     cursor: pointer;
     font-family: inherit;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.entrega-cartao:hover {
+} .entrega-cartao:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 166, 81, 0.18);
-}
-.entrega-cartao:active { transform: translateY(0); }
-.entrega-cartao-icone {
+} .entrega-cartao:active { transform: translateY(0); } .entrega-cartao-icone {
     flex-shrink: 0;
     width: 42px;
     height: 42px;
@@ -3530,40 +2225,29 @@ body { color: var(--ink); background: var(--surface-alt); }
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-}
-.entrega-cartao-texto { flex: 1; min-width: 0; }
-.entrega-cartao-texto strong {
+} .entrega-cartao-texto { flex: 1; min-width: 0; } .entrega-cartao-texto strong {
     display: block;
     color: var(--ink);
     font-size: 0.98rem;
     line-height: 1.3;
-}
-.entrega-cartao-texto span {
+} .entrega-cartao-texto span {
     display: block;
     color: var(--text-secondary);
     font-size: 0.82rem;
     margin-top: 2px;
-}
-.entrega-cartao-texto b { color: var(--brand); }
-.entrega-cartao-seta { color: var(--brand); flex-shrink: 0; font-size: 0.85rem; }
-
-/* Modal */
-.modal-bairros {
+} .entrega-cartao-texto b { color: var(--brand); } .entrega-cartao-seta { color: var(--brand); flex-shrink: 0; font-size: 0.85rem; } /* Modal */ .modal-bairros {
     position: fixed;
     inset: 0;
     z-index: 100000;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-}
-.modal-bairros[hidden] { display: none; }
-.modal-bairros-fundo {
+} .modal-bairros[hidden] { display: none; } .modal-bairros-fundo {
     position: absolute;
     inset: 0;
     background: rgba(15, 23, 42, 0.55);
     animation: fadeInUp 0.2s ease-out;
-}
-.modal-bairros-caixa {
+} .modal-bairros-caixa {
     position: relative;
     background: #fff;
     width: 100%;
@@ -3575,24 +2259,20 @@ body { color: var(--ink); background: var(--surface-alt); }
     -webkit-overflow-scrolling: touch;
     animation: slideUpFade 0.28s ease-out;
     box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.2);
-}
-.modal-bairros-topo {
+} .modal-bairros-topo {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 6px;
-}
-.modal-bairros-topo h2 {
+} .modal-bairros-topo h2 {
     font-size: 1.1rem;
     color: var(--ink);
     margin: 0;
     display: flex;
     align-items: center;
     gap: 9px;
-}
-.modal-bairros-topo h2 i { color: var(--brand); }
-.modal-bairros-fechar {
+} .modal-bairros-topo h2 i { color: var(--brand); } .modal-bairros-fechar {
     flex-shrink: 0;
     width: 34px;
     height: 34px;
@@ -3603,75 +2283,48 @@ body { color: var(--ink); background: var(--surface-alt); }
     font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
-}
-.modal-bairros-fechar:hover { background: #E2E8F0; }
-.modal-bairros-sub {
+} .modal-bairros-fechar:hover { background: #E2E8F0; } .modal-bairros-sub {
     color: var(--text-secondary);
     font-size: 0.86rem;
     line-height: 1.55;
     margin: 0 0 14px;
-}
-.modal-bairros-lista {
+} .modal-bairros-lista {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--line);
-}
-.modal-bairros-rodape { padding-top: 14px; }
-.modal-bairros-rodape p {
+} .modal-bairros-rodape { padding-top: 14px; } .modal-bairros-rodape p {
     font-size: 0.83rem;
     color: var(--text-secondary);
     line-height: 1.55;
     margin: 0 0 10px;
-}
-.modal-bairros-rodape i { margin-right: 5px; color: var(--brand); }
+} .modal-bairros-rodape i { margin-right: 5px; color: var(--brand); }
 
-@media (min-width: 769px) {
-    .modal-bairros { align-items: center; }
-    .modal-bairros-caixa {
+@media (min-width: 769px) { .modal-bairros { align-items: center; } .modal-bairros-caixa {
         border-radius: 18px;
         max-height: 84vh;
         margin: 20px;
     }
 }
-@media (max-width: 420px) {
-    .modal-bairros-caixa { padding: 16px 14px calc(16px + env(safe-area-inset-bottom)); }
-    .entrega-cartao { padding: 14px; gap: 11px; }
-    .entrega-cartao-icone { width: 38px; height: 38px; font-size: 1rem; }
-    .entrega-cartao-texto strong { font-size: 0.92rem; }
-}
-
-/* Aviso do "não achei meu bairro". Fica destacado porque a lista
-   pode não estar completa — é honesto dizer isso ao cliente. */
-.modal-aviso {
+@media (max-width: 420px) { .modal-bairros-caixa { padding: 16px 14px calc(16px + env(safe-area-inset-bottom)); } .entrega-cartao { padding: 14px; gap: 11px; } .entrega-cartao-icone { width: 38px; height: 38px; font-size: 1rem; } .entrega-cartao-texto strong { font-size: 0.92rem; }
+} /* Aviso do "não achei meu bairro". Fica destacado porque a lista pode não estar completa — é honesto dizer isso ao cliente. */ .modal-aviso {
     background: #FFF6E8;
     border: 1px solid #FFD08A;
     border-radius: var(--r-md);
     padding: 14px;
     margin-bottom: 14px;
-}
-.modal-aviso p {
+} .modal-aviso p {
     color: #8A5200;
     font-size: 0.84rem;
     line-height: 1.55;
     margin: 0 0 11px;
-}
-.modal-aviso i { margin-right: 5px; }
-.modal-aviso strong { color: #7A4700; }
-.modal-bairros-loja {
+} .modal-aviso i { margin-right: 5px; } .modal-aviso strong { color: #7A4700; } .modal-bairros-loja {
     font-size: 0.81rem;
     color: var(--text-secondary);
     line-height: 1.55;
     margin: 0;
-}
-
-
-/* --- CONSENTIMENTO DE PRIVACIDADE (LGPD) ---
-   O .form-group input dava width:100% tambem no checkbox, e isso
-   empurrava o texto para o canto. Aqui o checkbox fica com tamanho
-   proprio e o texto ocupa a linha inteira. */
-.consentimento {
+} /* --- CONSENTIMENTO DE PRIVACIDADE (LGPD) --- O .form-group input dava width:100% tambem no checkbox, e isso empurrava o texto para o canto. Aqui o checkbox fica com tamanho proprio e o texto ocupa a linha inteira. */ .consentimento {
     display: flex;
     align-items: flex-start;
     gap: 11px;
@@ -3685,8 +2338,7 @@ body { color: var(--ink); background: var(--surface-alt); }
     background: #F4F9F6;
     border: 1px solid #CFE6D8;
     border-radius: 12px;
-}
-.consentimento input[type="checkbox"] {
+} .consentimento input[type="checkbox"] {
     width: 19px;
     height: 19px;
     min-width: 19px;
@@ -3694,24 +2346,15 @@ body { color: var(--ink); background: var(--surface-alt); }
     margin: 1px 0 0;
     accent-color: var(--brand);
     cursor: pointer;
-}
-.consentimento span {
+} .consentimento span {
     flex: 1;
     min-width: 0;
-}
-.consentimento a {
+} .consentimento a {
     color: var(--primary-blue);
     font-weight: 600;
 }
-@media (max-width: 420px) {
-    .consentimento { font-size: 0.85rem; padding: 11px 12px; gap: 9px; }
-}
-
-/* --- AVISO DO PAGAMENTO ---
-   O campo "Como prefere pagar?" pode dar a impressao de que o site
-   cobra. Este aviso deixa claro que e so preferencia e que o
-   pagamento acontece no WhatsApp, depois da confirmacao da loja. */
-.aviso-pagamento {
+@media (max-width: 420px) { .consentimento { font-size: 0.85rem; padding: 11px 12px; gap: 9px; }
+} /* --- AVISO DO PAGAMENTO --- O campo "Como prefere pagar?" pode dar a impressao de que o site cobra. Este aviso deixa claro que e so preferencia e que o pagamento acontece no WhatsApp, depois da confirmacao da loja. */ .aviso-pagamento {
     display: flex;
     align-items: flex-start;
     gap: 9px;
@@ -3723,28 +2366,19 @@ body { color: var(--ink); background: var(--surface-alt); }
     font-size: 0.83rem;
     line-height: 1.55;
     color: #1B4B72;
-}
-.aviso-pagamento i {
+} .aviso-pagamento i {
     flex-shrink: 0;
     margin-top: 2px;
     color: #128C7E;
     font-size: 1rem;
-}
-.aviso-pagamento strong { color: #0D3B5C; }
-
-/* --- SELETOR DE QUANTIDADE (página do produto) ---
-   Antes de adicionar, o cliente escolhe quantas unidades quer.
-   Sem isso, "Adicionar à lista" somava sempre 1 e ele precisava
-   corrigir depois no carrinho. */
-.qtd-seletor {
+} .aviso-pagamento strong { color: #0D3B5C; } /* --- SELETOR DE QUANTIDADE (página do produto) --- Antes de adicionar, o cliente escolhe quantas unidades quer. Sem isso, "Adicionar à lista" somava sempre 1 e ele precisava corrigir depois no carrinho. */ .qtd-seletor {
     display: inline-flex;
     align-items: center;
     border: 2px solid var(--line);
     border-radius: var(--r-md);
     overflow: hidden;
     background: #fff;
-}
-.qtd-btn {
+} .qtd-btn {
     width: 42px;
     height: 46px;
     border: none;
@@ -3755,10 +2389,7 @@ body { color: var(--ink); background: var(--surface-alt); }
     cursor: pointer;
     line-height: 1;
     transition: background 0.15s ease;
-}
-.qtd-btn:hover { background: var(--brand-soft); }
-.qtd-btn:active { background: #BFE8CF; }
-.qtd-input {
+} .qtd-btn:hover { background: var(--brand-soft); } .qtd-btn:active { background: #BFE8CF; } .qtd-input {
     width: 52px;
     height: 46px;
     border: none;
@@ -3769,33 +2400,18 @@ body { color: var(--ink); background: var(--surface-alt); }
     background: #fff;
     -moz-appearance: textfield;
     appearance: textfield;
-}
-.qtd-input::-webkit-outer-spin-button,
-.qtd-input::-webkit-inner-spin-button {
+} .qtd-input::-webkit-outer-spin-button, .qtd-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-.qtd-input:focus {
+} .qtd-input:focus {
     outline: none;
     background: #F0FBF4;
-}
-.produto-acoes {
+} .produto-acoes {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
-}
-
-/* --- EDITAR O CARRINHO ---
-   Cada item da lista tem o - N + (a quantidade pode ser digitada) e a
-   lixeira, que tira so aquele item. Antes o "-" sumia com 1 unidade e
-   nao havia como remover um produto sem limpar a lista inteira. */
-/* --- AVISO "INSTALAR NO CELULAR" ---
-   Fica no alto, logo abaixo do cabecalho, que e a unica faixa livre do
-   celular: embaixo ja tem a barra de abas, o botao do WhatsApp e o
-   voltar ao topo. E o aviso some sozinho depois de 12 segundos, ou na
-   hora se a pessoa fechar. */
-.aviso-app {
+} /* --- EDITAR O CARRINHO --- Cada item da lista tem o - N + (a quantidade pode ser digitada) e a lixeira, que tira so aquele item. Antes o "-" sumia com 1 unidade e nao havia como remover um produto sem limpar a lista inteira. */ /* --- AVISO "INSTALAR NO CELULAR" --- Fica no alto, logo abaixo do cabecalho, que e a unica faixa livre do celular: embaixo ja tem a barra de abas, o botao do WhatsApp e o voltar ao topo. E o aviso some sozinho depois de 12 segundos, ou na hora se a pessoa fechar. */ .aviso-app {
     position: fixed;
     top: 74px;
     left: 10px;
@@ -3814,26 +2430,20 @@ body { color: var(--ink); background: var(--surface-alt); }
 @keyframes avisoAppEntra {
     from { opacity: 0; transform: translateY(-16px); }
     to   { opacity: 1; transform: translateY(0); }
-}
-.aviso-app img {
+} .aviso-app img {
     flex-shrink: 0;
     border-radius: 10px;
-}
-.aviso-app-texto { flex: 1; min-width: 0; }
-.aviso-app-texto > strong {
+} .aviso-app-texto { flex: 1; min-width: 0; } .aviso-app-texto > strong {
     display: block;
     font-size: 0.95rem;
     color: var(--ink, #0F172A);
     margin-bottom: 4px;
-}
-.aviso-app .instrucao {
+} .aviso-app .instrucao {
     margin: 0 0 4px;
     font-size: 0.84rem;
     line-height: 1.45;
     color: var(--text-secondary, #475569);
-}
-.aviso-app .simbolo { font-size: 1.05rem; }
-.aviso-app-botao {
+} .aviso-app .simbolo { font-size: 1.05rem; } .aviso-app-botao {
     flex-shrink: 0;
     align-self: center;
     padding: 10px 16px;
@@ -3845,11 +2455,7 @@ body { color: var(--ink); background: var(--surface-alt); }
     font-size: 0.88rem;
     cursor: pointer;
     white-space: nowrap;
-}
-.aviso-app-botao:hover { background: #008C45; }
-.aviso-app-botao:active { background: #007A3C; }
-
-.aviso-app-fechar {
+} .aviso-app-botao:hover { background: #008C45; } .aviso-app-botao:active { background: #007A3C; } .aviso-app-fechar {
     flex-shrink: 0;
     width: 30px;
     height: 30px;
@@ -3860,11 +2466,7 @@ body { color: var(--ink); background: var(--surface-alt); }
     font-size: 1.2rem;
     line-height: 1;
     cursor: pointer;
-}
-.aviso-app-fechar:hover { background: #E2E8F0; }
-
-/* Botao fixo no rodape, para quem fechou o aviso e quiser instalar depois */
-.btn-instalar {
+} .aviso-app-fechar:hover { background: #E2E8F0; } /* Botao fixo no rodape, para quem fechou o aviso e quiser instalar depois */ .btn-instalar {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -3878,31 +2480,24 @@ body { color: var(--ink); background: var(--surface-alt); }
     font-size: 0.88rem;
     cursor: pointer;
     text-decoration: none;
-}
-.btn-instalar:hover { background: #F0FBF4; }
+} .btn-instalar:hover { background: #F0FBF4; }
 
-@media (min-width: 769px) {
-    .aviso-app {
+@media (min-width: 769px) { .aviso-app {
         top: 90px;
         left: auto;
         right: 24px;
         width: 400px;
     }
-}
-
-.cart-row {
+} .cart-row {
     display: block;
     padding: 12px 0;
     border-bottom: 1px solid var(--neutral-medium);
-}
-.cart-row-top {
+} .cart-row-top {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 10px;
-}
-.cart-row-top strong { flex: 1; line-height: 1.35; }
-.cart-remove {
+} .cart-row-top strong { flex: 1; line-height: 1.35; } .cart-remove {
     flex-shrink: 0;
     width: 38px;
     height: 38px;
@@ -3913,10 +2508,7 @@ body { color: var(--ink); background: var(--surface-alt); }
     cursor: pointer;
     font-size: 0.95rem;
     transition: background 0.15s ease, border-color 0.15s ease;
-}
-.cart-remove:hover { background: #FEF2F2; border-color: #fca5a5; }
-.cart-remove:active { background: #FEE2E2; }
-.cart-qtd {
+} .cart-remove:hover { background: #FEF2F2; border-color: #fca5a5; } .cart-remove:active { background: #FEE2E2; } .cart-qtd {
     display: inline-flex;
     align-items: center;
     margin-top: 10px;
@@ -3924,8 +2516,7 @@ body { color: var(--ink); background: var(--surface-alt); }
     border-radius: var(--r-md);
     overflow: hidden;
     background: #fff;
-}
-.cart-qtd-btn {
+} .cart-qtd-btn {
     width: 40px;
     height: 40px;
     border: none;
@@ -3936,10 +2527,7 @@ body { color: var(--ink); background: var(--surface-alt); }
     cursor: pointer;
     line-height: 1;
     transition: background 0.15s ease;
-}
-.cart-qtd-btn:hover { background: var(--brand-soft); }
-.cart-qtd-btn:active { background: #BFE8CF; }
-.cart-qtd-input {
+} .cart-qtd-btn:hover { background: var(--brand-soft); } .cart-qtd-btn:active { background: #BFE8CF; } .cart-qtd-input {
     width: 48px;
     height: 40px;
     border: none;
@@ -3950,68 +2538,32 @@ body { color: var(--ink); background: var(--surface-alt); }
     background: #fff;
     -moz-appearance: textfield;
     appearance: textfield;
-}
-.cart-qtd-input::-webkit-outer-spin-button,
-.cart-qtd-input::-webkit-inner-spin-button {
+} .cart-qtd-input::-webkit-outer-spin-button, .cart-qtd-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-.cart-qtd-input:focus { outline: none; background: #F0FBF4; }
-
-/* Versao compacta do seletor, para os cards do catalogo.
-   O card e pequeno, entao aqui o seletor ocupa a largura toda e fica
-   logo acima do botao "Adicionar a lista". */
-.qtd-seletor-card {
+} .cart-qtd-input:focus { outline: none; background: #F0FBF4; } /* Versao compacta do seletor, para os cards do catalogo. O card e pequeno, entao aqui o seletor ocupa a largura toda e fica logo acima do botao "Adicionar a lista". */ .qtd-seletor-card {
     display: flex;
     width: 100%;
     margin: 0 0 8px;
-}
-.qtd-seletor-card .qtd-btn {
+} .qtd-seletor-card .qtd-btn {
     flex: 1 1 0;
     width: auto;
     height: 40px;
     font-size: 1.05rem;
-}
-.qtd-seletor-card .qtd-input {
+} .qtd-seletor-card .qtd-input {
     flex: 1 1 0;
     width: auto;
     height: 40px;
-}
-.product-card > .qtd-seletor-card + .btn { width: 100%; }
-@media (max-width: 420px) {
-    .produto-acoes { width: 100%; }
-    .produto-acoes .btn { flex: 1 1 100%; }
-    .qtd-seletor { width: 100%; }
-    .qtd-btn { flex: 1; height: 44px; }
-    .qtd-input { flex: 1; height: 44px; width: auto; }
-}
-
-/* =========================================================
-   BOTOES FLUTUANTES (WhatsApp e Voltar ao topo) — REGRA FINAL
-   =========================================================
-   Este arquivo tinha CINCO regras de .whatsapp-float e TRÊS de
-   .scroll-to-top, espalhadas, e duas delas mandavam os dois botoes
-   para o MESMO lugar (bottom: 84px / right: 16px). O de baixo
-   ficava invisivel atras do de cima.
-
-   Este bloco fica no FIM do arquivo de proposito: como os dois sao
-   seletores de uma classe so, a ultima regra que aparecer vence.
-   Assim a posicao fica definida em um lugar so, sem depender de
-   qual media query veio antes.
-
-   Celular:   WhatsApp a 84px  (acima da barra de abas de 70px)
-              Voltar ao topo a 150px (acima do WhatsApp)
-   Computador: WhatsApp a 25px
-              Voltar ao topo a 100px (acima do WhatsApp) */
-.whatsapp-float {
+} .product-card > .qtd-seletor-card + .btn { width: 100%; }
+@media (max-width: 420px) { .produto-acoes { width: 100%; } .produto-acoes .btn { flex: 1 1 100%; } .qtd-seletor { width: 100%; } .qtd-btn { flex: 1; height: 44px; } .qtd-input { flex: 1; height: 44px; width: auto; }
+} /* ========================================================= BOTOES FLUTUANTES (WhatsApp e Voltar ao topo) — REGRA FINAL ========================================================= Este arquivo tinha CINCO regras de .whatsapp-float e TRÊS de .scroll-to-top, espalhadas, e duas delas mandavam os dois botoes para o MESMO lugar (bottom: 84px / right: 16px). O de baixo ficava invisivel atras do de cima. Este bloco fica no FIM do arquivo de proposito: como os dois sao seletores de uma classe so, a ultima regra que aparecer vence. Assim a posicao fica definida em um lugar so, sem depender de qual media query veio antes. Celular: WhatsApp a 84px (acima da barra de abas de 70px) Voltar ao topo a 150px (acima do WhatsApp) Computador: WhatsApp a 25px Voltar ao topo a 100px (acima do WhatsApp) */ .whatsapp-float {
     position: fixed;
     right: 25px;
     bottom: 25px;
     width: 60px;
     height: 60px;
     z-index: 1001;
-}
-.scroll-to-top {
+} .scroll-to-top {
     position: fixed;
     right: 30px;
     bottom: 100px;
@@ -4019,37 +2571,16 @@ body { color: var(--ink); background: var(--surface-alt); }
     height: 50px;
     z-index: 1001;
 }
-@media (max-width: 768px) {
-    .whatsapp-float {
+@media (max-width: 768px) { .whatsapp-float {
         right: 16px;
         bottom: 84px;
         width: 55px;
         height: 55px;
-    }
-    .scroll-to-top {
+    } .scroll-to-top {
         right: 20px;
         bottom: 150px;
     }
-}
-
-/* =========================================================
-   PAGINA DO PRODUTO — LAYOUT DAS ACOES (REGRA DEFINITIVA)
-   =========================================================
-   Esse layout ja foi tentado duas vezes e nao pegou. A causa
-   provavelmente e a media query: a regra valia so ate 768px, e
-   celular com fonte do sistema aumentada ou "tamanho da tela" em
-   modo grande passa disso. A tela nao e mais estreita que 768, e a
-   regra simplesmente nao entrava — sobrando o CSS antigo, com o
-   botao espremido ao lado da quantidade.
-
-   Por isso aqui nao se usa flex-direction para empilhar. O
-   container vira 'display: block': nesse modo os filhos SEMPRE ficam
-   um abaixo do outro, nao importa qual regra antiga exista nem em
-   que ordem o arquivo esteja. Nao ha mais como o botao voltar para
-   ao lado da quantidade.
-
-   Vale ate 1024px para cobrir celular com fonte grande e tablet. */
-@media (max-width: 1024px) {
+} /* ========================================================= PAGINA DO PRODUTO — LAYOUT DAS ACOES (REGRA DEFINITIVA) ========================================================= Esse layout ja foi tentado duas vezes e nao pegou. A causa provavelmente e a media query: a regra valia so ate 768px, e celular com fonte do sistema aumentada ou "tamanho da tela" em modo grande passa disso. A tela nao e mais estreita que 768, e a regra simplesmente nao entrava — sobrando o CSS antigo, com o botao espremido ao lado da quantidade. Por isso aqui nao se usa flex-direction para empilhar. O container vira 'display: block': nesse modo os filhos SEMPRE ficam um abaixo do outro, nao importa qual regra antiga exista nem em que ordem o arquivo esteja. Nao ha mais como o botao voltar para ao lado da quantidade. Vale ate 1024px para cobrir celular com fonte grande e tablet. */ @media (max-width: 1024px) {
     .produto-acoes {
         display: block !important;
         width: 100%;
@@ -4082,61 +2613,22 @@ body { color: var(--ink); background: var(--surface-alt); }
         margin: 0 0 10px !important;
         flex: none;
     }
-}
-
-/* =========================================================
-   AVISO (toast) E AVISO DE INSTALAR — POSICAO FINAL
-   =========================================================
-   Dois defeitos aqui:
-
-   1) O aviso do app (1900) e o aviso de carrinho (2000) ficavam
-      ambos em top: 74px, lado a lado. O de maior z-index cobria o
-      outro inteiro, incluindo o botao de instalar.
-
-   2) A caixa do aviso de carrinho acabava com top: 74px E
-      bottom: 90px ao mesmo tempo (o 'bottom: auto' foi sobrescrito
-      por uma regra antiga mais abaixo). Com os dois lados fixos, a
-      caixa se esticava pela altura inteira da tela.
-
-   Aqui cada um tem seu lugar: o aviso do app logo abaixo do
-   cabecalho, e o aviso de carrinho mais abaixo ainda, para nunca
-   se cobrem. */
-.aviso-app {
+} /* ========================================================= AVISO (toast) E AVISO DE INSTALAR — POSICAO FINAL ========================================================= Dois defeitos aqui: 1) O aviso do app (1900) e o aviso de carrinho (2000) ficavam ambos em top: 74px, lado a lado. O de maior z-index cobria o outro inteiro, incluindo o botao de instalar. 2) A caixa do aviso de carrinho acabava com top: 74px E bottom: 90px ao mesmo tempo (o 'bottom: auto' foi sobrescrito por uma regra antiga mais abaixo). Com os dois lados fixos, a caixa se esticava pela altura inteira da tela. Aqui cada um tem seu lugar: o aviso do app logo abaixo do cabecalho, e o aviso de carrinho mais abaixo ainda, para nunca se cobrem. */ .aviso-app {
     top: 74px;
     bottom: auto !important;
     z-index: 1900;
-}
-.toast-container {
+} .toast-container {
     top: 150px !important;
     bottom: auto !important;
     z-index: 2000;
 }
-@media (min-width: 769px) {
-    .aviso-app {
+@media (min-width: 769px) { .aviso-app {
         top: 90px;
-    }
-    .toast-container {
+    } .toast-container {
         top: auto !important;
         bottom: 25px !important;
     }
-}
-
-/* =========================================================
-   BOTOES FLUTUANTES vs MENU LATERAL (REGRA FINAL)
-   =========================================================
-   O cabecalho tem position: sticky e z-index: 1000. Isso cria um
-   "contexto de empilhamento": o menu lateral (1050) e a tela
-   escura (1040) ficam presas dentro dele e nunca sobem acima do
-   cabecalho.
-
-   Os botoes flutuantes do WhatsApp e do voltar ao topo estao FORA
-   do cabecalho, com z-index 1001. Resultado: ao abrir o menu, eles
-   ficavam flutuando por cima da tela escura e clicaveis do lado de
-   fora do menu.
-
-   Aqui eles sao abaixados enquanto o menu estiver aberto. */
-body:has(.nav-bar.active) .whatsapp-float,
-body:has(.nav-bar.active) .scroll-to-top {
+} /* ========================================================= BOTOES FLUTUANTES vs MENU LATERAL (REGRA FINAL) ========================================================= O cabecalho tem position: sticky e z-index: 1000. Isso cria um "contexto de empilhamento": o menu lateral (1050) e a tela escura (1040) ficam presas dentro dele e nunca sobem acima do cabecalho. Os botoes flutuantes do WhatsApp e do voltar ao topo estao FORA do cabecalho, com z-index 1001. Resultado: ao abrir o menu, eles ficavam flutuando por cima da tela escura e clicaveis do lado de fora do menu. Aqui eles sao abaixados enquanto o menu estiver aberto. */ body:has(.nav-bar.active) .whatsapp-float, body:has(.nav-bar.active) .scroll-to-top {
     opacity: 0;
     pointer-events: none;
 }
