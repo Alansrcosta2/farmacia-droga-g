@@ -1184,6 +1184,21 @@ if (favoritosGrid) {
         showToast('O app da Droga G ja esta instalado neste celular.', 'info');
         return;
       }
+      /* Android: abre a janela de instalacao do proprio navegador */
+      if (promptInstalar) {
+        const p = promptInstalar;
+        promptInstalar = null;
+        p.prompt();
+        if (p.userChoice && p.userChoice.then) {
+          p.userChoice.then((r) => {
+            if (r && r.outcome === 'accepted') {
+              showToast('App instalado. Agora e so tocar no icone.', 'success');
+            }
+          });
+        }
+        return;
+      }
+      /* iPhone (ou navegador sem suporte): mostra o passo a passo */
       instalarNoCelular(true);
     });
   });
@@ -1291,6 +1306,17 @@ const_visitas = () => {
   return n;
 };
 
+/* O Chrome do Android tem uma JANELA PROPRIA de instalacao que abre
+   com um toque. O evento 'beforeinstallprompt' permite abrir essa
+   janela pelo nosso botao, sem obrigar o cliente a fazer o caminho na
+   mao. No iPhone esse evento nao existe: ai as instrucoes sao a
+   unica forma, e continuam sendo mostradas. */
+let promptInstalar = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  promptInstalar = e;
+});
+
 const mostrarAvisoApp = (forcar) => {
   /* 1) ja esta instalado como app? nao mostra nada */
   const instalado = window.matchMedia('(display-mode: standalone)').matches ||
@@ -1334,6 +1360,7 @@ const mostrarAvisoApp = (forcar) => {
       + 'funciona mesmo sem internet.</p>' +
       dica +
     '</div>' +
+    (promptInstalar ? '<button type="button" class="aviso-app-botao" data-instalar-agora>Instalar</button>' : '') +
     '<button type="button" class="aviso-app-fechar" aria-label="Fechar aviso">&times;</button>';
   document.body.appendChild(box);
 
@@ -1345,6 +1372,25 @@ const mostrarAvisoApp = (forcar) => {
     box.remove();
   };
   box.querySelector('.aviso-app-fechar').addEventListener('click', fechar);
+
+  const botaoInstalar = box.querySelector('[data-instalar-agora]');
+  if (botaoInstalar) {
+    botaoInstalar.addEventListener('click', () => {
+      const p = promptInstalar;
+      if (!p) return;
+      promptInstalar = null;
+      p.prompt();
+      botaoInstalar.remove();
+      if (p.userChoice && p.userChoice.then) {
+        p.userChoice.then((r) => {
+          if (r && r.outcome === 'accepted') {
+            fechar();
+            showToast('App instalado. Agora e so tocar no icone.', 'success');
+          }
+        });
+      }
+    });
+  }
 
   setTimeout(() => {
     box.remove();
