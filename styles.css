@@ -1240,38 +1240,117 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --- TOAST NOTIFICATIONS --- */
+/* --- BALOES DE AVISO (toast) ---
+   Era um formato de "bola": border-radius 50px, min-width 300px e
+   conteudo centralizado. Com o botao "Ver carrinho" dentro, ficava
+   espremido e difficult de ler. Agora e um cartao: cantos suaves,
+   conteudo a esquerda, icone em circulo e acao a direita. */
+/* No computador o balao fica no canto inferior ESQUERDO e desliza da
+   esquerda (como Gmail e Facebook). A esquerda foi escolhida porque o
+   canto oposto ja tem dois botoes flutuantes (WhatsApp e voltar ao
+   topo) — colar o balao em cima deles esconderia o WhatsApp, que e o
+   botao mais importante do site. */
 .toast-container {
     position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 24px;
+    left: 24px;
     z-index: 2000;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
+    width: min(400px, calc(100vw - 48px));
     pointer-events: none;
 }
 
 .toast {
-    background: rgba(33, 37, 41, 0.95);
-    color: var(--white);
-    padding: 12px 24px;
-    border-radius: 50px;
-    box-shadow: var(--shadow-lg);
-    font-size: 0.95rem;
+    background: rgba(15, 23, 42, 0.96);
+    color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.32);
+    font-size: 0.9rem;
+    line-height: 1.45;
     display: flex;
-    align-items: center;
-    gap: 10px;
-    animation: slideUpFade 0.4s ease-out forwards;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 13px 14px;
+    animation: toastEntra 0.32s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: auto;
-    min-width: 300px;
-    justify-content: center;
-    backdrop-filter: blur(5px);
-    border-bottom: 2px solid var(--accent-yellow);
+    backdrop-filter: blur(8px);
+    border-left: 4px solid var(--brand);
+}
+.toast.saindo {
+    animation: toastSai 0.28s ease-in forwards;
 }
 
-.toast.success i { color: var(--success-green); }
-.toast.info i { color: var(--primary-blue-light); }
+.toast > i {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.14);
+}
+.toast.success { border-left-color: #22C55E; }
+.toast.info    { border-left-color: #3B82F6; }
+
+.toast > span {
+    flex: 1;
+    min-width: 0;
+    align-self: center;
+    word-break: break-word;
+}
+
+.toast-acao {
+    flex-shrink: 0;
+    align-self: center;
+    background: var(--accent-yellow);
+    color: #3D2B00;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 8px 13px;
+    border-radius: 9px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.toast-acao:hover { background: #fff; color: #3D2B00; }
+
+@keyframes toastEntra {
+    from { opacity: 0; transform: translateX(-28px) scale(0.97); }
+    to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes toastSai {
+    to { opacity: 0; transform: translateX(-20px) scale(0.97); }
+}
+
+/* No celular:cartao cheio acima da barra inferior, como app de banco */
+@media (max-width: 768px) {
+    .toast-container {
+        top: 74px;
+        bottom: auto;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: none;
+        align-items: stretch;
+    }
+    .toast {
+        flex-wrap: nowrap;
+        padding: 12px 13px;
+        font-size: 0.87rem;
+    }
+    .toast-acao { padding: 7px 11px; font-size: 0.76rem; }
+    @keyframes toastEntra {
+        from { opacity: 0; transform: translateY(-18px) scale(0.97); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes toastSai {
+        to { opacity: 0; transform: translateY(-14px) scale(0.97); }
+    }
+}
 
 @keyframes slideUpFade {
     from { opacity: 0; transform: translateY(20px); }

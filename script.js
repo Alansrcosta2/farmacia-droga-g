@@ -17,10 +17,18 @@ const showToast = (message, type = 'success', action = null) => {
   toast.innerHTML = `<i class="fas fa-${icon}"></i><span>${message}</span>` +
     (action ? `<a class="toast-acao" href="${action.href}">${action.texto}</a>` : '');
   container.appendChild(toast);
-  setTimeout(() => {
-    toast.style.animation = 'slideDownFade 0.4s ease-in forwards';
-    toast.addEventListener('animationend', () => toast.remove());
-  }, action ? 6000 : 3000);
+
+  // Limite de 3 ao mesmo tempo: se o cliente ficar tocando em botoes,
+  // os avisos antigos somem em vez de empilhar e cobrir a tela.
+  while (container.children.length > 3) container.firstChild.remove();
+
+  const fechar = () => {
+    if (!toast.isConnected) return;
+    toast.classList.add('saindo');
+    setTimeout(() => toast.remove(), 280);
+  };
+  toast.__fechar = fechar;
+  setTimeout(fechar, action ? 6500 : 3400);
 };
 
 
