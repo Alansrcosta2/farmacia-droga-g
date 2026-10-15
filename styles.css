@@ -1609,7 +1609,8 @@ h1, h2, h3, h4, h5, h6 {
         bottom: 85px;
     }
     .scroll-to-top {
-        bottom: 85px;
+        bottom: 148px;
+        right: 20px;
     }
 }
 
@@ -2701,8 +2702,12 @@ h1, h2, h3, h4, h5, h6 {
     .categoria-round-img { width: 84px; height: 84px; padding: 8px; border-width: 2px; }
     .categoria-round-label { font-size: 0.72rem; margin-top: 8px; line-height: 1.2; }
     .product-grid { gap: 12px; }
+    /* O WhatsApp e o "voltar ao topo" estavam BOTH em bottom:84px/right:16px,
+       ou seja, um em cima do outro. Quem estivesse por cima escondia o
+       outro. Agora ficam empilhados: o "voltar ao topo" acima do
+       WhatsApp, e some quando a pagina ja esta no topo. */
     .whatsapp-float { bottom: 84px; right: 16px; width: 55px; height: 55px; font-size: 28px; z-index: 1001; }
-    .scroll-to-top { bottom: 84px; right: 16px; }
+    .scroll-to-top { bottom: 150px; right: 20px; z-index: 1001; }
     .toast-container { bottom: 90px; }
     .footer { padding: 40px 0 16px; margin-top: 40px; }
     .footer-content { gap: 24px; }
@@ -3979,4 +3984,50 @@ body { color: var(--ink); background: var(--surface-alt); }
     .qtd-seletor { width: 100%; }
     .qtd-btn { flex: 1; height: 44px; }
     .qtd-input { flex: 1; height: 44px; width: auto; }
+}
+
+/* =========================================================
+   BOTOES FLUTUANTES (WhatsApp e Voltar ao topo) — REGRA FINAL
+   =========================================================
+   Este arquivo tinha CINCO regras de .whatsapp-float e TRÊS de
+   .scroll-to-top, espalhadas, e duas delas mandavam os dois botoes
+   para o MESMO lugar (bottom: 84px / right: 16px). O de baixo
+   ficava invisivel atras do de cima.
+
+   Este bloco fica no FIM do arquivo de proposito: como os dois sao
+   seletores de uma classe so, a ultima regra que aparecer vence.
+   Assim a posicao fica definida em um lugar so, sem depender de
+   qual media query veio antes.
+
+   Celular:   WhatsApp a 84px  (acima da barra de abas de 70px)
+              Voltar ao topo a 150px (acima do WhatsApp)
+   Computador: WhatsApp a 25px
+              Voltar ao topo a 100px (acima do WhatsApp) */
+.whatsapp-float {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 60px;
+    height: 60px;
+    z-index: 1001;
+}
+.scroll-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 100px;
+    width: 50px;
+    height: 50px;
+    z-index: 1001;
+}
+@media (max-width: 768px) {
+    .whatsapp-float {
+        right: 16px;
+        bottom: 84px;
+        width: 55px;
+        height: 55px;
+    }
+    .scroll-to-top {
+        right: 20px;
+        bottom: 150px;
+    }
 }
