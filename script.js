@@ -1040,6 +1040,30 @@ if (matchMedia('(max-width: 768px)').matches) {
   });
 }
 
+/* --- TRADUZIR O QUE A PESSOA DIGITOU ---
+   O campo pede "bairro", mas a reacao natural e digitar o CEP. Antes,
+   um CEP nunca batia com a lista e o site respondia "fora do raio" para
+   gente que esta dentro do raio -- chegou a acontecer com o CEP
+   31360-120 (Rua Jose Alves de Souza, Santa Terezinha), que e o proprio
+   bairro da farmacia.
+
+   Aqui o CEP e convertido em bairro antes de conferir. */
+const pareceCep = (v) => /^\d{5}-?\d{3}$/.test(String(v || '').trim());
+const soDigitos = (v) => String(v || '').replace(/\D/g, '');
+
+/* Consulta o CEP no servico publico do Correios (ViaCEP, sem chave).
+   Devolve o bairro, ou '' se nao der. */
+const buscarBairroPorCep = (cep) => {
+  const num = soDigitos(cep);
+  if (num.length !== 8) return Promise.resolve('');
+  return fetch('https://viacep.com.br/ws/' + num + '/json/')
+    .then(r => r.json())
+    .then(d => (d && !d.erro) ? String(d.bairro || '').trim() : '')
+    .catch(() => '');   // sem internet ou CEP inexistente: devolve vazio
+};
+
+const textoBairro = (v) => String(v || '').trim();
+
 /* --- VERIFICADOR DE ENTREGA (home) ---
    Reutiliza a lista BAIRROS_ENTREGA. Responde a primeira duvida do
    cliente antes de ele montar o pedido. */
@@ -1050,24 +1074,54 @@ if (matchMedia('(max-width: 768px)').matches) {
   if (!input || !botao || !saida || typeof bairroEntregue !== 'function') return;
 
   function responder() {
-    const bairro = input.value.trim();
-    if (!bairro) {
-      saida.hidden = false;
+    const digitado = textoBairro(input.value);
+    saida.hidden = false;
+
+    if (!digitado) {
       saida.className = 'entrega-resultado nao';
-      saida.innerHTML = '<i class="fas fa-question-circle"></i> Digite seu bairro para eu verificar.';
+      saida.innerHTML = '<i class="fas fa-question-circle"></i> Digite seu <strong>bairro</strong> ou seu <strong>CEP</strong> para eu verificar.';
       return;
     }
-    const ok = bairroEntregue(bairro);
-    saida.hidden = false;
+
+    // digitou CEP: descobre o bairro antes de responder
+    if (pareceCep(digitado)) {
+      saida.className = 'entrega-resultado nao';
+      saida.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Consultando seu CEP...';
+      buscarBairroPorCep(digitado).then(bairro => {
+        const fmt = soDigitos(digitado).replace(/^(\d{5})(\d{3})$/, '$1-$2');
+        if (!bairro) {
+          saida.className = 'entrega-resultado nao';
+          saida.innerHTML = '<i class="fas fa-question-circle"></i> Não consegui identificar o bairro desse CEP (' + fmt +
+            '). <strong>Digite o nome do bairro</strong> ou pergunte no WhatsApp (31) 97171-6274.';
+          return;
+        }
+        if (bairroEntregue(bairro)) {
+          saida.className = 'entrega-resultado sim';
+          saida.innerHTML = '<i class="fas fa-check-circle"></i> Seu CEP ' + fmt +
+            ' é do bairro <strong>' + bairro + '</strong> — entregamos em até 30 minutos.' +
+            (bairro.toLowerCase() === 'santa terezinha' ? ' Frete grátis.' : '');
+        } else {
+          saida.className = 'entrega-resultado nao';
+          saida.innerHTML = '<i class="fas fa-map-marker-alt"></i> Seu CEP ' + fmt +
+            ' é do bairro <strong>' + bairro + '</strong>, que está fora do raio de 4 km. ' +
+            'Pergunte no WhatsApp se ainda é possível entregar — ou <strong>retire na loja</strong>, sem custo.';
+        }
+      });
+      return;
+    }
+
+    // digitou bairro: confere direto
+    const ok = bairroEntregue(digitado);
+    const nome = digitado.charAt(0).toUpperCase() + digitado.slice(1);
     if (ok) {
       saida.className = 'entrega-resultado sim';
-      saida.innerHTML = '<i class="fas fa-check-circle"></i> Entregamos em ' +
-        bairro.charAt(0).toUpperCase() + bairro.slice(1) +
-        ' em até 30 minutos. Frete grátis em Santa Terezinha.';
+      saida.innerHTML = '<i class="fas fa-check-circle"></i> Entregamos em <strong>' + nome +
+        '</strong> em até 30 minutos.' + (digitado.toLowerCase() === 'santa terezinha' ? ' Frete grátis.' : '');
     } else {
       saida.className = 'entrega-resultado nao';
-      saida.innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + bairro.charAt(0).toUpperCase() + bairro.slice(1) +
-        ' está fora do raio de 4 km. Pergunte no WhatsApp se ainda é possível entregar — ou <strong>retire na loja</strong>, sem custo: Rua Julita Nogueira Soares, 610.';
+      saida.innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + nome +
+        ' está fora do raio de 4 km. <strong>Se preferir, digite seu CEP</strong> — eu confiro. ' +
+        'Ou retire na loja, sem custo: Rua Julita Nogueira Soares, 610.';
     }
   }
 
