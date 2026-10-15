@@ -11,7 +11,7 @@
  * ver um site congelado com preço antigo.
  */
 
-const VERSAO = 'drogag-v1';
+const VERSAO = 'drogag-v2';
 const CACHE_IMAGENS = VERSAO + '-img';
 const CACHE_PAGINAS = VERSAO + '-pag';
 
@@ -59,16 +59,23 @@ self.addEventListener('fetch', (evento) => {
   const ehImagem = /\.(png|jpe?g|webp|gif|svg|ico|woff2?)$/i.test(url.pathname);
   const ehDocumento = req.mode === 'navigate' || /\.(html|css|js)$/i.test(url.pathname);
 
-  // Imagens: cache primeiro (são grandes e não mudam)
+  /* Imagens: mostra a que esta no cache e ja busca a nova por tras.
+     Antes era "cache primeiro" e nunca mais atualizava: quando o icone
+     do app mudou de letra, o celular continuou mostrando o antigo para
+     sempre, porque o nome do arquivo e o mesmo. */
   if (ehImagem) {
     evento.respondWith(
-      caches.match(req).then((achado) => achado || fetch(req).then((resp) => {
-        if (resp && resp.ok) {
-          const copia = resp.clone();
-          caches.open(CACHE_IMAGENS).then((c) => c.put(req, copia));
-        }
-        return resp;
-      }).catch(() => caches.match('img/favicon-32.png')))
+      caches.open(CACHE_IMAGENS).then((cache) => {
+        return cache.match(req).then((guardado) => {
+          const atualizar = fetch(req).then((resp) => {
+            if (resp && resp.ok) cache.put(req, resp.clone());
+            return resp;
+          }).catch(() => null);
+          // mostra na hora o que tem e atualiza sozinho
+          if (guardado) return guardado;
+          return atualizar.then((r) => r || caches.match('img/favicon-32.png'));
+        });
+      })
     );
     return;
   }
