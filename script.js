@@ -458,7 +458,7 @@ if (cartPageContainer) {
         ? ' <button type="button" data-cart-less="' + (item.sku || item.nome) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">-</button>'
         : '';
       const mais = ' <button type="button" data-cart-more="' + (item.sku || item.nome) + '" style="border:1px solid var(--neutral-medium);background:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;">+</button>';
-      row.innerHTML = '<div style="flex:1"><strong>' + (item.nome || '(produto)') + '</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ' + item.quantity + '</span>' + aviso + '</div>' +
+      row.innerHTML = '<div style="flex:1"><strong>' + (item.nome || '(produto)') + '</strong><br><span style="font-size:0.9rem;color:var(--text-secondary)">Qtd: ' + item.quantidade + '</span>' + aviso + '</div>' +
         '<div style="display:flex;align-items:center;gap:4px;flex-shrink:0;">' + menos + mais + '</div>';
       cartItemsContainer.appendChild(row);
     });
