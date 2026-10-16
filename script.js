@@ -940,7 +940,10 @@ function msgPedido(d) {
   L.push('*Nome:* ' + d.nome);
   L.push('*WhatsApp:* ' + d.telefone);
   if (!retirada) {
-    L.push('*CEP:* ' + cepSalvo());
+    /* O CEP saiu daqui: o formulario nunca pediu, entao aparecia
+       "nao informado" em todo pedido do WhatsApp. Bairro + endereco
+       + referencia ja bastam para a entrega, que usa a lista de
+       bairros e nao um raio em quilometros. */
     L.push('*Endereço:* ' + d.endereco);
     L.push('*Bairro:* ' + d.bairro);
   }
