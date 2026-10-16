@@ -917,11 +917,11 @@ if (carrossel) {
 function montarProtocolo() {
   const d = new Date();
   const p = (n) => String(n).padStart(2, '0');
-  /* O balcao precisa saber onde acaba a data e onde comeca a hora.
-     Sem rotulo, ele lia "dezesseis" e nao sabia se era dia ou hora.
-     Agora o proprio numero diz: */
-  return 'DG-D' + p(d.getDate()) + '-' + p(d.getMonth() + 1) +
-    '-H' + p(d.getHours()) + '-' + p(d.getMinutes()) + '-' + p(d.getSeconds());
+  /* Protocolo curto e so com numeros. Letra no meio (D/H) atrapalhava
+     quem lia em voz alta. Os segundos foram embora: so separavam dois
+     pedidos no mesmo minuto, e o nome do cliente ja separa. */
+  return 'DG-' + p(d.getDate()) + p(d.getMonth() + 1) +
+    '-' + p(d.getHours()) + p(d.getMinutes());
 }
 function enviarWhatsApp(texto) {
   window.open('https://wa.me/5531971716274?text=' + encodeURIComponent(texto), '_blank');
@@ -948,16 +948,15 @@ function msgPedido(d) {
   L.push('*NOVO PEDIDO — SITE DROGA G*');
   L.push(barra);
   L.push('*Protocolo:* ' + montarProtocolo());
-  /* Data por extenso: "dia 16 de outubro de 2026, as 16:02:35".
-     Nao deixa duvida de onde acaba a data e onde comeca a hora. */
+  /* Data e hora em linhas separadas. Juntas numa frase so, o balcao
+     tinha que ler a data inteira para achar a hora. */
   const agora = new Date();
-  const meses = ['janeiro','fevereiro','marco','abril','maio','junho',
-                 'julho','agosto','setembro','outubro','novembro','dezembro'];
+  const dd = String(agora.getDate()).padStart(2, '0');
+  const mm = String(agora.getMonth() + 1).padStart(2, '0');
   const hh = String(agora.getHours()).padStart(2, '0');
-  const mm = String(agora.getMinutes()).padStart(2, '0');
-  const ss = String(agora.getSeconds()).padStart(2, '0');
-  L.push('*Data:* dia ' + agora.getDate() + ' de ' + meses[agora.getMonth()] +
-    ' de ' + agora.getFullYear() + ', as ' + hh + ':' + mm + ':' + ss);
+  const mi = String(agora.getMinutes()).padStart(2, '0');
+  L.push('*Data:* ' + dd + '/' + mm + '/' + agora.getFullYear());
+  L.push('*Hora do pedido:* ' + hh + ':' + mi);
   L.push('');
   L.push('*1. PRODUTOS*');
   L.push(d.itens);
