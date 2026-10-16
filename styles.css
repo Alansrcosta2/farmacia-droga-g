@@ -2685,16 +2685,17 @@
    da pagina, que respeita o container.
 
    Agora a faixa usa a MESMA largura do conteudo do site, com
-   um respiro lateral de 56px, para os extremos nao encostarem na
+   um respiro lateral de 28px — era 24px e colava na borda da tela — e
+   40px entre os itens, para um nao grudar no seguinte.
    borda da tela. So no computador: no celular a faixa
    continua rolando, e mexer nisso quebraria o efeito. */
 @media (min-width: 769px) {
     .beneficios-group {
         max-width: none;
         width: 100%;
-        padding-left: 56px;
-        padding-right: 56px;
-        gap: 32px;
+        padding-left: 28px;
+        padding-right: 28px;
+        gap: 40px;
     }
     .beneficios-group > .beneficio-item {
         flex: 1 1 0;
