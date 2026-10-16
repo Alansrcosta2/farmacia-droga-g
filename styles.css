@@ -460,6 +460,21 @@
     grid-template-columns: 260px minmax(0, 1fr);
     gap: 30px;
     align-items: flex-start;
+} /* No carrinho a ordem no HTML e invertida em relacao a pagina de
+   produtos: aqui a LISTA vem antes da coluna de resumo. Sem isto a lista
+   cai na coluna estreita de 260px e o "Resumo" fica largo — o nome do
+   produto quebrava em tres linhas. Aqui a lista fica larga e o resumo
+   estreito, que e o inverso da pagina de produtos.
+
+   Só no desktop de verdade: dentro de max-width esta regra perderia para
+   ".products-layout { grid-template-columns: 1fr }", porque media query
+   nao aumenta especificidade — e o celular ficaria com duas colunas. */
+@media (min-width: 769px) {
+    .cart-page .products-layout {
+        grid-template-columns: minmax(0, 1fr) 300px;
+    }
+    .cart-page .products-main { grid-column: 1; }
+    .cart-page .products-sidebar { grid-column: 2; }
 } .products-sidebar {
     background: var(--white);
     border-radius: 16px;
@@ -2501,10 +2516,26 @@
         width: 400px;
     }
 } .cart-row {
-    display: block;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
     padding: 12px 0;
     border-bottom: 1px solid var(--neutral-medium);
-} .cart-row-top {
+} /* Foto do produto na linha do carrinho: sem ela o cliente nao confere
+   qual produto e — e no catalogo tem varios nomes parecidos (ex.:
+   PARACETAMOL 500MG e 750MG). */
+.cart-row-foto {
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    border-radius: 10px;
+    border: 1px solid var(--neutral-medium);
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} .cart-row-foto img { width: 100%; height: 100%; object-fit: contain; } .cart-row-conteudo { flex: 1; min-width: 0; } .cart-row-top {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;

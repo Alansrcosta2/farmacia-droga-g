@@ -181,6 +181,18 @@ const saveFavorites = (f) => { try { localStorage.setItem(FAVORITES_STORAGE_KEY,
    estoque e prazo no WhatsApp. */
 const CONTROLADOS_REQUEREM_LOJA = (p) => !!(p && p.tarja === 'tarja_vermelha_c1');
 
+/* Foto do produto a partir do SKU, usando o catalogo. O item do carrinho
+   guarda a imagem, mas os carrinhos salvos antes dessa mudanca nao tem
+   foto nenhuma — por isso se busca no catalogo tambem. Sem isso o cliente
+   veria a linha sem imagem ate mexer no item. */
+const CATALOGO_POR_SKU = (() => {
+  const mapa = {};
+  (typeof window !== 'undefined' && Array.isArray(window.DROGAG_PRODUTOS) ? window.DROGAG_PRODUTOS : [])
+    .forEach(p => { if (p && p.sku) mapa[p.sku] = p; });
+  return mapa;
+})();
+const imagemDoSku = (sku) => (CATALOGO_POR_SKU[sku] && CATALOGO_POR_SKU[sku].imagem) || '';
+
 const addToCart = (produto, quantidade) => {
   if (!produto || !produto.sku) return;
   const qtd = Math.max(1, Math.min(99, parseInt(quantidade, 10) || 1));
@@ -190,6 +202,7 @@ const addToCart = (produto, quantidade) => {
   else cart.push({
     sku: produto.sku,
     nome: produto.nome,
+    imagem: produto.imagem || imagemDoSku(produto.sku),
     quantidade: qtd,
     controlado: CONTROLADOS_REQUEREM_LOJA(produto)
   });
@@ -529,7 +542,10 @@ if (cartPageContainer) {
          quantidade pode ser digitada direto. */
       const idItem = item.sku || item.nome;
       row.className = 'cart-row';
+      const foto = item.imagem || imagemDoSku(item.sku);
       row.innerHTML =
+        (foto ? '<div class="cart-row-foto"><img src="' + foto + '" alt="' + (item.nome || 'produto') + '" loading="lazy"></div>' : '') +
+        '<div class="cart-row-conteudo">' +
         '<div class="cart-row-top">' +
           '<strong>' + (item.nome || '(produto)') + '</strong>' +
           '<button type="button" class="cart-remove" data-cart-remove="' + idItem + '" aria-label="Remover ' + (item.nome || 'item') + '" title="Remover">' +
@@ -540,7 +556,8 @@ if (cartPageContainer) {
           '<input type="number" class="cart-qtd-input" data-cart-qtd="' + idItem + '" value="' + item.quantidade + '" min="1" max="99" inputmode="numeric" aria-label="Quantidade">' +
           '<button type="button" class="cart-qtd-btn" data-cart-more="' + idItem + '" aria-label="Aumentar">+</button>' +
         '</div>' +
-        aviso;
+        aviso +
+        '</div>';
       cartItemsContainer.appendChild(row);
     });
     /* --- EDITAR O CARRINHO ---
