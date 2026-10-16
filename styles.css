@@ -2675,3 +2675,29 @@
     opacity: 0;
     pointer-events: none;
 }
+
+/* =========================================================
+   FAIXA DE BENEFICIOS — ALINHADA COM O RESTO DO SITE
+   =========================================================
+   A faixa usava max-width: 1320px, e o container do site usa
+   1240px. Com 80px a mais, o primeiro item colava na borda
+   esquerda e o ultimo na direita — e diferente de todo o resto
+   da pagina, que respeita o container.
+
+   Agora a faixa usa a MESMA largura do conteudo do site, com
+   um respiro lateral de 56px, para os extremos nao encostarem na
+   borda da tela. So no computador: no celular a faixa
+   continua rolando, e mexer nisso quebraria o efeito. */
+@media (min-width: 769px) {
+    .beneficios-group {
+        max-width: none;
+        width: 100%;
+        padding-left: 56px;
+        padding-right: 56px;
+        gap: 32px;
+    }
+    .beneficios-group > .beneficio-item {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+}
