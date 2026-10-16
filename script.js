@@ -708,12 +708,12 @@ if (cartPageContainer) {
         if (!grouped[chave]) grouped[chave] = { sku: item.sku, nome: item.nome || item.name, quantidade: 0, controlado: !!item.controlado };
         grouped[chave].quantidade += (item.quantidade || 1);
       });
-      /* O "[ ]" e para o balcao ir marcando conforme separa o produto.
-         O codigo interno (sku) e o que o funcional digita no Dmaster
-         para achar — pelo nome as vezes existem dois parecidos. */
+      /* O balcao trabalha com o nome que ve na embalagem. O codigo
+         interno do site (sku) e codigo do NOSSO cadastro, nao do
+         Dmaster — ele nao acha nada por ele. E o "[ ]" foi para:
+         nao existe cupom de separacao para o atendente ir marcando. */
       const linhas = Object.values(grouped).map(item => {
-        const cod = item.sku ? item.sku + ' | ' : '';
-        return '[ ] ' + cod + (item.nome || '(produto)') + ' | Qtd: ' + item.quantidade +
+        return (item.nome || '(produto)') + ' | Qtd: ' + item.quantidade +
           (item.controlado ? ' | CONTROLADO (so retirada, com receita)' : '');
       });
       const temControlado = Object.values(grouped).some(item => item.controlado);
