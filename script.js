@@ -795,22 +795,13 @@ const BAIRROS_ENTREGA = [
   'Bandeirantes',
   'Pampulha',
   'Confisco',
-  'São Gotardo',
   'Itatiaia',
-  'Vila Santa Luzia',
   'Paquetá',
-  'São Joaquim',
   'Alípio de Melo',
   'Braúnas',
-  'Carajás',
   'Manacás',
-  'Coqueiros',
-  'Xangri-lá',
-  'Trevo',
-  'Pedra Azul',
   'Jardim São José',
   'Jardim Alvorada',
-  'Nossa Senhora da Glória',
   'Residencial Sarandi'
 ];
 

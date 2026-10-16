@@ -89,7 +89,7 @@ Guia do que exportar do Dmaster: **`guia-dmaster.html`**.
 | 2 | Vê produtos, categorias e busca | ✅ pronto |
 | 3 | **Vê preço e estoque** | ❌ falta export do Dmaster |
 | 4 | Adiciona na lista | ✅ pronto |
-| 5 | Vê se entregam no bairro dele | ✅ pronto (25 bairros) |
+| 5 | Vê se entregam no bairro dele | ✅ pronto (16 bairros) |
 | 6 | Escolhe retirada ou entrega | ✅ pronto |
 | 7 | Preenche dados e aceita a política | ✅ pronto |
 | 8 | **Você confirma e manda o link de pagamento** | ❌ falta o link |

@@ -15,7 +15,7 @@ A lista completa está em `script.js`, em `BAIRROS_ENTREGA` — **é a fonte ún
 A home, o FAQ, o campo do pedido e o aviso de bairro fora do raio leem todos
 dessa lista, então nunca ficam diferentes entre si.
 
-**25 bairros dentro do raio de 4 km**, todos de **Belo Horizonte**.
+**16 bairros dentro do raio de 4 km**, todos de **Belo Horizonte**.
 
 ⚠️ **Bairros de Contagem foram removidos de propósito** (decisão do dono),
 mesmo estando dentro do raio — Contagem é outro município e a lista mostra só
@@ -30,24 +30,20 @@ Pampulha, Balneário da Ressaca, Arpoador e Cabral.
 | Serrano | 1,17 |
 | Confisco | 1,31 |
 | Castelo | 1,32 |
-| São Gotardo | 1,35 |
 | Itatiaia | 0,55 |
-| Vila Santa Luzia | 1,24 |
 | Paquetá | 1,59 |
-| São Joaquim | 1,83 |
 | Alípio de Melo | 2,45 |
 | Braúnas | 2,68 |
-| Carajás | 2,74 |
 | Manacás | 3,11 |
-| Nossa Senhora da Glória | 3,14 |
 | Ouro Preto | 2,66 |
 | Bandeirantes | 2,53 |
-| Coqueiros | 3,49 |
-| Xangri-lá | 3,77 |
-| Trevo | 3,78 |
 | Jardim São José | 4,13 |
 | Jardim Alvorada | 3,63 |
 | Pampulha | 3,58 |
+
+⚠️ **Bairros fora da lista por decisão do dono** (2026-10-16): São Gotardo,
+Vila Santa Luzia, São Joaquim, Carajás, Coqueiros, Xangri-lá, Trevo,
+Pedra Azul e Nossa Senhora da Glória. O dono pediu para retirar da entrega.
 
 ⚠️ **Jardim São José está a 4,13 km** — passa um pouco do raio de 4 km. O dono
 manteve mesmo assim (o ponto de entrega pode não ser exatamente a farmácia).
