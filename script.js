@@ -680,7 +680,7 @@ if (cartPageContainer) {
       if (entrega === 'Entrega') {
         if (!bairro) { showToast('Informe o bairro para delivery.', 'info'); return; }
         if (!bairroEntregue(bairro)) {
-          const seg = window.confirm('"' + bairro + '" não está na lista dos ' + BAIRROS_ENTREGA.length + ' bairros que entregamos.\n\nMas a lista pode não estar completa — pode ser que a gente entregue aí sim.\n\nQuer enviar o pedido assim mesmo? A loja confirma pelo WhatsApp antes de qualquer pagamento.');
+          const seg = window.confirm('"' + bairro + '" não está na lista dos ' + BAIRROS_ENTREGA.length + ' bairros que entregamos.\n\nMas a lista pode não estar completa — pode ser que a gente entregue aí sim.\n\nQuer enviar o pedido assim mesmo? A loja confirma pelo WhatsApp (31) 97171-6274 antes de qualquer pagamento.');
           if (!seg) return;
         }
         if (!endereco) { showToast('Informe o endereço para entrega.', 'info'); return; }
@@ -769,11 +769,13 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
 });
 
 /* --- ÁREA DE ENTREGA ---
-   Farmácia de bairro não entrega em todo lugar. O dono definiu um RAIO DE
-   4 KM a partir da loja (Rua Julita Nogueira Soares, 610 - Santa Terezinha).
+   Farmácia de bairro não entrega em todo lugar. A cobertura é uma LISTA DE
+   BAIRROS escolhida pelo dono (Rua Julita Nogueira Soares, 610 - Santa
+   Terezinha), não mais um raio em km.
 
-   Esta lista foi levantada medindo a distancia de cada bairro ate a loja,
-   e conferida com o dono. Tudo que esta aqui esta dentro do raio.
+   A lista nasceu de medir a distância de cada bairro até a loja, mas o que
+   vale hoje é o bairro estar na lista — o cliente pode estar a 1 km e mesmo
+   assim não receber, se o bairro não estiver aqui.
 
    Antes o site aceitava qualquer CEP começando com 30 ou 31, ou seja, quase
    todo o estado de Minas Gerais — e prometia entrega onde não tem entrega.
@@ -1270,6 +1272,22 @@ if (matchMedia('(max-width: 768px)').matches) {
   document.querySelectorAll('[data-lista-bairros]').forEach(el => { el.innerHTML = montar(); });
   document.querySelectorAll('[data-total-bairros]').forEach(el => { el.textContent = BAIRROS_ENTREGA.length; });
   document.querySelectorAll('[data-faq-bairros]').forEach(el => { el.innerHTML = montar(); });
+
+  // Autocomplete do campo de bairro no carrinho. O input pede list="bairrosEntrega"
+  // mas a <datalist> nao existia em lugar nenhum, entao o autocomplete nunca
+  // aparecia e o campo aceitava qualquer texto. Criada aqui, da mesma lista.
+  const inputBairro = document.getElementById('checkoutBairro');
+  if (inputBairro) {
+    let dl = document.getElementById('bairrosEntrega');
+    if (!dl) {
+      dl = document.createElement('datalist');
+      dl.id = 'bairrosEntrega';
+      dl.innerHTML = BAIRROS_ENTREGA
+        .map(b => '<option value="' + String(b).replace(/"/g, '&quot;') + '"></option>')
+        .join('');
+      inputBairro.insertAdjacentElement('afterend', dl);
+    }
+  }
 })();
 
 (function modalBairros() {

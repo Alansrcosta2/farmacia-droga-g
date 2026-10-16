@@ -2163,7 +2163,11 @@
     color: var(--brand, #00A651);
 }
 @media (max-width: 420px) { .grade-condicoes { grid-template-columns: 1fr; gap: 14px; } .bloco-cond { padding: 14px 15px; }
-} /* --- LISTA DE BAIRROS COM ENTREGA --- O cliente não deveria precisar descobrir se a farmácia entrega na rua dele digitando e errando. A lista aparece aberta para ele conferir sozinho{
+} /* --- LISTA DE BAIRROS COM ENTREGA ---
+   O cliente não deveria precisar descobrir se a farmácia entrega na rua
+   dele digitando e errando. A lista aparece aberta para ele conferir
+   sozinho, e os nomes vêm da mesma lista que a verificação usa. */
+.lista-bairros {
     margin-top: 18px;
     border-top: 1px solid #CFE6D8;
     padding-top: 14px;

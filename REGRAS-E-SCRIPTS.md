@@ -2,17 +2,23 @@
 
 > Documento operacional. As ideias de pagamento estão em `PAGAMENTO.md`.
 
-## 1. Área de entrega — raio de 4 km
+## 1. Área de entrega — lista de bairros
 
-Decisão do dono: a farmácia **não entrega em todo lugar**, só num raio de
-**4 km** da loja (Rua Julita Nogueira Soares, 610 - Santa Terezinha).
+Decisão do dono: a farmácia **não entrega em todo lugar**. A cobertura é uma
+**lista de bairros** escolhida por ele (loja na Rua Julita Nogueira Soares, 610 -
+Santa Terezinha).
+
+⚠️ **Não é mais raio em km.** A lista nasceu medindo a distância até a loja, mas
+o que vale hoje é o bairro **estar na lista**. Não escreva mais "raio de 4 km" no
+site nem no atendimento: um bairro pode estar a 1 km e não receber, e outro pode
+estar a 4,13 km (Jardim São José) e receber.
 
 Antes o site aceitava qualquer CEP começando com `30` ou `31` — ou seja, quase
 todo o estado de Minas Gerais — e ainda mostrava "Entrega disponível no seu
 CEP!". Isso gerava pedido que a farmácia não conseguia cumprir.
 
 A lista completa está em `script.js`, em `BAIRROS_ENTREGA` — **é a fonte única**.
-A home, o FAQ, o campo do pedido e o aviso de bairro fora do raio leem todos
+A home, o FAQ, o campo do pedido e o aviso de bairro fora da lista leem todos
 dessa lista, então nunca ficam diferentes entre si.
 
 **16 bairros dentro do raio de 4 km**, todos de **Belo Horizonte**.
