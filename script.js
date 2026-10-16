@@ -705,15 +705,21 @@ if (cartPageContainer) {
       const grouped = {};
       cart.forEach(item => {
         const chave = item.sku || item.nome;
-        if (!grouped[chave]) grouped[chave] = { nome: item.nome || item.name, quantidade: 0, controlado: !!item.controlado };
+        if (!grouped[chave]) grouped[chave] = { sku: item.sku, nome: item.nome || item.name, quantidade: 0, controlado: !!item.controlado };
         grouped[chave].quantidade += (item.quantidade || 1);
       });
+      /* O "[ ]" e para o balcao ir marcando conforme separa o produto.
+         O codigo interno (sku) e o que o funcional digita no Dmaster
+         para achar — pelo nome as vezes existem dois parecidos. */
       const linhas = Object.values(grouped).map(item => {
-        return (item.nome || '(produto)') + ' | Qtd: ' + item.quantidade + (item.controlado ? ' | CONTROLADO (só retirada, com receita)' : '');
+        const cod = item.sku ? item.sku + ' | ' : '';
+        return '[ ] ' + cod + (item.nome || '(produto)') + ' | Qtd: ' + item.quantidade +
+          (item.controlado ? ' | CONTROLADO (so retirada, com receita)' : '');
       });
+      const temControlado = Object.values(grouped).some(item => item.controlado);
       const msg = msgPedido({
         itens: linhas.map((l, k) => `${k + 1}. ${l}`).join('\n'),
-        nome, telefone, endereco, bairro, referencia, pagamento, observacoes, entrega
+        nome, telefone, endereco, bairro, referencia, pagamento, observacoes, entrega, temControlado
       });
       enviarWhatsApp(msg);
       showToast('Pedido enviado! Confirme e pague pelo WhatsApp — o site não cobra.', 'success');
@@ -901,10 +907,15 @@ if (carrossel) {
 }
 
 /* --- MENSAGENS DE WHATSAPP ORGANIZADAS PARA O BALCÃO (Dmaster) --- */
+/* Antes: DG-1610-155955. O dia (16) e o mes (10) ficavam grudados,
+   e ao telefone o balcao lia "mil seiscentos e dez" sem saber que
+   era data. Agora cada par vai separado, e da para ler em voz alta:
+   "DG dezesseis, dez, quinze, cinquenta e cinco". */
 function montarProtocolo() {
   const d = new Date();
   const p = (n) => String(n).padStart(2, '0');
-  return 'DG-' + p(d.getDate()) + p(d.getMonth() + 1) + '-' + p(d.getHours()) + p(d.getMinutes()) + p(d.getSeconds());
+  return 'DG-' + p(d.getDate()) + '-' + p(d.getMonth() + 1) + '-' +
+    p(d.getHours()) + '-' + p(d.getMinutes()) + '-' + p(d.getSeconds());
 }
 function enviarWhatsApp(texto) {
   window.open('https://wa.me/5531971716274?text=' + encodeURIComponent(texto), '_blank');
@@ -928,6 +939,14 @@ function msgPedido(d) {
   const barra = '━━━━━━━━━━━━━━━━━━━━';
   const L = [];
 
+  /* Aviso ANTES de tudo: se tem controlado, o balcao precisa saber
+     antes de separar o pedido, e não depois. */
+  if (d.temControlado) {
+    L.push('*ATENÇÃO: PEDIDO COM MEDICAMENTO CONTROLADO*');
+    L.push('*Só é retirado na loja, com receita médica.*');
+    L.push('*Conferir a receita ANTES de separar.*');
+    L.push('');
+  }
   L.push('*NOVO PEDIDO — SITE DROGA G*');
   L.push(barra);
   L.push('*Protocolo:* ' + montarProtocolo());
@@ -949,14 +968,19 @@ function msgPedido(d) {
   }
   L.push('');
   L.push('*3. RECEBIMENTO*');
-  L.push('*Modalidade:* ' + (d.entrega || 'Retirada na loja'));
   if (retirada) {
+    L.push('*Modalidade:* ' + (d.entrega || 'Retirada na loja'));
     L.push('*Local:* Rua Julita Nogueira Soares, 610');
     L.push('*Bairro:* Santa Terezinha - BH');
+    L.push('*Cliente vem buscar* — avisar quando estiver pronto.');
+  } else {
+    L.push('*Modalidade:* ' + (d.entrega || 'Entrega'));
+    L.push('*Prazo:* confirmar antes de despachar');
+    L.push('*Verificar se a moto está na rota* no horário do pedido.');
   }
   L.push('*Pagamento:* ' + d.pagamento);
   if (!/dinheiro/i.test(d.pagamento)) {
-    L.push('_Se for link: o cliente espera receber o Pix ou o link apos a confirmacao._');
+    L.push('_Se for link: o cliente espera receber o Pix ou o link após a confirmação._');
   }
   if (d.referencia) L.push('*Referência:* ' + d.referencia);
   L.push('');
@@ -966,12 +990,30 @@ function msgPedido(d) {
     L.push('');
   }
   L.push(barra);
-  L.push('_Ação do balcão:_');
-  L.push('1. Conferir preço e estoque no Dmaster');
-  L.push('2. Confirmar disponibilidade e prazo');
-  L.push('3. Responder o cliente e enviar o link de pagamento');
+
+  /* O pagamento decide o que o balcao faz. Antes o texto mandava
+     "enviar o link de pagamento" para TODO pedido, inclusive para
+     quem marcou dinheiro na retirada — aí o balcão lia "manda link"
+     num pedido que não tem link nenhum. */
+  const dinheiroNaLoja = /dinheiro/i.test(d.pagamento || '');
+  if (dinheiroNaLoja) {
+    L.push('*NÃO ENVIAR LINK DE PAGAMENTO*');
+    L.push('O cliente paga em dinheiro no balcão.');
+  }
+
+  L.push('*O QUE O BALCÃO FAZ:*');
+  let passo = 1;
+  L.push(passo++ + '. Conferir preço e estoque no Dmaster');
+  L.push(passo++ + '. Confirmar disponibilidade e prazo');
+  if (d.temControlado) {
+    L.push(passo++ + '. Conferir a receita antes de separar');
+    L.push('   *   Controlado só sai na loja com receita. Sem receita, avisar o cliente.');
+  }
+  L.push(dinheiroNaLoja
+    ? passo++ + '. Falar com o cliente e confirmar a reserva'
+    : passo++ + '. Responder o cliente e enviar o Pix ou o link de pagamento');
   L.push('');
-  L.push('_Lembrete:_ o cliente não pagou nada ainda pelo site.');
+  L.push('_O cliente ainda não pagou nada. Pedido sujeito a disponibilidade._');
   return L.join('\n');
 }
 
