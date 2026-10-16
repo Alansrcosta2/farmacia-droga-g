@@ -914,8 +914,11 @@ if (carrossel) {
 function montarProtocolo() {
   const d = new Date();
   const p = (n) => String(n).padStart(2, '0');
-  return 'DG-' + p(d.getDate()) + '-' + p(d.getMonth() + 1) + '-' +
-    p(d.getHours()) + '-' + p(d.getMinutes()) + '-' + p(d.getSeconds());
+  /* O balcao precisa saber onde acaba a data e onde comeca a hora.
+     Sem rotulo, ele lia "dezesseis" e nao sabia se era dia ou hora.
+     Agora o proprio numero diz: */
+  return 'DG-D' + p(d.getDate()) + '-' + p(d.getMonth() + 1) +
+    '-H' + p(d.getHours()) + '-' + p(d.getMinutes()) + '-' + p(d.getSeconds());
 }
 function enviarWhatsApp(texto) {
   window.open('https://wa.me/5531971716274?text=' + encodeURIComponent(texto), '_blank');
@@ -950,7 +953,16 @@ function msgPedido(d) {
   L.push('*NOVO PEDIDO — SITE DROGA G*');
   L.push(barra);
   L.push('*Protocolo:* ' + montarProtocolo());
-  L.push('*Data:* ' + new Date().toLocaleString('pt-BR'));
+  /* Data por extenso: "dia 16 de outubro de 2026, as 16:02:35".
+     Nao deixa duvida de onde acaba a data e onde comeca a hora. */
+  const agora = new Date();
+  const meses = ['janeiro','fevereiro','marco','abril','maio','junho',
+                 'julho','agosto','setembro','outubro','novembro','dezembro'];
+  const hh = String(agora.getHours()).padStart(2, '0');
+  const mm = String(agora.getMinutes()).padStart(2, '0');
+  const ss = String(agora.getSeconds()).padStart(2, '0');
+  L.push('*Data:* dia ' + agora.getDate() + ' de ' + meses[agora.getMonth()] +
+    ' de ' + agora.getFullYear() + ', as ' + hh + ':' + mm + ':' + ss);
   L.push('');
   L.push('*1. PRODUTOS*');
   L.push(d.itens);
