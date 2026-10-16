@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Droga G">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="stylesheet" href="styles.css?v=20261016z">
+    <link rel="stylesheet" href="styles.css?v=20261017a">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="theme-color" content="#00A651">
     <!-- While o site esta em construcao, o Google nao deve indexar. -->
@@ -92,7 +92,26 @@
                     Entregamos em até <strong>30 minutos</strong> nestes
                     <strong><span data-total-bairros>16</span> bairros</strong> de Belo Horizonte:
                 </p>
-                <div class="faq-bairros" data-lista-bairros></div>
+                <!-- Lista escrita no HTML de proposito: se o JavaScript nao rodar,
+     o Google ainda le os bairros. O JS substitui por versao com links. -->
+                    <ul class="faq-bairros" data-lista-bairros>
+                        <li>Santa Terezinha</li>
+                        <li>Serrano</li>
+                        <li>Urca</li>
+                        <li>Castelo</li>
+                        <li>Ouro Preto</li>
+                        <li>Bandeirantes</li>
+                        <li>Pampulha</li>
+                        <li>Confisco</li>
+                        <li>Itatiaia</li>
+                        <li>Paquetá</li>
+                        <li>Alípio de Melo</li>
+                        <li>Braúnas</li>
+                        <li>Manacás</li>
+                        <li>Jardim São José</li>
+                        <li>Jardim Alvorada</li>
+                        <li>Residencial Sarandi</li>
+                    </ul>
             </div>
 
             <div class="content-card">
@@ -159,7 +178,6 @@
                 <div class="footer-column">
                     <h3>Atendimento</h3>
                     <a href="bairros.html">Onde entregamos</a>
-                    <a href="bairros.html">Onde entregamos</a>
                     <a href="contato.html">Fale Conosco</a>
                     <a href="https://wa.me/5531971716274" target="_blank">WhatsApp</a>
                 </div>
@@ -171,7 +189,7 @@
     </footer>
     <div class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></div>
     <script src="produtos-data.js"></script>
-    <script src="script.js?v=20261016z"></script>
+    <script src="script.js?v=20261017a"></script>
     <a href="https://wa.me/5531971716274" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </body>
 </html>
