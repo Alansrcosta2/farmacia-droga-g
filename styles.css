@@ -2354,9 +2354,13 @@
     font-weight: 600;
 }
 @media (max-width: 420px) { .consentimento { font-size: 0.85rem; padding: 11px 12px; gap: 9px; }
-} /* --- AVISO DO PAGAMENTO --- O campo "Como prefere pagar?" pode dar a impressao de que o site cobra. Este aviso deixa claro que e so preferencia e que o pagamento acontece no WhatsApp, depois da confirmacao da loja. */ .aviso-pagamento {
+} /* --- AVISO DO PAGAMENTO --- O campo "Como prefere pagar?" pode dar a impressao de que o site cobra. Este aviso deixa claro que e so preferencia e que o pagamento acontece no WhatsApp, depois da confirmacao da loja. */ /* O texto inteiro e UM item so do flex. Sem o <span>, o icone, o
+   "<strong>" e o resto do texto viravam tres colunas lado a lado e a
+   frase saia quebrada no meio. */
+.aviso-pagamento {
     display: flex;
     align-items: flex-start;
+    flex-wrap: nowrap;
     gap: 9px;
     margin-top: 10px;
     padding: 11px 13px;
@@ -2366,6 +2370,10 @@
     font-size: 0.83rem;
     line-height: 1.55;
     color: #1B4B72;
+}
+.aviso-pagamento > span {
+    flex: 1 1 auto;
+    min-width: 0;
 } .aviso-pagamento i {
     flex-shrink: 0;
     margin-top: 2px;
