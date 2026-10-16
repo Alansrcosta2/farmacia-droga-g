@@ -713,13 +713,16 @@ if (cartPageContainer) {
          Dmaster — ele nao acha nada por ele. E o "[ ]" foi para:
          nao existe cupom de separacao para o atendente ir marcando. */
       const linhas = Object.values(grouped).map(item => {
-        return (item.nome || '(produto)') + ' | Qtd: ' + item.quantidade +
-          (item.controlado ? ' | CONTROLADO (so retirada, com receita)' : '');
+        /* So numero, nome e quantidade. A marca "CONTROLADO" foi
+           retirada: o proprio checkout ja troca a modalidade para
+           "Retirada na loja (item controlado)", entao quem le ja
+           ve que e retirada. Repetir na linha so polui a lista. */
+        return (item.nome || '(produto)') + ' | Qtd: ' + item.quantidade;
       });
       const temControlado = Object.values(grouped).some(item => item.controlado);
       const msg = msgPedido({
         itens: linhas.map((l, k) => `${k + 1}. ${l}`).join('\n'),
-        nome, telefone, endereco, bairro, referencia, pagamento, observacoes, entrega, temControlado
+        nome, telefone, endereco, bairro, referencia, pagamento, observacoes, entrega
       });
       enviarWhatsApp(msg);
       showToast('Pedido enviado! Confirme e pague pelo WhatsApp — o site não cobra.', 'success');
@@ -942,14 +945,6 @@ function msgPedido(d) {
   const barra = '━━━━━━━━━━━━━━━━━━━━';
   const L = [];
 
-  /* Aviso ANTES de tudo: se tem controlado, o balcao precisa saber
-     antes de separar o pedido, e não depois. */
-  if (d.temControlado) {
-    L.push('*ATENÇÃO: PEDIDO COM MEDICAMENTO CONTROLADO*');
-    L.push('*Só é retirado na loja, com receita médica.*');
-    L.push('*Conferir a receita ANTES de separar.*');
-    L.push('');
-  }
   L.push('*NOVO PEDIDO — SITE DROGA G*');
   L.push(barra);
   L.push('*Protocolo:* ' + montarProtocolo());
@@ -1011,16 +1006,13 @@ function msgPedido(d) {
   if (dinheiroNaLoja) {
     L.push('*NÃO ENVIAR LINK DE PAGAMENTO*');
     L.push('O cliente paga em dinheiro no balcão.');
+    L.push('');
   }
 
   L.push('*O QUE O BALCÃO FAZ:*');
   let passo = 1;
   L.push(passo++ + '. Conferir preço e estoque no Dmaster');
   L.push(passo++ + '. Confirmar disponibilidade e prazo');
-  if (d.temControlado) {
-    L.push(passo++ + '. Conferir a receita antes de separar');
-    L.push('   *   Controlado só sai na loja com receita. Sem receita, avisar o cliente.');
-  }
   L.push(dinheiroNaLoja
     ? passo++ + '. Falar com o cliente e confirmar a reserva'
     : passo++ + '. Responder o cliente e enviar o Pix ou o link de pagamento');
