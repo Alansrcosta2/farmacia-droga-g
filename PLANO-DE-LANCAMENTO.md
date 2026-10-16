@@ -119,7 +119,7 @@ Atualizado out/2026. Ordem pensada pelo que mais trava a venda.
 
 | # | O quê | Onde está | Quem resolve |
 |---|---|---|---|
-| 1 | **Export do Dmaster** | preço 27/105, estoque 0/105 | Você — roteiro em `COMO-PEDIR-DMASTER.md` |
+| 1 | **Export do Dmaster** | preço 27/105, estoque 0/105 | Você — roteiro na página `guia-dmaster.html` |
 | 2 | **Link de pagamento da maquininha** | não existe | Você (falta saber a marca) |
 | 3 | **Perfil no Google** | não existe | Você — 15 min, grátis |
 | 4 | **Responsável técnico + CRF** | não existe no site | Você (obrigação legal) |
@@ -177,7 +177,7 @@ Hoje só **27 dos 105 produtos** têm preço no `produtos-data.js`.
 ### Como resolver
 
 O caminho certo é exportar do sistema da farmácia (Dmaster). O roteiro
-completo do que pedir está em `COMO-PEDIR-DMASTER.md`:
+completo do que pedir está na página `guia-dmaster.html`, pronta para imprimir:
 
 1. Pedir o export de produtos com código, nome, preço e quantidade
 2. Gerar o `produtos-data.js` com tudo preenchido

@@ -38,7 +38,7 @@ responsável técnico · registro ANVISA · fotos reais.
 estoque** (0 de 105). Sem isso o cliente não sabe se pode pagar e você pode
 vender o que não tem.
 
-**O que pedir** (campo por campo em `COMO-PEDIR-DMASTER.md`):
+**O que pedir** (campo por campo na página `guia-dmaster.html`, pronta para imprimir):
 - Código interno e EAN (código de barras)
 - Nome, preço de venda, preço de referência
 - **Estoque** (quantidade)
