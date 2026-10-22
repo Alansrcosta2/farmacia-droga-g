@@ -826,7 +826,6 @@ const BAIRROS_ENTREGA = [
   'Itatiaia',
   'Paquetá',
   'Alípio de Melo',
-  'Braúnas',
   'Manacás',
   'Jardim São José',
   'Jardim Alvorada',
