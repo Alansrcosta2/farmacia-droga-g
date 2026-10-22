@@ -2493,21 +2493,7 @@
     font-size: 1.2rem;
     line-height: 1;
     cursor: pointer;
-} .aviso-app-fechar:hover { background: #E2E8F0; } /* Botao fixo no rodape, para quem fechou o aviso e quiser instalar depois */ .btn-instalar {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    padding: 10px 16px;
-    background: #fff;
-    color: var(--brand, #00A651);
-    border: 2px solid var(--brand, #00A651);
-    border-radius: var(--r-md, 10px);
-    font-weight: 700;
-    font-size: 0.88rem;
-    cursor: pointer;
-    text-decoration: none;
-} .btn-instalar:hover { background: #F0FBF4; }
+} .aviso-app-fechar:hover { background: #E2E8F0; } 
 
 @media (min-width: 769px) { .aviso-app {
         top: 90px;

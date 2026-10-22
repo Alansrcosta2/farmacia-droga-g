@@ -1557,15 +1557,6 @@ const instalarNoCelular = (forcar) => {
   mostrarAvisoApp();
 };
 
-/* Botao "Instalar no celular" do rodape */
-document.querySelectorAll('[data-instalar-app]').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    instalarNoCelular(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-});
-
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => instalarNoCelular());
 } else {
