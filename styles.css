@@ -2686,5 +2686,27 @@
     .beneficios-group > .beneficio-item {
         flex: 1 1 0;
         min-width: 0;
+        align-items: flex-start;
+    }
+    /* O texto de cada beneficio e branco sobre gradiente verde. Ele
+       tinha white-space: nowrap e o <div> que o envolve nao podia
+       encolher (min-width: auto). Em tela grande o item ficava com
+       ~1/5 da largura, mas o texto continuava com a largura toda e
+       passava POR CIMA do beneficio vizinho — dava para ler "Frete
+       Gratis" e "Entrega Rapida" escritos um em cima do outro.
+
+       Duas coisas resolvem, e as duas sao necessarias:
+       1. min-width: 0 no <div>, para ele aceitar a largura do item;
+       2. quebra de linha no texto em tela grande. Antes o texto era
+          cortado com reticencias; na TV isso escondia "demais bairros
+          no WhatsApp". Quebrando em duas linhas, aparece inteiro. */
+    .beneficios-group > .beneficio-item > div {
+        min-width: 0;
+    }
+    .beneficios-group > .beneficio-item strong,
+    .beneficios-group > .beneficio-item span {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
     }
 }

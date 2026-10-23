@@ -11,7 +11,7 @@
  * ver um site congelado com preço antigo.
  */
 
-const VERSAO = 'drogag-v2';
+const VERSAO = 'drogag-v3';
 const CACHE_IMAGENS = VERSAO + '-img';
 const CACHE_PAGINAS = VERSAO + '-pag';
 
