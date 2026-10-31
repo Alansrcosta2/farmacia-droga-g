@@ -113,7 +113,7 @@ site fica pronto e ninguém descobre que ele existe.
 1. Google → **Perfil da Empresa** (ou Google Meu Negócio)
 2. Cadastrar com CNPJ: nome, endereço (Rua Julita Nogueira Soares, 610),
    telefone (31) 3476-2473, categoria **Farmácia**
-3. Horários: Seg a Sex 8h–20h · Sábado 8h–18h · Domingo e feriado 9h–13h
+3. Horários: Seg a Sex 8h–20h · Sábado 8h–20h · Domingo e feriado 9h–13h
 4. Colar o link do site
 5. Pedir avaliação para os primeiros clientes
 

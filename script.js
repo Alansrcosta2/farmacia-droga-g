@@ -217,7 +217,7 @@ const cartTemControlado = () => loadCart().some(i => i.controlado);
 const updateCartBadge = () => {
   const badges = document.querySelectorAll('[data-cart-count]');
   if (!badges.length) return;
-  const n = loadCart().length;
+  const n = loadCart().reduce((soma, item) => soma + (parseInt(item.quantidade, 10) || 1), 0);
   badges.forEach(b => {
     b.textContent = n;
     b.style.display = n ? '' : 'none';
@@ -289,7 +289,7 @@ const applyProductDataToCards = () => {
     if (imgPlaceholder && data.imagem) {
       const probe = new Image();
       probe.onload = () => {
-        imgPlaceholder.innerHTML = `<img src="${data.imagem}" alt="${(data.nome || '').trim()}">`;
+        imgPlaceholder.innerHTML = `<img src="${data.imagem}" alt="${(data.nome || '').trim()}" loading="lazy">`;
 };
 
 
@@ -719,7 +719,6 @@ if (cartPageContainer) {
            ve que e retirada. Repetir na linha so polui a lista. */
         return (item.nome || '(produto)') + ' | Qtd: ' + item.quantidade;
       });
-      const temControlado = Object.values(grouped).some(item => item.controlado);
       const msg = msgPedido({
         itens: linhas.map((l, k) => `${k + 1}. ${l}`).join('\n'),
         nome, telefone, endereco, bairro, referencia, pagamento, observacoes, entrega
@@ -932,7 +931,6 @@ function msgConsultaProduto(nome, sku, qtd) {
     'Protocolo: ' + montarProtocolo(),
     '',
     'Produto: ' + nome,
-    'Código interno: ' + (sku || 'sem código'),
     'Quantidade: ' + (qtd || 1),
     'CEP do cliente: ' + cepSalvo(),
     '',
@@ -1081,6 +1079,23 @@ if (produtoDetalhe) {
     const cat = catLabels[data.categoria] || 'Produtos';
     const zaps = 'https://wa.me/5531971716274?text=' + encodeURIComponent(msgConsultaProduto(data.nome, data.sku, 1));
     document.title = data.nome + ' - Farmácia Droga G';
+    /* O produto.html e um molde. Isto melhora o titulo e o SEO da
+       pagina depois que o JS roda. A previa de link no WhatsApp NAO
+       e afetada: o WhatsApp le o HTML sem executar JS, entao para
+       isso seria preciso gerar uma pagina estatica por produto. */
+    const paginaUrl = window.location.origin + window.location.pathname + '?sku=' + encodeURIComponent(data.sku);
+    const descricaoProduto = data.nome + ' na Farmácia Droga G, Santa Terezinha (BH). Consulte disponibilidade e condição pelo WhatsApp.';
+    const setMeta = (seletor, valor) => {
+      const el = document.querySelector(seletor);
+      if (el) el.setAttribute('content', valor);
+    };
+    setMeta('meta[name="description"]', descricaoProduto);
+    setMeta('meta[property="og:title"]', data.nome + ' | Farmácia Droga G');
+    setMeta('meta[property="og:description"]', descricaoProduto);
+    setMeta('meta[property="og:image"]', new URL(data.imagem, window.location.href).href);
+    setMeta('meta[property="og:url"]', paginaUrl);
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', paginaUrl);
     if (breadcrumb) breadcrumb.innerHTML = '<a href="index.html">Início</a> / <a href="produtos.html">Produtos</a> / <a href="produtos.html?categoria=' + data.categoria + '">' + cat + '</a> / ' + data.nome;
     // Avisos de tarja. Toggle unico: o dono liga/desliga aqui depois de
     // revisar com a farmacia. Os cartoes continuam limpos de proposito;
@@ -1108,7 +1123,9 @@ if (produtoDetalhe) {
         ? '<div style="font-size:0.85rem;color:#16a34a;margin-bottom:14px;"><i class="fas fa-check-circle"></i> ' + data.estoque + ' unidade(s) em estoque</div>'
         : ''),
       '  <ul class="produto-beneficios">',
-      '    <li><i class="fas fa-truck-fast"></i> Entrega em até 30 minutos</li>',
+      data.tarja === 'tarja_vermelha_c1'
+        ? '    <li><i class="fas fa-store"></i> Retirada na loja, com receita</li>'
+        : '    <li><i class="fas fa-truck-fast"></i> Entrega em até 30 minutos</li>',
       '    <li><i class="fas fa-shield-alt"></i> Produto original, com nota fiscal</li>',
       '    <li><i class="fas fa-store"></i> Retire em nossa loja</li>',
       '  </ul>',

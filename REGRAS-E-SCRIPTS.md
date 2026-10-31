@@ -21,7 +21,7 @@ A lista completa está em `script.js`, em `BAIRROS_ENTREGA` — **é a fonte ún
 A home, o FAQ, o campo do pedido e o aviso de bairro fora da lista leem todos
 dessa lista, então nunca ficam diferentes entre si.
 
-**16 bairros dentro do raio de 4 km**, todos de **Belo Horizonte**.
+**15 bairros na lista**, todos de **Belo Horizonte**.
 
 ⚠️ **Bairros de Contagem foram removidos de propósito** (decisão do dono),
 mesmo estando dentro do raio — Contagem é outro município e a lista mostra só
@@ -39,7 +39,6 @@ Pampulha, Balneário da Ressaca, Arpoador e Cabral.
 | Itatiaia | 0,55 |
 | Paquetá | 1,59 |
 | Alípio de Melo | 2,45 |
-| Braúnas | 2,68 |
 | Manacás | 3,11 |
 | Ouro Preto | 2,66 |
 | Bandeirantes | 2,53 |

@@ -48,10 +48,12 @@ for cat in categorias:
     for a in sorted(glob.glob(os.path.join("img", "banco", cat, "*.webp"))):
         leg = legenda(os.path.basename(a))
         caminho = a.replace(os.sep, "/")
+        # Sem <figcaption>: o nome vem do arquivo, que costuma estar
+        # truncado (ex.: "prati-donaduzz"), e a legenda saia errada.
+        # O alt continua para acessibilidade.
         figs.append(
             '            <figure class="fotos-item">\n'
             '                <img src="' + caminho + '" alt="' + leg + '" loading="lazy">\n'
-            '                <figcaption>' + leg + '</figcaption>\n'
             '            </figure>'
         )
 
