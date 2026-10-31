@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de 7 dias - Droga G</title>
+<meta name="description" content="Plano de 7 dias, custo zero, para colocar o site da Droga G no ar: documentos da farmácia, preço, estoque, fotos, Google e publicação.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="stylesheet" href="styles.css?v=20261023c">
+<style>
+  body { background: #F4F6F8; }
+  .doc { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+  .doc-topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+  .logo-doc { font-size: 1.6rem; font-weight: 800; color: var(--brand); }
+  .logo-doc span { color: var(--primary-blue); }
+  .doc-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+  .doc-acoes .btn { font-size: 0.85rem; padding: 11px 16px; }
+  .folha { background: #fff; border-radius: 16px; padding: 34px 30px; box-shadow: 0 2px 12px rgba(15,23,42,.08); }
+  .folha h1 { font-size: 1.7rem; color: var(--ink); line-height: 1.25; margin: 0 0 8px; padding-bottom: 16px; border-bottom: 3px solid var(--brand); }
+  .folha h2 { font-size: 1.15rem; color: var(--primary-blue); margin: 30px 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--line); }
+  .folha h3 { font-size: 1rem; color: var(--ink); margin: 20px 0 8px; }
+  .folha p, .folha li { color: #374151; line-height: 1.7; font-size: 0.95rem; }
+  .folha ul, .folha ol { padding-left: 22px; }
+  .sub { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 22px; }
+  .cx { background: #FFF4E5; border-left: 4px solid #FFB020; border-radius: 8px; padding: 16px 18px; margin: 18px 0; }
+  .cx p { margin: 0; font-size: 0.93rem; }
+  .cx strong { color: #8A5200; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #F4F6F8; font-weight: 700; color: var(--ink); font-size: 0.85rem; }
+  code { background: #EEF2F6; padding: 2px 7px; border-radius: 5px; font-size: 0.86em; font-family: ui-monospace, monospace; color: #1E40AF; }
+  .rodape-doc { text-align: center; color: var(--text-secondary); font-size: 0.78rem; margin-top: 26px; line-height: 1.6; }
+  .check { display: inline-block; width: 15px; height: 15px; border: 1.6px solid #64748B; border-radius: 3px; vertical-align: -2px; }
+  .linha { border-bottom: 1px solid #CBD5E1; height: 26px; }
+  .aviso {
+      background: #FFF8E6;
+      border: 1px solid #F5C97B;
+      border-left: 4px solid #E8A317;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 18px 0;
+      color: #5C4410;
+  }
+  .aviso p { margin: 0 0 8px; }
+  .aviso p:last-child { margin-bottom: 0; }
+  .aviso ul { margin: 8px 0 0; padding-left: 22px; }
+  .aviso li { margin-bottom: 8px; }
+  .aviso strong { color: #3D2E0A; }
+  @media print {
+    body { background: #fff; }
+    .no-print { display: none !important; }
+    .folha { box-shadow: none; padding: 0; border-radius: 0; }
+    h2 { page-break-after: avoid; }
+    table, tr { page-break-inside: avoid; }
+  }
+  @media (max-width: 480px) { .folha { padding: 24px 18px; } .folha h1 { font-size: 1.4rem; } table { font-size: 0.82rem; } th, td { padding: 9px 8px; } }
+</style>
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <script src="construcao.js"></script>
+    <script src="construcao-inject.js"></script>
+</head>
+<body>
+
+<div class="doc">
+  <div class="doc-topo">
+    <div class="logo-doc">DROGA <span>G</span></div>
+    <div class="doc-acoes no-print">
+      <button type="button" class="btn btn-outline" onclick="window.print()">Imprimir</button>
+    </div>
+  </div>
+
+  <div class="folha">
+    <h1>Checklist de 7 dias — custo zero</h1>
+    <p class="sub">Plano para colocar o site da Droga G no ar · Outubro 2026</p>
+
+    <div class="cx">
+      <p><strong>O que falta não é dinheiro.</strong> O site já está feito e hospedado de graça.
+      O que trava são os documentos da farmácia e o arquivo do Dmaster (preço e estoque).
+      Este plano é para imprimir, levar na drogaria e ir marcando.</p>
+    </div>
+
+    <h2>1. O que pedir na farmácia</h2>
+    <table>
+      <tr>
+        <th style="width:34px;">✓</th>
+        <th>Item</th>
+        <th>Como pedir / onde achar</th>
+      </tr>
+      <tr>
+        <td><span class="check"></span></td>
+        <td><strong>Export do Dmaster</strong><br><span style="font-size:.85rem;color:#6B7280;">produtos</span></td>
+        <td>No Dmaster: <strong>Relatórios → Estoque/Produtos → Exportar</strong>.
+        Pode ser <strong>.csv</strong> ou <strong>.xlsx</strong>. Se não achar, um <strong>print da tela</strong> serve.<br>
+        Campos: código interno, <strong>EAN</strong>, nome, <strong>preço de venda</strong>,
+        preço de referência, <strong>estoque</strong>, categoria, fabricante, tarja.</td>
+      </tr>
+      <tr>
+        <td><span class="check"></span></td>
+        <td><strong>Farmacêutico responsável</strong></td>
+        <td><strong>Nome completo</strong> + <strong>CRF e UF</strong> (ex.: CRF-MG 12.345).
+        Serve foto da carteira do CRF ou da certidão de responsabilidade técnica.</td>
+      </tr>
+      <tr>
+        <td><span class="check"></span></td>
+        <td><strong>Documento da farmácia</strong></td>
+        <td><strong>Alvará sanitário / licença de funcionamento</strong> (número e validade).
+        Se tiver, também a <strong>AFE/ANVISA</strong> da farmácia.
+        Foto do documento serve.</td>
+      </tr>
+    </table>
+
+    <div class="aviso">
+      <p><strong>Não precisa mandar:</strong></p>
+      <ul>
+        <li>CPF do farmacêutico (só nome e CRF vão para o site);</li>
+        <li>lista de clientes ou qualquer dado de cliente;</li>
+        <li>senha do Dmaster ou acesso ao sistema.</li>
+      </ul>
+    </div>
+
+    <h2>2. Os 7 dias</h2>
+    <table>
+      <tr>
+        <th style="width:58px;">Dia</th>
+        <th>Tarefa</th>
+        <th style="width:58px;">Feito</th>
+      </tr>
+      <tr>
+        <td><strong>1</strong></td>
+        <td><strong>Pedir os 3 itens acima.</strong> Levar esta folha impressa e deixar com o responsável.
+        Pedir um prazo de 2 dias.</td>
+        <td><span class="check"></span></td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td><strong>Criar/atualizar o Perfil da Empresa no Google.</strong>
+        Nome, endereço (Rua Julita Nogueira Soares, 610), telefone (31) 3476-2473,
+        horário (Seg–Sex 8h–20h · Sáb 8h–20h · Dom/feriado 9h–13h),
+        categoria <strong>Farmácia</strong> e o link do site.</td>
+        <td><span class="check"></span></td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td><strong>Fotos reais dos produtos.</strong> Os 64 que ainda usam a caixa genérica.
+        Celular, luz do dia, fundo claro, foto reta da caixa.</td>
+        <td><span class="check"></span></td>
+      </tr>
+      <tr>
+        <td><strong>4</strong></td>
+        <td><strong>Com o CSV em mãos, gerar o catálogo</strong> com preço e estoque.
+        Enviar o arquivo para o responsável pelo site.</td>
+        <td><span class="check"></span></td>
+      </tr>
+      <tr>
+        <td><strong>5</strong></td>
+        <td><strong>Publicar CRF + alvará no site</strong> (rodapé e página “Sobre”).
+        Sem isso o site não deve ir ao ar.</td>
+        <td><span class="check"></span></td>
+      </tr>
+      <tr>
+        <td><strong>6</strong></td>
+        <td><strong>Criar o link de pagamento</strong> no app da maquininha e fazer
+        <strong>um pedido de teste</strong> (retirada na loja), do começo ao fim.</td>
+        <td><span class="check"></span></td>
+      </tr>
+      <tr>
+        <td><strong>7</strong></td>
+        <td><strong>Publicar:</strong> desligar o modo construção, remover o <code>noindex</code>
+        e liberar o <code>robots.txt</code>. Divulgar no WhatsApp e no Instagram.</td>
+        <td><span class="check"></span></td>
+      </tr>
+    </table>
+
+    <h2>3. Quanto custa</h2>
+    <table>
+      <tr><th>Item</th><th>Custo</th></tr>
+      <tr><td>Site e hospedagem</td><td><strong>R$ 0</strong> (GitHub Pages)</td></tr>
+      <tr><td>Perfil no Google</td><td><strong>R$ 0</strong></td></tr>
+      <tr><td>Fotos dos produtos</td><td><strong>R$ 0</strong> (celular)</td></tr>
+      <tr><td>Link de pagamento</td><td><strong>R$ 0</strong> (a maquininha já existe)</td></tr>
+      <tr><td>Domínio próprio (<code>drogag.com.br</code>)</td><td>~R$ 40/ano — <strong>opcional</strong></td></tr>
+      <tr><td>Plataforma (Nuvemshop/VTEX)</td><td><strong>não precisa</strong></td></tr>
+      <tr><td>Anúncios</td><td><strong>não precisa no começo</strong></td></tr>
+    </table>
+
+    <h2>4. Se travar</h2>
+    <ul>
+      <li><strong>Não achou o export?</strong> Print da tela de produtos/estoque serve.</li>
+      <li><strong>Não tem o CRF?</strong> Pedir ao farmacêutico a certidão de responsabilidade técnica no CRF-MG.</li>
+      <li><strong>Não achou o alvará?</strong> Está na parede da loja; se não, pedir à contabilidade ou à vigilância sanitária.</li>
+      <li><strong>Sem dinheiro para o domínio?</strong> Usar o endereço do GitHub mesmo. Não impede vender.</li>
+      <li><strong>Sem CRF/alvará?</strong> Não publicar. É obrigação legal, não é gasto.</li>
+    </ul>
+
+    <h2>5. Anotações</h2>
+    <p><strong>Quem ficou responsável na farmácia:</strong></p>
+    <div class="linha"></div>
+    <p style="margin-top:16px;"><strong>WhatsApp para devolver os arquivos:</strong></p>
+    <div class="linha"></div>
+    <p style="margin-top:16px;"><strong>Prazo combinado:</strong></p>
+    <div class="linha"></div>
+    <p style="margin-top:16px;"><strong>Observações:</strong></p>
+    <div class="linha"></div>
+    <div class="linha"></div>
+    <div class="linha"></div>
+
+    <div class="rodape-doc">
+      Documento interno — Droga G Santa Terezinha<br>
+      Rua Julita Nogueira Soares, 610 · Santa Terezinha · Belo Horizonte/MG<br>
+      (31) 3476-2473 · WhatsApp (31) 97171-6274
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
